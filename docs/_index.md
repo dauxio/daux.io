@@ -2,9 +2,12 @@
 	<strong>Daux.io</strong> is a documentation generator that uses a simple folder structure and Markdown files to create custom documentation on the fly. It helps you create great looking documentation in a developer friendly way.
 </p>
 
-<hr/>
-<h3>Features</h3>
-<hr/>
+---
+
+### Features
+
+---
+
 <div class=row>
 <div class=col-third>
 
@@ -45,7 +48,27 @@
 </div>
 </div>
 
-<hr/>
+---
+
+### Installation and usage
+
+If you have __PHP__ and Composer installed
+
+```bash
+composer global require dauxio/daux.io
+
+# Next to your `docs` folder, run
+daux generate
+```
+
+Or if you wish to use __Docker__
+
+```bash
+# Next to your `docs` folder, run
+docker run --rm -it -w /build -v "$PWD":/build daux/daux.io daux generate
+```
+
+---
 
 <!-- Google Code -->
 <script type="text/javascript">
