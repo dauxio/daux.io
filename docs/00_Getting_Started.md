@@ -43,14 +43,14 @@ This is a list of sites using Daux.io:
 * [Munee: Standalone PHP 5.3 Asset Optimisation & Manipulation](http://mun.ee)
 * [ICADMIN: An admin panel powered by CodeIgniter.](http://istocode.com/shared/ic-admin/)
 
-Do you use Daux.io? Send us a pull request or open an [issue](https://github.com/justinwalsh/daux.io/issues) and I will add you to the list.
+Do you use Daux.io? Send us a pull request or open an [issue](https://github.com/dauxio/daux.io/issues) and I will add you to the list.
 
 ## Getting Started
 
 ### Install
 
 ```
-composer global require justinwalsh/daux.io
+composer global require dauxio/daux.io
 ```
 
 You can then use the `daux` command line to generate your documentation.
@@ -137,4 +137,4 @@ If you encounter an error similar to `utf8_decode() not found` this means that y
 
 ## Support
 
-If you need help using Daux.io, or have found a bug, please create an issue on the <a href="https://github.com/justinwalsh/daux.io/issues" target="_blank">GitHub repo</a>.
+If you need help using Daux.io, or have found a bug, please create an issue on the <a href="https://github.com/dauxio/daux.io/issues" target="_blank">GitHub repo</a>.

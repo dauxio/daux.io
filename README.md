@@ -1,12 +1,12 @@
 # Daux.io
 
 
-[![Latest Version](https://img.shields.io/github/release/justinwalsh/daux.io.svg?style=flat-square)](https://github.com/justinwalsh/daux.io/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/justinwalsh/daux.io/blob/master/LICENSE.md)
-[![Build Status](https://img.shields.io/travis/onigoetz/daux.io/master.svg?style=flat-square)](https://travis-ci.org/onigoetz/daux.io)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/onigoetz/daux.io.svg?style=flat-square)](https://scrutinizer-ci.com/g/onigoetz/daux.io/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/onigoetz/daux.io.svg?style=flat-square)](https://scrutinizer-ci.com/g/onigoetz/daux.io)
-[![Total Downloads](https://img.shields.io/packagist/dt/justinwalsh/daux.io.svg?style=flat-square)](https://packagist.org/packages/justinwalsh/daux.io)
+[![Latest Version](https://img.shields.io/github/release/dauxio/daux.io.svg?style=flat-square)](https://github.com/dauxio/daux.io/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/dauxio/daux.io/blob/master/LICENSE.md)
+[![Build Status](https://img.shields.io/travis/dauxio/daux.io/master.svg?style=flat-square)](https://travis-ci.org/dauxio/daux.io)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/dauxio/daux.io.svg?style=flat-square)](https://scrutinizer-ci.com/g/dauxio/daux.io/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/dauxio/daux.io.svg?style=flat-square)](https://scrutinizer-ci.com/g/dauxio/daux.io)
+[![Total Downloads](https://img.shields.io/packagist/dt/dauxio/daux.io.svg?style=flat-square)](https://packagist.org/packages/dauxio/daux.io)
 
 
 **Daux.io** is a documentation generator that uses a simple folder structure and Markdown files to create custom documentation on the fly. It helps you create great looking documentation in a developer friendly way.
@@ -45,12 +45,12 @@ This is a list of sites using Daux.io:
     * [Cumulus TV: Android TV app that turns any stream/page into a Live Channel](http://cumulustv.herokuapp.com)
     * [Nuntius: A PHP framework for bots](https://roysegall.github.io/nuntius-bot/)
 
-Do you use Daux.io? Send me a pull request or open an [issue](https://github.com/justinwalsh/daux.io/issues) and I will add you to the list.
+Do you use Daux.io? Send me a pull request or open an [issue](https://github.com/dauxio/daux.io/issues) and I will add you to the list.
 
 ## Install
 
 ```
-composer global require justinwalsh/daux.io
+composer global require dauxio/daux.io
 ```
 
 You can then use the `daux` command line to generate your documentation.
@@ -234,4 +234,4 @@ If you encounter an error similar to `utf8_decode() not found` this means that y
 
 ## Support
 
-If you need help using Daux.io, or have found a bug, please create an issue on the <a href="https://github.com/justinwalsh/daux.io/issues" target="_blank">GitHub repo</a>.
+If you need help using Daux.io, or have found a bug, please create an issue on the <a href="https://github.com/dauxio/daux.io/issues" target="_blank">GitHub repo</a>.

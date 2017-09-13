@@ -85,7 +85,7 @@ Add a 'Fork me on GitHub' ribbon.
 
 ```json
 {
-  "html": { "repo": "justinwalsh/daux.io" }
+  "html": { "repo": "dauxio/daux.io" }
 }
 ```
 
@@ -118,8 +118,8 @@ Include custom links in the sidebar.
 {
   "html": {
     "links": {
-      "GitHub Repo": "https://github.com/justinwalsh/daux.io",
-      "Help/Support/Bugs": "https://github.com/justinwalsh/daux.io/issues",
+      "GitHub Repo": "https://github.com/dauxio/daux.io",
+      "Help/Support/Bugs": "https://github.com/dauxio/daux.io/issues",
       "Made by Todaymade": "http://todaymade.com"
     }
   }

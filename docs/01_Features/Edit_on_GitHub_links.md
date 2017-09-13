@@ -11,7 +11,7 @@ Daux.io will handle the rest
 ```json
 {
   "html": {
-    "edit_on_github": "justinwalsh/daux.io/blob/master/docs"
+    "edit_on_github": "dauxio/daux.io/blob/master/docs"
   }
 }
 ```
@@ -28,7 +28,7 @@ As long as you can refer your files by a URL, you can create an edit link for yo
   "html": {
     "edit_on": {
       "name": "Bitbucket",
-      "basepath": "https://bitbucket.org/onigoetz/daux.io/src/master/docs"
+      "basepath": "https://bitbucket.org/dauxio/daux.io/src/master/docs"
     }
   }
 }
