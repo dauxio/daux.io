@@ -36,7 +36,7 @@
 
 This is a list of sites using Daux.io:
 
-* [Daux.io](http://daux.io)
+* [Daux.io](https://dauxio.github.io/)
 * [jDrupal](http://jdrupal.easystreet3.com/8/docs/)
 * [DrupalGap](http://docs.drupalgap.org/8/)
 * [Invade & Annex 3 - An Arma 3 Co-operative Mission](http://ia3.ahoyworld.co.uk/)

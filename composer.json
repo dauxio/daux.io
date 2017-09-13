@@ -7,6 +7,10 @@
     "homepage": "https://dauxio.github.io/",
     "authors": [
         {
+            "name": "Stéphane Goetz",
+            "homepage": "http://onigoetz.ch/"
+        },
+        {
             "name": "Justin Walsh",
             "homepage": "http://todaymade.com/"
         }
