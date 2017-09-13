@@ -18,7 +18,7 @@ var resources = {
 var stylelintRules = {
     "indentation": 4,
     "selector-list-comma-newline-after": "always-multi-line",
-    "selector-no-id": true,
+    "selector-max-id": 0,
 
     // Autoprefixer
     "at-rule-no-vendor-prefix": true,

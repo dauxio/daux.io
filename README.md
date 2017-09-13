@@ -49,13 +49,28 @@ Do you use Daux.io? Send me a pull request or open an [issue](https://github.com
 
 ## Install
 
-```
+### PHP and Composer
+
+If you have PHP and Composer installed, you can install the dependency
+
+```bash
 composer global require dauxio/daux.io
+
+# Next to your `docs` folder, run
+daux generate
 ```
 
 You can then use the `daux` command line to generate your documentation.
 
 If the command isn't found, ensure your `$PATH` contains `~/.composer/vendor/bin`
+
+### Docker
+
+Or if you wish to use Docker, the start of the command will be :
+
+```bash
+docker run --rm -it -w /build -v "$PWD":/build daux/daux.io daux
+```
 
 ## Run on a server
 
