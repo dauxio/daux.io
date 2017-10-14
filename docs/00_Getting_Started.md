@@ -54,7 +54,7 @@ Do you use Daux.io? Send us a pull request or open an [issue](https://github.com
 If you have PHP and Composer installed, you can install the dependency
 
 ```bash
-composer global require dauxio/daux.io
+composer global require daux/daux.io
 
 # Next to your `docs` folder, run
 daux generate
