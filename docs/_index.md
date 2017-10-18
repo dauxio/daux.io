@@ -55,7 +55,7 @@
 If you have __PHP__ and Composer installed
 
 ```bash
-composer global require dauxio/daux.io
+composer global require daux/daux.io
 
 # Next to your `docs` folder, run
 daux generate
