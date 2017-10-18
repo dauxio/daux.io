@@ -34,7 +34,7 @@
 } ?>
 
     <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="<?= $base_url; ?>themes/daux/js/html5shiv-3.7.3.min.js"></script>
     <![endif]-->
 </head>
 <body class="<?= $params['html']['float'] ? 'with-float' : ''; ?> <?= $this->section('classes'); ?>">
