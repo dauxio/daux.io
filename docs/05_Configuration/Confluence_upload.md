@@ -71,7 +71,7 @@ By default, it will inform you that some pages aren't needed anymore and you can
 }
 ```
 
-By setting `delete` to `true` (or running `daux.phar` with the `--delete` flag) you tell the generator that it can safely delete the pages.
+By setting `delete` to `true` (or running `daux` with the `--delete` flag) you tell the generator that it can safely delete the pages.
 
 
 ## Information message

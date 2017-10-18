@@ -1,10 +1,10 @@
 The recommended way to extend Daux is through Processors.
 
-The main advantage, is that you can run it with the source or with `daux.phar` independently. You don't need to hack in the core.
+The main advantage, is that you can run it with the source or with `daux` independently. You don't need to hack in the core.
 
 ## Adding classes
 
-At the same level as your `daux.phar` file, you will see a `daux` directory, you can create all your classes here.
+Next to your `docs` directory, you can create a `daux` directory that can contain your Processor.
 
 The classes must respect the PSR-4 Naming convention. And have `\Todaymade\Daux\Extension` as a base namespace.
  
