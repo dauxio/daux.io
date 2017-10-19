@@ -10,6 +10,7 @@
     <meta name="description" content="<?= $params['tagline']; ?>" />
     <meta name="author" content="<?= $params['author']; ?>">
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" href="<?= $params['theme']['favicon']; ?>" type="image/x-icon">
     <!-- Mobile -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
