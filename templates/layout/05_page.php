@@ -25,61 +25,43 @@
 
 
             <div class="Links">
-                <?php if (!empty($params['html']['links'])) {
-                ?>
+                <?php if (!empty($params['html']['links'])) { ?>
                     <hr/>
-                    <?php foreach ($params['html']['links'] as $name => $url) {
-                    ?>
+                    <?php foreach ($params['html']['links'] as $name => $url) { ?>
                         <a href="<?= $url ?>" target="_blank"><?= $name ?></a>
                         <br />
-                    <?php
+                    <?php } ?>
+                <?php } ?>
 
-                } ?>
-                <?php
-
-            } ?>
-
-                <?php if ($params['html']['toggle_code']) {
-                ?>
+                <?php if ($params['html']['toggle_code']) { ?>
                     <div class="CodeToggler">
                         <hr/>
-                        <?php if ($params['html']['float']) {
-                    ?>
+                        <?php if ($params['html']['float']) { ?>
                             <span class="CodeToggler__text">Code blocks</span>
                             <div class="ButtonGroup" role="group">
                                 <button class="Button Button--default Button--small CodeToggler__button CodeToggler__button--hide">No</button>
                                 <button class="Button Button--default Button--small CodeToggler__button CodeToggler__button--below">Below</button>
                                 <button class="Button Button--default Button--small CodeToggler__button CodeToggler__button--float">Inline</button>
                             </div>
-                        <?php
-
-                } else {
-                    ?>
-                            <a class="CodeToggler__button CodeToggler__button--main" href="#">Show Code Blocks Inline</a><br>
-                        <?php
-
-                } ?>
+                        <?php } else { ?>
+                            <label class="Checkbox">Show Code Blocks
+                                <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                                <div class="Checkbox__indicator"></div>
+                            </label>
+                        <?php } ?>
                     </div>
-                <?php
+                <?php } ?>
 
-            } ?>
-
-                <?php if (!empty($params['html']['twitter'])) {
-                ?>
+                <?php if (!empty($params['html']['twitter'])) { ?>
                     <hr/>
                     <div class="Twitter">
-                        <?php foreach ($params['html']['twitter'] as $handle) {
-                    ?>
+                        <?php foreach ($params['html']['twitter'] as $handle) { ?>
                             <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=<?= $handle; ?>&amp;show_count=false"></iframe>
                             <br />
                             <br />
-                        <?php
-
-                } ?>
+                        <?php } ?>
                     </div>
-                <?php
-
-            } ?>
+                <?php } ?>
             </div>
         </div>
     </aside>

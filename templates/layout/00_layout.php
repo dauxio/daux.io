@@ -1,38 +1,32 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>       <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>          <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>          <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<html class="no-js" lang="en">
 <head>
-    <title><?= $page['title']; ?> <?php if ($page['title'] != $params['title']) {
-    echo '- ' . $params['title'];
-} ?></title>
-    <meta name="description" content="<?= $params['tagline']; ?>" />
+    <title><?= $page['title']; ?> <?= ($page['title'] != $params['title'])? '- ' . $params['title'] : "" ?></title>
+    <meta name="description" content="<?= $params['tagline']; ?>">
     <meta name="author" content="<?= $params['author']; ?>">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <link rel="icon" href="<?= $params['theme']['favicon']; ?>" type="image/x-icon">
+
     <!-- Mobile -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Font -->
     <?php foreach ($params['theme']['fonts'] as $font) {
-    echo "<link href='$font' rel='stylesheet' type='text/css'>";
-} ?>
+        echo "<link href='$font' rel='stylesheet' type='text/css'>";
+    } ?>
 
     <!-- CSS -->
     <?php foreach ($params['theme']['css'] as $css) {
-    echo "<link href='$css' rel='stylesheet' type='text/css'>";
-} ?>
+        echo "<link href='$css' rel='stylesheet' type='text/css'>";
+    } ?>
 
-    <?php if ($params['html']['search']) {
-    ?>
+    <?php if ($params['html']['search']) { ?>
         <!-- Tipue Search -->
         <link href="<?= $base_url; ?>tipuesearch/tipuesearch.css" rel="stylesheet">
-    <?php
-
-} ?>
+    <?php } ?>
 
     <!--[if lt IE 9]>
     <script src="<?= $base_url; ?>themes/daux/js/html5shiv-3.7.3.min.js"></script>
@@ -64,8 +58,7 @@
 
     <script src="<?= $base_url; ?>themes/daux/js/daux.js"></script>
 
-    <?php if ($params['html']['search']) {
-        ?>
+    <?php if ($params['html']['search']) { ?>
         <!-- Tipue Search -->
         <script type="text/javascript" src="<?php echo $base_url; ?>tipuesearch/tipuesearch.js"></script>
 
@@ -77,9 +70,7 @@
                 });
             });
         </script>
-    <?php
-
-    } ?>
+    <?php } ?>
 
 </body>
 </html>

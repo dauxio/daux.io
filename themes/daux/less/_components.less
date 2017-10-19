@@ -363,3 +363,76 @@ Components
         float: left;
     }
 }
+
+.Checkbox {
+    position: relative;
+    display: block;
+    padding-left: 30px;
+    cursor: pointer;
+
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+}
+
+.Checkbox__indicator {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: #e6e6e6;
+
+    /* Check mark */
+    &::after {
+        position: absolute;
+        display: none;
+        content: '';
+    }
+
+    /* Hover and focus states */
+    .Checkbox:hover input ~ &,
+    .Checkbox input:focus ~ & {
+        background: #ccc;
+    }
+
+    /* Checked state */
+    .Checkbox input:checked ~ & {
+        background: @dark;
+
+        /* Show check mark */
+        &::after {
+            display: block;
+        }
+    }
+
+    /* Hover state whilst checked */
+    .Checkbox:hover input:not([disabled]):checked ~ &, .Checkbox input:checked:focus ~ & {
+        background: @light;
+    }
+
+    /* Disabled state */
+    .Checkbox input:disabled ~ & {
+        pointer-events: none;
+        opacity: 0.6;
+        background: #e6e6e6;
+    }
+
+    /* Checkbox tick */
+    .Checkbox &::after {
+        top: 4px;
+        left: 8px;
+        width: 5px;
+        height: 10px;
+        transform: rotate(45deg);
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+    }
+
+    /* Disabled tick colour */
+    .Checkbox input:disabled ~ &::after {
+        border-color: #7b7b7b;
+    }
+}

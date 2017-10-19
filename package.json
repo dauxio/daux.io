@@ -7,10 +7,10 @@
     "gulp": "^3.9.1",
     "gulp-less": "^3.1.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-postcss": "^6.1.1",
+    "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-stylelint": "^3.0.0",
-    "stylelint-config-standard": "^16.0.0"
+    "gulp-stylelint": "^5.0.0",
+    "stylelint-config-standard": "^17.0.0"
   },
   "scripts": {
     "build": "gulp",
