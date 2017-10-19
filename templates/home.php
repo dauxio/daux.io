@@ -10,25 +10,22 @@
 
 <div class="Homepage">
     <div class="HomepageTitle container">
-        <?php if ($params['tagline']) {
-    echo '<h2>' . $params['tagline'] . '</h2>';
-} ?>
+        <?= ($params['tagline'])? '<h2>' . $params['tagline'] . '</h2>' : '' ?>
     </div>
 
     <div class="HomepageImage container">
-        <?php if ($params['image']) {
-    echo '<img class="homepage-image img-responsive" src="' . $params['image'] . '" alt="' . $params['title'] . '">';
-} ?>
+        <?= ($params['image'])? '<img class="homepage-image img-responsive" src="' . $params['image'] . '" alt="' . $params['title'] . '">' : '' ?>
     </div>
 
     <div class="HomepageButtons">
         <div class="container">
             <?php
             if ($params['html']['repo']) {
-                echo '<a href="https://github.com/' . $params['html']['repo'] . '" class="Button Button--secondary Button--hero">View On GitHub</a>';
+                echo '<a href="https://github.com/' . $params['html']['repo'] . '" class="Button Button--secondary Button--hero">' . $this->translate("View_on_github") . '</a>';
             }
+            $view_doc = $this->translate("View_documentation");
             foreach ($page['entry_page'] as $key => $node) {
-                echo '<a href="' . $node . '" class="Button Button--primary Button--hero">' . $key . '</a>';
+                echo '<a href="' . $node . '" class="Button Button--primary Button--hero">' . str_replace("__VIEW_DOCUMENTATION__", $view_doc, $key) . '</a>';
             }
             if(isset($params['html']['buttons']) && is_array($params['html']['buttons'])) {
                 foreach ($params['html']['buttons'] as $name => $link ) {
@@ -54,32 +51,23 @@
 <div class="HomepageFooter">
     <div class="container">
         <div class="container--inner">
-            <?php if (!empty($params['html']['links'])) {
-                ?>
+            <?php if (!empty($params['html']['links'])) { ?>
                 <ul class="HomepageFooter__links">
                     <?php foreach ($params['html']['links'] as $name => $url) {
                     echo '<li><a href="' . $url . '" target="_blank">' . $name . '</a></li>';
                 } ?>
                 </ul>
-            <?php
+            <?php } ?>
 
-            } ?>
-
-            <?php if (!empty($params['html']['twitter'])) {
-                ?>
+            <?php if (!empty($params['html']['twitter'])) { ?>
                 <div class="HomepageFooter__twitter">
-                    <?php foreach ($params['html']['twitter'] as $handle) {
-                    ?>
+                    <?php foreach ($params['html']['twitter'] as $handle) { ?>
                     <div class="Twitter">
                         <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=<?= $handle; ?>&amp;show_count=false"></iframe>
                     </div>
-                    <?php
-
-                } ?>
+                    <?php } ?>
                 </div>
-            <?php
-
-            } ?>
+            <?php } ?>
         </div>
     </div>
     <div class="clearfix"></div>

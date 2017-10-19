@@ -12,11 +12,12 @@
         $edit_on = $params->getHTML()->getEditOn();
         if ($edit_on) { ?>
         <span style="float: right; font-size: 10px; color: gray;">
-            <a href="<?= $edit_on['basepath'] ?>/<?= $page['relative_path'] ?>" target="_blank">Edit on <?= $edit_on['name'] ?></a>
+            <a href="<?= $edit_on['basepath'] ?>/<?= $page['relative_path'] ?>" target="_blank">
+                <?= str_replace(":name:", $edit_on['name'], $this->translate("Edit_on")) ?>
+            </a>
         </span>
         <?php } ?>
     </div>
-
 
     <div class="s-content">
         <?= $page['content']; ?>
@@ -30,11 +31,11 @@
     <nav>
         <ul class="Pager">
             <?php if (!empty($page['prev'])) {
-        ?><li class=Pager--prev><a href="<?= $base_url . $page['prev']->getUrl() ?>">Previous</a></li><?php
+        ?><li class=Pager--prev><a href="<?= $base_url . $page['prev']->getUrl() ?>"><?= $this->translate("Link_previous") ?></a></li><?php
 
     } ?>
             <?php if (!empty($page['next'])) {
-        ?><li class=Pager--next><a href="<?= $base_url . $page['next']->getUrl() ?>">Next</a></li><?php
+        ?><li class=Pager--next><a href="<?= $base_url . $page['next']->getUrl() ?>"><?= $this->translate("Link_next") ?></a></li><?php
 
     } ?>
         </ul>

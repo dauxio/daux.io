@@ -37,7 +37,7 @@ class ErrorPage extends SimplePage
             'language' => '',
         ];
 
-        $template = new Template($params['templates'], $params['theme']['templates']);
+        $template = new Template($params);
 
         return $template->render('error', ['page' => $page, 'params' => $params]);
     }

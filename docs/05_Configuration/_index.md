@@ -107,6 +107,41 @@ Directory structure:
 │   │   │   ├── 05_Code_Highlighting.md
 ```
 
+### Language
+
+You can change the default language with the `language` option.
+
+```json
+{
+  "language": "fr"
+}
+```
+
+This will change the language of the text within Daux.io and also the `<html lang>` attribute.
+
+You can override the translations with the `strings` option.
+A string that isn't found will fall back to english.
+
+```json
+{
+  "strings": {
+    "fr": {
+      "CodeBlocks_title": "Afficher le code",
+      "CodeBlocks_hide": "Non",
+      "CodeBlocks_below": "En Dessous",
+      "CodeBlocks_inline": "A côté",
+      "CodeBlocks_show": "Afficher le code",
+      "Search_placeholder": "Rechercher...",
+      "Link_previous": "Précédent",
+      "Link_next": "Suivant",
+      "Edit_on": "Editer sur :name:",
+      "View_on_github": "Voir sur GitHub",
+      "View_documentation": "Voir la Documentation"
+    }
+  }
+}
+```
+
 ### Processor
 You can set the processor in the documentation or as an option to the command line. If you need it when running the server, you should add it to the configuration.
 

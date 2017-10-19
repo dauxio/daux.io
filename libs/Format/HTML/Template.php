@@ -9,12 +9,18 @@ class Template
 {
     protected $engine;
 
+    protected $params;
+
     /**
      * @param string $base
      * @param string $theme
      */
-    public function __construct($base, $theme)
+    public function __construct($params)
     {
+        $this->params = $params;
+        $base = $params['templates'];
+        $theme = $params['theme']['templates'];
+
         // Use internal templates if no templates
         // dir exists in the working directory
         if (!is_dir($base)) {
@@ -55,6 +61,20 @@ class Template
             $nav = $this->buildNavigation($tree, $path, $current_url, $base_page, $mode);
 
             return $this->renderNavigation($nav);
+        });
+
+        $this->engine->registerFunction('translate', function ($key) {
+            $language = $this->params['language'];
+
+            if (array_key_exists($key, $this->params['strings'][$language])) {
+                return $this->params['strings'][$language][$key];
+            }
+
+            if (array_key_exists($key, $this->params['strings']['en'])) {
+                return $this->params['strings']['en'][$key];
+            }
+
+            return "Unknown key $key";
         });
 
         $this->engine->registerFunction('get_breadcrumb_title', function ($page, $base_page) {

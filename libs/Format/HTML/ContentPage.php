@@ -71,7 +71,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                     $entry_page[$name] = $params['base_page'] . $params['entry_page'][$key]->getUrl();
                 }
             } else {
-                $entry_page['View Documentation'] = $params['base_page'] . $params['entry_page']->getUrl();
+                $entry_page['__VIEW_DOCUMENTATION__'] = $params['base_page'] . $params['entry_page']->getUrl();
             }
         }
 
@@ -103,7 +103,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
         $context = ['page' => $page, 'params' => $params];
 
-        $template = new Template($params['templates'], $params['theme']['templates']);
+        $template = new Template($params);
 
         return $template->render($this->isLanding() ? 'theme::home' : 'theme::content', $context);
     }

@@ -16,6 +16,37 @@
         "folders": []
     },
 
+    "language": "en",
+
+    "strings": {
+        "en": {
+            "CodeBlocks_title": "Code blocks",
+            "CodeBlocks_hide": "No",
+            "CodeBlocks_below": "Below",
+            "CodeBlocks_inline": "Inline",
+            "CodeBlocks_show": "Show Code Blocks",
+            "Search_placeholder": "Search...",
+            "Link_previous": "Previous",
+            "Link_next": "Next",
+            "Edit_on": "Edit on :name:",
+            "View_on_github": "View On GitHub",
+            "View_documentation": "View Documentation"
+        },
+        "fr": {
+            "CodeBlocks_title": "Afficher le code",
+            "CodeBlocks_hide": "Non",
+            "CodeBlocks_below": "En Dessous",
+            "CodeBlocks_inline": "A côté",
+            "CodeBlocks_show": "Afficher le code",
+            "Search_placeholder": "Rechercher...",
+            "Link_previous": "Précédent",
+            "Link_next": "Suivant",
+            "Edit_on": "Editer sur :name:",
+            "View_on_github": "Voir sur GitHub",
+            "View_documentation": "Voir la Documentation"
+        }
+    },
+
     "timezone": "America/Los_Angeles",
 
     "live": {
