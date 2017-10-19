@@ -72,11 +72,22 @@ To disable this feature, set the `float` property to `false`.
 
 ## Date Modified
 By default, daux.io will display the last modified time as reported by the system underneath the title for each document. 
-To disable this, change the option in your config.json to false.
+To disable this, change the option in your config.json to `false`.
 
 ```json
 {
   "html": { "date_modified": false }
+}
+```
+
+If you want to use the last modified time you can set the [format](http://php.net/manual/function.date.php) with the `date_modified_format` option.
+
+```json
+{
+  "html": {
+    "date_modified": true,
+    "date_modified_format": "l, F j, Y g:i A"
+  }
 }
 ```
 

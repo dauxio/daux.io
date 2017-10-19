@@ -16,6 +16,7 @@
         "breadcrumb_separator": "Chevrons",
         "toggle_code": true,
         "date_modified": true,
+        "date_modified_format": "l, F j, Y g:i A",
         "float": true,
         "inherit_index": true,
 
