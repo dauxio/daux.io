@@ -44,6 +44,19 @@
             "Edit_on": "Editer sur :name:",
             "View_on_github": "Voir sur GitHub",
             "View_documentation": "Voir la Documentation"
+        },
+        "de": {
+            "CodeBlocks_title": "Code-Blöcke",
+            "CodeBlocks_hide": "Aus",
+            "CodeBlocks_below": "Unterhalb",
+            "CodeBlocks_inline": "Linear",
+            "CodeBlocks_show": "Code-Blöcke anzeigen",
+            "Search_placeholder": "Suchen...",
+            "Link_previous": "Zurück",
+            "Link_next": "Weiter",
+            "Edit_on": "Bearbeiten bei :name:",
+            "View_on_github": "Bei GitHub anzeigen",
+            "View_documentation": "Dokumentation anzeigen"
         }
     },
 
