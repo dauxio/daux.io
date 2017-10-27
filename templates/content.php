@@ -4,7 +4,7 @@
     <div class="Page__header">
         <h1><?= $page['breadcrumbs'] ? $this->get_breadcrumb_title($page, $base_page) : $page['title'] ?></h1>
         <?php if ($params['html']['date_modified']) { ?>
-        <span style="float: left; font-size: 10px; color: gray;">
+        <span class="ModifiedDate">
             <?php $date_format = isset($params['html']['date_modified_format']) ? $params['html']['date_modified_format'] : 'l, F j, Y g:i A'; ?>
             <?= date($date_format, $page['modified_time']); ?>
         </span>
@@ -12,7 +12,7 @@
         <?php
         $edit_on = $params->getHTML()->getEditOn();
         if ($edit_on) { ?>
-        <span style="float: right; font-size: 10px; color: gray;">
+        <span class="EditOn">
             <a href="<?= $edit_on['basepath'] ?>/<?= $page['relative_path'] ?>" target="_blank">
                 <?= str_replace(":name:", $edit_on['name'], $this->translate("Edit_on")) ?>
             </a>
