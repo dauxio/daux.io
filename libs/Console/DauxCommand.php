@@ -2,10 +2,51 @@
 
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Todaymade\Daux\Daux;
 
 class DauxCommand extends SymfonyCommand
 {
+    protected function configure() 
+    {
+        $this
+            ->addOption('configuration', 'c', InputOption::VALUE_REQUIRED, 'Configuration file')
+            ->addOption('value', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Set different configuration values')
+            ->addOption('source', 's', InputOption::VALUE_REQUIRED, 'Where to take the documentation from')
+            ->addOption('processor', 'p', InputOption::VALUE_REQUIRED, 'Manipulations on the tree');
+    }
+
+    private function setValue(&$array, $key, $value)
+    {
+        if (is_null($key)) {
+            return $array = $value;
+        }
+        $keys = explode('.', $key);
+        while (count($keys) > 1) {
+            $key = array_shift($keys);
+            if (! isset($array[$key]) || ! is_array($array[$key])) {
+                $array[$key] = [];
+            }
+            $array = &$array[$key];
+        }
+        $array[array_shift($keys)] = $value;
+        return $array;
+    }
+
+    private function applyConfiguration(array $options, Daux $daux)
+    {
+        $values = array_map(
+            function ($value) {
+                return array_map("trim", explode('=', $value));
+            },
+            $options
+        );
+
+        foreach ($values as $value) {
+            $this->setValue($daux->options, $value[0], $value[1]);
+        }
+    }
+
     protected function prepareDaux(InputInterface $input)
     {
         $daux = new Daux(Daux::STATIC_MODE);
@@ -28,6 +69,10 @@ class DauxCommand extends SymfonyCommand
 
         if ($input->hasOption('delete') && $input->getOption('delete')) {
             $daux->getParams()['confluence']['delete'] = true;
+        }
+
+        if ($input->hasOption('value')) {
+            $this->applyConfiguration($input->getOption('value'), $daux);
         }
 
         return $daux;

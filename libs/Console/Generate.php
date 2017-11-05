@@ -11,22 +11,21 @@ class Generate extends DauxCommand
 {
     protected function configure()
     {
+        parent::configure();
+
         $description = 'Destination folder, relative to the working directory';
 
         $this
             ->setName('generate')
             ->setDescription('Generate documentation')
 
-            ->addOption('configuration', 'c', InputOption::VALUE_REQUIRED, 'Configuration file')
-            ->addOption('source', 's', InputOption::VALUE_REQUIRED, 'Where to take the documentation from')
             ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'Output format, html or confluence', 'html')
-            ->addOption('processor', 'p', InputOption::VALUE_REQUIRED, 'Manipulations on the tree')
-            ->addOption('themes', 't', InputOption::VALUE_REQUIRED, 'Set a different themes directory')
 
             // Confluence format only
             ->addOption('delete', null, InputOption::VALUE_NONE, 'Delete pages not linked to a documentation page (confluence)')
 
             // HTML Format only
+            ->addOption('themes', 't', InputOption::VALUE_REQUIRED, 'Set a different themes directory')
             ->addOption('destination', 'd', InputOption::VALUE_REQUIRED, $description, 'static')
             ->addOption('search', null, InputOption::VALUE_NONE, 'Generate full text search');
     }
