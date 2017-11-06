@@ -260,8 +260,9 @@ class Api
     /**
      * @param int $id
      * @param array $attachment
+     * @param callback $write Write output to the console
      */
-    public function uploadAttachment($id, $attachment)
+    public function uploadAttachment($id, $attachment, $write)
     {
         // Check if an attachment with
         // this name is uploaded
@@ -277,6 +278,18 @@ class Api
         // If the attachment is already uploaded,
         // the update URL is different
         if (count($result['results'])) {
+
+            if (array_key_exists('file', $attachment)) {
+                $size = filesize($attachment['file']->getPath());
+            } else {
+                $size = function_exists('mb_strlen') ? mb_strlen($attachment['content']) : strlen($attachment['content']);
+            }
+
+            if ($size == $result['results'][0]['extensions']['fileSize']) {
+                $write(" ( An attachment of the same size already exists, skipping. )");
+                return;
+            }
+
             $url .= "/{$result['results'][0]['id']}/data";
         }
 

@@ -289,8 +289,8 @@ class Publisher
             foreach ($entry['page']->attachments as $attachment) {
                 $this->run(
                     "  With attachment: $attachment[filename]",
-                    function () use ($published, $attachment) {
-                        $this->client->uploadAttachment($published['id'], $attachment);
+                    function ($write) use ($published, $attachment) {
+                        $this->client->uploadAttachment($published['id'], $attachment, $write);
                     }
                 );
             }
