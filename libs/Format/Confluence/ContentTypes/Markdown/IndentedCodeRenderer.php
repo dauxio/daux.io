@@ -2,11 +2,10 @@
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\IndentedCode;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 
-class IndentedCodeRenderer implements BlockRendererInterface
+class IndentedCodeRenderer extends CodeRenderer
 {
     /**
      * @param AbstractBlock $block
@@ -21,10 +20,6 @@ class IndentedCodeRenderer implements BlockRendererInterface
             throw new \InvalidArgumentException('Incompatible block type: ' . get_class($block));
         }
 
-        return new HtmlElement(
-            'ac:structured-macro',
-            ['ac:name' => 'code'],
-            new HtmlElement('ac:plain-text-body', [], '<![CDATA[' . $block->getStringContent() . ']]>')
-        );
+        return $this->getHTMLElement($block->getStringContent(), "");
     }
 }

@@ -16,3 +16,7 @@ Code Highlight | √    | X (Planned)      | √ (Using macros)
 Live Mode      | √    | X                | X
 Pages Ordering | √    | √                | X (API Limitation)
 Google / Piwik analytics | √ | √         | √ (Configured on Conflence)
+
+## Confluence Example
+
+You can see this documentation uploaded to Confluence : https://dauxio.atlassian.net/wiki/spaces/DOC/overview

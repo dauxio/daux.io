@@ -8,8 +8,8 @@
 
 ---
 
-<div class=row>
-<div class=col-third>
+<div class="row">
+<div class="col-third">
 
 #### For Authors
 
@@ -24,7 +24,7 @@
 * [Table of Contents](01_Features/Table_of_contents.md)
 
 </div>
-<div class=col-third>
+<div class="col-third">
 
 #### For Developers
 
@@ -34,7 +34,7 @@
 * Work with pages metadata
 
 </div>
-<div class=col-third>
+<div class="col-third">
 
 #### For Marketing
 

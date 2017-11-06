@@ -29,5 +29,10 @@
             "GitHub Repo": "https://github.com/dauxio/daux.io",
             "Help/Support/Bugs": "https://github.com/dauxio/daux.io/issues"
         }
+    },
+    "confluence": {
+        "base_url": "https://dauxio.atlassian.net/wiki/",
+        "space_id": "DOC",
+        "root_id": 196610
     }
 }

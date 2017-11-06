@@ -73,6 +73,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
 
         $confluence = $params['confluence'];
         $this->prefix = trim($confluence['prefix']) . ' ';
+        if ($this->prefix == ' ') {
+            $this->prefix = '';
+        }
 
         $tree = $this->runAction(
             'Generating Tree ...',

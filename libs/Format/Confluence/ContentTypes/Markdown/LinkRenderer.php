@@ -41,7 +41,7 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
         $file = $this->resolveInternalFile($url);
 
         $link_props = [
-            'ri:content-title' => trim($this->daux['confluence']['prefix']) . ' ' . $file->getTitle(),
+            'ri:content-title' => trim(trim($this->daux['confluence']['prefix']) . ' ' . $file->getTitle()),
             'ri:space-key' => $this->daux['confluence']['space_id'],
         ];
 

@@ -2,11 +2,10 @@
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 
-class FencedCodeRenderer implements BlockRendererInterface
+class FencedCodeRenderer extends CodeRenderer
 {
     protected $supported_languages = [
         'actionscript3',
@@ -48,19 +47,9 @@ class FencedCodeRenderer implements BlockRendererInterface
             throw new \InvalidArgumentException('Incompatible block type: ' . get_class($block));
         }
 
-        $content = [];
+        $language = $this->getLanguage($block->getInfoWords(), $htmlRenderer);
 
-        if ($language = $this->getLanguage($block->getInfoWords(), $htmlRenderer)) {
-            $content[] = new HtmlElement('ac:parameter', ['ac:name' => 'language'], $language);
-        }
-
-        $content[] = new HtmlElement('ac:plain-text-body', [], '<![CDATA[' . $block->getStringContent() . ']]>');
-
-        return new HtmlElement(
-            'ac:structured-macro',
-            ['ac:name' => 'code'],
-            $content
-        );
+        return $this->getHTMLElement($block->getStringContent(), $language);
     }
 
     public function getLanguage($infoWords, ElementRendererInterface $htmlRenderer)

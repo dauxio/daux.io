@@ -60,9 +60,9 @@ class Api
         }
 
         $message = $label .
-            ' [url] ' . $request->getUri() .
-            ' [status code] ' . $response->getStatusCode() .
-            ' [message] ';
+            "\n [url] " . $request->getUri() .
+            "\n [status code] " . $response->getStatusCode() .
+            "\n [message] ";
 
         $body = $response->getBody();
         $json = json_decode($body, true);
@@ -201,8 +201,45 @@ class Api
         try {
             $this->getClient()->put("content/$page_id", ['json' => $body]);
         } catch (BadResponseException $e) {
-            throw $this->handleError($e);
+            $error = $this->handleError($e);
+
+            $re = '/\[([0-9]*),([0-9]*)\]$/';
+            preg_match($re, $error->getMessage(), $matches, PREG_OFFSET_CAPTURE, 0);
+
+            if (count($matches) == 3) {
+                echo "\nContent: \n";
+                echo $this->showSourceCode($content, $matches[1][0], $matches[2][0]);
+            }
+
+            throw $error;
         }
+    }
+
+    public function showSourceCode($css, $lineNumber, $column)
+    {
+        $lines = preg_split("/\r?\n/", $css);
+        $start = max($lineNumber - 3, 0);
+        $end   = min($lineNumber + 2, count($lines));
+
+        $maxWidth = strlen("$end");
+
+        $filtered = array_slice($lines, $start, $end - $start);
+
+        $prepared = [];
+        foreach ($filtered as $index => $line) {
+
+            $number = $start + 1 + $index;
+            $gutter = substr(' ' . (' ' . $number), -$maxWidth) . ' | ';
+
+            if ($number == $lineNumber) {
+                $spacing = str_repeat(" ", strlen($gutter) + $column - 2);
+                $prepared[] = '>' . $gutter . $line . "\n " . $spacing . '^';
+            } else {
+                $prepared[] = ' ' . $gutter . $line;
+            }
+        }
+
+        return implode("\n", $prepared);
     }
 
     /**

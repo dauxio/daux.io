@@ -48,7 +48,7 @@ class Publisher
         try {
             return $this->runAction($title, $this->output, $this->width, $closure);
         } catch (BadResponseException $e) {
-            $this->output->writeLn('    <error>' . $e->getMessage() . '</error>');
+            $this->output->writeLn('<fg=red>' . $e->getMessage() . '</>');
         }
     }
 

@@ -63,7 +63,7 @@ Preformatted blocks are useful for ASCII art:
              ,-.
     ,     ,-.   ,-.
    / \   (   )-(   )
-   \ |  ,.>-(   )-<
+   \ |  ,.>-(   )-&lt;
     \|,' (   )-(   )
      Y ___`-'   `-'
      |/__/   `-'
