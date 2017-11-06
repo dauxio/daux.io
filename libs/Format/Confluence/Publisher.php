@@ -33,6 +33,11 @@ class Publisher
     public $output;
 
     /**
+     * @var array files that can be deleted
+     */
+    protected $deletable;
+
+    /**
      * @param $confluence
      */
     public function __construct($confluence)
@@ -41,6 +46,8 @@ class Publisher
 
         $this->client = new Api($confluence['base_url'], $confluence['user'], $confluence['pass']);
         $this->client->setSpace($confluence['space_id']);
+
+        $this->deletable = [];
     }
 
     public function run($title, $closure)
@@ -83,7 +90,7 @@ class Publisher
         );
 
         $published = $this->run(
-            "Create placeholder pages...\n",
+            "Create placeholder pages...",
             function () use ($tree, $published) {
                 return $this->createRecursive($this->confluence['ancestor_id'], $tree, $published);
             }
@@ -92,15 +99,7 @@ class Publisher
         $this->output->writeLn('Publishing updates...');
         $published = $this->updateRecursive($this->confluence['ancestor_id'], $tree, $published);
 
-
-        if ($this->shouldDelete()) {
-            $this->output->writeLn('Deleting obsolete pages...');
-        } else {
-            $this->output->writeLn('Listing obsolete pages...');
-            echo "> The following pages will not be deleted, but just listed for information.\n";
-            echo "> If you want to delete these pages, you need to set the --delete flag on the command.\n";
-        }
-        $this->deleteRecursive($published);
+        $this->handleDeletables($published);
     }
 
     protected function niceTitle($title)
@@ -197,24 +196,44 @@ class Publisher
         return array_key_exists('delete', $this->confluence) && $this->confluence['delete'];
     }
 
-    protected function deleteRecursive($published, $prefix = '')
+    protected function listDeletable($published, $prefix = '')
     {
         foreach ($published['children'] as $child) {
             if (array_key_exists('children', $child) && count($child['children'])) {
-                $this->deleteRecursive($child, $child['title'] . '/');
+                $this->listDeletable($child, $child['title'] . '/');
             }
 
             if (!array_key_exists('needed', $child)) {
-                if ($this->shouldDelete()) {
-                    $this->run(
-                        '- ' . $prefix . $child['title'],
-                        function () use ($child) {
-                            $this->client->deletePage($child['id']);
-                        }
-                    );
-                } else {
-                    echo '- ' . $prefix . $child['title'] . "\n";
-                }
+                $this->deletable[$child['id']] = $prefix . $child['title'];
+            }
+        }
+    }
+
+    protected function handleDeletables($published)
+    {
+        $this->listDeletable($published);
+
+        if (!count($this->deletable)) {
+            return;
+        }
+
+        if ($this->shouldDelete()) {
+            $this->output->writeLn('Deleting obsolete pages...');
+            foreach ($this->deletable as $id => $title) {
+                $this->run(
+                    '- ' . $title,
+                    function () use ($id) {
+                        $this->client->deletePage($id);
+                    }
+                );
+            }
+
+        } else {
+            $this->output->writeLn('Listing obsolete pages...');
+            $this->output->writeLn("> The following pages will not be deleted, but just listed for information.");
+            $this->output->writeLn("> If you want to delete these pages, you need to set the --delete flag on the command.");
+            foreach ($this->deletable as $id => $title) {
+                $this->output->writeLn("- $title");
             }
         }
     }
