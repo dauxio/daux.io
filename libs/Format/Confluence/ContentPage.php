@@ -28,6 +28,8 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                     } else if ($file instanceof ComputedRaw) {
                         $filename = $file->getUri();
                         $this->attachments[$filename] = ['filename' => $filename, 'content' => $file->getContent()];
+                    } else {
+                        throw new \RuntimeException("Cannot embed image as we don't understand its type.");
                     }
 
                     return $this->createImageTag($filename, $attributes);

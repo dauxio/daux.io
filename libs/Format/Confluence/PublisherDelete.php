@@ -27,6 +27,9 @@ class PublisherDelete
         $this->output = $output;
         $this->delete = $delete;
         $this->client = $client;
+
+
+        $this->deletable = [];
     }
 
     protected function listDeletable($published, $prefix = '')

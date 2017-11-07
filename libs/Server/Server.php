@@ -19,6 +19,11 @@ class Server
     private $base_url;
 
     /**
+     * @var Request
+     */
+    private $request;
+
+    /**
      * Serve the documentation
      *
      * @throws Exception
@@ -65,7 +70,7 @@ class Server
      * @param string $postfix
      * @return string
      */
-    function getTemporaryFile($postfix) {
+    private function getTemporaryFile($postfix) {
         $sysFileName = tempnam(sys_get_temp_dir(), 'daux');
         if ($sysFileName === false) {
             throw new \RuntimeException("Could not create temporary file");

@@ -36,8 +36,6 @@ class Publisher
 
         $this->client = new Api($confluence['base_url'], $confluence['user'], $confluence['pass']);
         $this->client->setSpace($confluence['space_id']);
-
-        $this->deletable = [];
     }
 
     public function run($title, $closure)
@@ -82,7 +80,6 @@ class Publisher
     {
         if (array_key_exists('ancestor_id', $this->confluence)) {
             $pages = $this->client->getList($this->confluence['ancestor_id']);
-            $published = null;
             foreach ($pages as $page) {
                 if ($page['title'] == $tree['title']) {
                     return $page;

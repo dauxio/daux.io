@@ -269,7 +269,7 @@ class Api
         }
     }
 
-    private function putAttachment($url, $id, $attachment)
+    private function putAttachment($url, $attachment)
     {
         $contents = array_key_exists('file', $attachment) ? fopen($attachment['file']->getPath(), 'r') : $attachment['content'];
 
@@ -322,6 +322,6 @@ class Api
             $url .= "/{$result['results'][0]['id']}/data";
         }
 
-        $this->putAttachment($url, $id, $attachment);
+        $this->putAttachment($url, $attachment);
     }
 }

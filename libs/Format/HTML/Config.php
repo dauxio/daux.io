@@ -14,7 +14,7 @@ class Config extends BaseConfig
         ];
     }
 
-    function getEditOn()
+    public function getEditOn()
     {
         if (array_key_exists('edit_on', $this)) {
             if (is_string($this['edit_on'])) {
