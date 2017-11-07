@@ -15,9 +15,6 @@ class Daux
     /** @var string */
     public $local_base;
 
-    /** @var string */
-    public $internal_base;
-
     /** @var \Todaymade\Daux\Format\Base\Generator */
     protected $generator;
 
@@ -51,14 +48,7 @@ class Daux
     {
         $this->mode = $mode;
 
-        $this->local_base = $this->internal_base = dirname(__DIR__);
-
-        // In case we're inside the phar archive
-        // we save the path to the directory
-        // in which it is contained
-        if (defined('PHAR_DIR')) {
-            $this->local_base = PHAR_DIR;
-        }
+        $this->local_base = dirname(__DIR__);
 
         // global.json
         $this->loadBaseConfiguration();
@@ -101,79 +91,46 @@ class Daux
     /**
      * Get the file requested for configuration overrides
      *
-     * @param string|null $override_file
+     * @param string|null $path
      * @return string|null the path to a file to load for configuration overrides
      * @throws Exception
      */
-    public function getConfigurationOverride($override_file)
+    public function getConfigurationOverride($path)
     {
-        // When running through `daux --serve` we set an environment variable to know where we started from
-        $env = getenv('DAUX_CONFIGURATION');
-        if ($env && file_exists($env)) {
-            return $env;
-        }
+        $validPath = DauxHelper::findLocation($path, $this->local_base, 'DAUX_CONFIGURATION', 'file');
 
-        if ($override_file == null) {
+        if ($validPath === null) {
             return null;
         }
 
-        if (file_exists($override_file)) {
-            if (DauxHelper::isAbsolutePath($override_file)) {
-                return $override_file;
-            }
-
-            return getcwd() . '/' . $override_file;
+        if (!$validPath) {
+            throw new Exception('The configuration override file does not exist. Check the path again : ' . $path);
         }
 
-        $newPath = $this->local_base . DIRECTORY_SEPARATOR . $override_file;
-        if (file_exists($newPath)) {
-            return $newPath;
-        }
-
-        throw new Exception('The configuration override file does not exist. Check the path again : ' . $override_file);
+        return $validPath;
     }
 
     public function normalizeThemePath($path)
     {
-        // When running through `daux --serve` we set an environment variable to know where we started from
-        $env = getenv('DAUX_THEME');
-        if ($env && is_dir($env)) {
-            return $env;
+        $validPath = DauxHelper::findLocation($path, $this->local_base, 'DAUX_THEME', 'dir');
+
+        if (!$validPath) {
+            throw new Exception('The Themes directory does not exist. Check the path again : ' . $path);
         }
 
-        if (is_dir($path)) {
-            if (DauxHelper::isAbsolutePath($path)) {
-                return $path;
-            }
+        return $validPath;
 
-            return getcwd() . '/' . $path;
-        }
-
-        $newPath = $this->local_base . DIRECTORY_SEPARATOR . $path;
-        if (is_dir($newPath)) {
-            return $newPath;
-        }
-
-        throw new Exception('The Themes directory does not exist. Check the path again : ' . $path);
     }
 
     public function normalizeDocumentationPath($path)
     {
-        // When running through `daux --serve` we set an environment variable to know where we started from
-        $env = getenv('DAUX_SOURCE');
-        if ($env && is_dir($env)) {
-            return $env;
+        $validPath = DauxHelper::findLocation($path, $this->local_base, 'DAUX_SOURCE', 'dir');
+
+        if (!$validPath) {
+            throw new Exception('The Docs directory does not exist. Check the path again : ' . $path);
         }
 
-        if (is_dir($path)) {
-            if (DauxHelper::isAbsolutePath($path)) {
-                return $path;
-            }
-
-            return getcwd() . '/' . $path;
-        }
-
-        throw new Exception('The Docs directory does not exist. Check the path again : ' . $path);
+        return $validPath;
     }
 
     /**
@@ -247,37 +204,9 @@ class Daux
         $this->getProcessor()->manipulateTree($this->tree);
 
         // Sort the tree one last time before it is finalized
-        $this->sortTree($this->tree);
+        Builder::sortTree($this->tree);
 
-        $this->finalizeTree($this->tree);
-    }
-
-    public function sortTree(Directory $current)
-    {
-        $current->sort();
-        foreach ($current->getEntries() as $entry) {
-            if ($entry instanceof Directory) {
-                $this->sortTree($entry);
-            }
-        }
-    }
-
-    public function finalizeTree(Directory $current, $prev = null)
-    {
-        foreach ($current->getEntries() as $entry) {
-            if ($entry instanceof Directory) {
-                $prev = $this->finalizeTree($entry, $prev);
-            } elseif ($entry instanceof Content) {
-                if ($prev) {
-                    $prev->setNext($entry);
-                    $entry->setPrevious($prev);
-                }
-
-                $prev = $entry;
-            }
-        }
-
-        return $prev;
+        Builder::finalizeTree($this->tree);
     }
 
     /**

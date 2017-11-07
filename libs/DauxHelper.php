@@ -468,4 +468,42 @@ class DauxHelper
 
         return '' !== $parts['root'];
     }
+
+    /**
+     * @param $path
+     * @param $basedir
+     * @param $var
+     * @param $type
+     * @return false|null|string
+     */
+    public static function findLocation($path, $basedir, $var, $type) {
+        // When running through `daux --serve` we set an environment variable to know where we started from
+        $env = getenv($var);
+        if ($env && DauxHelper::is($env, $type)) {
+            return $env;
+        }
+
+        if ($path == null) {
+            return null;
+        }
+
+        if (DauxHelper::is($path, $type)) {
+            if (DauxHelper::isAbsolutePath($path)) {
+                return $path;
+            }
+
+            return getcwd() . '/' . $path;
+        }
+
+        $newPath = $basedir . DIRECTORY_SEPARATOR . $path;
+        if (DauxHelper::is($newPath, $type)) {
+            return $newPath;
+        }
+
+        return false;
+    }
+
+    public static function is($path, $type) {
+        return ($type == 'dir') ? is_dir($path) : file_exists($path);
+    }
 }

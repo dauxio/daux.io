@@ -23,7 +23,7 @@ class Publisher
     public $width;
 
     /**
-     * @var \Symfony\Component\Console\Output\Output
+     * @var \Symfony\Component\Console\Output\OutputInterface
      */
     public $output;
 

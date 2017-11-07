@@ -3,7 +3,7 @@
 class PublisherDelete
 {
     /**
-     * @var \Symfony\Component\Console\Output\Output
+     * @var \Symfony\Component\Console\Output\OutputInterface
      */
     public $output;
 

@@ -203,4 +203,44 @@ class Builder
 
         return $page;
     }
+
+    /**
+     * Sort the tree recursively
+     *
+     * @param Directory $current
+     */
+    public static function sortTree(Directory $current) {
+        $current->sort();
+        foreach ($current->getEntries() as $entry) {
+            if ($entry instanceof Directory) {
+                Builder::sortTree($entry);
+            }
+        }
+    }
+
+    /**
+     * Calculate next and previous for all pages
+     *
+     * @param Directory $current
+     * @param null|Content $prev
+     * @return null|Content
+     */
+    public static function finalizeTree(Directory $current, $prev = null)
+    {
+        foreach ($current->getEntries() as $entry) {
+            if ($entry instanceof Directory) {
+                $prev = Builder::finalizeTree($entry, $prev);
+            } elseif ($entry instanceof Content) {
+                if ($prev) {
+                    $prev->setNext($entry);
+                    $entry->setPrevious($prev);
+                }
+
+                $prev = $entry;
+            }
+        }
+
+        return $prev;
+    }
+
 }

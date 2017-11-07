@@ -40,7 +40,7 @@ class Processor
      *
      * @param Root $root
      */
-    public function manipulateTree(Root $root)
+    public function manipulateTree(/** @scrutinizer ignore-unused */ Root $root)
     {
     }
 
@@ -51,7 +51,7 @@ class Processor
      *
      * @param Environment $environment
      */
-    public function extendCommonMarkEnvironment(Environment $environment)
+    public function extendCommonMarkEnvironment(/** @scrutinizer ignore-unused */ Environment $environment)
     {
     }
 
