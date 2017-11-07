@@ -257,42 +257,20 @@ class Api
         }
     }
 
-    /**
-     * @param int $id
-     * @param array $attachment
-     * @param callback $write Write output to the console
-     */
-    public function uploadAttachment($id, $attachment, $write)
+    private function getAttachment($id, $attachment)
     {
         // Check if an attachment with
         // this name is uploaded
         try {
             $url = "content/$id/child/attachment?filename=" . urlencode($attachment['filename']);
-            $result = json_decode($this->getClient()->get($url)->getBody(), true);
+            return json_decode($this->getClient()->get($url)->getBody(), true);
         } catch (BadResponseException $e) {
             throw $this->handleError($e);
         }
+    }
 
-        $url = "content/$id/child/attachment";
-
-        // If the attachment is already uploaded,
-        // the update URL is different
-        if (count($result['results'])) {
-
-            if (array_key_exists('file', $attachment)) {
-                $size = filesize($attachment['file']->getPath());
-            } else {
-                $size = function_exists('mb_strlen') ? mb_strlen($attachment['content']) : strlen($attachment['content']);
-            }
-
-            if ($size == $result['results'][0]['extensions']['fileSize']) {
-                $write(" ( An attachment of the same size already exists, skipping. )");
-                return;
-            }
-
-            $url .= "/{$result['results'][0]['id']}/data";
-        }
-
+    private function putAttachment($url, $id, $attachment)
+    {
         $contents = array_key_exists('file', $attachment) ? fopen($attachment['file']->getPath(), 'r') : $attachment['content'];
 
         try {
@@ -306,5 +284,44 @@ class Api
         } catch (BadResponseException $e) {
             throw $this->handleError($e);
         }
+    }
+
+    private function getFileSize($attachment)
+    {
+        if (array_key_exists('file', $attachment)) {
+            return filesize($attachment['file']->getPath());
+        }
+
+        if (function_exists('mb_strlen')) {
+            return mb_strlen($attachment['content']);
+        }
+
+        return strlen($attachment['content']);
+    }
+
+    /**
+     * @param int $id
+     * @param array $attachment
+     * @param callback $write Write output to the console
+     */
+    public function uploadAttachment($id, $attachment, $write)
+    {
+        $result = $this->getAttachment($id, $attachment);
+
+        $url = "content/$id/child/attachment";
+
+        // If the attachment is already uploaded,
+        // the update URL is different
+        if (count($result['results'])) {
+
+            if ($this->getFileSize($attachment) == $result['results'][0]['extensions']['fileSize']) {
+                $write(" ( An attachment of the same size already exists, skipping. )");
+                return;
+            }
+
+            $url .= "/{$result['results'][0]['id']}/data";
+        }
+
+        $this->putAttachment($url, $id, $attachment);
     }
 }

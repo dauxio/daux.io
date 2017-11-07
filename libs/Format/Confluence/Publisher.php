@@ -18,24 +18,14 @@ class Publisher
     protected $confluence;
 
     /**
-     * @var string
-     */
-    protected $previous_title;
-
-    /**
      * @var int terminal width
      */
     public $width;
 
     /**
-     * @var
+     * @var \Symfony\Component\Console\Output\Output
      */
     public $output;
-
-    /**
-     * @var array files that can be deleted
-     */
-    protected $deletable;
 
     /**
      * @param $confluence
@@ -61,24 +51,8 @@ class Publisher
 
     public function publish(array $tree)
     {
-        echo "Finding Root Page...\n";
-        if (array_key_exists('ancestor_id', $this->confluence)) {
-            $pages = $this->client->getList($this->confluence['ancestor_id']);
-            $published = null;
-            foreach ($pages as $page) {
-                if ($page['title'] == $tree['title']) {
-                    $published = $page;
-                    break;
-                }
-            }
-        } elseif (array_key_exists('root_id', $this->confluence)) {
-            $published = $this->client->getPage($this->confluence['root_id']);
-            $this->confluence['ancestor_id'] = $published['ancestor_id'];
-        } else {
-            throw new \RuntimeException('You must at least specify a `root_id` or `ancestor_id` in your confluence configuration.');
-        }
-
-
+        $this->output->writeLn('Finding Root Page...');
+        $published = $this->getRootPage($tree);
 
         $this->run(
             'Getting already published pages...',
@@ -99,21 +73,35 @@ class Publisher
         $this->output->writeLn('Publishing updates...');
         $published = $this->updateRecursive($this->confluence['ancestor_id'], $tree, $published);
 
-        $this->handleDeletables($published);
+        $shouldDelete = array_key_exists('delete', $this->confluence) && $this->confluence['delete'];
+        $delete = new PublisherDelete($this->output, $shouldDelete, $this->client);
+        $delete->handle($published);
     }
 
-    protected function niceTitle($title)
+    protected function getRootPage($tree)
     {
-        if ($title == 'index.html') {
-            return 'Homepage';
+        if (array_key_exists('ancestor_id', $this->confluence)) {
+            $pages = $this->client->getList($this->confluence['ancestor_id']);
+            $published = null;
+            foreach ($pages as $page) {
+                if ($page['title'] == $tree['title']) {
+                    return $page;
+                }
+            }
         }
 
-        return rtrim(strtr($title, ['index.html' => '', '.html' => '']), '/');
+        if (array_key_exists('root_id', $this->confluence)) {
+            $published = $this->client->getPage($this->confluence['root_id']);
+            $this->confluence['ancestor_id'] = $published['ancestor_id'];
+            return $published;
+        }
+
+        throw new \RuntimeException('You must at least specify a `root_id` or `ancestor_id` in your confluence configuration.');
     }
 
     protected function createPage($parent_id, $entry, $published)
     {
-        echo '- ' . $this->niceTitle($entry['file']->getUrl()) . "\n";
+        echo '- ' . PublisherUtilities::niceTitle($entry['file']->getUrl()) . "\n";
         $published['version'] = 1;
         $published['title'] = $entry['title'];
         $published['id'] = $this->client->createPage($parent_id, $entry['title'], 'The content will come very soon !');
@@ -191,108 +179,15 @@ class Publisher
         return $this->recursiveWithCallback($parent_id, $entry, $published, $callback);
     }
 
-    protected function shouldDelete()
-    {
-        return array_key_exists('delete', $this->confluence) && $this->confluence['delete'];
-    }
-
-    protected function listDeletable($published, $prefix = '')
-    {
-        foreach ($published['children'] as $child) {
-            if (array_key_exists('children', $child) && count($child['children'])) {
-                $this->listDeletable($child, $child['title'] . '/');
-            }
-
-            if (!array_key_exists('needed', $child)) {
-                $this->deletable[$child['id']] = $prefix . $child['title'];
-            }
-        }
-    }
-
-    protected function handleDeletables($published)
-    {
-        $this->listDeletable($published);
-
-        if (!count($this->deletable)) {
-            return;
-        }
-
-        if ($this->shouldDelete()) {
-            $this->output->writeLn('Deleting obsolete pages...');
-            foreach ($this->deletable as $id => $title) {
-                $this->run(
-                    '- ' . $title,
-                    function () use ($id) {
-                        $this->client->deletePage($id);
-                    }
-                );
-            }
-
-        } else {
-            $this->output->writeLn('Listing obsolete pages...');
-            $this->output->writeLn("> The following pages will not be deleted, but just listed for information.");
-            $this->output->writeLn("> If you want to delete these pages, you need to set the --delete flag on the command.");
-            foreach ($this->deletable as $id => $title) {
-                $this->output->writeLn("- $title");
-            }
-        }
-    }
-
-    protected function shouldUpdate($local, $local_content, $published)
-    {
-        if (!array_key_exists('content', $published)) {
-            return true;
-        }
-
-        $trimmed_local = trim($local_content);
-        $trimmed_distant = trim($published['content']);
-
-        if ($trimmed_local == $trimmed_distant) {
-            return false;
-        }
-
-        // I consider that if the files are 98% identical you
-        // don't need to update. This will work for false positives.
-        // But sadly will miss if it's just a typo update
-        // This is configurable with `update_threshold`
-        $threshold = 98;
-        if (array_key_exists('update_threshold', $this->confluence)) {
-            $threshold = 100 - $this->confluence['update_threshold'];
-        }
-
-        if ($threshold < 100) {
-            similar_text($trimmed_local, $trimmed_distant, $percent);
-            if ($percent > $threshold) {
-                return false;
-            }
-        }
-
-        //DEBUG
-        if (getenv('DEBUG') && strtolower(getenv('DEBUG')) != 'false') {
-            $prefix = 'static/export/';
-            if (!is_dir($prefix)) {
-                mkdir($prefix, 0777, true);
-            }
-            $url = $local->getFile()->getUrl();
-            file_put_contents($prefix . strtr($url, ['/' => '_', '.html' => '_local.html']), $trimmed_local);
-            file_put_contents($prefix . strtr($url, ['/' => '_', '.html' => '_distant.html']), $trimmed_distant);
-        }
-
-        return true;
-    }
-
     protected function updatePage($parent_id, $entry, $published)
     {
-        if ($this->previous_title != 'Updating') {
-            $this->previous_title = 'Updating';
-            echo "Updating Pages...\n";
-        }
+        $updateThreshold = array_key_exists('update_threshold', $this->confluence) ? $this->confluence['update_threshold'] : 2;
 
         $this->run(
-            '- ' . $this->niceTitle($entry['file']->getUrl()),
-            function () use ($entry, $published, $parent_id) {
+            '- ' . PublisherUtilities::niceTitle($entry['file']->getUrl()),
+            function () use ($entry, $published, $parent_id, $updateThreshold) {
                 $generated_content = $entry['page']->getContent();
-                if ($this->shouldUpdate($entry['page'], $generated_content, $published)) {
+                if (PublisherUtilities::shouldUpdate($entry['page'], $generated_content, $published, $updateThreshold)) {
                     $this->client->updatePage(
                         $parent_id,
                         $published['id'],
