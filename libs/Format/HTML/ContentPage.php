@@ -90,6 +90,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             'breadcrumbs' => $params['html']['breadcrumbs'],
             'prev' => $this->file->getPrevious(),
             'next' => $this->file->getNext(),
+            'attributes' => $this->file->getAttribute()
         ];
 
         if ($page['breadcrumbs']) {
