@@ -102,6 +102,10 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
                 $destination . DIRECTORY_SEPARATOR . 'tipuesearch' . DIRECTORY_SEPARATOR . 'tipuesearch_content.json',
                 json_encode(['pages' => $this->indexed_pages])
             );
+
+            if (json_last_error()) {
+                echo "Could not write search index: \n" . json_last_error_msg() . "\n";
+            }
         }
     }
 
@@ -115,7 +119,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
      * @param string $text
      * @return string
      */
-    private function strip_html_tags($text)
+    private function sanitize($text)
     {
         $text = preg_replace(
             [
@@ -146,7 +150,15 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
             $text
         );
 
-        return trim(preg_replace('/\s+/', ' ', strip_tags($text)));
+        $text = trim(preg_replace('/\s+/', ' ', strip_tags($text)));
+
+        // Sometimes strings are detected as invalid UTF-8 and json_encode can't treat them
+        // iconv can fix those strings
+        if (function_exists("iconv")) {
+            $text = iconv('UTF-8', 'UTF-8//IGNORE', $text);
+        }
+
+        return $text;
     }
 
     /**
@@ -196,7 +208,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
                         if ($index_pages) {
                             $this->indexed_pages[] = [
                                 'title' => $node->getTitle(),
-                                'text' => utf8_encode($this->strip_html_tags($generated->getPureContent())),
+                                'text' => $this->sanitize($generated->getPureContent()),
                                 'tags' =>  '',
                                 'url' => $node->getUrl(),
                             ];
