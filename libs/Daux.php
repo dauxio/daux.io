@@ -72,7 +72,7 @@ class Daux
 
         // Read command line overrides
         $override_file = $this->getConfigurationOverride($override_file);
-        if ($override_file != null) {
+        if ($override_file !== null) {
             $params->setConfigurationOverrideFile($override_file);
             $this->loadConfiguration($override_file);
         }

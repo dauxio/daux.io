@@ -6,7 +6,7 @@
 [![Build Status](https://img.shields.io/travis/dauxio/daux.io/master.svg?style=flat-square)](https://travis-ci.org/dauxio/daux.io)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/dauxio/daux.io.svg?style=flat-square)](https://scrutinizer-ci.com/g/dauxio/daux.io/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/dauxio/daux.io.svg?style=flat-square)](https://scrutinizer-ci.com/g/dauxio/daux.io)
-[![Total Downloads](https://img.shields.io/packagist/dt/dauxio/daux.io.svg?style=flat-square)](https://packagist.org/packages/dauxio/daux.io)
+[![Total Downloads](https://img.shields.io/packagist/dt/daux/daux.io.svg?style=flat-square)](https://packagist.org/packages/daux/daux.io)
 
 
 **Daux.io** is a documentation generator that uses a simple folder structure and Markdown files to create custom documentation on the fly. It helps you create great looking documentation in a developer friendly way.

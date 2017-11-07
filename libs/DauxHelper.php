@@ -469,11 +469,19 @@ class DauxHelper
         return '' !== $parts['root'];
     }
 
+    public static function getAbsolutePath($path) {
+        if (DauxHelper::isAbsolutePath($path)) {
+            return $path;
+        }
+
+        return getcwd() . '/' . $path;
+    }
+
     /**
-     * @param $path
-     * @param $basedir
-     * @param $var
-     * @param $type
+     * @param string|null $path
+     * @param string $basedir
+     * @param string $var The constant name to check
+     * @param "dir"|"file" $type
      * @return false|null|string
      */
     public static function findLocation($path, $basedir, $var, $type) {
@@ -483,18 +491,17 @@ class DauxHelper
             return $env;
         }
 
+        // If Path is explicitly null, it's useless to go further
         if ($path == null) {
             return null;
         }
 
+        // Check if it's relative to the current directory or an absolute path
         if (DauxHelper::is($path, $type)) {
-            if (DauxHelper::isAbsolutePath($path)) {
-                return $path;
-            }
-
-            return getcwd() . '/' . $path;
+            return DauxHelper::getAbsolutePath($path);
         }
 
+        // Check if it exists relative to Daux's root
         $newPath = $basedir . DIRECTORY_SEPARATOR . $path;
         if (DauxHelper::is($newPath, $type)) {
             return $newPath;
