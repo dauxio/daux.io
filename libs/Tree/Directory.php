@@ -15,6 +15,8 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     {
         // Separate the values into buckets to sort them separately
         $buckets = [
+            'up_numeric' => [],
+            'up' => [],
             'index' => [],
             'numeric' => [],
             'normal' => [],
@@ -41,6 +43,17 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
                 continue;
             }
 
+            if ($name[0] == '+') {
+                if (is_numeric($name[1])) {
+                    $exploded = explode('_', $name);
+                    $buckets['up_numeric'][abs(substr($exploded[0], 1))][$key] = $entry;
+                    continue;
+                }
+
+                $buckets['up'][$key] = $entry;
+                continue;
+            }
+
             if (is_numeric($name[0])) {
                 $exploded = explode('_', $name);
                 $buckets['numeric'][abs($exploded[0])][$key] = $entry;
@@ -52,7 +65,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 
         $final = [];
         foreach ($buckets as $name => $bucket) {
-            if ($name == 'numeric' || $name == 'down_numeric') {
+            if (substr($name, -7) == 'numeric') {
                 ksort($bucket);
                 foreach ($bucket as $sub_bucket) {
                     $final = $this->sortBucket($sub_bucket, $final);

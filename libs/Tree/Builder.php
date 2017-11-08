@@ -136,7 +136,7 @@ class Builder
      */
     public static function removeSortingInformations($filename)
     {
-        preg_match('/^-?[0-9]*_?(.*)/', $filename, $matches);
+        preg_match('/^[-+]?[0-9]*_?(.*)/', $filename, $matches);
 
         // Remove the numeric part
         // of the filename, only if

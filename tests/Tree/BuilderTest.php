@@ -10,6 +10,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         return [
             ['01_before', 'before'],
             ['-Down', 'Down'],
+            ['+Up', 'Up'],
             ['01_numeric', 'numeric'],
             ['01_A_File', 'A_File'],
             ['A_File', 'A_File'],
@@ -20,6 +21,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
             ['API_Calls', 'API_Calls'],
             ['200_Something_Else-Cool', 'Something_Else-Cool'],
             ['_5_Ways_to_Be_Happy', '5_Ways_to_Be_Happy'],
+            ['+02_Soon', 'Soon'],
             ['Before_but_after', 'Before_but_after'],
             ['Continuing', 'Continuing'],
             ['01_GitHub_Flavored_Markdown', 'GitHub_Flavored_Markdown'],
