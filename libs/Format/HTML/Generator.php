@@ -154,9 +154,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
         // Sometimes strings are detected as invalid UTF-8 and json_encode can't treat them
         // iconv can fix those strings
-        if (function_exists("iconv")) {
-            $text = iconv('UTF-8', 'UTF-8//IGNORE', $text);
-        }
+        $text = iconv('UTF-8', 'UTF-8//IGNORE', $text);
 
         return $text;
     }

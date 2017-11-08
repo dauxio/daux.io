@@ -81,7 +81,7 @@ class Processor implements DocumentProcessorInterface
         $url = trim($url);
         $url = preg_replace('~[^\\pL0-9_]+~u', '-', $url);
         $url = trim($url, "-");
-        $url = iconv("utf-8", "us-ascii//TRANSLIT", $url);
+        $url = iconv("utf-8", "ASCII//TRANSLIT//IGNORE", $url);
         $url = preg_replace('~[^-a-zA-Z0-9_]+~', '', $url);
 
         return $url;
