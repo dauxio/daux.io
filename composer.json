@@ -37,7 +37,7 @@
         "justinwalsh/daux.io": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~5",
+        "phpunit/phpunit": "~5.7",
         "mikey179/vfsStream": "^1.6"
     }
 }

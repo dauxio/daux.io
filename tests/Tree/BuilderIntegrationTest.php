@@ -1,11 +1,13 @@
-<?php namespace Todaymade\Daux\Tree;
+<?php
+namespace Todaymade\Daux\Tree;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\Daux;
+use PHPUnit\Framework\TestCase;
 
-class BuilderIntegrationTest extends \PHPUnit_Framework_TestCase
+class BuilderIntegrationTest extends TestCase
 {
     /**
      * @var vfsStreamDirectory

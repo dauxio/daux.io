@@ -1,8 +1,10 @@
-<?php namespace Todaymade\Daux\Format\HTML;
+<?php
+namespace Todaymade\Daux\Format\HTML;
 
 use Todaymade\Daux\Config as MainConfig;
+use PHPUnit\Framework\TestCase;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
     function testHTMLConfigCreation() {
         $config = new MainConfig(['html' => ['edit_on' => 'test']]);

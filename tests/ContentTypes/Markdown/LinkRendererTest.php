@@ -1,4 +1,5 @@
-<?php namespace Todaymade\Daux\ContentTypes\Markdown;
+<?php
+namespace Todaymade\Daux\ContentTypes\Markdown;
 
 use org\bovigo\vfs\vfsStream;
 use Todaymade\Daux\Config;
@@ -6,8 +7,9 @@ use Todaymade\Daux\Daux;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Root;
+use PHPUnit\Framework\TestCase;
 
-class LinkRendererTest extends \PHPUnit_Framework_TestCase
+class LinkRendererTest extends TestCase
 {
     protected function getTree(Config $config)
     {

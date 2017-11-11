@@ -1,7 +1,9 @@
 <?php
 namespace Todaymade\Daux\Format\Confluence;
 
-class ApiTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ApiTest extends TestCase
 {
     // this test supports upgrade Guzzle to version 6
     public function testClientOptions()

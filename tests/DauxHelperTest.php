@@ -1,6 +1,9 @@
-<?php namespace Todaymade\Daux;
+<?php
+namespace Todaymade\Daux;
 
-class DauxHelperTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class DauxHelperTest extends TestCase
 {
     public function providerGetFilenames()
     {
