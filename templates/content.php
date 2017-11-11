@@ -6,7 +6,7 @@
         <?php if ($params['html']['date_modified']) { ?>
         <span class="ModifiedDate">
             <?php $date_format = isset($params['html']['date_modified_format']) ? $params['html']['date_modified_format'] : 'l, F j, Y g:i A'; ?>
-            <?= date($date_format, $page['modified_time']); ?>
+            <?= $this->translate_date(date($date_format, $page['modified_time'])); ?>
         </span>
         <?php } ?>
         <?php

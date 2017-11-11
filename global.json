@@ -30,7 +30,11 @@
             "Link_next": "Next",
             "Edit_on": "Edit on :name:",
             "View_on_github": "View On GitHub",
-            "View_documentation": "View Documentation"
+            "View_documentation": "View Documentation",
+            "Days": [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "Days_abbr": [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            "Months": [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+            "Months_abbr": [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ]
         },
         "fr": {
             "CodeBlocks_title": "Afficher le code",
@@ -56,7 +60,11 @@
             "Link_next": "Weiter",
             "Edit_on": "Bearbeiten bei :name:",
             "View_on_github": "Bei GitHub anzeigen",
-            "View_documentation": "Dokumentation anzeigen"
+            "View_documentation": "Dokumentation anzeigen",
+            "Days": [ "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"],
+            "Days_abbr": [ "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+            "Months": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
+            "Months_abbr": [ "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez" ]
         }
     },
 
