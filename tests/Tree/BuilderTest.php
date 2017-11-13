@@ -1,9 +1,11 @@
-<?php namespace Todaymade\Daux\Tree;
+<?php
+namespace Todaymade\Daux\Tree;
 
 use Todaymade\Daux\Config;
 use Todaymade\Daux\Daux;
+use PHPUnit\Framework\TestCase;
 
-class BuilderTest extends \PHPUnit_Framework_TestCase
+class BuilderTest extends TestCase
 {
     public function providerRemoveSorting()
     {

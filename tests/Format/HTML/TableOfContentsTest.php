@@ -1,9 +1,11 @@
-<?php namespace Todaymade\Daux\Format\HTML;
+<?php
+namespace Todaymade\Daux\Format\HTML;
 
 use Todaymade\Daux\Config as MainConfig;
 use \Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter;
+use PHPUnit\Framework\TestCase;
 
-class TableOfContentsTest extends \PHPUnit_Framework_TestCase
+class TableOfContentsTest extends TestCase
 {
     function testNoTOCByDefault() {
         $converter = new CommonMarkConverter(['daux' => new MainConfig]);
@@ -87,5 +89,3 @@ EXPECTED;
         $this->assertEquals($expected, $converter->convertToHtml($source));
     }
 }
-
-

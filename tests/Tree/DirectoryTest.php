@@ -1,8 +1,10 @@
-<?php namespace Todaymade\Daux\Tree;
+<?php
+namespace Todaymade\Daux\Tree;
 
 use Todaymade\Daux\Config;
+use PHPUnit\Framework\TestCase;
 
-class DirectoryTest extends \PHPUnit_Framework_TestCase
+class DirectoryTest extends TestCase
 {
     public function providerSort()
     {
