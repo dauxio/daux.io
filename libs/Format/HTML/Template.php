@@ -77,6 +77,28 @@ class Template
             return "Unknown key $key";
         });
 
+        $this->engine->registerFunction('translate_date', function ($date) {
+            $language = $this->params['language'];
+
+            if (array_key_exists('Days', $this->params['strings'][$language])) {
+                $date = str_replace($this->params['strings']['en']['Days'], $this->params['strings'][$language]['Days'], $date);
+            }
+
+            if (array_key_exists('Days_abbr', $this->params['strings'][$language])) {
+                $date = str_replace($this->params['strings']['en']['Days_abbr'], $this->params['strings'][$language]['Days_abbr'], $date);
+            }
+
+            if (array_key_exists('Months', $this->params['strings'][$language])) {
+                $date = str_replace($this->params['strings']['en']['Months'], $this->params['strings'][$language]['Months'], $date);
+            }
+
+            if (array_key_exists('Months_abbr', $this->params['strings'][$language])) {
+                $date = str_replace($this->params['strings']['en']['Months_abbr'], $this->params['strings'][$language]['Months_abbr'], $date);
+            }
+
+            return $date;
+        });
+
         $this->engine->registerFunction('get_breadcrumb_title', function ($page, $base_page) {
             $title = '';
             $breadcrumb_trail = $page['breadcrumb_trail'];
