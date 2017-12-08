@@ -4,6 +4,7 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception;
@@ -93,6 +94,9 @@ class Server
      * @return Response
      */
     public function createResponse(Page $page) {
+
+        MimeTypeGuesser::getInstance()->register(new ExtensionMimeTypeGuesser);
+
         if ($page instanceof RawPage) {
             return new BinaryFileResponse($page->getFile());
         }

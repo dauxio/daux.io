@@ -14,6 +14,9 @@ class DauxCommand extends SymfonyCommand
             ->addOption('value', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Set different configuration values')
             ->addOption('source', 's', InputOption::VALUE_REQUIRED, 'Where to take the documentation from')
             ->addOption('processor', 'p', InputOption::VALUE_REQUIRED, 'Manipulations on the tree');
+
+        // HTML Format only
+        $this->addOption('themes', 't', InputOption::VALUE_REQUIRED, 'Set a different themes directory');
     }
 
     private function setValue(&$array, $key, $value)

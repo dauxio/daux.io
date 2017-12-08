@@ -24,8 +24,6 @@ class Generate extends DauxCommand
             // Confluence format only
             ->addOption('delete', null, InputOption::VALUE_NONE, 'Delete pages not linked to a documentation page (confluence)')
 
-            // HTML Format only
-            ->addOption('themes', 't', InputOption::VALUE_REQUIRED, 'Set a different themes directory')
             ->addOption('destination', 'd', InputOption::VALUE_REQUIRED, $description, 'static')
             ->addOption('search', null, InputOption::VALUE_NONE, 'Generate full text search');
     }
