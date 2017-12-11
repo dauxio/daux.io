@@ -26,12 +26,14 @@ $(function () {
             case 2: // Show code blocks inline
                 toggleCodeBlockBtnFloat.addClass("Button--active");
                 codeBlockView.addClass('Columns__right--float');
+                codeBlockView.removeClass('Columns__right--full');
                 codeBlocks.removeClass('hidden');
                 break;
             case 1: // Show code blocks below
                 toggleCodeBlockBtnBelow.addClass("Button--active");
                 toggleCodeBlockBtn.prop('checked', true);
                 codeBlockView.removeClass('Columns__right--float');
+                codeBlockView.addClass('Columns__right--full');
                 codeBlocks.removeClass('hidden');
                 break;
             case 0: // Hidden code blocks
@@ -39,6 +41,7 @@ $(function () {
                 toggleCodeBlockBtnHide.addClass("Button--active");
                 toggleCodeBlockBtn.prop('checked', false);
                 codeBlockView.removeClass('Columns__right--float');
+                codeBlockView.addClass('Columns__right--full');
                 codeBlocks.addClass('hidden');
                 break;
         }

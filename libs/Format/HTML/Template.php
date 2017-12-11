@@ -1,6 +1,7 @@
 <?php namespace Todaymade\Daux\Format\HTML;
 
 use League\Plates\Engine;
+use Todaymade\Daux\Config;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Directory;
@@ -15,9 +16,17 @@ class Template
      * @param string $base
      * @param string $theme
      */
-    public function __construct($params)
+    public function __construct(Config $params)
     {
         $this->params = $params;
+    }
+
+    public function getEngine(Config $params)
+    {
+        if ($this->engine) {
+            return $this->engine;
+        }
+
         $base = $params['templates'];
         $theme = $params['theme']['templates'];
 
@@ -34,7 +43,9 @@ class Template
         }
         $this->engine->addFolder('theme', $theme, true);
 
-        $this->registerFunctions();
+        $this->registerFunctions($this->engine);
+
+        return $this->engine;
     }
 
     /**
@@ -44,7 +55,9 @@ class Template
      */
     public function render($name, array $data = [])
     {
-        $this->engine->addData([
+        $engine = $this->getEngine($data['params']);
+
+        $engine->addData([
             'base_url' => $data['params']['base_url'],
             'base_page' => $data['params']['base_page'],
             'page' => $data['page'],
@@ -52,18 +65,18 @@ class Template
             'tree' => $data['params']['tree'],
         ]);
 
-        return $this->engine->render($name, $data);
+        return $engine->render($name, $data);
     }
 
-    protected function registerFunctions()
+    protected function registerFunctions($engine)
     {
-        $this->engine->registerFunction('get_navigation', function ($tree, $path, $current_url, $base_page, $mode) {
+        $engine->registerFunction('get_navigation', function ($tree, $path, $current_url, $base_page, $mode) {
             $nav = $this->buildNavigation($tree, $path, $current_url, $base_page, $mode);
 
             return $this->renderNavigation($nav);
         });
 
-        $this->engine->registerFunction('translate', function ($key) {
+        $engine->registerFunction('translate', function ($key) {
             $language = $this->params['language'];
 
             if (array_key_exists($key, $this->params['strings'][$language])) {
@@ -77,7 +90,7 @@ class Template
             return "Unknown key $key";
         });
 
-        $this->engine->registerFunction('get_breadcrumb_title', function ($page, $base_page) {
+        $engine->registerFunction('get_breadcrumb_title', function ($page, $base_page) {
             $title = '';
             $breadcrumb_trail = $page['breadcrumb_trail'];
             $separator = $this->getSeparator($page['breadcrumb_separator']);

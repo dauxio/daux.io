@@ -28,7 +28,11 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
      */
     public function __construct(Daux $daux)
     {
+        $params = $daux->getParams();
+
         $this->daux = $daux;
+        $this->templateRenderer = new Template($params);
+        $params->templateRenderer = $this->templateRenderer;
     }
 
     /**
@@ -234,6 +238,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
         $params['request'] = $node->getUrl();
 
-        return ContentPage::fromFile($node, $params, $this->daux->getContentTypeHandler()->getType($node));
+        $contentPage = ContentPage::fromFile($node, $params, $this->daux->getContentTypeHandler()->getType($node));
+        $contentPage->templateRenderer = $this->templateRenderer;
+
+        return $contentPage;
     }
 }

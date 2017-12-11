@@ -10,6 +10,6 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
         parent::extendEnvironment($environment, $config);
 
         $environment->addDocumentProcessor(new TOC\Processor($config));
-        $environment->addBlockRenderer('Todaymade\Daux\ContentTypes\Markdown\TableOfContents', new TOC\Renderer());
+        $environment->addBlockRenderer('Todaymade\Daux\ContentTypes\Markdown\TableOfContents', new TOC\Renderer($config));
     }
 }

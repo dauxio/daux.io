@@ -322,9 +322,21 @@ Components
     }
 }
 
-.TableOfContents {
+.TableOfContentsContainer {
+    &__title {
+        border-bottom: 4px solid #efefef;
+        margin-bottom: 0 !important;
+    }
+
+    &__content > .TableOfContents {
+        margin-top: 0;
+    }
+}
+
+ul.TableOfContents {
+    float: none;
     font-size: 16px;
-    padding-left: 0;
+    padding-left: 1.5em;
     border-left: 6px solid #efefef;
 
     p {
@@ -337,6 +349,42 @@ Components
 
     .TableOfContents {
         border-left-width: 0;
+    }
+}
+
+.Columns__right--full .TableOfContentsContainer {
+    float: right;
+    min-width: 300px;
+    max-width: 25%;
+
+    .TableOfContentsContainer__content > .TableOfContents {
+        border-right: 2px solid #efefef;
+    }
+
+    .TableOfContents {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    a {
+        display: block;
+        border-bottom: 1px solid #ddd;
+    }
+
+    li a {
+        padding-left: 0.75em;
+    }
+
+    li li a {
+        padding-left: 1.5em;
+    }
+
+    li li li a {
+        padding-left: 2.25em;
+    }
+
+    li li li li a {
+        padding-left: 3em;
     }
 }
 

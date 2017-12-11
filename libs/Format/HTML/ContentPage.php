@@ -104,8 +104,6 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
         $context = ['page' => $page, 'params' => $params];
 
-        $template = new Template($params);
-
-        return $template->render($this->isLanding() ? 'theme::home' : 'theme::content', $context);
+        return $this->templateRenderer->render($this->isLanding() ? 'theme::home' : 'theme::content', $context);
     }
 }
