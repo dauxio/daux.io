@@ -15,6 +15,8 @@ class Renderer implements BlockRendererInterface
     public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = false)
     {
         $content = $htmlRenderer->renderBlocks($block->children());
-        return $this->config->templateRenderer->getEngine($this->config)->render('partials/table_of_contents', ['content' => $content]);
+        return $this->config->templateRenderer
+            ->getEngine($this->config)
+            ->render('partials/table_of_contents', ['content' => $content]);
     }
 }

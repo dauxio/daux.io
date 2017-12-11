@@ -5,16 +5,35 @@ use Todaymade\Daux\Config as MainConfig;
 use \Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter;
 use PHPUnit\Framework\TestCase;
 
+class Engine {
+    function render($template, $data) {
+        return $data['content'];
+    }
+}
+
+class Template {
+    function getEngine() {
+        return new Engine;
+    }
+}
+
 class TableOfContentsTest extends TestCase
 {
+    function getConfig() {
+        $config = new MainConfig;
+        $config->templateRenderer = new Template;
+        
+        return ['daux' => $config];
+    }
+
     function testNoTOCByDefault() {
-        $converter = new CommonMarkConverter(['daux' => new MainConfig]);
+        $converter = new CommonMarkConverter($this->getConfig());
 
         $this->assertEquals("<h1 id=\"page_Test\">Test</h1>\n", $converter->convertToHtml('# Test'));
     }
 
     function testTOCToken() {
-        $converter = new CommonMarkConverter(['daux' => new MainConfig]);
+        $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# Title";
         $expected = <<<EXPECTED
@@ -31,7 +50,7 @@ EXPECTED;
     }
 
     function testUnicodeTOC() {
-        $converter = new CommonMarkConverter(['daux' => new MainConfig]);
+        $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# 基础操作\n# 操作基础";
         $expected = <<<EXPECTED
@@ -52,7 +71,7 @@ EXPECTED;
     }
 
     function testDuplicatedTOC() {
-        $converter = new CommonMarkConverter(['daux' => new MainConfig]);
+        $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# Test\n# Test";
         $expected = <<<EXPECTED
@@ -73,7 +92,7 @@ EXPECTED;
     }
 
     function testEscapedTOC() {
-        $converter = new CommonMarkConverter(['daux' => new MainConfig]);
+        $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# TEST : Test";
         $expected = <<<EXPECTED
