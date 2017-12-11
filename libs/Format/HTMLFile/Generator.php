@@ -4,6 +4,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Console\RunAction;
 use Todaymade\Daux\Daux;
+use Todaymade\Daux\Format\HTML\Template;
 use Todaymade\Daux\Format\HTML\ContentTypes\Markdown\ContentType;
 
 class Generator implements \Todaymade\Daux\Format\Base\Generator
@@ -18,7 +19,11 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
      */
     public function __construct(Daux $daux)
     {
+        $params = $daux->getParams();
+
         $this->daux = $daux;
+        $this->templateRenderer = new Template($params);
+        $params->templateRenderer = $this->templateRenderer;
     }
 
     /**
@@ -89,7 +94,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
                 $width,
                 function () use ($book, $current, $params) {
                     $contentType = $this->daux->getContentTypeHandler()->getType($current);
-                    $content = ContentPage::fromFile($current, $params, $contentType)->getContent();
+                    $content = ContentPage::fromFile($current, $params, $contentType);
+                    $content->templateRenderer = $this->templateRenderer;
+                    $content = $content->getContent();
                     $book->addPage($current, $content);
                 }
             );

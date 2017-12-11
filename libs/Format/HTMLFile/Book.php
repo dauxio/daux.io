@@ -95,7 +95,7 @@ class Book
 
     protected function generateCover()
     {
-        return "<div style='margin:4em 30% 4em 0;'>" .
+        return "<div>" .
         "<h1 style='font-size:40pt; margin-bottom:0;'>{$this->cover['title']}</h1>" .
         "<p><strong>{$this->cover['subject']}</strong> by {$this->cover['author']}</p>" .
         '</div><div class="page-break">&nbsp;</div>';
