@@ -34,6 +34,8 @@
 This is a list of sites using Daux.io:
 
 - With a custom theme:
+    * [Pixolution flow](https://docs.pixolution.org)
+	* [Crafty](https://swissquote.github.io/crafty)
     * [Vulkan Tutorial](https://vulkan-tutorial.com)
     * [TrackJs](http://docs.trackjs.com)
 - With the default Theme
