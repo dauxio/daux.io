@@ -3,15 +3,15 @@
 <head>
     <title><?= $page['title']; ?> <?= ($page['title'] != $params['title'])? '- ' . $params['title'] : "" ?></title>
 <?php //SEO meta tags...
-    if (array_key_exists('description', $page['attributes'])) {
+    if (array_key_exists('attributes', $page) && array_key_exists('description', $page['attributes'])) {
         echo "    <meta name=\"description\" content=\"{$page['attributes']['description']}\">\n";
     } elseif (array_key_exists('tagline', $params)) {
         echo "    <meta name=\"description\" content=\"{$params['tagline']}\">\n";
     }
-    if (array_key_exists('keywords', $page['attributes'])) {
+    if (array_key_exists('attributes', $page) && array_key_exists('keywords', $page['attributes'])) {
         echo "    <meta name=\"keywords\" content=\"{$page['attributes']['keywords']}\">\n";
     }
-    if (array_key_exists('author', $page['attributes'])) {
+    if (array_key_exists('attributes', $page) && array_key_exists('author', $page['attributes'])) {
         echo "    <meta name=\"author\" content=\"{$page['attributes']['author']}\">\n";
     } elseif (array_key_exists('author', $params)) {
         echo "    <meta name=\"author\" content=\"{$params['author']}\">\n";

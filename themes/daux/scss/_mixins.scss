@@ -2,39 +2,42 @@
 Mixins
 ============================================================================================== */
 
-.kill-background-image() {
+@mixin kill-background-image {
     background-image: none;
     filter: none;
 }
 
-.kill-box-shadow() {
+@mixin kill-box-shadow {
     box-shadow: none;
 }
 
-.sans-serif(@weight: normal, @size: 14px, @lineheight: 20px) {
-    font-weight: @weight;
-    font-size: @size;
-    font-family: @font-family-text;
-    line-height: @lineheight;
+@mixin sans-serif($weight: normal, $size: 14px, $lineheight: 20px) {
+    font-weight: $weight;
+    font-size: $size;
+    font-family: $font-family-text;
+    line-height: $lineheight;
 }
 
 // Single side border-radius
 
-.border-top-radius(@radius) {
-    border-top-right-radius: @radius;
-    border-top-left-radius: @radius;
+@mixin border-top-radius($radius) {
+    border-top-right-radius: $radius;
+    border-top-left-radius: $radius;
 }
-.border-right-radius(@radius) {
-    border-bottom-right-radius: @radius;
-    border-top-right-radius: @radius;
+
+@mixin border-right-radius($radius) {
+    border-bottom-right-radius: $radius;
+    border-top-right-radius: $radius;
 }
-.border-bottom-radius(@radius) {
-    border-bottom-right-radius: @radius;
-    border-bottom-left-radius: @radius;
+
+@mixin border-bottom-radius($radius) {
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
 }
-.border-left-radius(@radius) {
-    border-bottom-left-radius: @radius;
-    border-top-left-radius: @radius;
+
+@mixin border-left-radius($radius) {
+    border-bottom-left-radius: $radius;
+    border-top-left-radius: $radius;
 }
 
 // Clearfix
@@ -49,7 +52,7 @@ Mixins
 //
 // Source: http://nicolasgallagher.com/micro-clearfix-hack/
 
-.clearfix() {
+@mixin clearfix {
     &::before,
     &::after {
         content: " "; // 1

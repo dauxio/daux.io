@@ -3,17 +3,12 @@
   "version": "0.3.0",
   "private": true,
   "devDependencies": {
-    "cssnano": "^3.7.3",
-    "gulp": "^3.9.1",
-    "gulp-less": "^3.1.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-postcss": "^7.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-stylelint": "^5.0.0",
-    "stylelint-config-standard": "^17.0.0"
+    "@swissquote/crafty": "^1.0.1",
+    "@swissquote/crafty-preset-postcss": "^1.0.1",
+    "@swissquote/crafty-runner-gulp": "^1.0.1"
   },
   "scripts": {
-    "build": "gulp",
-    "watch": "gulp watch"
+    "build": "crafty run",
+    "watch": "crafty watch"
   }
 }

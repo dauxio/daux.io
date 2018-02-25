@@ -1,6 +1,6 @@
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: @font-family-heading;
+    font-family: var(--font-family-heading);
     font-weight: 300;
 }
 
@@ -8,5 +8,5 @@ section.content {
     padding: 15px 25px 25px;
     background-color: white;
 
-    @import "../../common/less/_typography.less";
+    @import "../../common/scss/_typography.scss";
 }

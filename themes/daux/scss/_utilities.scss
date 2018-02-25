@@ -6,7 +6,7 @@
 // -------------------------
 
 .clearfix {
-    .clearfix();
+    @include clearfix();
 }
 
 .pull-right {

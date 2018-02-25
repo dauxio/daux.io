@@ -15,12 +15,12 @@ Docs Body & Page Structure
 html, body {
     height: 100%;
     background-color: #fff;
-    color: @text;
+    color: var(--text);
 }
 
 .Columns {
     &__left {
-        background-color: @sidebar-background;
+        background-color: var(--sidebar-background);
     }
 
     &__right {
@@ -44,8 +44,8 @@ html, body {
         border: none;
         float: right;
 
-        .kill-background-image;
-        .kill-box-shadow;
+        @include kill-background-image;
+        @include kill-box-shadow;
 
         &--bar {
             display: block;
@@ -53,17 +53,17 @@ html, body {
             height: 2px;
             margin-top: 2px;
             margin-bottom: 3px;
-            background-color: @light;
-            .kill-box-shadow;
+            background-color: var(--light);
+            @include kill-box-shadow;
         }
 
         &:hover {
-            background-color: @sidebar-hover;
-            .kill-box-shadow;
+            background-color: var(--sidebar-hover);
+            @include kill-box-shadow;
 
             .Collapsible__trigger--bar {
-                background-color: @dark;
-                .kill-box-shadow;
+                background-color: var(--dark);
+                @include kill-box-shadow;
             }
         }
     }
@@ -72,7 +72,7 @@ html, body {
 @media screen and (min-width: 768px) {
     body {
         //Needed only for floating code blocks
-        background-color: @light;
+        background-color: var(--light);
     }
 
     .Navbar {
@@ -114,7 +114,7 @@ html, body {
 
         &__left {
             width: 25%;
-            border-right: 1px solid @lines;
+            border-right: 1px solid var(--lines);
             overflow-x: hidden;
         }
 

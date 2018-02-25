@@ -1,7 +1,7 @@
 // Core variables and mixins
-@import "../../common/less/_fonts.less";
-@import "vendor/highlight.less";
-@import "_typography.less";
+@import "../../common/scss/_fonts.scss";
+@import "vendor/highlight.scss";
+@import "_typography.scss";
 
 * {
     -webkit-overflow-scrolling: touch;
@@ -17,7 +17,7 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: @font-family-text;
+    font-family: var(--font-family-text);
 }
 
 a {
@@ -54,5 +54,5 @@ img {
 }
 
 @media print {
-    @import "_print.less";
+    @import "_print.scss";
 }

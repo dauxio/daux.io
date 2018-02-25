@@ -38,15 +38,15 @@ Homepage
 
 .Homepage {
     padding-top: 60px !important;
-    background-color: @light;
+    background-color: var(--light);
     border-radius: 0;
     border: none;
-    color: @dark;
+    color: var(--dark);
     overflow: hidden;
     padding-bottom: 0;
     margin-bottom: 0;
 
-    .kill-box-shadow;
+    @include kill-box-shadow;
 }
 
 .HomepageTitle {
@@ -69,7 +69,7 @@ Homepage
 
 .HomepageButtons {
     padding: 20px 0;
-    background-color: @sidebar-hover;
+    background-color: var(--sidebar-hover);
     text-align: center;
 
     .Button--hero {
@@ -79,12 +79,12 @@ Homepage
         opacity: 0.8;
         margin: 0 10px;
         text-transform: uppercase;
-        border: 5px solid @dark;
-        font-family: @font-family-heading;
+        border: 5px solid var(--dark);
+        font-family: var(--font-family-heading);
         font-weight: 700;
 
-        .kill-background-image;
-        .kill-box-shadow;
+        @include kill-background-image;
+        @include kill-box-shadow;
 
         @media (max-width: 768px) {
             display: block;
@@ -96,13 +96,13 @@ Homepage
         }
 
         &.Button--secondary {
-            background-color: @sidebar-hover;
-            color: @dark;
+            background-color: var(--sidebar-hover);
+            color: var(--dark);
         }
 
         &.Button--primary {
-            background-color: @dark;
-            color: @sidebar-background;
+            background-color: var(--dark);
+            color: var(--sidebar-background);
         }
     }
 }
@@ -136,7 +136,7 @@ Homepage
                 width: 0;
                 height: 0;
                 border: 3px solid transparent;
-                border-left: 3px solid @light;
+                border-left: 3px solid var(--light);
                 float: left;
                 display: block;
                 margin: 6px 6px 6px -12px;
@@ -145,7 +145,7 @@ Homepage
     }
 
     .lead {
-        font-family: @font-family-heading;
+        font-family: var(--font-family-heading);
         font-weight: 300;
         font-size: 16px;
         margin-bottom: 20px;
@@ -162,12 +162,12 @@ Homepage
 }
 
 .HomepageFooter {
-    background-color: @dark;
+    background-color: var(--dark);
     border-radius: 0;
-    color: @light;
+    color: var(--light);
     border: none;
 
-    .kill-box-shadow;
+    @include kill-box-shadow;
 
     @media (max-width: 768px) {
         padding: 0 20px;
@@ -196,11 +196,11 @@ Homepage
             a {
                 line-height: 32px;
                 font-size: 16px;
-                font-family: @font-family-heading;
+                font-family: var(--font-family-heading);
                 font-weight: 700;
 
                 &:hover {
-                    color: @light;
+                    color: var(--light);
                     text-decoration: underline;
                 }
             }

@@ -4,7 +4,7 @@ Base tags
 
 a {
     text-decoration: none;
-    color: @light;
+    color: var(--light);
 
     &.external::after {
         content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
@@ -27,7 +27,7 @@ hr {
 }
 
 code {
-    color: @dark;
+    color: var(--dark);
 }
 
 /* ===========================================================================================
@@ -97,32 +97,32 @@ Components
             margin-left: 0;
 
             &:not(:last-child):not(.dropdown-toggle) {
-                .border-right-radius(0);
+                @include border-right-radius(0);
             }
         }
 
         // Need .dropdown-toggle since :last-child doesn't apply given a .dropdown-menu immediately after it
         &:last-child:not(:first-child) {
-            .border-left-radius(0);
+            @include border-left-radius(0);
         }
     }
 }
 
 .Brand {
     display: block;
-    background-color: @dark;
+    background-color: var(--dark);
     padding: 15px 20px;
     font-size: 18px;
     text-shadow: none;
-    font-family: @font-family-heading;
+    font-family: var(--font-family-heading);
     font-weight: 700;
-    color: @light;
+    color: var(--light);
 }
 
 .Navbar {
     height: 50px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-    background-color: @dark;
+    background-color: var(--dark);
     margin-bottom: 0;
 
     .Brand {
@@ -162,8 +162,8 @@ Components
             top: 50%;
             width: 0.5em;
             height: 0.5em;
-            border-right: 0.15em solid @dark;
-            border-top: 0.15em solid @dark;
+            border-right: 0.15em solid var(--dark);
+            border-top: 0.15em solid var(--dark);
             transform: rotate(45deg);
             transition-duration: 0.3s;
         }
@@ -176,17 +176,17 @@ Components
             display: block;
             margin: 0;
             padding: 6px 15px 6px 20px;
-            font-family: @font-family-heading;
+            font-family: var(--font-family-heading);
             font-weight: 400;
-            color: @dark;
+            color: var(--dark);
             font-size: 15px;
             text-shadow: none;
-            border-color: @lines;
+            border-color: var(--lines);
 
             &:hover {
-                color: @dark;
+                color: var(--dark);
                 text-shadow: none;
-                background-color: @sidebar-hover;
+                background-color: var(--sidebar-hover);
             }
         }
     }
@@ -200,8 +200,8 @@ Components
                 margin: 0;
                 margin-left: -15px;
                 padding: 3px 30px;
-                font-family: @font-family-text;
-                color: @text;
+                font-family: var(--font-family-text);
+                color: var(--text);
                 opacity: 0.7;
 
                 &:hover {
@@ -210,7 +210,7 @@ Components
             }
 
             &--active a {
-                color: @dark;
+                color: var(--dark);
             }
         }
     }
@@ -219,7 +219,7 @@ Components
         &--open,
         &--active {
             > a {
-                background-color: @sidebar-hover;
+                background-color: var(--sidebar-hover);
             }
         }
 
@@ -241,7 +241,7 @@ Components
     padding: 0;
     border-bottom: 1px solid #eee;
 
-    .clearfix();
+    @include clearfix();
 
     h1 {
         margin: 0;
@@ -274,9 +274,9 @@ Components
     padding: 0 20px;
 
     a {
-        font-family: @font-family-heading;
+        font-family: var(--font-family-heading);
         font-weight: 400;
-        color: @light;
+        color:var(--light);
         line-height: 2em;
     }
 }
@@ -296,7 +296,7 @@ Components
         transition: border-color ease-in-out 0.15s;
 
         &:focus {
-            border-color: @light;
+            border-color: var(--light);
             outline: 0;
         }
     }
@@ -395,7 +395,7 @@ ul.TableOfContents {
     text-align: center;
     clear: both;
 
-    .clearfix();
+    @include clearfix();
 
     li {
         display: inline;
@@ -460,7 +460,7 @@ ul.TableOfContents {
 
     /* Checked state */
     .Checkbox input:checked ~ & {
-        background: @dark;
+        background: var(--dark);
 
         /* Show check mark */
         &::after {
@@ -470,7 +470,7 @@ ul.TableOfContents {
 
     /* Hover state whilst checked */
     .Checkbox:hover input:not([disabled]):checked ~ &, .Checkbox input:checked:focus ~ & {
-        background: @light;
+        background: var(--light);
     }
 
     /* Disabled state */

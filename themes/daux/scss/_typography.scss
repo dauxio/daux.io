@@ -3,7 +3,7 @@ Base CSS
 ============================================================================================== */
 
 body {
-    font-family: @font-family-text;
+    font-family: var(--font-family-text);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -12,12 +12,12 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: @font-family-heading;
+    font-family: var(--font-family-heading);
     font-weight: 300;
 }
 
 .s-content {
-    @import "../../common/less/_typography.less";
+    @import "../../common/scss/_typography.scss";
 
     pre {
         border: none;
