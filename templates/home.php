@@ -2,23 +2,23 @@
 
 <?php $this->start('classes') ?>homepage<?php $this->stop() ?>
 
-<div class="Navbar hidden-print">
-    <div class="container">
+<div class="Navbar NoPrint">
+    <div class="Container">
         <?php $this->insert('theme::partials/navbar_content', ['params' => $params]); ?>
     </div>
 </div>
 
 <div class="Homepage">
-    <div class="HomepageTitle container">
+    <div class="HomepageTitle Container">
         <?= ($params['tagline'])? '<h2>' . $params['tagline'] . '</h2>' : '' ?>
     </div>
 
-    <div class="HomepageImage container">
+    <div class="HomepageImage Container">
         <?= ($params['image'])? '<img class="homepage-image img-responsive" src="' . $params['image'] . '" alt="' . $params['title'] . '">' : '' ?>
     </div>
 
     <div class="HomepageButtons">
-        <div class="container">
+        <div class="Container">
             <?php
             if ($params['html']['repo']) {
                 echo '<a href="https://github.com/' . $params['html']['repo'] . '" class="Button Button--secondary Button--hero">' . $this->translate("View_on_github") . '</a>';
@@ -33,14 +33,13 @@
                 }
             }
             ?>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>
 
 <div class="HomepageContent">
-    <div class="container">
-        <div class="container--inner">
+    <div class="Container">
+        <div class="Container--inner">
             <div class="doc_content s-content">
                 <?= $page['content']; ?>
             </div>
@@ -49,8 +48,8 @@
 </div>
 
 <div class="HomepageFooter">
-    <div class="container">
-        <div class="container--inner">
+    <div class="Container">
+        <div class="Container--inner">
             <?php if (!empty($params['html']['links'])) { ?>
                 <ul class="HomepageFooter__links">
                     <?php foreach ($params['html']['links'] as $name => $url) {
@@ -70,5 +69,4 @@
             <?php } ?>
         </div>
     </div>
-    <div class="clearfix"></div>
 </div>

@@ -1,6 +1,6 @@
 
 @import "../../common/scss/_print.scss";
 
-a[href]::after {
+a[href]:after {
     content: " (" attr(href) ")";
 }

@@ -25,20 +25,22 @@ img {
 a,
 a:visited { text-decoration: underline; }
 
-abbr[title]::after { content: " (" attr(title) ")"; }
+abbr[title]:after { content: " (" attr(title) ")"; }
 
-q { quotes: none; }
+q {
+    quotes: none;
 
-q::before { content: ""; }
+    &:before { content: ""; }
 
-q::after { content: " (" attr(cite) ")"; }
+    &:after { content: " (" attr(cite) ")"; }
+}
 
-.page-break {
+.PageBreak {
     display: block;
     page-break-before: always;
 }
 
-.hidden-print { display: none; }
+.NoPrint { display: none; }
 
 /* Hide the navigation */
 aside { display: none; }

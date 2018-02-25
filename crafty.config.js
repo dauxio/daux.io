@@ -5,26 +5,43 @@ module.exports = {
       "@swissquote/crafty-runner-gulp"
     ],
     destination_css: "themes",
+    stylelint_pattern: [
+      "themes/daux/scss/**/*.scss",
+      "themes/daux_singlepage/scss/**/*.scss",
+      "themes/common/scss/**/*.scss",
+      "!*.min.css",
+      "!**/vendor/**/*.scss"
+    ],
+    stylelint: {
+      rules: {
+        "swissquote/no-type-outside-scope": null
+      }
+    },
     css: {
       "theme_blue": {
         source: "themes/daux/scss/theme-blue.scss",
-        destination: "daux/css/theme-blue.min.css"
+        destination: "daux/css/theme-blue.min.css",
+        watch: ["themes/daux/scss/**", "themes/common/scss/**"]
       },
       "theme_green": {
         source: "themes/daux/scss/theme-green.scss",
-        destination: "daux/css/theme-green.min.css"
+        destination: "daux/css/theme-green.min.css",
+        watch: ["themes/daux/scss/**", "themes/common/scss/**"]
       },
       "theme_navy": {
         source: "themes/daux/scss/theme-navy.scss",
-        destination: "daux/css/theme-navy.min.css"
+        destination: "daux/css/theme-navy.min.css",
+        watch: ["themes/daux/scss/**", "themes/common/scss/**"]
       },
       "theme_red": {
         source: "themes/daux/scss/theme-red.scss",
-        destination: "daux/css/theme-red.min.css"
+        destination: "daux/css/theme-red.min.css",
+        watch: ["themes/daux/scss/**", "themes/common/scss/**"]
       },
       "daux_singlepage": {
         source: "themes/daux_singlepage/scss/main.scss",
-        destination: "daux_singlepage/css/main.min.css"
+        destination: "daux_singlepage/css/main.min.css",
+        watch: ["themes/daux_singlepage/scss/**", "themes/common/scss/**"]
       }
     }
   };

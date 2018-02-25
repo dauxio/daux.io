@@ -2,7 +2,7 @@
 
 /* Tomorrow Comment */
 .hljs-comment {
-  color: hsl(207, 35%, 35%);
+    color: hsl(207, 35%, 35%);
 }
 
 /* Tomorrow Red */
@@ -18,7 +18,7 @@
 .css .hljs-id,
 .css .hljs-class,
 .css .hljs-pseudo {
-  color: #c82829;
+    color: #c82829;
 }
 
 /* Tomorrow Orange */
@@ -29,13 +29,13 @@
 .hljs-literal,
 .hljs-constant,
 .hljs-function .hljs-title {
-  color: hsl(50, 100%, 60%);
+    color: hsl(50, 100%, 60%);
 }
 
 /* Tomorrow Yellow */
 .ruby .hljs-class .hljs-title,
 .css .hljs-rules .hljs-attribute {
-  color: #eab700;
+    color: #eab700;
 }
 
 /* Tomorrow Green */
@@ -45,12 +45,12 @@
 .hljs-header,
 .ruby .hljs-symbol,
 .xml .hljs-cdata {
-  color: hsl(0, 100%, 70%);
+    color: hsl(0, 100%, 70%);
 }
 
 /* Tomorrow Aqua */
 .css .hljs-hexcolor {
-  color: #3e999f;
+    color: #3e999f;
 }
 
 /* Tomorrow Blue */
@@ -62,21 +62,21 @@
 .perl .hljs-sub,
 .javascript .hljs-title,
 .coffeescript .hljs-title {
-  color: hsl(207, 70%, 60%);
+    color: hsl(207, 70%, 60%);
 }
 
 /* Tomorrow Purple */
 .hljs-keyword,
 .javascript .hljs-function {
-  color: hsl(207, 95%, 70%);
+    color: hsl(207, 95%, 70%);
 }
 
 .hljs {
-  display: block;
-  background: white;
-  color: #4d4d4c;
-  padding: 0.5em;
-  font-family: "Anonymous Pro", "Inconsolata", "Monaco", monospace;
+    display: block;
+    background: white;
+    color: #4d4d4c;
+    padding: 0.5em;
+    font-family: "Anonymous Pro", "Inconsolata", "Monaco", monospace;
 }
 
 .coffeescript .javascript,
@@ -86,5 +86,5 @@
 .xml .vbscript,
 .xml .css,
 .xml .hljs-cdata {
-  opacity: 0.5;
+    opacity: 0.5;
 }

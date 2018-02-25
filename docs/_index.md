@@ -1,4 +1,4 @@
-<p class="lead">
+<p class="HeroText">
 	<strong>Daux.io</strong> is a documentation generator that uses a simple folder structure and Markdown files to create custom documentation on the fly. It helps you create great looking documentation in a developer friendly way.
 </p>
 
@@ -8,8 +8,8 @@
 
 ---
 
-<div class="row">
-<div class="col-third">
+<div class="Row">
+<div class="Row__third">
 
 #### For Authors
 
@@ -24,7 +24,7 @@
 * [Table of Contents](01_Features/Table_of_contents.md)
 
 </div>
-<div class="col-third">
+<div class="Row__third">
 
 #### For Developers
 
@@ -34,7 +34,7 @@
 * Work with pages metadata
 
 </div>
-<div class="col-third">
+<div class="Row__third">
 
 #### For Marketing
 

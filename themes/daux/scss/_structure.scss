@@ -1,5 +1,5 @@
 
-*, *::after, *::before {
+*, *:after, *:before {
     box-sizing: border-box;
 }
 
@@ -8,9 +8,9 @@ body {
     padding: 0;
 }
 
-/* ===========================================================================================
+/* ============================================================================
 Docs Body & Page Structure
-============================================================================================== */
+============================================================================ */
 
 html, body {
     height: 100%;
@@ -31,48 +31,45 @@ html, body {
     }
 }
 
-.Collapsible {
-    //mobile friendly sub-nav
-    &__content {
-        display: none;
+// mobile friendly sub-nav
+.Collapsible__content {
+    display: none;
+}
+
+.Collapsible__trigger {
+    margin: 12px;
+    padding: 7px 10px;
+    background-color: transparent;
+    border: none;
+    float: right;
+
+    @include kill-background-image;
+    @include kill-box-shadow;
+
+    &__bar {
+        display: block;
+        width: 18px;
+        height: 2px;
+        margin-top: 2px;
+        margin-bottom: 3px;
+        background-color: var(--sidebar-collapsible--hamburger-color);
     }
 
-    &__trigger {
-        margin: 12px;
-        padding: 7px 10px;
-        background-color: transparent;
-        border: none;
-        float: right;
+    &:hover {
+        background-color: var(--sidebar-collapsible--hamburger-hover-background);
 
-        @include kill-background-image;
         @include kill-box-shadow;
 
-        &--bar {
-            display: block;
-            width: 18px;
-            height: 2px;
-            margin-top: 2px;
-            margin-bottom: 3px;
-            background-color: var(--light);
-            @include kill-box-shadow;
-        }
-
-        &:hover {
-            background-color: var(--sidebar-hover);
-            @include kill-box-shadow;
-
-            .Collapsible__trigger--bar {
-                background-color: var(--dark);
-                @include kill-box-shadow;
-            }
+        .Collapsible__trigger__bar {
+            background-color: var(--sidebar-collapsible--hamburger-hover-color);
         }
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
     body {
         //Needed only for floating code blocks
-        background-color: var(--light);
+        background-color: var(--content-floating-blocks-background);
     }
 
     .Navbar {
@@ -94,13 +91,13 @@ html, body {
     .Columns {
         height: 100%;
 
-        &::after,
-        &::before {
+        &:after,
+        &:before {
             content: " ";
             display: table;
         }
 
-        &::after {
+        &:after {
             clear: both;
         }
 
@@ -114,7 +111,7 @@ html, body {
 
         &__left {
             width: 25%;
-            border-right: 1px solid var(--lines);
+            border-right: 1px solid var(--sidebar-border);
             overflow-x: hidden;
         }
 

@@ -2,9 +2,9 @@
 <div class="Columns content">
     <aside class="Columns__left Collapsible">
         <button type="button" class="Button Collapsible__trigger">
-            <span class="Collapsible__trigger--bar"></span>
-            <span class="Collapsible__trigger--bar"></span>
-            <span class="Collapsible__trigger--bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
         </button>
 
         <?php $this->insert('theme::partials/navbar_content', ['params' => $params]); ?>

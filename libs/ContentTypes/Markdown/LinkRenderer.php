@@ -99,7 +99,7 @@ class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
 
         // Absolute urls, shouldn't either
         if ($this->isExternalUrl($url)) {
-            $element->setAttribute('class', 'external');
+            $element->setAttribute('class', 'Link--external');
 
             return $element;
         }
@@ -117,7 +117,7 @@ class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
                 throw $e;
             }
 
-            $element->setAttribute('class', 'broken');
+            $element->setAttribute('class', 'Link--broken');
         }
 
         if (isset($urlAndHash[1])) {

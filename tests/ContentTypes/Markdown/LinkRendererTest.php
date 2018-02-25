@@ -39,7 +39,7 @@ class LinkRendererTest extends TestCase
     {
         return [
             // /Widgets/Page
-            ['<a href="http://google.ch" class="external">Link</a>', '[Link](http://google.ch)', 'Widgets/Page.html'],
+            ['<a href="http://google.ch" class="Link--external">Link</a>', '[Link](http://google.ch)', 'Widgets/Page.html'],
             ['<a href="#features">Link</a>', '[Link](#features)', 'Widgets/Page.html'],
             ['<a href="Button.html">Link</a>', '[Link](Button.md)', 'Widgets/Page.html'],
             ['<a href="Button.html">Link</a>', '[Link](./Button.md)', 'Widgets/Page.html'],
@@ -55,7 +55,7 @@ class LinkRendererTest extends TestCase
             ['<a href="../Widgets/Button.html">Link</a>', '[Link](!Widgets/Button)', 'Content/Page.html'],
 
             // Mailto links
-            ['<a href="mailto:me@mydomain.com" class="external">me@mydomain.com</a>', '[me@mydomain.com](mailto:me@mydomain.com)', 'Content/Page.html'],
+            ['<a href="mailto:me@mydomain.com" class="Link--external">me@mydomain.com</a>', '[me@mydomain.com](mailto:me@mydomain.com)', 'Content/Page.html'],
         ];
     }
 

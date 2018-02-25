@@ -90,7 +90,7 @@ class Book
     {
         return '<h1>Table of Contents</h1>' .
         $this->renderNavigation($this->buildNavigation($this->tree)) .
-        '</div><div class="page-break">&nbsp;</div>';
+        '</div><div class="PageBreak">&nbsp;</div>';
     }
 
     protected function generateCover()
@@ -98,7 +98,7 @@ class Book
         return "<div>" .
         "<h1 style='font-size:40pt; margin-bottom:0;'>{$this->cover['title']}</h1>" .
         "<p><strong>{$this->cover['subject']}</strong> by {$this->cover['author']}</p>" .
-        '</div><div class="page-break">&nbsp;</div>';
+        '</div><div class="PageBreak">&nbsp;</div>';
     }
 
     protected function generatePages()
@@ -107,8 +107,8 @@ class Book
         foreach ($this->pages as $section => $page) {
             $content .= '<a id="section_' . $section . '"></a>';
             $content .= '<h1>' . $page['page']->getTitle() . '</h1>';
-            $content .= '<section class="content">' . $page['content'] . '</section>';
-            $content .= '<div class="page-break">&nbsp;</div>';
+            $content .= '<section class="s-content">' . $page['content'] . '</section>';
+            $content .= '<div class="PageBreak">&nbsp;</div>';
         }
 
         return $content;

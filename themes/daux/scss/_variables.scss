@@ -1,0 +1,61 @@
+:root {
+    --dark: #3f4657;
+    --light: #82becd;
+    --text: #2d2d2d;
+
+    --link-color: var(--light);
+    --brand-color: var(--light);
+    --brand-background: var(--dark);
+
+    // Sidebar
+    --sidebar-border: #e7e7e9;
+    --sidebar-background: #f7f7f7;
+
+    // Sidebar links
+    --sidebar-link-color: var(--dark);
+    --sidebar-link-active-background: #c5c5cb;
+    --sidebar-link-hover-background: var(--sidebar-link-active-background);
+    --sidebar-link-arrow-color: var(--dark);
+    --sidebar-link-secondary-color: var(--text);
+
+    // Sidebar Checkbox
+    --checkbox-background: #e6e6e6;
+    --checkbox-hover-background: #ccc;
+    --checkbox-checked-background: var(--dark);
+    --checkbox-checked-hover-background: var(--light);
+    --checkbox-tick-color: #fff;
+    --checkbox-disabled-background: #e6e6e6;
+    --checkbox-disabled-tick-color: #7b7b7b;
+
+    // Sidebar search field
+    --search-field-color: #555;
+    --search-field-border-color: #ccc;
+    --search-field-background: #fff;
+    --search-field-hover-border-color: var(--light);
+
+    // Sidebar hamburger
+    --sidebar-collapsible--hamburger-color: var(--light);
+    --sidebar-collapsible--hamburger-hover-color: var(--dark);
+    --sidebar-collapsible--hamburger-hover-background: var(--light);
+
+    // Homepage
+    --homepage-navbar-color: var(--dark);
+
+    --homepage-hero-background: var(--light);
+    --homepage-hero-color: var(--dark);
+    --homepage-bullet-color: var(--light);
+
+    --homepage-footer-color: var(--light);
+    --homepage-footer-background: var(--dark);
+
+    // Homepage Hero Buttons
+    --hero-button-block-background: var(--sidebar-link-active-background);
+    --hero-button-border-color: var(--dark);
+    --hero-button-primary-color: var(--sidebar-background);
+    --hero-buttom-primary-background: var(--dark);
+    --hero-button-secondary-color: var(--dark);
+    --hero-button-secondary-background: var(--sidebar-link-active-background);
+
+    --content-floating-blocks-background: var(--light);
+    --content-code-tag-color: var(--dark);
+}
