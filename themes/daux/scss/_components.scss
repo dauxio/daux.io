@@ -26,10 +26,6 @@ hr {
     border-top: 1px solid #ddd;
 }
 
-code {
-    color: var(--content-code-tag-color);
-}
-
 /* ============================================================================
 Components
 ============================================================================ */
@@ -114,8 +110,8 @@ Components
 .Brand {
     display: block;
     background-color: var(--brand-background);
-    padding: 15px 20px;
-    font-size: 18px;
+    padding: 0.75em 0.6em;
+    font-size: var(--type-size-4);
     text-shadow: none;
     font-family: var(--font-family-heading);
     font-weight: 700;
@@ -125,7 +121,7 @@ Components
 .Navbar {
     height: 50px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-    background-color: var(--homepage-navbar-color);
+    background-color: var(--homepage-navbar-background);
     margin-bottom: 0;
 
     .Brand {
@@ -136,6 +132,8 @@ Components
 }
 
 .CodeToggler {
+    padding: 0 20px;
+
     &__text {
         font-size: 12px;
         line-height: 1.5;
@@ -182,7 +180,6 @@ Components
             font-family: var(--font-family-heading);
             font-weight: 400;
             color: var(--sidebar-link-color);
-            font-size: 15px;
             text-shadow: none;
         }
 
@@ -281,6 +278,10 @@ Components
     }
 }
 
+.Twitter {
+    padding: 0 20px;
+}
+
 .Search {
     position: relative;
 
@@ -356,6 +357,7 @@ ul.TableOfContents {
     float: right;
     min-width: 300px;
     max-width: 25%;
+    padding-left: 1em;
 
     .TableOfContentsContainer__content > .TableOfContents {
         border-right: 2px solid #efefef;
@@ -369,6 +371,7 @@ ul.TableOfContents {
     a {
         display: block;
         border-bottom: 1px solid #ddd;
+        padding: 0.2em 0;
     }
 
     li a {
@@ -439,10 +442,11 @@ ul.TableOfContents {
 
 .Checkbox__indicator {
     position: absolute;
-    top: 2px;
+    top: 50%;
     left: 0;
     width: 20px;
     height: 20px;
+    margin-top: -10px;
     background: var(--checkbox-background);
 
     /* Check mark */
@@ -495,4 +499,12 @@ ul.TableOfContents {
     .Checkbox input:disabled ~ &:after {
         border-color: var(--checkbox-disabled-tick-color);
     }
+}
+
+.Collapsible__content {
+    padding-bottom: 1rem;
+}
+
+.Hidden {
+    display: none;
 }

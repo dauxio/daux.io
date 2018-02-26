@@ -5,8 +5,8 @@
  */
 
 // Daux Style
-@import "../../common/scss/vendor/normalize.scss";
-@import "../../common/scss/_fonts.scss";
+@import "vendor/normalize.scss";
+@import "_fonts.scss";
 @import "_variables.scss";
 @import "_mixins.scss";
 
@@ -17,7 +17,7 @@
 @import "_typography.scss";
 @import "_components.scss";
 @import "_homepage.scss";
-@import "../../common/scss/vendor/highlight.scss";
+@import "vendor/highlight.scss";
 
 @media print {
     @import "_print.scss";

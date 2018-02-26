@@ -32,8 +32,9 @@
                         <br />
                     <?php } ?>
                 <?php } ?>
+            </div>
 
-                <?php if ($params['html']['toggle_code']) { ?>
+            <?php if ($params['html']['toggle_code']) { ?>
                     <div class="CodeToggler">
                         <hr/>
                         <?php if ($params['html']['float']) { ?>
@@ -53,8 +54,8 @@
                 <?php } ?>
 
                 <?php if (!empty($params['html']['twitter'])) { ?>
-                    <hr/>
                     <div class="Twitter">
+                        <hr/>
                         <?php foreach ($params['html']['twitter'] as $handle) { ?>
                             <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=<?= $handle; ?>&amp;show_count=false"></iframe>
                             <br />
@@ -62,7 +63,6 @@
                         <?php } ?>
                     </div>
                 <?php } ?>
-            </div>
         </div>
     </aside>
     <div class="Columns__right <?= $params['html']['float'] ? 'Columns__right--float' : 'Columns__right--full'; ?>">

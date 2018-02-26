@@ -1,7 +1,15 @@
 
 :root {
-    --font-family-text: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --font-family-monospace: Monaco, Menlo, Consolas, "Courier New", monospace;
+    --font-family-text: -apple-system,
+        ".SFNSText-Regular",
+        "San Francisco",
+        "Roboto",
+        "Segoe UI",
+        "Helvetica Neue",
+        "Lucida Grande",
+        Arial,
+        sans-serif;
+    --font-family-monospace: Monaco, Menlo, Consolas, "Lucida Console", "Courier New", monospace;
     --font-family-heading: "Roboto Slab", var(--font-family-text);
 }
 
