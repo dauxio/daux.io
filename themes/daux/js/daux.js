@@ -1,4 +1,8 @@
-/** global localStorage */
+/** global localStorage, hljs */
+
+if (hljs) {
+    hljs.initHighlightingOnLoad();
+}
 
 //Initialize CodeBlock Visibility Settings
 $(function () {

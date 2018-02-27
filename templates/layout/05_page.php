@@ -63,6 +63,13 @@
                         <?php } ?>
                     </div>
                 <?php } ?>
+
+                <?php if (!empty($params['html']['powered_by'])) { ?>
+                    <div class="PoweredBy">
+                        <hr/>
+                        <?= $params['html']['powered_by'] ?>
+                    </div>
+                <?php } ?>
         </div>
     </aside>
     <div class="Columns__right <?= $params['html']['float'] ? 'Columns__right--float' : 'Columns__right--full'; ?>">

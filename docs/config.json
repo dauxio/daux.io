@@ -28,7 +28,9 @@
             "Download": "https://github.com/dauxio/daux.io/archive/master.zip",
             "GitHub Repo": "https://github.com/dauxio/daux.io",
             "Help/Support/Bugs": "https://github.com/dauxio/daux.io/issues"
-        }
+        },
+
+        "powered_by": "Powered by Daux.io"
     },
     "confluence": {
         "base_url": "https://dauxio.atlassian.net/wiki/",

@@ -57,19 +57,10 @@
     }
     ?>
 
-    <!-- jQuery -->
-    <script src="<?= $base_url; ?>themes/daux/js/jquery-1.11.3.min.js"></script>
-
-    <!-- hightlight.js -->
-    <script src="<?= $base_url; ?>themes/daux/js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
     <!-- JS -->
     <?php foreach ($params['theme']['js'] as $js) {
         echo '<script src="' . $js . '"></script>';
     } ?>
-
-    <script src="<?= $base_url; ?>themes/daux/js/daux.js"></script>
 
     <?php if ($params['html']['search']) { ?>
         <!-- Tipue Search -->
