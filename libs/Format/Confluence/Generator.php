@@ -81,7 +81,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
             'Generating Tree ...',
             $output,
             $width,
-            function () use ($params) {
+            function() use ($params) {
                 $tree = $this->generateRecursive($this->daux->tree, $params);
                 $tree['title'] = $this->prefix . $params['title'];
 

@@ -114,7 +114,7 @@ class Processor implements DocumentProcessorInterface
         // If the node has an ID, no need to generate it, just check it's unique
         $attributes = $node->getData('attributes', []);
         if (array_key_exists('id', $attributes) && !empty($attributes['id'])) {
-            $node->data['attributes']['id'] =  $this->getUniqueId($document, $attributes['id']);
+            $node->data['attributes']['id'] = $this->getUniqueId($document, $attributes['id']);
 
             return;
         }
@@ -139,7 +139,7 @@ class Processor implements DocumentProcessorInterface
             }
         }
 
-        $node->data['attributes']['id'] =  $this->getUniqueId($document,'page_'. $this->escaped($text));
+        $node->data['attributes']['id'] = $this->getUniqueId($document,'page_'. $this->escaped($text));
     }
 
     /**

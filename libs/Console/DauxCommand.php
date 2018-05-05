@@ -27,7 +27,7 @@ class DauxCommand extends SymfonyCommand
         $keys = explode('.', $key);
         while (count($keys) > 1) {
             $key = array_shift($keys);
-            if (! isset($array[$key]) || ! is_array($array[$key])) {
+            if (!isset($array[$key]) || !is_array($array[$key])) {
                 $array[$key] = [];
             }
             $array = &$array[$key];
@@ -39,7 +39,7 @@ class DauxCommand extends SymfonyCommand
     private function applyConfiguration(array $options, Daux $daux)
     {
         $values = array_map(
-            function ($value) {
+            function($value) {
                 return array_map("trim", explode('=', $value));
             },
             $options

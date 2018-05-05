@@ -32,7 +32,9 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
                 continue;
             }
 
-            if (!$name) continue;
+            if (!$name) {
+                continue;
+            }
 
             if ($name[0] == '-') {
                 if (is_numeric($name[1])) {
@@ -82,7 +84,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 
     private function sortBucket($bucket, $final)
     {
-        uasort($bucket, function (Entry $a, Entry $b) {
+        uasort($bucket, function(Entry $a, Entry $b) {
             return strcasecmp($a->getName(), $b->getName());
         });
 

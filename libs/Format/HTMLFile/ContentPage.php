@@ -17,7 +17,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             ->embed(
                 $content,
                 $this->file,
-                function ($src, array $attributes, Raw $file) {
+                function($src, array $attributes, Raw $file) {
                     $content =  base64_encode(file_get_contents($file->getPath()));
                     $attr = '';
                     foreach ($attributes as $name => $value) {
