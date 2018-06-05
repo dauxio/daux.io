@@ -1,6 +1,7 @@
 <?php
 namespace Todaymade\Daux\Tree;
 
+use org\bovigo\vfs\vfsStream;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\Daux;
 use PHPUnit\Framework\TestCase;
@@ -46,7 +47,6 @@ class BuilderTest extends TestCase
         $config = new Config;
         $config->setDocumentationDirectory('');
         $root = new Root($config);
-
 
         $dir = Builder::getOrCreateDir($root, 'directory');
 
@@ -146,5 +146,29 @@ class BuilderTest extends TestCase
         $this->assertEquals('dir/file.json', $entry->getUrl());
         $this->assertEquals('file.json', $entry->getUri());
         $this->assertInstanceOf('Todaymade\Daux\Tree\ComputedRaw', $entry);
+    }
+
+    public function testScanner()
+    {
+        $structure = [
+            'Page.md' => 'another page',
+            'Button.md' => 'another page',
+            '22.png' => ''
+        ];
+        $root = vfsStream::setup('root', null, $structure);
+
+        $config = new Config;
+        $config->setDocumentationDirectory($root->url());
+        $config['valid_content_extensions'] = ['md'];
+        $config['mode'] = Daux::STATIC_MODE;
+        $config['index_key'] = 'index.html';
+
+        $tree = new Root($config);
+        Builder::build($tree, []);
+
+        $this->assertEquals(
+            ['22.png', 'Button.html', 'Page.html'],
+            array_keys($tree->getEntries())
+        );
     }
 }

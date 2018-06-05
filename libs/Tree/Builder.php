@@ -99,7 +99,7 @@ class Builder
         $config = $parent->getConfig();
 
         if (!in_array($file->getExtension(), $config['valid_content_extensions'])) {
-            $uri = static::removeSortingInformations($file->getFilename());
+            $uri = $file->getFilename();
 
             $entry = new Raw($parent, $uri, $file);
             $entry->setTitle(str_replace('_', ' ', static::removeSortingInformations($name)));
