@@ -171,4 +171,28 @@ class BuilderTest extends TestCase
             array_keys($tree->getEntries())
         );
     }
+
+    public function testIndexFrontMatter()
+    {
+        $structure = [
+            'folder' => [
+                'index.md' => "---\ntitle: new Title\n---\nThe content",
+                'Page.md' => 'another page',
+                'Button.md' => 'another page'
+            ]
+        ];
+        $root = vfsStream::setup('root', null, $structure);
+
+        $config = new Config;
+        $config->setDocumentationDirectory($root->url());
+        $config['valid_content_extensions'] = ['md'];
+        $config['mode'] = Daux::STATIC_MODE;
+        $config['index_key'] = 'index.html';
+
+        $tree = new Root($config);
+        Builder::build($tree, []);
+
+        $this->assertTrue(array_key_exists('folder', $tree->getEntries()));
+        $this->assertEquals('new Title', $tree->getEntries()['folder']->getTitle());
+    }
 }
