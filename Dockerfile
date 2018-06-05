@@ -16,6 +16,7 @@ COPY tipuesearch/ /daux/tipuesearch/
 COPY global.json /daux/global.json
 COPY composer.json /daux/composer.json
 COPY composer.lock /daux/composer.lock
+COPY index.php /daux/index.php
 
 # Composer install
 RUN cd /daux && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \

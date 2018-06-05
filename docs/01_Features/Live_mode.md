@@ -97,3 +97,21 @@ The `web.config` needs an entry for `<rewrite>` under `<system.webServer>`:
 ```
 
 To use clean URLs on IIS 6, you will need to use a custom URL rewrite module, such as [URL Rewriter](http://urlrewriter.net/).
+
+## Docker
+
+This is not meant for production use, but you can bundle your documentation in Daux's docker container
+
+```
+FROM daux/daux.io
+
+WORKDIR /daux/
+COPY docs/ /daux/docs/
+
+EXPOSE 80
+ENTRYPOINT [ "php", "-S", "0.0.0.0:80", "index.php" ]
+```
+
+When you add this to a `Dockerfile` and run `docker build --name my-daux-doc .` and then `docker --rm run -p 8000:80 my-daux-doc`
+
+You can access your documentation at `localhost:8000`
