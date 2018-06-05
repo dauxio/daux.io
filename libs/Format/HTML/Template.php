@@ -99,8 +99,8 @@ class Template
             $title = '';
             $breadcrumb_trail = $page['breadcrumb_trail'];
             $separator = $this->getSeparator($page['breadcrumb_separator']);
-            foreach ($breadcrumb_trail as $key => $value) {
-                $title .= '<a href="' . $base_page . $value . '">' . $key . '</a>' . $separator;
+            foreach ($breadcrumb_trail as $value) {
+                $title .= '<a href="' . $base_page . $value['url'] . '">' . $value['title'] . '</a>' . $separator;
             }
             if ($page['filename'] === 'index' || $page['filename'] === '_index') {
                 if ($page['title'] != '') {

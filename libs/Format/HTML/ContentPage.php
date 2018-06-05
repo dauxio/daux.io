@@ -52,7 +52,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
         if (!empty($parents)) {
             foreach ($parents as $node) {
                 $page = $node->getIndexPage() ?: $node->getFirstPage();
-                $breadcrumb_trail[$node->getTitle()] = $page ? $page->getUrl() : '';
+                $breadcrumb_trail[] = ['title' => $node->getTitle(), 'url' => $page ? $page->getUrl() : ''];
             }
         }
 
@@ -98,7 +98,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             $page['breadcrumb_separator'] = $params['html']['breadcrumb_separator'];
 
             if ($this->homepage) {
-                $page['breadcrumb_trail'] = [$this->file->getTitle() => ''];
+                $page['breadcrumb_trail'] = [['title' => $this->file->getTitle(), 'url' => '']];
             }
         }
 
