@@ -31,12 +31,14 @@ class Server
      */
     public static function serve()
     {
-        $daux = new Daux(Daux::LIVE_MODE);
+        $output = new NullOutput();
+
+        $daux = new Daux(Daux::LIVE_MODE, $output);
         $daux->initializeConfiguration();
 
         $class = $daux->getProcessorClass();
         if (!empty($class)) {
-            $daux->setProcessor(new $class($daux, new NullOutput(), 0));
+            $daux->setProcessor(new $class($daux, $output, 0));
         }
 
         // Set this critical configuration

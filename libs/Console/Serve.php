@@ -30,7 +30,7 @@ class Serve extends DauxCommand
         $host = $input->getOption('host');
         $port = $input->getOption('port');
 
-        $daux = $this->prepareDaux($input);
+        $daux = $this->prepareDaux($input, $output);
 
         // Daux can only serve HTML
         $daux->getParams()->setFormat('html');

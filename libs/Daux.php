@@ -1,6 +1,7 @@
 <?php namespace Todaymade\Daux;
 
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\ContentTypes\ContentTypeHandler;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Content;
@@ -11,6 +12,8 @@ class Daux
 {
     const STATIC_MODE = 'DAUX_STATIC';
     const LIVE_MODE = 'DAUX_LIVE';
+
+    public static $output;
 
     /** @var string */
     public $local_base;
@@ -44,8 +47,9 @@ class Daux
     /**
      * @param string $mode
      */
-    public function __construct($mode)
+    public function __construct($mode, OutputInterface $output)
     {
+        Daux::$output = $output;
         $this->mode = $mode;
 
         $this->local_base = dirname(__DIR__);
@@ -236,7 +240,7 @@ class Daux
     public function getProcessor()
     {
         if (!$this->processor) {
-            $this->processor = new Processor($this, new NullOutput(), 0);
+            $this->processor = new Processor($this, Daux::getOutput(), 0);
         }
 
         return $this->processor;
@@ -346,5 +350,38 @@ class Daux
         }
 
         return $this->validExtensions = $this->getContentTypeHandler()->getContentExtensions();
+    }
+
+    public static function getOutput() {
+        if (!Daux::$output) {
+            Daux:$output = new NullOutput();
+        }
+
+        return Daux::$output;
+    }
+
+    /**
+     * Writes a message to the output.
+     *
+     * @param string|array $messages The message as an array of lines or a single string
+     * @param bool         $newline  Whether to add a newline
+     * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
+     */
+    public static function write($messages, $newline = false, $options = 0) {
+        Daux::$output->write($messages, $newline, $options);
+    }
+
+    /**
+     * Writes a message to the output and adds a newline at the end.
+     *
+     * @param string|array $messages The message as an array of lines of a single string
+     * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
+     */
+    public static function writeln($messages, $options = 0) {
+        Daux::write($messages, true, $options);
+    }
+
+    public static function getVerbosity() {
+        return Daux::getOutput()->getVerbosity();
     }
 }

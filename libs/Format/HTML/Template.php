@@ -1,6 +1,7 @@
 <?php namespace Todaymade\Daux\Format\HTML;
 
 use League\Plates\Engine;
+use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\Tree\Content;
@@ -43,6 +44,8 @@ class Template
         }
         $this->engine->addFolder('theme', $theme, true);
 
+        Daux::writeln("Starting Template engine with basedir '$base' and theme folder '$theme'.", OutputInterface::VERBOSITY_VERBOSE);
+
         $this->registerFunctions($this->engine);
 
         return $this->engine;
@@ -64,6 +67,8 @@ class Template
             'params' => $data['params'],
             'tree' => $data['params']['tree'],
         ]);
+
+        Daux::writeln("Rendering template '$name'", OutputInterface::VERBOSITY_VERBOSE);
 
         return $engine->render($name, $data);
     }

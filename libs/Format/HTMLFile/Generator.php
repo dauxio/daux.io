@@ -74,7 +74,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         return $pdf;
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -90,7 +89,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         while ($current) {
             $this->runAction(
                 'Generating ' . $current->getTitle(),
-                $output,
                 $width,
                 function () use ($book, $current, $params) {
                     $contentType = $this->daux->getContentTypeHandler()->getType($current);

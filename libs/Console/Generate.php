@@ -42,7 +42,7 @@ class Generate extends DauxCommand
             $input = new ArgvInput($argv, $this->getDefinition());
         }
 
-        $daux = $this->prepareDaux($input);
+        $daux = $this->prepareDaux($input, $output);
 
         $width = (new Terminal)->getWidth();
 

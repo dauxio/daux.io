@@ -80,7 +80,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
         $this->runAction(
             'Copying Static assets ...',
-            $output,
             $width,
             function() use ($destination, $params) {
                 $this->ensureEmptyDestination($destination);
@@ -194,7 +193,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
             } else {
                 $this->runAction(
                     '- ' . $node->getUrl(),
-                    $output,
                     $width,
                     function() use ($node, $output_dir, $key, $params, $index_pages) {
                         if ($node instanceof Raw) {
