@@ -32,6 +32,7 @@ class Content extends ContentAbstract
 
         $frontMatter = new FrontMatter();
 
+        // Remove BOM if it's present
         if (substr($content, 0, 3) == "\xef\xbb\xbf") {
             $content = substr($content, 3);
         }
@@ -44,7 +45,11 @@ class Content extends ContentAbstract
      */
     public function getContent()
     {
-        return $this->getFrontMatter()->getContent();
+        if ($this->attributes === null) {
+            $this->parseAttributes();
+        }
+
+        return $this->content;
     }
 
     /**
@@ -115,6 +120,10 @@ class Content extends ContentAbstract
 
         $document = $this->getFrontMatter();
         $this->attributes = array_replace_recursive($this->attributes, $document->getData());
+
+        if (!$this->manuallySetContent) {
+            $this->content = $document->getContent();
+        }
     }
 
     public function setAttributes(array $attributes)
