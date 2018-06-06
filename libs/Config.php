@@ -120,4 +120,23 @@ class Config extends BaseConfig
     {
         return new HTMLConfig($this['html']);
     }
+
+    public function canCache()
+    {
+        if (array_key_exists('cache', $this)) {
+            return $this['cache'];
+        }
+
+        return true;
+    }
+
+    public function getCacheKey()
+    {
+        $cloned = [];
+        foreach ($this as $key => $value) {
+            $cloned[$key] = ($value instanceof Entry) ? $value->dump() : $value;
+        }
+
+        return sha1(json_encode($cloned));
+    }
 }

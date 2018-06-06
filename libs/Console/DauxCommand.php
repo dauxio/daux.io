@@ -14,7 +14,8 @@ class DauxCommand extends SymfonyCommand
             ->addOption('configuration', 'c', InputOption::VALUE_REQUIRED, 'Configuration file')
             ->addOption('value', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Set different configuration values')
             ->addOption('source', 's', InputOption::VALUE_REQUIRED, 'Where to take the documentation from')
-            ->addOption('processor', 'p', InputOption::VALUE_REQUIRED, 'Manipulations on the tree');
+            ->addOption('processor', 'p', InputOption::VALUE_REQUIRED, 'Manipulations on the tree')
+            ->addOption('no-cache', null, InputOption::VALUE_NONE, 'Disable Cache');
 
         // HTML Format only
         $this->addOption('themes', 't', InputOption::VALUE_REQUIRED, 'Set a different themes directory');
@@ -77,6 +78,10 @@ class DauxCommand extends SymfonyCommand
 
         if ($input->hasOption('value')) {
             $this->applyConfiguration($input->getOption('value'), $daux);
+        }
+
+        if ($input->getOption('no-cache')) {
+            $daux->getParams()['cache'] = false;
         }
 
         return $daux;
