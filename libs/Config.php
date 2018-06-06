@@ -127,7 +127,7 @@ class Config extends BaseConfig
             return $this['cache'];
         }
 
-        return true;
+        return false;
     }
 
     public function getCacheKey()

@@ -121,9 +121,7 @@ class Content extends ContentAbstract
         $document = $this->getFrontMatter();
         $this->attributes = array_replace_recursive($this->attributes, $document->getData());
 
-        if (!$this->manuallySetContent) {
-            $this->content = $document->getContent();
-        }
+        $this->content = $document->getContent();
     }
 
     public function setAttributes(array $attributes)

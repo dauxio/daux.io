@@ -8,6 +8,8 @@
     "image": "",
     "languages": {},
 
+    "cache": true,
+
     "format": "html",
     "processor": "",
 
