@@ -354,7 +354,7 @@ class Daux
 
     public static function getOutput() {
         if (!Daux::$output) {
-            Daux:$output = new NullOutput();
+            Daux::$output = new NullOutput();
         }
 
         return Daux::$output;
@@ -368,7 +368,7 @@ class Daux
      * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
      */
     public static function write($messages, $newline = false, $options = 0) {
-        Daux::$output->write($messages, $newline, $options);
+        Daux::getOutput()->write($messages, $newline, $options);
     }
 
     /**
@@ -378,7 +378,7 @@ class Daux
      * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
      */
     public static function writeln($messages, $options = 0) {
-        Daux::write($messages, true, $options);
+        Daux::getOutput()->write($messages, true, $options);
     }
 
     public static function getVerbosity() {

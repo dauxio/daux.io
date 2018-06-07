@@ -3,11 +3,12 @@
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Daux;
 
-class Cache {
+class Cache
+{
 
     static $printed = false;
 
-    protected static function getDirectory()
+    public static function getDirectory()
     {
         $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . "dauxio" . DIRECTORY_SEPARATOR;
 
@@ -29,7 +30,7 @@ class Cache {
     public static function put($key, $value)
     {
         Cache::ensureCacheDirectoryExists($path = Cache::path($key));
-        file_put_contents($path, serialize($value));
+        file_put_contents($path, $value);
     }
 
     /**
@@ -90,6 +91,29 @@ class Cache {
     protected static function path($key)
     {
         $parts = array_slice(str_split($hash = sha1($key), 2), 0, 2);
-        return Cache::getDirectory().'/'.implode('/', $parts).'/'.$hash;
+        return Cache::getDirectory() . '/' . implode('/', $parts) . '/' . $hash;
+    }
+
+    public static function clear()
+    {
+        Cache::rrmdir(Cache::getDirectory());
+    }
+
+    protected static function rrmdir($dir)
+    {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (is_dir($dir . "/" . $object)) {
+                        Cache::rrmdir($dir . "/" . $object);
+                    } else {
+                        unlink($dir . "/" . $object);
+                    }
+
+                }
+            }
+            rmdir($dir);
+        }
     }
 }

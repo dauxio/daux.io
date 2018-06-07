@@ -10,6 +10,7 @@ class Application extends SymfonyApplication
 
         $this->add(new Generate());
         $this->add(new Serve());
+        $this->add(new ClearCache());
 
         $app_name = "daux/daux.io";
 
