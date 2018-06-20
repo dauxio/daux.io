@@ -142,7 +142,7 @@ class Server
     {
         $this->params = $this->getParams();
 
-        $request = substr($this->request->getRequestUri(), 1);
+        $request = substr($this->request->getRequestUri(), strlen($this->request->getBaseUrl()) + 1);
 
         if (substr($request, 0, 7) == 'themes/') {
             return $this->serveTheme(substr($request, 6));
