@@ -42,8 +42,8 @@ class Serve extends DauxCommand
         putenv('DAUX_CONFIGURATION=' . $daux->getParams()->getConfigurationOverrideFile());
         putenv('DAUX_EXTENSION=' . DAUX_EXTENSION);
 
-        $base = ProcessUtils::escapeArgument(__DIR__ . '/../../');
-        $binary = ProcessUtils::escapeArgument((new PhpExecutableFinder)->find(false));
+        $base = escapeshellarg(__DIR__ . '/../../');
+        $binary = escapeshellarg((new PhpExecutableFinder)->find(false));
 
         echo "Daux development server started on http://{$host}:{$port}/\n";
 
