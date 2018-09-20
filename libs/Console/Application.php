@@ -31,6 +31,5 @@ class Application extends SymfonyApplication
 
         $this->setVersion($version);
         $this->setName($app_name);
-        $this->setDefaultCommand('generate');
     }
 }
