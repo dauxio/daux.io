@@ -63,7 +63,7 @@ daux generate
 
 You can then use the `daux` command line to generate your documentation.
 
-If the command isn't found, ensure your `$PATH` contains `~/.composer/vendor/bin`
+If the command isn't found, ensure your `$PATH` contains `~/.composer/vendor/bin` or `~/.config/composer/vendor/bin`.
 
 #### Docker
 
