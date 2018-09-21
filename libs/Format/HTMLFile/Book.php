@@ -22,15 +22,9 @@ class Book
         return '<style>' . file_get_contents('themes/daux_singlepage/css/main.min.css') . '</style>';
     }
 
-    protected function getSectionId(Content $node)
+    protected function getPageUrl($page)
     {
-        foreach ($this->pages as $id => $page) {
-            if ($page['page'] == $node) {
-                return $id;
-            }
-        }
-
-        throw new RuntimeException('Could not find the content page');
+        return "file_" . str_replace('/', '_', $page->getUrl());
     }
 
     protected function buildNavigation(Directory $tree)
@@ -44,7 +38,7 @@ class Book
 
                 $nav[] = [
                     'title' => $node->getTitle(),
-                    'href' => '#section_' . $this->getSectionId($node),
+                    'href' => "#" . $this->getPageUrl($node),
                 ];
             } elseif ($node instanceof Directory) {
                 if (!$node->hasContent()) {
@@ -55,7 +49,7 @@ class Book
 
                 $nav[] = [
                     'title' => $node->getTitle(),
-                    'href' => '#section_' . $this->getSectionId($page_index),
+                    'href' => "#" . $this->getPageUrl($page_index),
                     'children' => $this->buildNavigation($node),
                 ];
             }
@@ -104,8 +98,8 @@ class Book
     protected function generatePages()
     {
         $content = '';
-        foreach ($this->pages as $section => $page) {
-            $content .= '<a id="section_' . $section . '"></a>';
+        foreach ($this->pages as $page) {
+            $content .= '<a id="' . $this->getPageUrl($page['page']) . '"></a>';
             $content .= '<h1>' . $page['page']->getTitle() . '</h1>';
             $content .= '<section class="s-content">' . $page['content'] . '</section>';
             $content .= '<div class="PageBreak">&nbsp;</div>';

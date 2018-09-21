@@ -5,11 +5,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Console\RunAction;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\Format\HTML\Template;
-use Todaymade\Daux\Format\HTML\ContentTypes\Markdown\ContentType;
+use Todaymade\Daux\Format\HTML\HTMLUtils;
+use Todaymade\Daux\Format\HTMLFile\ContentTypes\Markdown\ContentType;
 
 class Generator implements \Todaymade\Daux\Format\Base\Generator
 {
-    use RunAction;
+    use RunAction, HTMLUtils;
 
     /** @var Daux */
     protected $daux;
@@ -36,52 +37,31 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         ];
     }
 
-    protected function initPDF()
-    {
-        // create new PDF document
-        $pdf = new Book(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
-        $params = $this->daux->getParams();
-
-        // set document information
-        $pdf->SetCreator(PDF_CREATOR);
-
-
-        // set default header data
-        $pdf->SetHeaderData('', 0, $params['title'], $params['tagline']);
-
-        // set header and footer fonts
-        $pdf->setHeaderFont([PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN]);
-        $pdf->setFooterFont([PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA]);
-
-        // set default monospaced font
-        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-        // set margins
-        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-        // set auto page breaks
-        $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
-
-        // set image scale factor
-        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-        // set font
-        $pdf->SetFont('helvetica', '', 10);
-
-        return $pdf;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function generateAll(InputInterface $input, OutputInterface $output, $width)
     {
-        $params = $this->daux->getParams();
+        $destination = $input->getOption('destination');
 
-        $data = ['author' => $params['author'], 'title' => $params['title'], 'subject' => $params['tagline']];
+        $params = $this->daux->getParams();
+        if (is_null($destination)) {
+            $destination = $this->daux->local_base . DIRECTORY_SEPARATOR . 'static';
+        }
+
+        $this->runAction(
+            'Cleaning destination folder ...',
+            $width,
+            function() use ($destination, $params) {
+                $this->ensureEmptyDestination($destination);
+            }
+        );
+
+        $data = [
+            'author' => $params['author'],
+            'title' => $params['title'],
+            'subject' => $params['tagline']
+        ];
 
         $book = new Book($this->daux->tree, $data);
 

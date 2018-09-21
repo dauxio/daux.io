@@ -16,7 +16,7 @@ use Todaymade\Daux\Tree\Raw;
 
 class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 {
-    use RunAction;
+    use RunAction, HTMLUtils;
 
     /** @var Daux */
     protected $daux;
@@ -43,30 +43,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
         return [
             'markdown' => new ContentType($this->daux->getParams()),
         ];
-    }
-
-    protected function ensureEmptyDestination($destination)
-    {
-        if (is_dir($destination)) {
-            GeneratorHelper::rmdir($destination);
-        } else {
-            mkdir($destination);
-        }
-    }
-
-    /**
-     * Copy all files from $local to $destination
-     *
-     * @param string $destination
-     * @param string $local_base
-     */
-    protected function copyThemes($destination, $local_base)
-    {
-        mkdir($destination . DIRECTORY_SEPARATOR . 'themes');
-        GeneratorHelper::copyRecursive(
-            $local_base,
-            $destination . DIRECTORY_SEPARATOR . 'themes'
-        );
     }
 
     public function generateAll(InputInterface $input, OutputInterface $output, $width)
