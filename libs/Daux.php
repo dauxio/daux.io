@@ -293,6 +293,20 @@ class Daux
         return $class;
     }
 
+    protected function findAlternatives($input, $words) {
+        $alternatives = [];
+
+        foreach ($words as $word) {
+            $lev = levenshtein($input, $word);
+
+            if ($lev <= \strlen($word) / 3) {
+                $alternatives[] = $word;
+            }
+        }
+
+        return $alternatives;
+    }
+
     /**
      * @return \Todaymade\Daux\Format\Base\Generator
      */
@@ -307,7 +321,19 @@ class Daux
         $format = $this->getParams()->getFormat();
 
         if (!array_key_exists($format, $generators)) {
-            throw new \RuntimeException("The format '$format' doesn't exist, did you forget to set your processor ?");
+            $message = "The format '$format' doesn't exist, did you forget to set your processor ?";
+
+            $alternatives = $this->findAlternatives($format, array_keys($generators));
+
+            if (0 == \count($alternatives)) {
+                $message .= "\n\nAvailable formats are \n    " . implode("\n    ", array_keys($generators));
+            } elseif (1 == \count($alternatives)) {
+                $message .= "\n\nDid you mean this?\n    " . implode("\n    ", $alternatives);
+            } else {
+                $message .= "\n\nDid you mean one of these?\n    " . implode("\n    ", $alternatives);
+            }
+
+            throw new \RuntimeException($message);
         }
 
         $class = $generators[$format];
