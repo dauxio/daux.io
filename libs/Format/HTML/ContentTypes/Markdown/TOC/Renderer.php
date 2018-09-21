@@ -17,6 +17,6 @@ class Renderer implements BlockRendererInterface
         $content = $htmlRenderer->renderBlocks($block->children());
         return $this->config->templateRenderer
             ->getEngine($this->config)
-            ->render('partials/table_of_contents', ['content' => $content]);
+            ->render('theme::partials/table_of_contents', ['content' => $content]);
     }
 }
