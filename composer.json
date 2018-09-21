@@ -26,7 +26,11 @@
         "symfony/http-foundation": "^4.0",
         "symfony/process": "^4.0",
         "webuni/commonmark-table-extension": "0.6.*",
-        "webuni/front-matter": "^1.0.0"
+        "webuni/front-matter": "^1.0.0",
+        "symfony/polyfill-intl-icu": "^1.9"
+    },
+    "suggest":{
+        "ext-intl": "Allows to translate the modified at date"
     },
     "autoload": {
         "psr-4": {

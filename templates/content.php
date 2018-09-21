@@ -5,8 +5,7 @@
         <h1><?= $page['breadcrumbs'] ? $this->get_breadcrumb_title($page, $base_page) : $page['title'] ?></h1>
         <?php if ($params['html']['date_modified']) { ?>
         <span class="ModifiedDate">
-            <?php $date_format = isset($params['html']['date_modified_format']) ? $params['html']['date_modified_format'] : 'l, F j, Y g:i A'; ?>
-            <?= date($date_format, $page['modified_time']); ?>
+            <?= Todaymade\Daux\FormatDate::format($params, $page['modified_time']) ?>
         </span>
         <?php } ?>
         <?php

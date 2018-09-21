@@ -80,17 +80,6 @@ To disable this, change the option in your config.json to `false`.
 }
 ```
 
-If you want to use the last modified time you can set the [format](http://php.net/manual/function.date.php) with the `date_modified_format` option.
-
-```json
-{
-  "html": {
-    "date_modified": true,
-    "date_modified_format": "l, F j, Y g:i A"
-  }
-}
-```
-
 ## GitHub Repo
 Add a 'Fork me on GitHub' ribbon.
 
