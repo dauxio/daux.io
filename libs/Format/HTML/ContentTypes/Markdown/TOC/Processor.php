@@ -254,8 +254,6 @@ class Processor implements DocumentProcessorInterface
             $method->invoke($subnode, $firstClone);
         }
 
-        $deepCopy = new DeepCopy();
-
-        return $deepCopy->copy($firstClone)->children();
+        return (new DeepCopy())->copy($firstClone)->children();
     }
 }

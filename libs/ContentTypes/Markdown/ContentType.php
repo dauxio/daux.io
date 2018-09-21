@@ -42,6 +42,7 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
             return $this->doConversion($raw);
         }
 
+        // TODO :: add daux version to cache key
         $cacheKey = $this->config->getCacheKey() . sha1($raw);
 
         $payload = Cache::get($cacheKey);
