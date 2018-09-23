@@ -14,15 +14,15 @@
     var tipuesearch_stop_words = ["a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "can't", "cannot", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "down", "during", "each", "few", "for", "from", "further", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "isn't", "it", "it's", "its", "itself", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves"];
 
     // Internal strings
-    var tipuesearch_string_one_result = '1 result';
-    var tipuesearch_string_results = 'results';
-    var tipuesearch_string_prev = 'Previous';
-    var tipuesearch_string_next = 'Next';
-    var tipuesearch_string_no_results = 'Nothing found';
-    var tipuesearch_string_common_words_ignored = 'Common words are largely ignored';
-    var tipuesearch_string_too_short = 'Search too short';
-    var tipuesearch_string_one_character_or_more = 'Should be one character or more';
-    var tipuesearch_string_should_be_x_or_more = 'Should be !min characters or more';
+    var tipuesearch_string_one_result = window.searchTranslation.Search_one_result;
+    var tipuesearch_string_results = window.searchTranslation.Search_results;
+    var tipuesearch_string_prev = window.searchTranslation.Link_previous;
+    var tipuesearch_string_next = window.searchTranslation.Link_next;
+    var tipuesearch_string_no_results = window.searchTranslation.Search_no_results;
+    var tipuesearch_string_common_words_ignored = window.searchTranslation.Search_common_words_ignored;
+    var tipuesearch_string_too_short = window.searchTranslation.Search_too_short;
+    var tipuesearch_string_one_character_or_more = window.searchTranslation.Search_one_character_or_more;
+    var tipuesearch_string_should_be_x_or_more = window.searchTranslation.Search_should_be_x_or_more;
 
     // Main containers
     var tipue_container, tipue_backdrop;
@@ -258,7 +258,7 @@
                     if (counter == 1) {
                         output += '<div class="SearchResults__count">' + tipuesearch_string_one_result + '</div>';
                     } else {
-                        output += '<div class="SearchResults__count">' + counter + ' ' + tipuesearch_string_results + '</div>';
+                        output += '<div class="SearchResults__count">' + tipuesearch_string_results.replace('!count', counter) + '</div>';
                     }
 
                     var l_o = 0;
