@@ -76,6 +76,20 @@
             "View_on_github": "Bei GitHub anzeigen",
             "View_documentation": "Dokumentation anzeigen",
             "Table_of_contents": "Inhaltsverzeichnis"
+        },
+        "it": {
+            "CodeBlocks_title": "Blocchi di codice",
+            "CodeBlocks_hide": "No",
+            "CodeBlocks_below": "Sotto",
+            "CodeBlocks_inline": "In linea",
+            "CodeBlocks_show": "Mostra blocchi di codice",
+            "Search_placeholder": "Cerca...",
+            "Link_previous": "Pagina precedente",
+            "Link_next": "Pagina successiva",
+            "Edit_on": "Modifica su :name:",
+            "View_on_github": "Guarda su GitHub",
+            "View_documentation": "Leggi la documentazione",
+            "Table_of_contents": "Contenuti"
         }
     },
 
