@@ -19,7 +19,7 @@ class TableOfContentsParser extends AbstractBlockParser
         }
 
         $previousState = $cursor->saveState();
-        $cursor->advanceToFirstNonSpace();
+        $cursor->advanceToNextNonSpaceOrNewline();
         $fence = $cursor->match('/^\[TOC\]/');
         if (is_null($fence)) {
             $cursor->restoreState($previousState);
