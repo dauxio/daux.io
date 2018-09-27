@@ -1,5 +1,6 @@
 <?php
-namespace Todaymade\Daux\Format\HTML;
+
+namespace Todaymade\Daux\Format\HTML\Test;
 
 use Todaymade\Daux\Config as MainConfig;
 use \Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter;
