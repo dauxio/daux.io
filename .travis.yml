@@ -19,13 +19,18 @@ after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
-before_deploy:
-  - bin/daux generate
-
-deploy:
-  provider: pages
-  local_dir: static
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-  on:
-    branch: master
+jobs:
+  include:
+    - stage: "Deploy Documentation"
+      php: "7.2"
+      script: skip
+      before_deploy:
+        - composer install
+        - bin/daux generate
+      deploy:
+        provider: pages
+        local_dir: static
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+        on:
+          branch: master
