@@ -36,13 +36,19 @@
 
 This is a list of sites using Daux.io:
 
-* [Daux.io](https://dauxio.github.io/)
-* [DoctrineWatcher](https://dsentker.github.io/WatcherDocumentation/)
-* [jDrupal](http://jdrupal.easystreet3.com/8/docs/)
-* [DrupalGap](http://docs.drupalgap.org/8/)
-* [Invade & Annex 3 - An Arma 3 Co-operative Mission](http://ia3.ahoyworld.co.uk/)
-* [Munee: Standalone PHP 5.3 Asset Optimisation & Manipulation](http://mun.ee)
-* [ICADMIN: An admin panel powered by CodeIgniter.](http://istocode.com/shared/ic-admin/)
+- With a custom theme:
+    * [Crafty](https://swissquote.github.io/crafty)	
+    * [Pixolution flow](https://docs.pixolution.org)
+	* [Soisy](https://doc.soisy.it/)
+    * [Vulkan Tutorial](https://vulkan-tutorial.com)
+- With the default Theme
+    * [Daux.io](https://daux.io/)
+	* [DoctrineWatcher](https://dsentker.github.io/WatcherDocumentation/)
+	* [DrupalGap](http://docs.drupalgap.org/8/)
+    * [ICADMIN: An admin panel powered by CodeIgniter.](http://istocode.com/shared/ic-admin/)
+    * [Invade & Annex 3 - An Arma 3 Co-operative Mission](http://ia3.ahoyworld.co.uk/)
+    * [Munee: Standalone PHP 5.3 Asset Optimisation & Manipulation](http://mun.ee)
+    * [Nuntius: A PHP framework for bots](https://roysegall.github.io/nuntius-bot/)
 
 Do you use Daux.io? Send us a pull request or open an [issue](https://github.com/dauxio/daux.io/issues) and I will add you to the list.
 

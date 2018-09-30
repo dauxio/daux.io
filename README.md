@@ -34,17 +34,17 @@
 This is a list of sites using Daux.io:
 
 - With a custom theme:
+    * [Crafty](https://swissquote.github.io/crafty)	
     * [Pixolution flow](https://docs.pixolution.org)
-	* [Crafty](https://swissquote.github.io/crafty)
+	* [Soisy](https://doc.soisy.it/)
     * [Vulkan Tutorial](https://vulkan-tutorial.com)
-    * [TrackJs](http://docs.trackjs.com)
 - With the default Theme
     * [Daux.io](https://daux.io/)
-    * [Gltn - An open-source word processor webapp](http://felkerdigitalmedia.com/gltn/docs/)
+	* [DoctrineWatcher](https://dsentker.github.io/WatcherDocumentation/)
+	* [DrupalGap](http://docs.drupalgap.org/8/)
+    * [ICADMIN: An admin panel powered by CodeIgniter.](http://istocode.com/shared/ic-admin/)
     * [Invade & Annex 3 - An Arma 3 Co-operative Mission](http://ia3.ahoyworld.co.uk/)
     * [Munee: Standalone PHP 5.3 Asset Optimisation & Manipulation](http://mun.ee)
-    * [ICADMIN: An admin panel powered by CodeIgniter.](http://istocode.com/shared/ic-admin/)
-    * [Cumulus TV: Android TV app that turns any stream/page into a Live Channel](http://cumulustv.herokuapp.com)
     * [Nuntius: A PHP framework for bots](https://roysegall.github.io/nuntius-bot/)
 
 Do you use Daux.io? Send me a pull request or open an [issue](https://github.com/dauxio/daux.io/issues) and I will add you to the list.
