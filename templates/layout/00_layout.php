@@ -82,6 +82,7 @@
             }
             ?>
 
+            window.searchLanguage = <?= json_encode($page['language']) ?>;
             window.searchTranslation = <?= json_encode($search_translations) ?>;
         </script>
 

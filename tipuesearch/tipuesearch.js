@@ -169,32 +169,41 @@
         function getResults(searchFor, standard) {
             var found = [];
 
+            var pages = tipuesearch_in.pages;
+
+            // If a searchLanguage is set, filter out all other pages
+            if (window.searchLanguage) {
+                pages = pages.filter(function(item) {
+                    return item.url.indexOf(window.searchLanguage + "/") === 0;
+                })
+            }
+
             if (standard) {
                 var d_w = searchFor.split(' ');
-                for (var i = 0; i < tipuesearch_in.pages.length; i++) {
+                for (var i = 0; i < pages.length; i++) {
                     var score = 0;
-                    var text = tipuesearch_in.pages[i].text;
+                    var text = pages[i].text;
                     for (var f = 0; f < d_w.length; f++) {
                         if (d_w[f].match('^-')) {
                             var pat = new RegExp(d_w[f].substring(1), 'i');
-                            if (tipuesearch_in.pages[i].title.search(pat) != -1 || tipuesearch_in.pages[i].text.search(pat) != -1 || tipuesearch_in.pages[i].tags.search(pat) != -1) {
+                            if (pages[i].title.search(pat) != -1 || pages[i].text.search(pat) != -1 || pages[i].tags.search(pat) != -1) {
                                 score = 0;
                             }
                         } else {
-                            score += getScore(d_w[f], tipuesearch_in.pages[i]);
+                            score += getScore(d_w[f], pages[i]);
                             text = highlightText(d_w[f], text);
                         }
                     }
 
                     if (score != 0) {
-                        found.push(makeResult(score, tipuesearch_in.pages[i], text));
+                        found.push(makeResult(score, pages[i], text));
                     }
                 }
             } else {
-                for (var i = 0; i < tipuesearch_in.pages.length; i++) {
-                    var score = getScore(searchFor, tipuesearch_in.pages[i]);
+                for (var i = 0; i < pages.length; i++) {
+                    var score = getScore(searchFor, pages[i]);
                     if (score != 0) {
-                        found.push(makeResult(score, tipuesearch_in.pages[i], highlightText(searchFor, tipuesearch_in.pages[i].text)));
+                        found.push(makeResult(score, pages[i], highlightText(searchFor, pages[i].text)));
                     }
                 }
             }
