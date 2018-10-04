@@ -4,6 +4,7 @@ use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
+use League\CommonMark\Util\Xml;
 
 class FencedCodeRenderer extends CodeRenderer
 {
@@ -58,7 +59,7 @@ class FencedCodeRenderer extends CodeRenderer
             return false;
         }
 
-        $language = $htmlRenderer->escape($infoWords[0], true);
+        $language = Xml::escape($infoWords[0], true);
 
         if (array_key_exists($language, $this->known_conversions)) {
             $language = $this->known_conversions[$language];
