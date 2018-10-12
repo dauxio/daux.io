@@ -233,15 +233,15 @@ You can then point your browser to http://localhost:8086
 
 ## PHP Requirements
 
-Daux.io is compatible with PHP 5.6 and up.
+Daux.io is compatible with PHP 7.1.3 and up.
 
-The reason is because some dependencies we have (mainly Symfony and Guzzle) do not support php 5.4 anymore.
+The reason is because some dependencies we have (mainly Symfony and Guzzle) do not support PHP 5.6 anymore.
 
 ### Extensions
 
 PHP Needs the following extension to work : `php-mbstring` and `php-xml`.
 
-If you encounter an error similar to `utf8_decode() not found` this means that you're missing the `php-xml` package. (We've seen it happen only on PHP 7)
+If you encounter an error similar to `utf8_decode() not found` this means that you're missing the `php-xml` package.
 
 ## Support
 
