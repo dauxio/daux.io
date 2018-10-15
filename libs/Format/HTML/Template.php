@@ -88,7 +88,7 @@ class Template
 
             if (isset($this->engine->getData('page')['page'])) {
                 $page = $this->engine->getData('page');
-                if (is_array($page['page'])) {
+                if (!empty($page['page']['language'])) {
                     $language = $page['page']['language'];
                 }
             }
