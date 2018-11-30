@@ -19,15 +19,16 @@
     "require": {
         "php": ">=7.1.3",
         "guzzlehttp/guzzle": "~6.0",
-        "league/commonmark": "^0.17",
+        "league/commonmark": "^0.18",
         "league/plates": "~3.1",
         "myclabs/deep-copy": "^1.5",
         "symfony/console": "^4.0",
         "symfony/http-foundation": "^4.0",
+        "symfony/polyfill-intl-icu": "^1.10",
         "symfony/process": "^4.0",
-        "webuni/commonmark-table-extension": "0.8.*",
-        "webuni/front-matter": "^1.0.0",
-        "symfony/polyfill-intl-icu": "^1.9"
+        "webuni/commonmark-table-extension": "0.9.*",
+        "webuni/front-matter": "^1.0.0"
+        
     },
     "suggest":{
         "ext-intl": "Allows to translate the modified at date"
@@ -41,7 +42,7 @@
         "justinwalsh/daux.io": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~7.3",
+        "phpunit/phpunit": "~7.4",
         "mikey179/vfsStream": "^1.6"
     }
 }
