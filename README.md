@@ -71,7 +71,7 @@ If the command isn't found, ensure your `$PATH` contains `~/.composer/vendor/bin
 Or if you wish to use Docker, the start of the command will be :
 
 ```bash
-docker run --rm -it -w /build -v "$PWD":/build daux/daux.io daux
+docker run --rm -it -w /build -v "$PWD":/build -u "$(id -u):$(id -g)" daux/daux.io daux
 ```
 
 ## Run on a server
