@@ -13,17 +13,18 @@ WORKDIR /daux
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # Copy files
+COPY composer.json /daux/composer.json
+COPY composer.lock /daux/composer.lock
+
+RUN composer install --prefer-dist --no-ansi --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader
+
 COPY bin/ /daux/bin/
 COPY libs/ /daux/libs/
 COPY templates/ /daux/templates/
 COPY themes/ /daux/themes/
 COPY tipuesearch/ /daux/tipuesearch/
 COPY global.json /daux/global.json
-COPY composer.json /daux/composer.json
-COPY composer.lock /daux/composer.lock
 COPY index.php /daux/index.php
-
-RUN composer install --prefer-dist --no-ansi --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader
 
 RUN ln -s /daux/bin/daux /usr/local/bin/daux
 
