@@ -1,8 +1,8 @@
 FROM composer:1.7.2 AS composer
 
-FROM php:7-alpine
+FROM php:7-stretch
 
-RUN apk info && apk add --no-cache unzip icu-dev
+RUN apt-get update && apt-get install -y libicu-dev git unzip
 RUN docker-php-ext-configure intl \
 && docker-php-ext-install intl
 
