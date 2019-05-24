@@ -28,7 +28,6 @@
         "symfony/process": "^4.0",
         "webuni/commonmark-table-extension": "0.9.*",
         "webuni/front-matter": "^1.0.0"
-
     },
     "suggest":{
         "ext-intl": "Allows to translate the modified at date"
@@ -44,5 +43,8 @@
     "require-dev": {
         "phpunit/phpunit": "~7.4",
         "mikey179/vfsstream": "^1.6"
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
