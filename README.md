@@ -38,6 +38,7 @@ This is a list of sites using Daux.io:
     * [Pixolution flow](https://docs.pixolution.org)
 	* [Soisy](https://doc.soisy.it/)
     * [Vulkan Tutorial](https://vulkan-tutorial.com)
+	* [3Q](https://docs.3q.video/)
 - With the default Theme
     * [Daux.io](https://daux.io/)
 	* [DoctrineWatcher](https://dsentker.github.io/WatcherDocumentation/)
