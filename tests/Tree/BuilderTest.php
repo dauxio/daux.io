@@ -82,16 +82,27 @@ class BuilderTest extends TestCase
         return new Root($config);
     }
 
-    public function testGetOrCreatePage()
+    public function providerCreatePage()
+    {
+        return [
+            ['A Page.md', 'dir/A_Page.html', 'A_Page.html', 'A Page'],
+            ['Page#1.md', 'dir/Page1.html', 'Page1.html', 'Page#1']
+        ];
+    }
+
+    /**
+     * @dataProvider providerCreatePage
+     */
+    public function testGetOrCreatePage($file, $url, $uri, $title)
     {
         $directory = new Directory($this->getStaticRoot(), 'dir');
 
-        $entry = Builder::getOrCreatePage($directory, 'A Page.md');
+        $entry = Builder::getOrCreatePage($directory, $file);
 
         $this->assertSame($directory, $entry->getParent());
-        $this->assertEquals('dir/A_Page.html', $entry->getUrl());
-        $this->assertEquals('A_Page.html', $entry->getUri());
-        $this->assertEquals('A Page', $entry->getTitle());
+        $this->assertEquals($url, $entry->getUrl());
+        $this->assertEquals($uri, $entry->getUri());
+        $this->assertEquals($title, $entry->getTitle());
         $this->assertInstanceOf('Todaymade\Daux\Tree\Content', $entry);
     }
 

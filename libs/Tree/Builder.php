@@ -115,6 +115,7 @@ class Builder
         }
 
         $uri = static::removeSortingInformations($name);
+        $uri = DauxHelper::slug($uri);
         if ($config->isStatic()) {
             $uri .= '.html';
         }

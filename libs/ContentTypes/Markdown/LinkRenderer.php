@@ -109,18 +109,38 @@ class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
         $urlAndHash = explode('#', $url);
         $url = $urlAndHash[0];
 
+        $foundWithHash = false;
+
         try {
             $file = $this->resolveInternalFile($url);
             $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
         } catch (LinkNotFoundException $e) {
-            if ($this->daux->isStatic()) {
-                throw $e;
+
+            
+
+            // For some reason, the filename could contain a # and thus the link needs to resolve to that.
+            try {
+                if (strlen($urlAndHash[1]) > 0) {
+                    $file = $this->resolveInternalFile($url . '#' . $urlAndHash[1]);
+                    $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
+                    $foundWithHash = true;
+                }
+            } catch (LinkNotFoundException $e2) {
+                // If it's still not found here, we'll only 
+                // report on the first error as the second 
+                // one will tell the same.
             }
 
-            $element->setAttribute('class', 'Link--broken');
+            if (!$foundWithHash) {
+                if ($this->daux->isStatic()) {
+                    throw $e;
+                }
+    
+                $element->setAttribute('class', 'Link--broken');
+            }
         }
 
-        if (isset($urlAndHash[1])) {
+        if (!$foundWithHash && isset($urlAndHash[1])) {
             $url .= '#' . $urlAndHash[1];
         }
 

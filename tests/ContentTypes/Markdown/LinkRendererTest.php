@@ -20,6 +20,7 @@ class LinkRendererTest extends TestCase
             'Widgets' => [
                 'Page.md' => 'another page',
                 'Button.md' => 'another page',
+                'Page_with_#_hash.md' => 'page with hash',
             ],
         ];
         $root = vfsStream::setup('root', null, $structure);
@@ -38,6 +39,11 @@ class LinkRendererTest extends TestCase
     public function providerRenderLink()
     {
         return [
+            // /Widgets/Page_with_#_hash
+            ['<a href="../Widgets/Page_with_hash.html">Link</a>', '[Link](../Widgets/Page_with_#_hash.md)', 'Content/Page.html'],
+            ['<a href="../Widgets/Page_with_hash.html">Link</a>', '[Link](!Widgets/Page_with_#_hash)', 'Content/Page.html'],
+            ['<a href="Page_with_hash.html">Link</a>', '[Link](Page_with_#_hash.md)', 'Widgets/Page.html'],
+
             // /Widgets/Page
             ['<a href="http://google.ch" class="Link--external">Link</a>', '[Link](http://google.ch)', 'Widgets/Page.html'],
             ['<a href="#features">Link</a>', '[Link](#features)', 'Widgets/Page.html'],
