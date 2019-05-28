@@ -1,4 +1,9 @@
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-family-heading);
     font-weight: 300;
 }
@@ -11,7 +16,12 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 15px;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-weight: 300;
         -webkit-font-smoothing: antialiased;
         cursor: text;
@@ -19,7 +29,8 @@ h1, h2, h3, h4, h5, h6 {
         margin-top: 0.3em;
         margin-bottom: 0.3em;
 
-        tt, code {
+        tt,
+        code {
             font-size: inherit;
         }
 
@@ -32,30 +43,36 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 
-    h1 { // 40px
+    h1 {
+        // 40px
         font-size: 2.6666666667em;
         color: black;
     }
 
-    h2 { // 30px
+    h2 {
+        // 30px
         font-size: 2em;
         border-bottom: 1px solid #eee;
         color: black;
     }
 
-    h3 { // 26px
+    h3 {
+        // 26px
         font-size: 1.7333333333em;
     }
 
-    h4 { // 22px
+    h4 {
+        // 22px
         font-size: 1.4666666667em;
     }
 
-    h5 { // 18px
+    h5 {
+        // 18px
         font-size: 1.2em;
     }
 
-    h6 { // 16px
+    h6 {
+        // 16px
         font-size: 1.0666666667em;
         color: #555;
     }
@@ -64,12 +81,14 @@ h1, h2, h3, h4, h5, h6 {
         text-decoration: underline;
     }
 
-    p { // 15px
+    p {
+        // 15px
         line-height: 1.8em;
         margin-bottom: 20px;
     }
 
-    ul, ol {
+    ul,
+    ol {
         padding-left: 30px;
     }
 
@@ -169,7 +188,8 @@ h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-family-monospace);
     }
 
-    code, tt {
+    code,
+    tt {
         margin: 0 2px;
         padding: 0 5px;
         white-space: nowrap;
@@ -192,7 +212,8 @@ h1, h2, h3, h4, h5, h6 {
             white-space: pre;
         }
 
-        code, tt {
+        code,
+        tt {
             background-color: transparent;
             border: none;
         }

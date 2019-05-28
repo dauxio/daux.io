@@ -9,7 +9,8 @@
     -webkit-touch-callout: none;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -25,7 +26,8 @@ a {
     text-decoration: none;
 }
 
-a:focus, a:hover {
+a:focus,
+a:hover {
     color: #23527c;
     text-decoration: underline;
 }
@@ -45,7 +47,9 @@ img {
     max-width: 100% !important;
 }
 
-.PageBreak { display: none; }
+.PageBreak {
+    display: none;
+}
 
 @media screen {
     body {

@@ -1,5 +1,6 @@
 
 module.exports = {
+    browsers: "> 0.25%, Edge >= 15, Safari >= 10, iOS >= 10, Chrome >= 56, Firefox >= 51, IE >= 11, not op_mini all",
     presets: [
       "@swissquote/crafty-preset-postcss",
       "@swissquote/crafty-runner-gulp"
@@ -13,7 +14,8 @@ module.exports = {
     ],
     stylelint: {
       rules: {
-        "swissquote/no-type-outside-scope": null
+        "swissquote/no-type-outside-scope": null,
+        "plugin/no-unsupported-browser-features": null
       }
     },
     css: {

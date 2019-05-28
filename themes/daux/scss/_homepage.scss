@@ -113,7 +113,8 @@ Homepage
     background-color: white;
     padding: 40px 0;
 
-    ul, ol {
+    ul,
+    ol {
         li {
             list-style: none;
             margin-bottom: 0.5em;
@@ -154,7 +155,9 @@ Homepage
             margin: 0 -15px;
         }
 
-        .Row__third, .Row__half, .Row__quarter {
+        .Row__third,
+        .Row__half,
+        .Row__quarter {
             float: left;
             position: relative;
             min-height: 1px;

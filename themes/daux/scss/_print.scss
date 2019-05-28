@@ -1,4 +1,3 @@
-
 * {
     text-shadow: none !important;
     color: #000 !important; // Black prints faster: h5bp.com/s
@@ -6,12 +5,18 @@
     box-shadow: none !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     page-break-after: avoid;
     page-break-before: auto;
 }
 
-pre, blockquote {
+pre,
+blockquote {
     border: 1px solid #999;
     font-style: italic;
     page-break-inside: avoid;
@@ -23,16 +28,24 @@ img {
 }
 
 a,
-a:visited { text-decoration: underline; }
+a:visited {
+    text-decoration: underline;
+}
 
-abbr[title]:after { content: " (" attr(title) ")"; }
+abbr[title]:after {
+    content: " (" attr(title) ")";
+}
 
 q {
     quotes: none;
 
-    &:before { content: ""; }
+    &:before {
+        content: "";
+    }
 
-    &:after { content: " (" attr(cite) ")"; }
+    &:after {
+        content: " (" attr(cite) ")";
+    }
 }
 
 .PageBreak {
@@ -40,12 +53,18 @@ q {
     page-break-before: always;
 }
 
-.NoPrint { display: none; }
+.NoPrint {
+    display: none;
+}
 
 /* Hide the navigation */
-aside { display: none; }
+aside {
+    display: none;
+}
 
-.Pager { display: none; }
+.Pager {
+    display: none;
+}
 
 .Columns__right {
     width: 100% !important;
@@ -58,7 +77,9 @@ aside { display: none; }
 }
 
 /* Anchors don't need that */
-.s-content a[href^="#"]:after { content: ""; }
+.s-content a[href^="#"]:after {
+    content: "";
+}
 
 h1 a[href]:after {
     font-size: 50%;

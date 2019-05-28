@@ -1,5 +1,6 @@
-
-*, *:after, *:before {
+*,
+*:after,
+*:before {
     box-sizing: border-box;
 }
 
@@ -20,7 +21,8 @@ html {
     }
 }
 
-html, body {
+html,
+body {
     height: 100%;
     background-color: #fff;
     color: var(--text);
@@ -64,7 +66,9 @@ html, body {
     }
 
     &:hover {
-        background-color: var(--sidebar-collapsible--hamburger-hover-background);
+        background-color: var(
+            --sidebar-collapsible--hamburger-hover-background
+        );
 
         @include kill-box-shadow;
 
@@ -109,7 +113,8 @@ html, body {
             clear: both;
         }
 
-        &__left, &__right {
+        &__left,
+        &__right {
             position: relative;
             min-height: 1px;
             float: left;
