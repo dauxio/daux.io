@@ -41,7 +41,7 @@
         "justinwalsh/daux.io": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~7.4",
+        "phpunit/phpunit": "~8.1",
         "mikey179/vfsstream": "^1.6"
     },
     "scripts": {
