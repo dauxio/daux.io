@@ -528,16 +528,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.3.1",
+            "version": "v4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "b7e4945dd9b277cd24e93566e4da0a87956392a9"
+                "reference": "e1b507fcfa4e87d192281774b5ecd4265370180d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/b7e4945dd9b277cd24e93566e4da0a87956392a9",
-                "reference": "b7e4945dd9b277cd24e93566e4da0a87956392a9",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/e1b507fcfa4e87d192281774b5ecd4265370180d",
+                "reference": "e1b507fcfa4e87d192281774b5ecd4265370180d",
                 "shasum": ""
             },
             "require": {
@@ -579,7 +579,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-06-06T10:05:02+00:00"
+            "time": "2019-06-26T09:25:00+00:00"
         },
         {
             "name": "symfony/intl",
@@ -658,7 +658,7 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v4.3.1",
+            "version": "v4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
