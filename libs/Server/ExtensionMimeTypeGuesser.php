@@ -1,11 +1,12 @@
 <?php namespace Todaymade\Daux\Server;
 
-use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface;
+use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesserInterface as FileMimeTypeGuesserInterface;
+use Symfony\Component\Mime\MimeTypeGuesserInterface;
 
 /**
  * Guesses the mime type using the file's extension
  */
-class ExtensionMimeTypeGuesser implements MimeTypeGuesserInterface
+class ExtensionMimeTypeGuesser implements FileMimeTypeGuesserInterface, MimeTypeGuesserInterface
 {
     /**
      * {@inheritdoc}
@@ -21,5 +22,21 @@ class ExtensionMimeTypeGuesser implements MimeTypeGuesserInterface
         if ($extension == "js") {
             return "application/javascript";
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isGuesserSupported(): bool
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function guessMimeType(string $path): ?string
+    {
+        return $this->guess($path);
     }
 }
