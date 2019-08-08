@@ -22,7 +22,11 @@ $(function () {
     }
 
     function setCodeBlockStyle(codeBlockState) {
-        localStorage.setItem("codeBlockState", codeBlockState);
+        try {
+            localStorage.setItem("codeBlockState", codeBlockState);
+        } catch (e) {
+            // local storage operations can fail with the file:// protocol
+        }
 
         toggleCodeBlockBtns.removeClass("Button--active");
 
@@ -60,7 +64,12 @@ $(function () {
     toggleCodeBlockBtnFloat.click(function() { setCodeBlockStyle(2); });
 
     var floating = $(document.body).hasClass("with-float");
-    var codeBlockState = localStorage.getItem("codeBlockState");
+    try {
+        var codeBlockState = localStorage.getItem("codeBlockState");
+    } catch (e) {
+        // local storage operations can fail with the file:// protocol
+        var codeBlockState = false;
+    }
 
     if (!codeBlockState) {
         codeBlockState = floating? 2 : 1;
@@ -95,4 +104,3 @@ $(function () {
         $('.Collapsible__content').slideToggle();
     });
 });
-
