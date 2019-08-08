@@ -488,6 +488,11 @@ class DauxHelper
      * @return false|null|string
      */
     public static function findLocation($path, $basedir, $var, $type) {
+        // VFS, used only in tests
+        if (substr($path, 0, 6) == "vfs://") {
+            return $path;
+        }
+
         // When running through `daux --serve` we set an environment variable to know where we started from
         $env = getenv($var);
         if ($env && DauxHelper::is($env, $type)) {
