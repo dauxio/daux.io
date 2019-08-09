@@ -19,6 +19,4 @@
 @import "_homepage.scss";
 @import "vendor/highlight.scss";
 
-@media print {
-    @import "_print.scss";
-}
+@import "_print.scss" print;
