@@ -93,22 +93,81 @@ if (hljs) {
     setCodeBlockStyle(codeBlockState);
 })();
 
-$(function () {
-    // Tree navigation
-    $('.aj-nav').click(function (e) {
-        e.preventDefault();
-        $(this).parent().siblings().find('ul').slideUp();
-        $(this).next().slideToggle();
-    });
+(function() {
+    function debounce(func, wait) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+            };
 
-    // New Tree navigation
-    $('ul.Nav > li.has-children > a > .Nav__arrow').click(function() {
-        $(this).parent().parent().toggleClass('Nav__item--open');
-        return false;
-    });
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+       };
+    };
 
-    // Responsive navigation
-    $('.Collapsible__trigger').click(function () {
-        $('.Collapsible__content').slideToggle();
+    var navItemsWithChildren = document.querySelectorAll('.Nav__item.has-children > a');
+
+    function _toggleSubMenu(ev) {
+        ev.preventDefault();
+
+        var parent = ev.target.parentNode;
+        var subNav = parent.querySelector('ul.Nav');
+
+        if (parent.classList.contains('Nav__item--open')) {
+            subNav.style.height = 0;
+            parent.classList.remove('Nav__item--open');
+        } else {
+            subNav.style.transitionDuration = Math.max(subNav.scrollHeight * 1.5, 150) + 'ms';
+            subNav.style.height = subNav.scrollHeight + 'px';
+            parent.classList.add('Nav__item--open');
+        }
+    }
+
+    // Because font sizes change the height of the menus can change so they must
+    // be recalculated if necessary when the viewport size changes.
+    function _resize() {
+        var subNav = document.querySelector('.Nav .Nav'),
+            height, cur;
+        for (var i = 0; i < subNav.length; i++) {
+            cur = subNav[i];
+            height = parseFloat(cur.style.height, 10);
+            if (height > 0 && cur.scrollHeight !== height) {
+                // Disable the height transition, change it, and
+                // re-establish the transition that's in the stylesheet.
+                cur.style.transitionDuration = 0;
+                cur.style.height = cur.scrollHeight + 'px';
+                cur.style.transitionDuration = Math.max(cur.scrollHeight, 150) + 'ms';
+            }
+        }
+    }
+
+    for (var i = 0; i < navItemsWithChildren.length; i++) {
+        navItemsWithChildren[i].addEventListener('click', _toggleSubMenu);
+    }
+
+    window.addEventListener('resize', debounce(_resize, 150));
+    window.addEventListener('orientationchange', _resize);
+})();
+
+(function() {
+    var trigger = document.querySelector('.Collapsible__trigger');
+
+    if (!trigger) {
+        return;
+    }
+
+    content = document.querySelector('.Collapsible__content');
+
+    trigger.addEventListener('click', function(ev) {
+        if (content.classList.contains('Collapsible__content--open')) {
+            content.style.height = 0;
+            content.classList.remove('Collapsible__content--open');
+        } else {
+            content.style.transitionDuration = Math.max(content.scrollHeight, 150) + 'ms';
+            content.style.height = content.scrollHeight + 'px';
+            content.classList.add('Collapsible__content--open');
+        }
     });
-});
+})();

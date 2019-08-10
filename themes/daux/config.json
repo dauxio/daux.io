@@ -1,7 +1,6 @@
 {
     "favicon": "<theme_url>img/favicon.png",
     "js": [
-        "<theme_url>js/jquery-1.11.3.min.js",
         "<theme_url>js/highlight.pack.js",
         "<theme_url>js/daux.js"
     ],
