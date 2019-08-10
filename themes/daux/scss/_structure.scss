@@ -41,9 +41,13 @@ body {
     }
 }
 
-// mobile friendly sub-nav
-.Collapsible__content {
-    display: none;
+@media (max-width: 768px) {
+    // mobile friendly sub-nav
+    .Collapsible__content {
+        height: 0;
+        overflow: hidden;
+        transition: height 400ms ease-in-out;
+    }
 }
 
 .Collapsible__trigger {

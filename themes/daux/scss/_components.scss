@@ -41,6 +41,7 @@ Components
     border: 1px solid transparent;
     white-space: nowrap;
     border-radius: 4px;
+    margin-bottom: 0;
 
     &--small {
         font-size: 12px;
@@ -155,6 +156,11 @@ Components
         width: 16px;
         margin-left: -16px;
 
+        // Prevent arrow from being the target in its container's event listener.
+        &, &::before {
+            pointer-events: none;
+        }
+
         &:before {
             position: absolute;
             display: block;
@@ -193,7 +199,9 @@ Components
 }
 
 .Nav .Nav {
-    display: none;
+    height: 0;
+    transition: height 400ms ease-in-out;
+    overflow: hidden;
     margin-left: 15px;
 
     .Nav__item a {
@@ -223,10 +231,6 @@ Components
     }
 
     &--open {
-        > .Nav {
-            display: block;
-        }
-
         > a > .Nav__arrow:before {
             margin-left: -0.25em;
             transform: rotate(135deg);
@@ -284,7 +288,7 @@ Components
 }
 
 .PoweredBy {
-    padding: 0 20px;
+    padding: 0 20px 1rem 20px;
     font-size: var(--type-size-6);
 }
 
@@ -507,10 +511,6 @@ ul.TableOfContents {
     .Checkbox input:disabled ~ &:after {
         border-color: var(--checkbox-disabled-tick-color);
     }
-}
-
-.Collapsible__content {
-    padding-bottom: 1rem;
 }
 
 .Hidden {
