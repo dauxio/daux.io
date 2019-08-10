@@ -4,86 +4,94 @@ if (hljs) {
     hljs.initHighlightingOnLoad();
 }
 
-//Initialize CodeBlock Visibility Settings
-$(function () {
-    var codeBlockView = $('.Columns__right'),
-        codeBlocks = $('.s-content pre'),
-        toggleCodeSection = $('.CodeToggler'),
-        toggleCodeBlockBtns = toggleCodeSection.find('.CodeToggler__button'),
-        toggleCodeBlockBtn = toggleCodeSection.find('.CodeToggler__button--main'),
-        toggleCodeBlockBtnHide = toggleCodeSection.find('.CodeToggler__button--hide'),
-        toggleCodeBlockBtnBelow = toggleCodeSection.find('.CodeToggler__button--below'),
-        toggleCodeBlockBtnFloat = toggleCodeSection.find('.CodeToggler__button--float');
-
-    // If there is no code block we hide the link
-    if (!codeBlocks.size()) {
-        toggleCodeSection.addClass('Hidden');
+(function() {
+    var codeBlocks = document.querySelectorAll(".s-content pre");
+    var toggleCodeSection = document.querySelector(".CodeToggler");
+    if (!toggleCodeSection) {
+        return;
+    } else if (!codeBlocks.length) {
+        toggleCodeSection.classList.add("Hidden");
         return;
     }
 
+    var toggleCodeBlockBtnList = toggleCodeSection.querySelectorAll(".CodeToggler__button");
+    var toggleCodeBlockBtnSet = toggleCodeSection.querySelector(".CodeToggler__button--main"); // available when floating is disabled
+    var toggleCodeBlockBtnHide = toggleCodeSection.querySelector(".CodeToggler__button--hide");
+    var toggleCodeBlockBtnBelow = toggleCodeSection.querySelector(".CodeToggler__button--below");
+    var toggleCodeBlockBtnFloat = toggleCodeSection.querySelector(".CodeToggler__button--float");
+    var codeBlockView = document.querySelector(".Columns__right");
+    var floating = document.body.classList.contains("with-float");
+
     function setCodeBlockStyle(codeBlockState) {
-        try {
-            localStorage.setItem("codeBlockState", codeBlockState);
-        } catch (e) {
-            // local storage operations can fail with the file:// protocol
+        for (var a = 0; a < toggleCodeBlockBtnList.length; a++) {
+            toggleCodeBlockBtnList[a].classList.remove("Button--active");
         }
-
-        toggleCodeBlockBtns.removeClass("Button--active");
-
         switch (codeBlockState) {
-            case 2: // Show code blocks inline
-                toggleCodeBlockBtnFloat.addClass("Button--active");
-                codeBlockView.addClass('Columns__right--float');
-                codeBlockView.removeClass('Columns__right--full');
-                codeBlocks.removeClass('Hidden');
+            case true: // Show code blocks below (flowed); checkbox
+                var hidden = false;
                 break;
-            case 1: // Show code blocks below
-                toggleCodeBlockBtnBelow.addClass("Button--active");
-                toggleCodeBlockBtn.prop('checked', true);
-                codeBlockView.removeClass('Columns__right--float');
-                codeBlockView.addClass('Columns__right--full');
-                codeBlocks.removeClass('Hidden');
+            case false: // Hidden code blocks; checkbox
+                var hidden = true;
+                break;
+            case 2: // Show code blocks inline (floated)
+                toggleCodeBlockBtnFloat.classList.add("Button--active");
+                codeBlockView.classList.add("Columns__right--float");
+                codeBlockView.classList.remove("Columns__right--full");
+                var hidden = false;
+                break;
+            case 1: // Show code blocks below (flowed)
+            case "checked":
+                toggleCodeBlockBtnBelow.classList.add("Button--active");
+                codeBlockView.classList.remove("Columns__right--float");
+                codeBlockView.classList.add("Columns__right--full");
+                var hidden = false;
                 break;
             case 0: // Hidden code blocks
             default:
-                toggleCodeBlockBtnHide.addClass("Button--active");
-                toggleCodeBlockBtn.prop('checked', false);
-                codeBlockView.removeClass('Columns__right--float');
-                codeBlockView.addClass('Columns__right--full');
-                codeBlocks.addClass('Hidden');
+                toggleCodeBlockBtnHide.classList.add("Button--active");
+                codeBlockView.classList.remove("Columns__right--float");
+                codeBlockView.classList.add("Columns__right--full");
+                var hidden = true;
                 break;
         }
+        for (var a = 0; a < codeBlocks.length; a++) {
+            if (hidden) {
+                codeBlocks[a].classList.add("Hidden");
+            } else {
+                codeBlocks[a].classList.remove("Hidden");
+            }
+        }
+        try {
+            localStorage.setItem("codeBlockState", +codeBlockState);
+        } catch (e) {
+            // local storage operations can fail with the file:// protocol
+        }
+    }
+    if (!floating) {
+        toggleCodeBlockBtnSet.addEventListener("change", function(ev) {setCodeBlockStyle(ev.target.checked);}, false);
+    } else {
+        toggleCodeBlockBtnHide.addEventListener("click", function() {setCodeBlockStyle(0);}, false);
+        toggleCodeBlockBtnBelow.addEventListener("click", function() {setCodeBlockStyle(1);}, false);
+        toggleCodeBlockBtnFloat.addEventListener("click", function() {setCodeBlockStyle(2);}, false);
     }
 
-    toggleCodeBlockBtn.click(function() {
-        setCodeBlockStyle(codeBlocks.hasClass('Hidden') ? 1 : 0);
-    });
-
-    toggleCodeBlockBtnHide.click(function() { setCodeBlockStyle(0); });
-    toggleCodeBlockBtnBelow.click(function() { setCodeBlockStyle(1); });
-    toggleCodeBlockBtnFloat.click(function() { setCodeBlockStyle(2); });
-
-    var floating = $(document.body).hasClass("with-float");
     try {
         var codeBlockState = localStorage.getItem("codeBlockState");
     } catch (e) {
         // local storage operations can fail with the file:// protocol
-        var codeBlockState = false;
+        var codeBlockState = null;
     }
-
     if (!codeBlockState) {
-        codeBlockState = floating? 2 : 1;
+        codeBlockState = floating ? 2 : 1;
     } else {
         codeBlockState = parseInt(codeBlockState);
     }
-
-    if (!floating && codeBlockState == 2) {
-        codeBlockState = 1;
+    if (!floating) {
+        codeBlockState = !!codeBlockState;
     }
 
     setCodeBlockStyle(codeBlockState);
-});
-
+})();
 
 $(function () {
     // Tree navigation
