@@ -40,10 +40,6 @@
         <!-- Tipue Search -->
         <link href="<?= $base_url; ?>tipuesearch/tipuesearch.css" rel="stylesheet">
     <?php } ?>
-
-    <!--[if lt IE 9]>
-    <script src="<?= $base_url; ?>themes/daux/js/html5shiv-3.7.3.min.js"></script>
-    <![endif]-->
 </head>
 <body class="<?= $params['html']['float'] ? 'with-float' : ''; ?> <?= $this->section('classes'); ?>">
     <?= $this->section('content'); ?>
