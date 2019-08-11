@@ -199,10 +199,13 @@ Components
 }
 
 .Nav .Nav {
-    height: 0;
-    transition: height 400ms ease-in-out;
-    overflow: hidden;
     margin-left: 15px;
+
+    html:not(.no-js) & {
+        height: 0;
+        transition: height 400ms ease-in-out;
+        overflow: hidden;
+    }
 
     .Nav__item a {
         margin: 0;

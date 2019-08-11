@@ -107,21 +107,31 @@ if (hljs) {
        };
     };
 
-    var navItemsWithChildren = document.querySelectorAll('.Nav__item.has-children > a');
+    var navItems = document.querySelectorAll('.Nav__item.has-children > a');
 
     function _toggleSubMenu(ev) {
-        ev.preventDefault();
+        if (ev.preventDefault !== undefined) {
+            ev.preventDefault();
+        }
 
         var parent = ev.target.parentNode;
         var subNav = parent.querySelector('ul.Nav');
 
-        if (parent.classList.contains('Nav__item--open')) {
+        if (ev.preventDefault !== undefined && parent.classList.contains('Nav__item--open')) {
             subNav.style.height = 0;
             parent.classList.remove('Nav__item--open');
         } else {
-            subNav.style.transitionDuration = Math.max(subNav.scrollHeight * 1.5, 150) + 'ms';
-            subNav.style.height = subNav.scrollHeight + 'px';
-            parent.classList.add('Nav__item--open');
+            if (ev.preventDefault !== undefined) {
+                subNav.style.transitionDuration = Math.max(subNav.scrollHeight, 150) + 'ms';
+                subNav.style.height = subNav.scrollHeight + 'px';
+                parent.classList.add('Nav__item--open');
+            } else {
+                // When running at page load the transitions don't need to fire and
+                // the classList doesn't need to be altered.
+                subNav.style.transitionDuration = '0ms';
+                subNav.style.height = subNav.scrollHeight + 'px';
+                subNav.style.transitionDuration = Math.max(subNav.scrollHeight, 150) + 'ms';
+            }
         }
     }
 
@@ -134,21 +144,27 @@ if (hljs) {
             cur = subNav[i];
             height = parseFloat(cur.style.height, 10);
             if (height > 0 && cur.scrollHeight !== height) {
-                // Disable the height transition, change it, and
-                // re-establish the transition that's in the stylesheet.
-                cur.style.transitionDuration = 0;
+                // Transitions don't need to fire when resizing the window.
+                cur.style.transitionDuration = '0ms';
                 cur.style.height = cur.scrollHeight + 'px';
                 cur.style.transitionDuration = Math.max(cur.scrollHeight, 150) + 'ms';
             }
         }
     }
 
-    for (var i = 0; i < navItemsWithChildren.length; i++) {
-        navItemsWithChildren[i].addEventListener('click', _toggleSubMenu);
+    for (var i = 0, cur; i < navItems.length; i++) {
+        cur = navItems[i];
+        cur.addEventListener('click', _toggleSubMenu);
+
+        if (cur.parentNode.classList.contains('Nav__item--open')) {
+            _toggleSubMenu({ target: cur });
+        }
     }
 
     window.addEventListener('resize', debounce(_resize, 150));
     window.addEventListener('orientationchange', _resize);
+
+
 })();
 
 (function() {
