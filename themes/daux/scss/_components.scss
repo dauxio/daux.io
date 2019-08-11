@@ -144,6 +144,9 @@ Components
         vertical-align: middle;
     }
 }
+.no-js .CodeToggler {
+    display: none;
+}
 
 // Sidebar navigation
 .Nav {
