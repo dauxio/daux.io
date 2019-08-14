@@ -159,11 +159,6 @@ Components
         width: 16px;
         margin-left: -16px;
 
-        // Prevent arrow from being the target in its container's event listener.
-        &, &::before {
-            pointer-events: none;
-        }
-
         &:before {
             position: absolute;
             display: block;

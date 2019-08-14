@@ -107,15 +107,16 @@ if (hljs) {
        };
     };
 
-    var navItems = document.querySelectorAll('.Nav__item.has-children > a');
+    var navItems = document.querySelectorAll('.Nav__item.has-children i.Nav__arrow');
 
     function _toggleSubMenu(ev) {
         if (ev.preventDefault !== undefined) {
             ev.preventDefault();
         }
 
-        var parent = ev.target.parentNode;
+        var parent = ev.target.parentNode.parentNode;
         var subNav = parent.querySelector('ul.Nav');
+        console.log(parent);
 
         if (ev.preventDefault !== undefined && parent.classList.contains('Nav__item--open')) {
             subNav.style.height = 0;
@@ -156,7 +157,7 @@ if (hljs) {
         cur = navItems[i];
         cur.addEventListener('click', _toggleSubMenu);
 
-        if (cur.parentNode.classList.contains('Nav__item--open')) {
+        if (cur.parentNode.parentNode.classList.contains('Nav__item--open')) {
             _toggleSubMenu({ target: cur });
         }
     }
