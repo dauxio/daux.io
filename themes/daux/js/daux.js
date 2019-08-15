@@ -116,44 +116,41 @@ if (hljs) {
 
         var parent = ev.target.parentNode.parentNode;
         var subNav = parent.querySelector('ul.Nav');
-        console.log(parent);
 
         if (ev.preventDefault !== undefined && parent.classList.contains('Nav__item--open')) {
-            subNav.style.height = 0;
+            // Temporarily set the height so the transition can work.
+            subNav.style.height = subNav.scrollHeight + 'px';
+            subNav.style.transitionDuration = Math.max(subNav.scrollHeight, 150) + 'ms';
+            subNav.style.height = '0px';
             parent.classList.remove('Nav__item--open');
         } else {
             if (ev.preventDefault !== undefined) {
                 subNav.style.transitionDuration = Math.max(subNav.scrollHeight, 150) + 'ms';
+                // After the transition finishes set the height to auto so child
+                // menus can expand properly.
+                subNav.addEventListener('transitionend', _setHeightToAuto);
                 subNav.style.height = subNav.scrollHeight + 'px';
                 parent.classList.add('Nav__item--open');
             } else {
                 // When running at page load the transitions don't need to fire and
                 // the classList doesn't need to be altered.
-                subNav.style.transitionDuration = '0ms';
-                subNav.style.height = subNav.scrollHeight + 'px';
-                subNav.style.transitionDuration = Math.max(subNav.scrollHeight, 150) + 'ms';
+                subNav.style.height = 'auto';
             }
         }
     }
 
-    // Because font sizes change the height of the menus can change so they must
-    // be recalculated if necessary when the viewport size changes.
-    function _resize() {
-        var subNav = document.querySelector('.Nav .Nav'),
-            height, cur;
-        for (var i = 0; i < subNav.length; i++) {
-            cur = subNav[i];
-            height = parseFloat(cur.style.height, 10);
-            if (height > 0 && cur.scrollHeight !== height) {
-                // Transitions don't need to fire when resizing the window.
-                cur.style.transitionDuration = '0ms';
-                cur.style.height = cur.scrollHeight + 'px';
-                cur.style.transitionDuration = Math.max(cur.scrollHeight, 150) + 'ms';
-            }
+    function _setHeightToAuto(ev) {
+        if (ev.target.style.height !== '0px') {
+            ev.target.style.height = 'auto';
         }
+
+        ev.target.removeEventListener('transitionend', _setHeightToAuto);
     }
 
-    for (var i = 0, cur; i < navItems.length; i++) {
+    // Go in reverse here because on page load the child nav items need to be
+    // opened first before their parents so the height on the parents can be
+    // calculated properly.
+    for (var i = navItems.length - 1, cur; i >= 0; i--) {
         cur = navItems[i];
         cur.addEventListener('click', _toggleSubMenu);
 
@@ -161,11 +158,6 @@ if (hljs) {
             _toggleSubMenu({ target: cur });
         }
     }
-
-    window.addEventListener('resize', debounce(_resize, 150));
-    window.addEventListener('orientationchange', _resize);
-
-
 })();
 
 (function() {
