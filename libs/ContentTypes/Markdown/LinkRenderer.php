@@ -120,7 +120,7 @@ class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
 
             // For some reason, the filename could contain a # and thus the link needs to resolve to that.
             try {
-                if (strlen($urlAndHash[1]) > 0) {
+                if (strlen($urlAndHash[1] ?? "") > 0) {
                     $file = $this->resolveInternalFile($url . '#' . $urlAndHash[1]);
                     $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
                     $foundWithHash = true;
