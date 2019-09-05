@@ -104,6 +104,15 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
         $context = ['page' => $page, 'params' => $params];
 
-        return $this->templateRenderer->render($this->isLanding() ? 'theme::home' : 'theme::content', $context);
+        $template = "theme::content";
+        if ($this->isLanding()) {
+            $template = "theme::home";
+        }
+
+        if (array_key_exists('template', $page['attributes'])) {
+            $template = "theme::" . $page['attributes']['template'];
+        }
+
+        return $this->templateRenderer->render($template, $context);
     }
 }
