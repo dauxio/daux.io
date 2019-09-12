@@ -144,6 +144,8 @@ Components
         vertical-align: middle;
     }
 }
+
+/* stylelint-disable-next-line selector-class-pattern */
 .no-js .CodeToggler {
     display: none;
 }
@@ -199,6 +201,7 @@ Components
 .Nav .Nav {
     margin-left: 15px;
 
+    /* stylelint-disable-next-line selector-class-pattern */
     html:not(.no-js) & {
         height: 0;
         transition: height 400ms ease-in-out;

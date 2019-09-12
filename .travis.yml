@@ -23,7 +23,7 @@ after_script:
 jobs:
   include:
     - stage: "Deploy Documentation"
-      php: "7.2"
+      php: "7.3"
       script: skip
       before_deploy:
         - composer install
