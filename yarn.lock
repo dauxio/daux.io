@@ -192,38 +192,18 @@
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-preset-prettier/-/crafty-preset-prettier-1.7.3.tgz#2bb42b437285dc59122bee97df700d8390487ebb"
   integrity sha512-ntEsEqKbYqK/ciS+1K/z7nlmBPCfvY7LYesPv0yDrqfgrr0jIunWcFULoMaQ4yzFsmbsiQ5uH54ByCv57UEpxg==
 
-"@swissquote/crafty-runner-gulp@^1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@swissquote/crafty-runner-gulp/-/crafty-runner-gulp-1.7.3.tgz#40bfbccd38bf44e2083a7d671d029f253fc893e1"
-  integrity sha512-iM7w1aZlhZSt7iYeTRhD61VKYk5ckH9H9+wmRBBdw9wpjSwWka90mI36ezfm/PqJoQ7/BukW8f0BsyZSznGT6w==
+"@swissquote/crafty-runner-gulp@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@swissquote/crafty-runner-gulp/-/crafty-runner-gulp-1.8.0.tgz#9441ce3a3b458a74255068c741d1835448f4b8cb"
+  integrity sha512-FgrplPD2d9ms5pLj/RiEZuVTQPX24FuBN25FP1nZPPSAVaj6CrziQiVUit5L+tI88azvRuMDrxN5ZM6fMljaZw==
   dependencies:
-    "@swissquote/crafty" "1.7.3"
+    "@swissquote/crafty" "1.8.0"
     debug "^4.1.0"
     glob-watcher "5.0.3"
     gulp-plumber "1.2.1"
     vinyl-fs "^3.0.0"
 
-"@swissquote/crafty@1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@swissquote/crafty/-/crafty-1.7.3.tgz#f3d87f6b006d314a53ee72beb12560a7d901cab3"
-  integrity sha512-/guUx9RLJmpfWyYT7YRtHduUDC7uWa8LgGU4J1p02cqjAu4z8+zNX6yIwMPdcPdweX/kbmdhmj87HzgjXVGZvg==
-  dependencies:
-    ansi-colors "^4.0.0"
-    browserslist "4.6.3"
-    camelcase-keys "^6.0.0"
-    debug "^4.1.0"
-    enhanced-resolve "4.1.0"
-    fancy-log "1.3.3"
-    find-up "^4.0.0"
-    glob-watcher "5.0.3"
-    loud-rejection "^2.1.0"
-    merge "1.2.1"
-    pretty-hrtime "1.0.3"
-    tmp "0.1.0"
-    undertaker "1.2.1"
-    yargs-parser "^13.1.0"
-
-"@swissquote/crafty@^1.8.0":
+"@swissquote/crafty@1.8.0", "@swissquote/crafty@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty/-/crafty-1.8.0.tgz#090ca25abfb29b8a6fd4b430580b60687669373f"
   integrity sha512-qp0kX/q5IjMSP6LeEkM0zDf/6Dt1bHwnPgC+coS1RqvpvTzqi2+at1LzgMjrvSKsQR4Hq95hGhILktR1mg2d2w==
@@ -6361,14 +6341,6 @@ yargs-parser@^11.1.1:
   version "11.1.1"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-11.1.1.tgz#879a0865973bca9f6bab5cbdf3b1c67ec7d3bcf4"
   integrity sha512-C6kB/WJDiaxONLJQnF8ccx9SEeoTTLek8RVbaOIsrAUS8VrBEXfmeSnCZxygc+XC2sNMBIwOOnfcxiynjHsVSQ==
-  dependencies:
-    camelcase "^5.0.0"
-    decamelize "^1.2.0"
-
-yargs-parser@^13.1.0:
-  version "13.1.1"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-13.1.1.tgz#d26058532aa06d365fe091f6a1fc06b2f7e5eca0"
-  integrity sha512-oVAVsHz6uFrg3XQheFII8ESO2ssAf9luWuAd6Wexsu4F3OtIW0o8IribPXYrD4WC24LWtPrJlGy87y5udK+dxQ==
   dependencies:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
