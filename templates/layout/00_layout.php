@@ -40,8 +40,8 @@
     } ?>
 
     <?php if ($params['html']['search']) { ?>
-        <!-- Tipue Search -->
-        <link href="<?= $base_url; ?>tipuesearch/tipuesearch.css" rel="stylesheet">
+        <!-- Search -->
+        <link href="<?= $base_url; ?>search/search.css" rel="stylesheet">
     <?php } ?>
 </head>
 <body class="<?= $params['html']['float'] ? 'with-float' : ''; ?> <?= $this->section('classes'); ?>">

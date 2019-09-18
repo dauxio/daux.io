@@ -1,10 +1,3 @@
-/*
-Tipue Search 5.0
-Copyright (c) 2015 Tipue
-Tipue Search is released under the MIT License
-http://www.tipue.com/search
-*/
-
 body.with-search {
     overflow: hidden;
 }
@@ -16,7 +9,7 @@ body.with-search {
     margin: 0;
 
     z-index: 100;
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
@@ -27,17 +20,16 @@ body.with-search {
 .SearchResultsBackdrop {
     z-index: 90;
 
-    width:100%;
+    width: 100%;
 
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
 
     background: #000;
-    opacity: .6;
+    opacity: 0.6;
 }
-
 
 .homepage .SearchResults,
 .homepage .SearchResultsBackdrop {
@@ -54,11 +46,12 @@ body.with-search {
 }
 
 .SearchResults__warning {
-    font-weight:300;
-    font-size:15px;
+    font-weight: 300;
+    font-size: 15px;
     line-height: 1.6;
     color: #555;
     margin: 7px 0;
+    clear: both;
 }
 
 .SearchResults__warning a {
@@ -71,8 +64,8 @@ body.with-search {
 }
 
 .SearchResults__count {
-    font-weight:300;
-    font-size:15px;
+    font-weight: 300;
+    font-size: 15px;
     line-height: 1.7;
     color: #555;
 }
@@ -86,12 +79,12 @@ body.with-search {
     cursor: pointer;
     padding: 0;
     margin: 0;
-    line-height: .8em;
+    line-height: 0.8em;
 }
 
 .SearchResults__title {
-    font-weight:300;
-    font-size:21px;
+    font-weight: 300;
+    font-size: 21px;
     line-height: 1.7;
     margin-top: 23px;
 }
@@ -106,8 +99,8 @@ body.with-search {
 }
 
 .SearchResults__url {
-    font-weight:300;
-    font-size:14px;
+    font-weight: 300;
+    font-size: 14px;
     line-height: 1.9;
     word-wrap: break-word;
     hyphens: auto;
@@ -123,8 +116,8 @@ body.with-search {
 }
 
 .SearchResults__text {
-    font-weight:300;
-    font-size:15px;
+    font-weight: 300;
+    font-size: 15px;
     line-height: 1.6;
     color: #555;
     word-wrap: break-word;
@@ -133,8 +126,8 @@ body.with-search {
 }
 
 .SearchResults__debug {
-    font-weight:300;
-    font-size:13px;
+    font-weight: 300;
+    font-size: 13px;
     line-height: 1.6;
     color: #555;
     margin: 5px 0;
@@ -163,7 +156,6 @@ body.with-search {
     background: #f6f6f6;
     border: 1px solid #e2e2e2;
 }
-
 
 /* spinner */
 

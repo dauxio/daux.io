@@ -22,16 +22,10 @@
         window.searchTranslation = <?= json_encode($search_translations) ?>;
     </script>
 
-    <!-- Tipue Search -->
-    <script type="text/javascript" src="<?php echo $base_url; ?>tipuesearch/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="<?php echo $base_url; ?>tipuesearch/tipuesearch.js"></script>
+    <!-- Search -->
+    <script type="text/javascript" src="<?php echo $base_url; ?>search/search.min.js"></script>
 
     <script>
-        window.onunload = function(){}; // force $(document).ready to be called on back/forward navigation in firefox
-        $(function() {
-            tipuesearch({
-                'base_url': '<?php echo $base_url?>'
-            });
-        });
+        window.search({'base_url': '<?php echo $base_url?>'})
     </script>
 <?php } ?>

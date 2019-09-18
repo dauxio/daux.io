@@ -5,3 +5,7 @@ node_modules
 static
 
 /vendor
+
+/prettier.config.js
+/.eslintrc.js
+/stylelint.config.js

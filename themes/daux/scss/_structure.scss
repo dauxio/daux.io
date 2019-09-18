@@ -43,6 +43,7 @@ body {
 
 @media (max-width: 768px) {
     // mobile friendly sub-nav
+    /* stylelint-disable-next-line selector-class-pattern */
     html:not(.no-js) .Collapsible__content {
         height: 0;
         overflow: hidden;

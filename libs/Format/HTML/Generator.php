@@ -74,11 +74,11 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
         if ($params['html']['search']) {
             GeneratorHelper::copyRecursive(
-                $this->daux->local_base . DIRECTORY_SEPARATOR . 'tipuesearch' . DIRECTORY_SEPARATOR,
-                $destination . DIRECTORY_SEPARATOR . 'tipuesearch'
+                $this->daux->local_base . DIRECTORY_SEPARATOR . 'search' . DIRECTORY_SEPARATOR,
+                $destination . DIRECTORY_SEPARATOR . 'search'
             );
             file_put_contents(
-                $destination . DIRECTORY_SEPARATOR . 'tipuesearch' . DIRECTORY_SEPARATOR . 'tipuesearch_content.json',
+                $destination . DIRECTORY_SEPARATOR . 'search' . DIRECTORY_SEPARATOR . 'search_index.json',
                 json_encode(['pages' => $this->indexed_pages])
             );
 
