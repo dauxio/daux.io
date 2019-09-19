@@ -2,7 +2,6 @@
 const {
     Link_previous,
     Link_next,
-    Search_common_words_ignored,
     Search_no_results,
     Search_one_character_or_more,
     Search_one_result,
@@ -13,7 +12,6 @@ const {
 
 const textLinkPrevious = Link_previous;
 const textLinkNext = Link_next;
-const textSearchCommonWordsIgnored = Search_common_words_ignored;
 const textSearchNoResults = Search_no_results;
 const textSearchOneCharacterOrMore = Search_one_character_or_more;
 const textSearchOneResult = Search_one_result;
@@ -25,7 +23,6 @@ const textSearchTooShort = Search_too_short;
 export {
     textLinkPrevious,
     textLinkNext,
-    textSearchCommonWordsIgnored,
     textSearchNoResults,
     textSearchOneCharacterOrMore,
     textSearchOneResult,

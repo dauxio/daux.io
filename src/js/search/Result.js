@@ -1,4 +1,4 @@
-import preact from "preact";
+import * as preact from "preact";
 /** @jsx preact.h */
 
 // TODO :: restore highlight
@@ -18,17 +18,17 @@ import preact from "preact";
 }*/
 
 export default function Result({ settings, item }) {
-    let description;
-    if (item.desc) {
-        description = item.desc
+    let text;
+    if (item.text) {
+        text = item.text
             .split(" ")
             .slice(0, settings.descriptiveWords)
             .join(" ");
         if (
-            item.desc.length < description.length &&
-            description.charAt(description.length - 1) !== "."
+            item.text.length < text.length &&
+            text.charAt(text.length - 1) !== "."
         ) {
-            description += " ...";
+            text += " ...";
         }
     }
 
@@ -37,9 +37,6 @@ export default function Result({ settings, item }) {
             <div className="SearchResults__title">
                 <a href={settings.base_url + item.url}>{item.title}</a>
             </div>
-            {settings.debug && (
-                <div className="SearchResults__debug">Score: {item.score}</div>
-            )}
             {settings.showURL && (
                 <div className="SearchResults__url">
                     <a href={settings.base_url + item.url}>
@@ -47,9 +44,7 @@ export default function Result({ settings, item }) {
                     </a>
                 </div>
             )}
-            {description.desc && (
-                <div className="SearchResults__text">{description}</div>
-            )}
+            {text && <div className="SearchResults__text">{text}</div>}
         </div>
     );
 }

@@ -1,12 +1,23 @@
-import preact from "preact";
+import * as preact from "preact";
+import FlexSearch from "flexsearch";
 
 import Search from "./Search";
-
-import { getURLP } from "./utils";
 
 /** @jsx preact.h */
 
 const originalTitle = document.title;
+
+function getURLP(name) {
+    const elements = new RegExp(`[?|&]${name}=([^&;]+?)(&|#|;|$)`).exec(
+        window.location.search
+    );
+
+    return (
+        decodeURIComponent(
+            ((elements && elements[1]) || "").replace(/\+/g, "%20")
+        ) || null
+    );
+}
 
 class SearchEngine {
     constructor(options) {
@@ -20,7 +31,6 @@ class SearchEngine {
             highlightTerms: true,
             highlightEveryTerm: false,
             contentLocation: "search/search_index.json",
-            debug: false,
             ...options
         };
 
@@ -36,7 +46,24 @@ class SearchEngine {
             )
                 .then(data => data.json())
                 .then(json => {
-                    this.searchIndex = json;
+                    this.searchIndex = new FlexSearch({
+                        doc: {
+                            id: "url",
+                            field: ["title", "text", "tags"]
+                        }
+                    });
+
+                    let pages = json.pages;
+
+                    // Only keep the pages related to the current language
+                    if (window.searchLanguage) {
+                        const pagePrefix = `${window.searchLanguage}/`;
+                        pages = pages.filter(
+                            item => item.url.indexOf(pagePrefix) === 0
+                        );
+                    }
+
+                    this.searchIndex.add(pages);
                 });
         }
 
@@ -77,9 +104,8 @@ class SearchEngine {
         document.removeEventListener("keyup", this.keyUpHandler);
 
         document.body.classList.remove("with-search");
-        preact.render("", this.resultContainer, this.renderedElement);
+        preact.render(null, this.resultContainer);
         this.resultContainer = null;
-        this.renderedElement = null;
     };
 
     displaySearch() {
@@ -90,9 +116,9 @@ class SearchEngine {
 
         document.addEventListener("keyup", this.keyUpHandler);
 
-        this.renderedElement = preact.render(
+        preact.render(
             <Search
-                searchIndex={this.searchIndex}
+                onSearch={term => this.searchIndex.search(term)}
                 onClose={this.handleClose}
                 onTitleChange={title => {
                     document.title = `${title} ${originalTitle}`;

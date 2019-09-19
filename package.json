@@ -8,7 +8,8 @@
     "@swissquote/crafty-preset-postcss": "^1.8.0",
     "@swissquote/crafty-runner-gulp": "^1.8.0",
     "@swissquote/crafty-runner-rollup": "^1.8.0",
-    "preact": "^8.5.2"
+    "flexsearch": "^0.6.30",
+    "preact": "^10.0.0-rc.3"
   },
   "scripts": {
     "build": "crafty run",

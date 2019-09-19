@@ -1,4 +1,4 @@
-import preact from "preact";
+import * as preact from "preact";
 import { textLinkPrevious, textLinkNext } from "./translation";
 /** @jsx preact.h */
 

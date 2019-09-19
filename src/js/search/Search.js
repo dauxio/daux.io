@@ -1,9 +1,8 @@
-import preact from "preact";
+import * as preact from "preact";
 
 import Pagination from "./Pagination";
 import Result from "./Result";
 import {
-    textSearchCommonWordsIgnored,
     textSearchNoResults,
     textSearchOneCharacterOrMore,
     textSearchOneResult,
@@ -11,7 +10,6 @@ import {
     textSearchShouldBeXOrMore,
     textSearchTooShort
 } from "./translation";
-import { getResults, getSearchString } from "./utils";
 
 /** @jsx preact.h */
 
@@ -47,42 +45,28 @@ export default class Search extends preact.Component {
     };
 
     getResults() {
-        const { settings, searchIndex } = this.props;
+        const { settings } = this.props;
         const { start } = this.state;
-
-        const searchString = getSearchString(
-            this.state.search.toLowerCase().trim()
-        );
-        const searchFor = searchString.searchFor;
 
         const warnings = [];
         let counter = 0;
         let results = [];
 
-        if (searchFor.length < settings.minimumLength) {
-            if (searchString.hasStopWords) {
-                warnings.push(
-                    `${textSearchNoResults}. ${textSearchCommonWordsIgnored}`
-                );
-            } else {
-                warnings.push(textSearchTooShort);
-                warnings.push(
-                    settings.minimumLength === 1
-                        ? textSearchOneCharacterOrMore
-                        : textSearchShouldBeXOrMore.replace(
-                              "!min",
-                              settings.minimumLength
-                          )
-                );
-            }
+        if (this.state.search.length < settings.minimumLength) {
+            warnings.push(textSearchTooShort);
+            warnings.push(
+                settings.minimumLength === 1
+                    ? textSearchOneCharacterOrMore
+                    : textSearchShouldBeXOrMore.replace(
+                          "!min",
+                          settings.minimumLength
+                      )
+            );
+
             return { warnings, counter, results, start };
         }
 
-        const found = getResults(
-            searchIndex,
-            searchString.searchFor,
-            searchString.isStandard
-        );
+        const found = this.props.onSearch(this.state.search);
 
         counter = found.length;
 
