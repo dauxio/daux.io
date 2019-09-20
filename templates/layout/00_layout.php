@@ -27,7 +27,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- JS -->
-    <script>document.documentElement.classList.remove('no-js');</script>
+    <script>
+        window.base_url = "<?php echo $base_url?>";
+        document.documentElement.classList.remove('no-js');
+    </script>
 
     <!-- Font -->
     <?php foreach ($params['theme']['fonts'] as $font) {

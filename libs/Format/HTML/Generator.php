@@ -72,6 +72,11 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
         $this->generateRecursive($this->daux->tree, $destination, $params, $output, $width, $params['html']['search']);
 
+        GeneratorHelper::copyRecursive(
+            $this->daux->local_base . DIRECTORY_SEPARATOR . '_libraries' . DIRECTORY_SEPARATOR,
+            $destination . DIRECTORY_SEPARATOR . '_libraries'
+        );
+
         if ($params['html']['search']) {
             GeneratorHelper::copyRecursive(
                 $this->daux->local_base . DIRECTORY_SEPARATOR . 'search' . DIRECTORY_SEPARATOR,
