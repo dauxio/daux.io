@@ -7,11 +7,10 @@ module.exports = {
         "@swissquote/crafty-preset-postcss",
         "@swissquote/crafty-runner-gulp"
     ],
-    destination_css: "themes",
+    destination_css: ".",
     destination_js: ".",
     stylelint_pattern: [
-        "themes/daux/scss/**/*.scss",
-        "themes/daux_singlepage/scss/**/*.scss",
+        "src/css/**/*.scss",
         "!*.min.css",
         "!**/vendor/**/*.scss"
     ],
@@ -35,29 +34,24 @@ module.exports = {
     },
     css: {
         theme_blue: {
-            source: "themes/daux/scss/theme-blue.scss",
-            destination: "daux/css/theme-blue.min.css",
-            watch: ["themes/daux/scss/**"]
+            source: "src/css/theme_daux/theme-blue.scss",
+            destination: "themes/daux/css/theme-blue.min.css"
         },
         theme_green: {
-            source: "themes/daux/scss/theme-green.scss",
-            destination: "daux/css/theme-green.min.css",
-            watch: ["themes/daux/scss/**"]
+            source: "src/css/theme_daux/theme-green.scss",
+            destination: "themes/daux/css/theme-green.min.css"
         },
         theme_navy: {
-            source: "themes/daux/scss/theme-navy.scss",
-            destination: "daux/css/theme-navy.min.css",
-            watch: ["themes/daux/scss/**"]
+            source: "src/css/theme_daux/theme-navy.scss",
+            destination: "themes/daux/css/theme-navy.min.css"
         },
         theme_red: {
-            source: "themes/daux/scss/theme-red.scss",
-            destination: "daux/css/theme-red.min.css",
-            watch: ["themes/daux/scss/**"]
+            source: "src/css/theme_daux/theme-red.scss",
+            destination: "themes/daux/css/theme-red.min.css"
         },
         daux_singlepage: {
-            source: "themes/daux_singlepage/scss/main.scss",
-            destination: "daux_singlepage/css/main.min.css",
-            watch: ["themes/daux_singlepage/scss/**"]
+            source: "src/css/theme_daux_singlepage/main.scss",
+            destination: "themes/daux_singlepage/css/main.min.css"
         }
     }
 };
