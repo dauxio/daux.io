@@ -2,21 +2,27 @@ Highlight.js highlights syntax in code examples on blogs, forums and in fact on 
 
 You can even use [Github Flavored Markdown](!Features/CommonMark_compliant)
 
+We also use the [scrivo/highlight.php](https://github.com/scrivo/highlight.php) package to highlight on rendering when possible.
+Highlight.js is a powerful but heavy library, since we don't know which languages you'll use we included all of them.
+
+The good news is; if you use a fenced code block (` ``` `) with the language defined, the rendering is done on server side and entirely skips loading Highlight.js on the page. While still having the same end-result on your code.
+
 
 **Python**
 
-	@requires_authorization
-	def somefunc(param1='', param2=0):
-	    r'''A docstring'''
-	    if param1 > param2: # interesting
-	        print 'Gre\'ater'
-	    return (param2 - param1 + 1) or None
+```python
+@requires_authorization
+def somefunc(param1='', param2=0):
+	r'''A docstring'''
+	if param1 > param2: # interesting
+		print 'Gre\'ater'
+	return (param2 - param1 + 1) or None
 
-	class SomeClass:<br>    pass
+class SomeClass:<br>    pass
 
-	>>> message = '''interpreter
-	... prompt'''
-
+>>> message = '''interpreter
+... prompt'''
+```
 
 **Python's profiler output**
 
