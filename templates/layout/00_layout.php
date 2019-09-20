@@ -44,7 +44,7 @@
 
     <?php if ($params['html']['search']) { ?>
         <!-- Search -->
-        <link href="<?= $base_url; ?>search/search.css" rel="stylesheet">
+        <link href="<?= $base_url; ?>_libraries/search.css" rel="stylesheet">
     <?php } ?>
 </head>
 <body class="<?= $params['html']['float'] ? 'with-float' : ''; ?> <?= $this->section('classes'); ?>">

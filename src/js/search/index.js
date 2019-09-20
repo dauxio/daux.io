@@ -30,7 +30,7 @@ class SearchEngine {
             descriptiveWords: 25,
             highlightTerms: true,
             highlightEveryTerm: false,
-            contentLocation: "search/search_index.json",
+            contentLocation: "_search_index.json",
             ...options
         };
 

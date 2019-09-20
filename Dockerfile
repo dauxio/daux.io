@@ -23,7 +23,6 @@ COPY libs/ /daux/libs/
 COPY templates/ /daux/templates/
 COPY themes/ /daux/themes/
 COPY _libraries/ /daux/_libraries/
-COPY search/ /daux/search/
 COPY global.json /daux/global.json
 COPY index.php /daux/index.php
 

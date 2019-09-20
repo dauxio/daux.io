@@ -23,7 +23,7 @@
     </script>
 
     <!-- Search -->
-    <script type="text/javascript" src="<?php echo $base_url; ?>search/search.min.js"></script>
+    <script type="text/javascript" src="<?php echo $base_url; ?>_libraries/search.min.js"></script>
 
     <script>
         window.search({'base_url': '<?php echo $base_url?>'})

@@ -25,7 +25,7 @@ module.exports = {
         search: {
             runner: "rollup",
             source: "src/js/search/index.js",
-            destination: "search/search.min.js"
+            destination: "_libraries/search.min.js"
         },
         theme_daux: {
             runner: "rollup",
