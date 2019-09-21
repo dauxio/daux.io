@@ -297,21 +297,24 @@ Components
     padding-left: 1em;
 
     &__title {
-        border-bottom: 4px solid #efefef;
         margin-bottom: 0 !important;
     }
 
-    &__content > .TableOfContents {
-        margin-top: 0;
-        border-right: 2px solid #efefef;
+    &__content {
+        border: 1px solid #efefef;
+        border-width: 4px 2px 2px 6px;
+    }
+
+    &__content > .TableOfContents > li + li {
+        border-top: 1px solid #ddd;
     }
 }
 
 ul.TableOfContents {
-    float: none;
-    font-size: 16px;
-    padding-left: 1.5em;
-    border-left: 6px solid #efefef;
+    font-size: 1rem;
+    padding-left: 0;
+    margin: 0;
+    list-style-type: none;
 
     p {
         margin-bottom: 0;
@@ -320,31 +323,11 @@ ul.TableOfContents {
     a {
         text-decoration: none;
         display: block;
-        border-bottom: 1px solid #ddd;
-        padding: 0.2em 0;
+        padding: 0.2em 0 0.2em 0.75em;
     }
 
     .TableOfContents {
-        border-left-width: 0;
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    li a {
         padding-left: 0.75em;
-    }
-
-    li li a {
-        padding-left: 1.5em;
-    }
-
-    li li li a {
-        padding-left: 2.25em;
-    }
-
-    // stylelint-disable-next-line selector-max-compound-selectors
-    li li li li a {
-        padding-left: 3em;
     }
 }
 
