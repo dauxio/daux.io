@@ -35,23 +35,14 @@
             </div>
 
             <?php if ($params['html']['toggle_code']) { ?>
-                    <div class="CodeToggler">
-                        <hr/>
-                        <?php if ($params['html']['float']) { ?>
-                            <span class="CodeToggler__text"><?=$this->translate("CodeBlocks_title") ?></span>
-                            <div class="ButtonGroup" role="group">
-                                <button class="Button Button--default Button--small CodeToggler__button CodeToggler__button--hide"><?=$this->translate("CodeBlocks_hide") ?></button>
-                                <button class="Button Button--default Button--small CodeToggler__button CodeToggler__button--below"><?=$this->translate("CodeBlocks_below") ?></button>
-                                <button class="Button Button--default Button--small CodeToggler__button CodeToggler__button--float"><?=$this->translate("CodeBlocks_inline") ?></button>
-                            </div>
-                        <?php } else { ?>
-                            <label class="Checkbox"><?=$this->translate("CodeBlocks_show") ?>
-                                <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
-                                <div class="Checkbox__indicator"></div>
-                            </label>
-                        <?php } ?>
-                    </div>
-                <?php } ?>
+                <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox"><?=$this->translate("CodeBlocks_show") ?>
+                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            <?php } ?>
 
                 <?php if (!empty($params['html']['twitter'])) { ?>
                     <div class="Twitter">
@@ -72,7 +63,7 @@
                 <?php } ?>
         </div>
     </aside>
-    <div class="Columns__right <?= $params['html']['float'] ? 'Columns__right--float' : 'Columns__right--full'; ?>">
+    <div class="Columns__right">
         <div class="Columns__right__content">
             <div class="doc_content">
                 <?= $this->section('content'); ?>

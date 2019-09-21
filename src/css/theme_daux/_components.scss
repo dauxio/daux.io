@@ -62,53 +62,6 @@ Components
     }
 }
 
-.ButtonGroup {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle; // match .Button alignment given font-size hack above
-
-    .Button + .Button {
-        margin-left: -1px;
-    }
-
-    > .Button {
-        position: relative;
-        float: left;
-
-        // Bring the "active" button to the front
-        &:hover,
-        &:focus {
-            z-index: 2;
-        }
-
-        &:active,
-        &.Button--active {
-            z-index: 3;
-        }
-
-        &:not(:first-child):not(:last-child) {
-            border-radius: 0;
-        }
-
-        // Set corners individually because sometimes
-        // a single button can be in a .ButtonGroup
-        // and we need :first-child and :last-child to both match
-        &:first-child {
-            margin-left: 0;
-        }
-
-        &:first-child:not(:last-child) {
-            border-bottom-right-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        &:last-child:not(:first-child) {
-            border-bottom-left-radius: 0;
-            border-top-left-radius: 0;
-        }
-    }
-}
-
 .Brand {
     display: block;
     background-color: var(--brand-background);
@@ -338,6 +291,11 @@ Components
 }
 
 .TableOfContentsContainer {
+    float: right;
+    min-width: 300px;
+    max-width: 25%;
+    padding-left: 1em;
+
     &__title {
         border-bottom: 4px solid #efefef;
         margin-bottom: 0 !important;
@@ -345,6 +303,7 @@ Components
 
     &__content > .TableOfContents {
         margin-top: 0;
+        border-right: 2px solid #efefef;
     }
 }
 
@@ -360,32 +319,15 @@ ul.TableOfContents {
 
     a {
         text-decoration: none;
+        display: block;
+        border-bottom: 1px solid #ddd;
+        padding: 0.2em 0;
     }
 
     .TableOfContents {
         border-left-width: 0;
-    }
-}
-
-.Columns__right--full .TableOfContentsContainer {
-    float: right;
-    min-width: 300px;
-    max-width: 25%;
-    padding-left: 1em;
-
-    .TableOfContentsContainer__content > .TableOfContents {
-        border-right: 2px solid #efefef;
-    }
-
-    .TableOfContents {
         list-style-type: none;
         padding-left: 0;
-    }
-
-    a {
-        display: block;
-        border-bottom: 1px solid #ddd;
-        padding: 0.2em 0;
     }
 
     li a {

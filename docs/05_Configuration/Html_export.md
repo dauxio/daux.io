@@ -60,16 +60,6 @@ You can *optionally* specify the separator used for breadcrumbs.
 }
 ```
 
-## Code Floating
-By default your code blocks will be floated to a column on the right side of your content. 
-To disable this feature, set the `float` property to `false`.
-
-```json
-{
-  "html": { "float": false }
-}
-```
-
 ## Date Modified
 By default, daux.io will display the last modified time as reported by the system underneath the title for each document. 
 To disable this, change the option in your config.json to `false`.

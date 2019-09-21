@@ -16,7 +16,6 @@
         "breadcrumb_separator": "Chevrons",
         "toggle_code": true,
         "date_modified": true,
-        "float": true,
         "inherit_index": true,
 
         "repo": "dauxio/daux.io",

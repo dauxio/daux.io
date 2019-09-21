@@ -47,7 +47,7 @@
         <link href="<?= $base_url; ?>_libraries/search.css" rel="stylesheet">
     <?php } ?>
 </head>
-<body class="<?= $params['html']['float'] ? 'with-float' : ''; ?> <?= $this->section('classes'); ?>">
+<body class="<?= $this->section('classes'); ?>">
     <?= $this->section('content'); ?>
 
     <?php

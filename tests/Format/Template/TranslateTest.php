@@ -72,7 +72,6 @@ class TranslateTest extends TestCase
 
         $config['html'] = [
             'search'           => '',
-            'float'            => false,
             'toggle_code'      => false,
             'piwik_analytics'  => '',
             'google_analytics' => '',
