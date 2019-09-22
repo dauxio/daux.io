@@ -133,9 +133,9 @@ class Template
                 $icon = '<i class="Nav__arrow">&nbsp;</i>';
 
                 if (array_key_exists('href', $entry)) {
-                    $link = '<a href="' . $entry['href'] . '" class="folder">' . $icon . $entry['title'] . '</a>';
+                    $link = '<a href="' . $entry['href'] . '" class="Nav__item__link">' . $icon . $entry['title'] . '</a>';
                 } else {
-                    $link = '<a href="#" class="aj-nav folder">' . $icon . $entry['title'] . '</a>';
+                    $link = '<a href="#" class="Nav__item__link Nav__item__link--nopage">' . $icon . $entry['title'] . '</a>';
                 }
 
                 $link .= $this->renderNavigation($entry['children']);

@@ -64,9 +64,9 @@ class Book
         foreach ($entries as $entry) {
             if (array_key_exists('children', $entry)) {
                 if (array_key_exists('href', $entry)) {
-                    $link = '<a href="' . $entry['href'] . '" class="folder">' . $entry['title'] . '</a>';
+                    $link = '<a href="' . $entry['href'] . '" class="Nav__item__link--nopage">' . $entry['title'] . '</a>';
                 } else {
-                    $link = '<a href="#" class="aj-nav folder">' . $entry['title'] . '</a>';
+                    $link = '<a href="#" class="Nav__item__link Nav__item__link--nopage">' . $entry['title'] . '</a>';
                 }
 
                 $link .= $this->renderNavigation($entry['children']);

@@ -10,10 +10,7 @@ if (trigger) {
             trigger.setAttribute("aria-expanded", "false");
         } else {
             trigger.setAttribute("aria-expanded", "true");
-            content.style.transitionDuration = `${Math.max(
-                content.scrollHeight,
-                150
-            )}ms`;
+            content.style.transitionDuration = "150ms";
             content.style.height = `${content.scrollHeight}px`;
             content.classList.add("Collapsible__content--open");
         }
