@@ -1,88 +1,79 @@
-/* ===========================================================================================
-Code Highlighting
-============================================================================================== */
-
-/*
-
-Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
-
-*/
+/**
+ * GitHub Gist Theme
+ * Author : Anthony Attard - https://github.com/AnthonyAttard
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
 
 .hljs {
     display: block;
+    //background: white;
+    //padding: 0.5em;
+    color: #333333;
     overflow-x: auto;
-    padding: 0.5em;
-    background: #fdf6e3;
-    color: #657b83;
 }
 
 .hljs-comment,
-.hljs-quote {
-    color: #93a1a1;
+.hljs-meta {
+    color: #969896;
 }
 
-/* Solarized Green */
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-addition {
-    color: #859900;
-}
-
-/* Solarized Cyan */
-.hljs-number,
-.hljs-string,
-.hljs-meta .hljs-meta-string,
-.hljs-literal,
-.hljs-doctag,
-.hljs-regexp {
-    color: #2aa198;
-}
-
-/* Solarized Blue */
-.hljs-title,
-.hljs-section,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class {
-    color: #268bd2;
-}
-
-/* Solarized Yellow */
-.hljs-attribute,
-.hljs-attr,
 .hljs-variable,
 .hljs-template-variable,
-.hljs-class .hljs-title,
-.hljs-type {
-    color: #b58900;
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+    color: #df5000;
 }
 
-/* Solarized Orange */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+    color: #d73a49;
+}
+
+.hljs-literal,
 .hljs-symbol,
 .hljs-bullet,
-.hljs-subst,
-.hljs-meta,
-.hljs-meta .hljs-keyword,
+.hljs-attribute {
+    color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+    color: #63a35c;
+}
+
+.hljs-tag {
+    color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
 .hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-link {
-    color: #cb4b16;
+.hljs-selector-pseudo {
+    color: #6f42c1;
 }
 
-/* Solarized Red */
-.hljs-built_in,
+.hljs-addition {
+    color: #55a532;
+    background-color: #eaffea;
+}
+
 .hljs-deletion {
-    color: #dc322f;
+    color: #bd2c00;
+    background-color: #ffecec;
 }
 
-.hljs-formula {
-    background: #eee8d5;
+.hljs-link {
+    text-decoration: underline;
 }
 
-.hljs-emphasis {
-    font-style: italic;
+.hljs-number {
+    color: #005cc5;
 }
 
-.hljs-strong {
-    font-weight: bold;
+.hljs-string {
+    color: #032f62;
 }
