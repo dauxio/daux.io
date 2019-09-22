@@ -47,11 +47,7 @@
                 <?php if (!empty($params['html']['twitter'])) { ?>
                     <div class="Twitter">
                         <hr/>
-                        <?php foreach ($params['html']['twitter'] as $handle) { ?>
-                            <iframe allowtransparency="true" frameborder="0" scrolling="no" style="width:162px; height:20px;" src="https://platform.twitter.com/widgets/follow_button.html?screen_name=<?= $handle; ?>&amp;show_count=false"></iframe>
-                            <br />
-                            <br />
-                        <?php } ?>
+                        <?php $this->insert('theme::partials/twitter_buttons', ['params' => $params]); ?>
                     </div>
                 <?php } ?>
 

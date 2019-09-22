@@ -242,6 +242,42 @@ Components
 
 .Twitter {
     padding: 0 20px;
+    font: normal normal normal 11px/18px "Helvetica Neue", Arial, sans-serif;
+
+    &__button {
+        text-decoration: none;
+
+        display: inline-block;
+        vertical-align: top;
+        zoom: 1;
+
+        position: relative;
+        height: 20px;
+        box-sizing: border-box;
+        padding: 1px 8px 1px 6px;
+        background-color: #1b95e0;
+        color: #fff;
+        border-radius: 3px;
+        font-weight: 500;
+        cursor: pointer;
+
+        .Twitter__button__label {
+            display: inline-block;
+            vertical-align: top;
+            zoom: 1;
+
+            margin-left: 3px;
+            white-space: nowrap;
+        }
+
+        svg {
+            position: relative;
+            top: 2px;
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+        }
+    }
 }
 
 .PoweredBy {
