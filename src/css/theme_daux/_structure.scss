@@ -143,3 +143,8 @@ body {
         }
     }
 }
+
+.Page {
+    // 860 == screen-width of 1200 - sidebar - margin
+    max-width: 860px;
+}
