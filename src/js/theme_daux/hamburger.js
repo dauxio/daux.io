@@ -7,7 +7,9 @@ if (trigger) {
         if (content.classList.contains("Collapsible__content--open")) {
             content.style.height = 0;
             content.classList.remove("Collapsible__content--open");
+            trigger.setAttribute("aria-expanded", "false");
         } else {
+            trigger.setAttribute("aria-expanded", "true");
             content.style.transitionDuration = `${Math.max(
                 content.scrollHeight,
                 150

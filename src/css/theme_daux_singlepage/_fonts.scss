@@ -13,6 +13,7 @@
     font-family: "Roboto Slab";
     font-style: normal;
     font-weight: 300;
+    font-display: fallback;
     src: url("../fonts/robotoslab-light.eot");
     src: url("../fonts/robotoslab-light.eot?#iefix") format("embedded-opentype"),
         url("../fonts/robotoslab-light.woff2") format("woff2"),
@@ -27,6 +28,7 @@
     font-family: "Roboto Slab";
     font-style: normal;
     font-weight: 400;
+    font-display: fallback;
     src: url("../fonts/robotoslab-regular.eot");
     src: url("../fonts/robotoslab-regular.eot?#iefix")
             format("embedded-opentype"),
@@ -42,6 +44,7 @@
     font-family: "Roboto Slab";
     font-style: normal;
     font-weight: 700;
+    font-display: fallback;
     src: url("../fonts/robotoslab-bold.eot");
     src: url("../fonts/robotoslab-bold.eot?#iefix") format("embedded-opentype"),
         url("../fonts/robotoslab-bold.woff2") format("woff2"),

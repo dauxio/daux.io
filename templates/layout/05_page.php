@@ -1,7 +1,7 @@
 <?php $this->layout('theme::layout/00_layout') ?>
 <div class="Columns content">
     <aside class="Columns__left Collapsible">
-        <button type="button" class="Button Collapsible__trigger">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="<?= $this->translate("Toggle_navigation") ?>">
             <span class="Collapsible__trigger__bar"></span>
             <span class="Collapsible__trigger__bar"></span>
             <span class="Collapsible__trigger__bar"></span>
@@ -9,7 +9,7 @@
 
         <?php $this->insert('theme::partials/navbar_content', ['params' => $params]); ?>
 
-        <div class="Collapsible__content">
+        <div class="Collapsible__content" id="sidebar_content">
             <!-- Navigation -->
             <?php
             $rendertree = $tree;
