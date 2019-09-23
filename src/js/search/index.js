@@ -30,7 +30,7 @@ class SearchEngine {
             descriptiveWords: 25,
             highlightTerms: true,
             highlightEveryTerm: false,
-            contentLocation: "_search_index.json",
+            contentLocation: "daux_search_index.json",
             ...options
         };
 

@@ -44,7 +44,7 @@
 
     <?php if ($params['html']['search']) { ?>
         <!-- Search -->
-        <link href="<?= $base_url; ?>_libraries/search.css" rel="stylesheet">
+        <link href="<?= $base_url; ?>daux_libraries/search.css" rel="stylesheet">
     <?php } ?>
 </head>
 <body class="<?= $this->section('classes'); ?>">

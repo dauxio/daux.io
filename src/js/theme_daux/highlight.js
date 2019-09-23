@@ -4,7 +4,7 @@ if (codeBlocks.length) {
         script = document.createElement("script");
     script.type = "text/javascript";
     script.async = true;
-    script.src = `${window.base_url}_libraries/highlight.pack.js`;
+    script.src = `${window.base_url}daux_libraries/highlight.pack.js`;
     script.onload = function(src) {
         [].forEach.call(codeBlocks, window.hljs.highlightBlock);
     };

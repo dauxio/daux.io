@@ -22,7 +22,7 @@ COPY bin/ /daux/bin/
 COPY libs/ /daux/libs/
 COPY templates/ /daux/templates/
 COPY themes/ /daux/themes/
-COPY _libraries/ /daux/_libraries/
+COPY daux_libraries/ /daux/daux_libraries/
 COPY global.json /daux/global.json
 COPY index.php /daux/index.php
 
