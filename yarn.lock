@@ -6274,10 +6274,10 @@ postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.10, postcss@^6.0.18, postcss@^6.0.2
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-preact@^10.0.0-rc.3:
-  version "10.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.0-rc.3.tgz#258d1bbf11744e0460b8681422cd6a0c18200df7"
-  integrity sha512-IvDc2AGvHJncEtORciLDzpluDF2MsZqf9eo6xHt7HVY4E6OvxZzAePYJtv3siVdEntxmB9NciQpbToT1APqJYQ==
+preact@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.1.tgz#16451887a8490dd534d60d1bc7d2ff4a70f7e0ee"
+  integrity sha512-lq7jo1rwwCd1YkiBcuOxRc3I0y1FZACa6O7tgNXt47QZJtSlLEE53f/FDNsLtiB2IVQTHbaey20TjSPmejhDyQ==
 
 prelude-ls@~1.1.2:
   version "1.1.2"
