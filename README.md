@@ -39,6 +39,7 @@ This is a list of sites using Daux.io:
 	* [Soisy](https://doc.soisy.it/)
     * [Vulkan Tutorial](https://vulkan-tutorial.com)
 	* [3Q](https://docs.3q.video/)
+    * [The Advanced RSS Environment](https://thearsse.com/manual/)
 - With the default Theme
     * [Daux.io](https://daux.io/)
 	* [DoctrineWatcher](https://dsentker.github.io/WatcherDocumentation/)
