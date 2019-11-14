@@ -4,11 +4,24 @@ on: [push]
 
 jobs:
   build:
+    strategy:
+      max-parallel: 15
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macOS-latest]
+        php-versions: ['7.1', '7.2', '7.3']
 
-    runs-on: ubuntu-latest
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
+    runs-on: ${{ matrix.operating-system }}
 
     steps:
     - uses: actions/checkout@v1
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@master
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extension-csv: mbstring, xdebug
+        coverage: xdebug
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -17,9 +30,10 @@ jobs:
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+        key: ${{ runner.OS }}-build-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-${{ matrix.php-versions }}-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-${{ matrix.php-versions }}-
           ${{ runner.OS }}-build-
 
     - name: Install dependencies
