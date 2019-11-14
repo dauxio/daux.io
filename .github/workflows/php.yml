@@ -13,6 +13,15 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
+    - name: Cache vendor
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
