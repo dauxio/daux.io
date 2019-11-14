@@ -7,7 +7,8 @@ jobs:
     strategy:
       max-parallel: 15
       matrix:
-        operating-system: [ubuntu-latest, windows-latest, macOS-latest]
+        # TODO : enable tests on windows
+        operating-system: [ubuntu-latest, macOS-latest]
         php-versions: ['7.1', '7.2', '7.3']
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
@@ -23,18 +24,19 @@ jobs:
         extension-csv: mbstring, xdebug
         coverage: xdebug
 
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
     - name: Validate composer.json and composer.lock
       run: composer validate
 
     - name: Cache vendor
       uses: actions/cache@v1
       with:
-        path: node_modules
-        key: ${{ runner.OS }}-build-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ matrix.php-versions }}-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-${{ matrix.php-versions }}-
-          ${{ runner.OS }}-build-
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
