@@ -189,11 +189,16 @@ class DauxHelper
                 continue;
             }
 
-            $node = DauxHelper::slug(urldecode($node));
-
             // if the node exists in the current request tree,
             // change the $tree variable to reference the new
             // node and proceed to the next url part
+            if (isset($tree->getEntries()[$node])) {
+                $tree = $tree->getEntries()[$node];
+                continue;
+            }
+
+            // We try a second time by decoding the url
+            $node = DauxHelper::slug(urldecode($node));
             if (isset($tree->getEntries()[$node])) {
                 $tree = $tree->getEntries()[$node];
                 continue;
