@@ -1,6 +1,6 @@
 <?php namespace Todaymade\Daux\Server;
 
-use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +31,8 @@ class Server
      */
     public static function serve()
     {
-        $output = new NullOutput();
+        $verbosity = getenv('DAUX_VERBOSITY');
+        $output = new ConsoleOutput($verbosity);
 
         $daux = new Daux(Daux::LIVE_MODE, $output);
         $daux->initializeConfiguration();

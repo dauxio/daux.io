@@ -37,6 +37,7 @@ class Serve extends DauxCommand
 
         chdir(__DIR__ . '/../../');
 
+        putenv('DAUX_VERBOSITY=' . $output->getVerbosity());
         putenv('DAUX_SOURCE=' . $daux->getParams()->getDocumentationDirectory());
         putenv('DAUX_THEME=' . $daux->getParams()->getThemesPath());
         putenv('DAUX_CONFIGURATION=' . $daux->getParams()->getConfigurationOverrideFile());
