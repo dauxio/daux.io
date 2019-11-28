@@ -15,7 +15,7 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
     protected $config;
 
     /**
-     * @var \League\CommonMark\Inline\Renderer\LinkRenderer
+     * @var \League\CommonMark\Inline\Renderer\ImageRenderer
      */
     protected $parent;
 

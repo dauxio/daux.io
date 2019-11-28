@@ -10,6 +10,9 @@ jobs:
         # TODO : enable tests on windows
         operating-system: [ubuntu-latest, macOS-latest]
         php-versions: ['7.2', '7.3', '7.4']
+        exclude:
+          - os: macos-latest
+            php-versions: 7.4
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     runs-on: ${{ matrix.operating-system }}
@@ -62,7 +65,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
     - name: Generate documentation
-      run: vendor/bin/daux generate
+      run: bin/daux generate
     - uses: JamesIves/github-pages-deploy-action@2.0.3
       env:
         FOLDER: "static"
