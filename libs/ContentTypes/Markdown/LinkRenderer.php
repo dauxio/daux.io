@@ -22,6 +22,7 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
     public function __construct($daux)
     {
         $this->daux = $daux;
+        $this->parent = new \League\CommonMark\Inline\Renderer\LinkRenderer();
     }
 
     /**
@@ -69,7 +70,6 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
     protected function isExternalUrl($url)
     {
         return preg_match('#^(?:[a-z]+:)?//|^mailto:#', $url);
-        $this->parent = new \League\CommonMark\Inline\Renderer\LinkRenderer();
     }
 
     /**

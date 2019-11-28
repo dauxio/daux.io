@@ -54,6 +54,8 @@ class Generate extends DauxCommand
 
         // Generate the documentation
         $daux->getGenerator()->generateAll($input, $output, $width);
+
+        return 0;
     }
 
     protected function prepareProcessor(Daux $daux, InputInterface $input, OutputInterface $output, $width)

@@ -49,5 +49,7 @@ class Serve extends DauxCommand
         echo "Daux development server started on http://{$host}:{$port}/\n";
 
         passthru("{$binary} -S {$host}:{$port} {$base}/index.php");
+
+        return 0;
     }
 }

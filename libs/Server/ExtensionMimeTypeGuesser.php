@@ -29,5 +29,7 @@ class ExtensionMimeTypeGuesser implements MimeTypeGuesserInterface
         if ($extension == "js") {
             return "application/javascript";
         }
+
+        return null;
     }
 }
