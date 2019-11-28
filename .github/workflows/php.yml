@@ -11,7 +11,7 @@ jobs:
         operating-system: [ubuntu-latest, macOS-latest]
         php-versions: ['7.2', '7.3', '7.4']
         exclude:
-          - os: macos-latest
+          - operating-system: macos-latest
             php-versions: 7.4
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
