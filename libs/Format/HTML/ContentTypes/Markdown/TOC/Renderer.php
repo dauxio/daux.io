@@ -7,6 +7,11 @@ use Todaymade\Daux\Config;
 
 class Renderer implements BlockRendererInterface
 {
+    /**
+     * @var Config
+     */
+    private $config;
+
     public function __construct(Config $config)
     {
         $this->config = $config;

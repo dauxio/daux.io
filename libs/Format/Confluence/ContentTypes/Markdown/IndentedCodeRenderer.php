@@ -9,7 +9,7 @@ class IndentedCodeRenderer extends CodeRenderer
 {
     /**
      * @param AbstractBlock $block
-     * @param HtmlRendererInterface $htmlRenderer
+     * @param ElementRendererInterface $htmlRenderer
      * @param bool $inTightList
      *
      * @return HtmlElement

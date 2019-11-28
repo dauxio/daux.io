@@ -43,7 +43,7 @@ class Content extends ContentAbstract
     /**
      * @return string
      */
-    public function getContent()
+    public function getContent(): string
     {
         if ($this->attributes === null) {
             $this->parseAttributes();
@@ -55,7 +55,7 @@ class Content extends ContentAbstract
     /**
      * @param string $content
      */
-    public function setContent($content)
+    public function setContent(string $content): void
     {
         $this->manuallySetContent = true;
         $this->content = $content;
@@ -64,7 +64,7 @@ class Content extends ContentAbstract
     /**
      * @return Content
      */
-    public function getPrevious()
+    public function getPrevious(): ?Content
     {
         return $this->previous;
     }
@@ -72,7 +72,7 @@ class Content extends ContentAbstract
     /**
      * @param Content $previous
      */
-    public function setPrevious($previous)
+    public function setPrevious(Content $previous)
     {
         $this->previous = $previous;
     }
@@ -80,7 +80,7 @@ class Content extends ContentAbstract
     /**
      * @return Content
      */
-    public function getNext()
+    public function getNext(): ?Content
     {
         return $this->next;
     }
@@ -88,7 +88,7 @@ class Content extends ContentAbstract
     /**
      * @param Content $next
      */
-    public function setNext($next)
+    public function setNext(Content $next)
     {
         $this->next = $next;
     }
@@ -102,7 +102,7 @@ class Content extends ContentAbstract
         return $this->name == 'index' || $this->name == '_index';
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
         if ($title = $this->getAttribute('title')) {
             return $title;

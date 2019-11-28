@@ -15,6 +15,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
     /** @var Daux */
     protected $daux;
 
+    /** @var Template */
+    protected $templateRenderer;
+
     /**
      * @param Daux $daux
      */
@@ -52,7 +55,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $this->runAction(
             'Cleaning destination folder ...',
             $width,
-            function() use ($destination, $params) {
+            function() use ($destination) {
                 $this->ensureEmptyDestination($destination);
             }
         );

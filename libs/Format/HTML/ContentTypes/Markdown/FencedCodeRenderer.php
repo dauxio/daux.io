@@ -10,13 +10,18 @@ use League\CommonMark\Util\Xml;
 
 class FencedCodeRenderer implements BlockRendererInterface
 {
-    function __construct() {
+    /**
+     * @var Highlighter
+     */
+    private $hl;
+
+    public function __construct() {
         $this->hl = new Highlighter();
     }
 
     /**
      * @param AbstractBlock $block
-     * @param HtmlRendererInterface $htmlRenderer
+     * @param ElementRendererInterface $htmlRenderer
      * @param bool $inTightList
      *
      * @return HtmlElement|string
@@ -43,7 +48,7 @@ class FencedCodeRenderer implements BlockRendererInterface
                 $highlighted = $this->hl->highlight($language, $content);
                 $content = $highlighted->value;
                 $attrs['class'] .= 'hljs ' . $highlighted->language;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $attrs['class'] .= 'language-' . $language;
             }
         }
@@ -65,6 +70,6 @@ class FencedCodeRenderer implements BlockRendererInterface
             return false;
         }
 
-        return Xml::escape($infoWords[0], true);
+        return Xml::escape($infoWords[0]);
     }
 }

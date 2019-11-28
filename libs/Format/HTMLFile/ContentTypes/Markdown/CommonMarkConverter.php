@@ -7,7 +7,6 @@ class CommonMarkConverter extends \Todaymade\Daux\Format\HTML\ContentTypes\Markd
 {
     protected function getLinkRenderer(Environment $environment)
     {
-        var_dump(LinkRenderer::class);
         return new LinkRenderer($environment->getConfig('daux'));
     }
 }

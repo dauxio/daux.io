@@ -5,10 +5,9 @@ use Todaymade\Daux\Daux;
 
 class Cache
 {
-
     static $printed = false;
 
-    public static function getDirectory()
+    public static function getDirectory(): string
     {
         $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . "dauxio" . DIRECTORY_SEPARATOR;
 
@@ -24,10 +23,10 @@ class Cache
      * Store an item in the cache for a given number of minutes.
      *
      * @param  string  $key
-     * @param  mixed   $value
+     * @param  string  $value
      * @return void
      */
-    public static function put($key, $value)
+    public static function put(string $key, string $value): void
     {
         Cache::ensureCacheDirectoryExists($path = Cache::path($key));
         file_put_contents($path, $value);
@@ -39,7 +38,7 @@ class Cache
      * @param  string  $path
      * @return void
      */
-    protected static function ensureCacheDirectoryExists($path)
+    protected static function ensureCacheDirectoryExists(string $path): void
     {
         $parent = dirname($path);
 
@@ -54,7 +53,7 @@ class Cache
      * @param  string  $key
      * @return bool
      */
-    public static function forget($key)
+    public static function forget(string $key): bool
     {
         $path = Cache::path($key);
 
@@ -68,10 +67,10 @@ class Cache
     /**
      * Retrieve an item from the cache by key.
      *
-     * @param  string|array  $key
+     * @param  string $key
      * @return mixed
      */
-    public static function get($key)
+    public static function get(string $key): ?string
     {
         $path = Cache::path($key);
 
@@ -88,18 +87,18 @@ class Cache
      * @param  string  $key
      * @return string
      */
-    protected static function path($key)
+    protected static function path(string $key): string
     {
         $parts = array_slice(str_split($hash = sha1($key), 2), 0, 2);
         return Cache::getDirectory() . '/' . implode('/', $parts) . '/' . $hash;
     }
 
-    public static function clear()
+    public static function clear(): void
     {
         Cache::rrmdir(Cache::getDirectory());
     }
 
-    protected static function rrmdir($dir)
+    protected static function rrmdir(string $dir): void
     {
         if (is_dir($dir)) {
             $objects = scandir($dir);

@@ -7,6 +7,11 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
     private $language;
     private $homepage;
 
+    /**
+     * @var Template
+     */
+    public $templateRenderer;
+
     private function isHomepage()
     {
         // If the current page isn't the index, no chance it is the landing page

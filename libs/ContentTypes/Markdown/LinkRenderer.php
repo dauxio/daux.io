@@ -19,6 +19,11 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
      */
     protected $daux;
 
+    /**
+     * @var \League\CommonMark\Inline\Renderer\LinkRenderer
+     */
+    protected $parent;
+
     public function __construct($daux)
     {
         $this->daux = $daux;
@@ -158,7 +163,6 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
      */
     public function setConfiguration(ConfigurationInterface $configuration)
     {
-        $this->config = $configuration;
         $this->parent->setConfiguration($configuration);
     }
 }

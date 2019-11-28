@@ -37,7 +37,7 @@ class FencedCodeRenderer extends CodeRenderer
 
     /**
      * @param AbstractBlock $block
-     * @param HtmlRendererInterface $htmlRenderer
+     * @param ElementRendererInterface $htmlRenderer
      * @param bool $inTightList
      *
      * @return HtmlElement|string
@@ -59,7 +59,7 @@ class FencedCodeRenderer extends CodeRenderer
             return false;
         }
 
-        $language = Xml::escape($infoWords[0], true);
+        $language = Xml::escape($infoWords[0]);
 
         if (array_key_exists($language, $this->known_conversions)) {
             $language = $this->known_conversions[$language];

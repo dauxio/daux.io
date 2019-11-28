@@ -24,7 +24,7 @@ class Root extends Directory
     /**
      * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         return $this->config;
     }
@@ -32,12 +32,12 @@ class Root extends Directory
     /**
      * @param Config $config
      */
-    public function setConfig($config)
+    public function setConfig(Config $config)
     {
         $this->config = $config;
     }
 
-    public function isHotPath(Entry $node = null) {
+    public function isHotPath(Entry $node = null): bool {
         if ($node == null) {
             return true;
         }

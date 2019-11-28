@@ -81,7 +81,7 @@ abstract class Entry
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -89,7 +89,7 @@ abstract class Entry
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -97,7 +97,7 @@ abstract class Entry
     /**
      * @return Directory
      */
-    public function getParent()
+    public function getParent(): ?Directory
     {
         return $this->parent;
     }
@@ -134,7 +134,7 @@ abstract class Entry
     /**
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
@@ -144,7 +144,7 @@ abstract class Entry
      *
      * @return string
      */
-    public function getRelativePath()
+    public function getRelativePath(): string
     {
         $root = $this;
         while ($root->getParent() != null) {
@@ -157,7 +157,7 @@ abstract class Entry
     /**
      * @return SplFileInfo
      */
-    public function getFileinfo()
+    public function getFileinfo(): SplFileInfo
     {
         return $this->info;
     }
@@ -165,7 +165,7 @@ abstract class Entry
     /**
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         $url = '';
 

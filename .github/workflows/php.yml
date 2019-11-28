@@ -23,19 +23,8 @@ jobs:
         php-version: ${{ matrix.php-versions }}
         extension-csv: mbstring, dom
 
-    - name: Get Composer Cache Directory
-      id: composer-cache
-      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
     - name: Validate composer.json and composer.lock
       run: composer validate
-
-    - name: Cache vendor
-      uses: actions/cache@v1
-      with:
-        path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: ${{ runner.os }}-composer-
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
@@ -43,7 +32,7 @@ jobs:
     - name: Run test suite
       run: composer run-script test
 
-  sonarcloud:
+  scrutinizer-ci:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
     steps:
@@ -64,3 +53,18 @@ jobs:
     - run: wget https://scrutinizer-ci.com/ocular.phar
     - name: Upload code coverage
       run: php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+  documentation:
+    runs-on: ubuntu-latest
+    if: github.repository == 'dauxio/daux.io' && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Generate documentation
+      run: vendor/bin/daux generate
+    - uses: JamesIves/github-pages-deploy-action@2.0.3
+      env:
+        FOLDER: "static"
+        BRANCH: gh-pages
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

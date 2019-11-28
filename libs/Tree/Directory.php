@@ -2,6 +2,7 @@
 
 use ArrayIterator;
 use RuntimeException;
+use Todaymade\Daux\Config;
 
 class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 {
@@ -103,20 +104,20 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         return $this->children;
     }
 
-    public function addChild(Entry $entry)
+    public function addChild(Entry $entry): void
     {
         $this->children[$entry->getUri()] = $entry;
     }
 
-    public function removeChild(Entry $entry)
+    public function removeChild(Entry $entry): void
     {
         unset($this->children[$entry->getUri()]);
     }
 
     /**
-     * @return \Todaymade\Daux\Config
+     * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         if (!$this->parent) {
             throw new \RuntimeException('Could not retrieve configuration. Are you sure that your tree has a Root ?');
@@ -138,7 +139,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     /**
      * @return Content|null
      */
-    public function getIndexPage()
+    public function getIndexPage(): ?Content
     {
         $index_key = $this->getConfig()['index_key'];
 
@@ -157,7 +158,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
      * Seek the first available page from descendants
      * @return Content|null
      */
-    public function seekFirstPage()
+    public function seekFirstPage(): ?Content
     {
         if ($this instanceof self) {
             $index_key = $this->getConfig()['index_key'];
@@ -182,7 +183,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     /**
      * @return Content|null
      */
-    public function getFirstPage()
+    public function getFirstPage(): ?Content
     {
         if ($this->first_page) {
             return $this->first_page;
@@ -217,7 +218,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     /**
      * @param Content $first_page
      */
-    public function setFirstPage($first_page)
+    public function setFirstPage(Content $first_page)
     {
         $this->first_page = $first_page;
     }
@@ -228,7 +229,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
      *
      * @return bool
      */
-    public function hasContent()
+    public function hasContent(): bool
     {
         foreach ($this->getEntries() as $node) {
             if ($node instanceof Content) {
@@ -262,7 +263,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
      * @param mixed $offset An offset to check for.
      * @return bool true on success or false on failure.
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->children);
     }

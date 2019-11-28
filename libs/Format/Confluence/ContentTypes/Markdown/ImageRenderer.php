@@ -14,6 +14,11 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      */
     protected $config;
 
+    /**
+     * @var \League\CommonMark\Inline\Renderer\LinkRenderer
+     */
+    protected $parent;
+
     public function __construct() {
         $this->parent = new \League\CommonMark\Inline\Renderer\ImageRenderer();
     }
@@ -47,7 +52,6 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      */
     public function setConfiguration(ConfigurationInterface $configuration)
     {
-        $this->config = $configuration;
         $this->parent->setConfiguration($configuration);
     }
 }
