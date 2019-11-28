@@ -9,7 +9,7 @@ jobs:
       matrix:
         # TODO : enable tests on windows
         operating-system: [ubuntu-latest, macOS-latest]
-        php-versions: ['7.1', '7.2', '7.3']
+        php-versions: ['7.2', '7.3', '7.4']
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     runs-on: ${{ matrix.operating-system }}
@@ -21,8 +21,7 @@ jobs:
       uses: shivammathur/setup-php@master
       with:
         php-version: ${{ matrix.php-versions }}
-        extension-csv: mbstring, xdebug
-        coverage: xdebug
+        extension-csv: mbstring
 
     - name: Get Composer Cache Directory
       id: composer-cache
@@ -43,3 +42,25 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
+
+  sonarcloud:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup PHP
+      uses: shivammathur/setup-php@master
+      with:
+        php-version: 7.4
+        extension-csv: mbstring, xdebug
+        coverage: xdebug
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run test suite
+      run: composer run-script test -- --coverage-clover=coverage.clover
+
+    - run: wget https://scrutinizer-ci.com/ocular.phar
+    - name: Upload code coverage
+      run: php ocular.phar code-coverage:upload --format=php-clover coverage.clover

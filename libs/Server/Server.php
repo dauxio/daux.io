@@ -97,7 +97,8 @@ class Server
      * @return Response
      */
     public function createResponse(Page $page) {
-
+        // Add a custom MimeType guesser in case the default ones are not available
+        // This makes sure that at least CSS and JS work fine.
         $mimeTypes = MimeTypes::getDefault();
         $mimeTypes->registerGuesser(new ExtensionMimeTypeGuesser());
 

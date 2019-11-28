@@ -3,8 +3,9 @@
 use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
 use League\CommonMark\HtmlRenderer;
+use League\CommonMark\Ext\Table\TableExtension;
+use League\CommonMark\Inline\Element as InlineElement;
 use Todaymade\Daux\Config;
-use Webuni\CommonMark\TableExtension\TableExtension;
 
 class CommonMarkConverter extends \League\CommonMark\CommonMarkConverter
 {
@@ -39,6 +40,6 @@ class CommonMarkConverter extends \League\CommonMark\CommonMarkConverter
 
     protected function extendEnvironment(Environment $environment, Config $config)
     {
-        $environment->addInlineRenderer('Link', $this->getLinkRenderer($environment));
+        $environment->addInlineRenderer(InlineElement\Link::class, $this->getLinkRenderer($environment));
     }
 }

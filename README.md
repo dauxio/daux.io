@@ -234,7 +234,7 @@ You can then point your browser to http://localhost:8086
 
 ## PHP Requirements
 
-Daux.io is compatible with PHP 7.1.3 and up.
+Daux.io is compatible with PHP 7.2.0 and up.
 
 The reason is because some dependencies we have (mainly Symfony and Guzzle) do not support PHP 5.6 anymore.
 

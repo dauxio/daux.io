@@ -1,9 +1,7 @@
 language: php
 
 php:
-  - '7.1'
-  - '7.2'
-  - '7.3'
+  - '7.4'
   - nightly
 
 matrix:
@@ -11,27 +9,7 @@ matrix:
     - php: nightly
 
 before_script:
-  - composer install --dev --prefer-source
+  - composer install --prefer-dist --no-progress --no-suggest
 
 script:
-  - vendor/bin/phpunit --coverage-clover=coverage.clover
-
-after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
-
-jobs:
-  include:
-    - stage: "Deploy Documentation"
-      php: "7.3"
-      script: skip
-      before_deploy:
-        - composer install
-        - bin/daux generate
-      deploy:
-        provider: pages
-        local_dir: static
-        skip_cleanup: true
-        github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-        on:
-          branch: master
+  - vendor/bin/phpunit

@@ -5,6 +5,7 @@ node_modules
 static
 
 /vendor
+.phpunit.result.cache
 
 /prettier.config.js
 /.eslintrc.js

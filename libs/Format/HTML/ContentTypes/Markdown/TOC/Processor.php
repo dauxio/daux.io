@@ -7,7 +7,7 @@ use League\CommonMark\Block\Element\ListBlock;
 use League\CommonMark\Block\Element\ListData;
 use League\CommonMark\Block\Element\ListItem;
 use League\CommonMark\Block\Element\Paragraph;
-use League\CommonMark\DocumentProcessorInterface;
+use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Inline\Element\Link;
 use League\CommonMark\Inline\Element\Text;
 use League\CommonMark\Node\Node;
@@ -15,7 +15,7 @@ use ReflectionMethod;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;
 
-class Processor implements DocumentProcessorInterface
+class Processor
 {
     protected $config;
 
@@ -30,12 +30,13 @@ class Processor implements DocumentProcessorInterface
     }
 
     /**
-     * @param Document $document
+     * @param DocumentParsedEvent $event
      *
      * @return void
      */
-    public function processDocument(Document $document)
+    public function onDocumentParsed(DocumentParsedEvent $event)
     {
+        $document = $event->getDocument();
         /** @var TableOfContents[] $tocs */
         $tocs = [];
 

@@ -4,12 +4,15 @@ use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Inline\Element\Link;
+use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+use League\CommonMark\Util\ConfigurationAwareInterface;
+use League\CommonMark\Util\ConfigurationInterface;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception\LinkNotFoundException;
 use Todaymade\Daux\Tree\Entry;
 
-class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
+class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {
     /**
      * @var Config
@@ -66,6 +69,7 @@ class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
     protected function isExternalUrl($url)
     {
         return preg_match('#^(?:[a-z]+:)?//|^mailto:#', $url);
+        $this->parent = new \League\CommonMark\Inline\Renderer\LinkRenderer();
     }
 
     /**
@@ -87,7 +91,7 @@ class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
             );
         }
 
-        $element = parent::render($inline, $htmlRenderer);
+        $element = $this->parent->render($inline, $htmlRenderer);
 
         $url = $inline->getUrl();
 
@@ -116,7 +120,7 @@ class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
             $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
         } catch (LinkNotFoundException $e) {
 
-            
+
 
             // For some reason, the filename could contain a # and thus the link needs to resolve to that.
             try {
@@ -147,5 +151,14 @@ class LinkRenderer extends \League\CommonMark\Inline\Renderer\LinkRenderer
         $element->setAttribute('href', $url);
 
         return $element;
+    }
+
+    /**
+     * @param ConfigurationInterface $configuration
+     */
+    public function setConfiguration(ConfigurationInterface $configuration)
+    {
+        $this->config = $configuration;
+        $this->parent->setConfiguration($configuration);
     }
 }

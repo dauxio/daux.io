@@ -1,7 +1,10 @@
 <?php namespace Todaymade\Daux\Format\HTML\ContentTypes\Markdown;
 
 use League\CommonMark\Environment;
+use League\CommonMark\Block\Element as BlockElement;
+use League\CommonMark\Event\DocumentParsedEvent;
 use Todaymade\Daux\Config;
+use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;
 
 class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMarkConverter
 {
@@ -9,9 +12,10 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
     {
         parent::extendEnvironment($environment, $config);
 
-        $environment->addBlockRenderer('FencedCode', new FencedCodeRenderer());
+        $environment->addBlockRenderer(BlockElement\FencedCode::class, new FencedCodeRenderer());
 
-        $environment->addDocumentProcessor(new TOC\Processor($config));
-        $environment->addBlockRenderer('Todaymade\Daux\ContentTypes\Markdown\TableOfContents', new TOC\Renderer($config));
+        $processor = new TOC\Processor($config);
+        $environment->addEventListener(DocumentParsedEvent::class, [$processor, 'onDocumentParsed']);
+        $environment->addBlockRenderer(TableOfContents::class, new TOC\Renderer($config));
     }
 }

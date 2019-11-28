@@ -1,7 +1,10 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
 use League\CommonMark\Environment;
+use League\CommonMark\Block\Element as BlockElement;
+use League\CommonMark\Inline\Element as InlineElement;
 use Todaymade\Daux\Config;
+use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;
 
 class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMarkConverter
 {
@@ -14,12 +17,12 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
     {
         parent::extendEnvironment($environment, $config);
 
-        $environment->addBlockRenderer('Todaymade\Daux\ContentTypes\Markdown\TableOfContents', new TOCRenderer());
+        $environment->addBlockRenderer(TableOfContents::class, new TOCRenderer());
 
         //Add code renderer
-        $environment->addBlockRenderer('FencedCode', new FencedCodeRenderer());
-        $environment->addBlockRenderer('IndentedCode', new IndentedCodeRenderer());
+        $environment->addBlockRenderer(BlockElement\FencedCode::class, new FencedCodeRenderer());
+        $environment->addBlockRenderer(BlockElement\IndentedCode::class, new IndentedCodeRenderer());
 
-        $environment->addInlineRenderer('Image', new ImageRenderer());
+        $environment->addInlineRenderer(InlineElement\Image::class, new ImageRenderer());
     }
 }
