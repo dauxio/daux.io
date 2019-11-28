@@ -21,7 +21,7 @@ jobs:
       uses: shivammathur/setup-php@master
       with:
         php-version: ${{ matrix.php-versions }}
-        extension-csv: mbstring
+        extension-csv: mbstring, dom
 
     - name: Get Composer Cache Directory
       id: composer-cache
@@ -52,7 +52,7 @@ jobs:
       uses: shivammathur/setup-php@master
       with:
         php-version: 7.4
-        extension-csv: mbstring, xdebug
+        extension-csv: mbstring, xdebug, dom
         coverage: xdebug
 
     - name: Install dependencies
