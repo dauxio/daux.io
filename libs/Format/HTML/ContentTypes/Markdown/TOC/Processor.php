@@ -140,7 +140,7 @@ class Processor
             }
         }
 
-        $node->data['attributes']['id'] = $this->getUniqueId($document,'page_'. $this->escaped($text));
+        $node->data['attributes']['id'] = $this->getUniqueId($document, 'page_'. $this->escaped($text));
     }
 
     /**

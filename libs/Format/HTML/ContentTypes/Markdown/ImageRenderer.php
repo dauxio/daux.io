@@ -9,6 +9,7 @@ use League\CommonMark\Util\ConfigurationAwareInterface;
 use League\CommonMark\Util\ConfigurationInterface;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\DauxHelper;
+use Todaymade\Daux\Exception\LinkNotFoundException;
 
 class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {
@@ -22,6 +23,11 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      */
     protected $config;
 
+    /**
+     * @var \League\CommonMark\Inline\Renderer\ImageRenderer
+     */
+    protected $parent;
+
     public function __construct($daux)
     {
         $this->daux = $daux;
@@ -32,11 +38,10 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      * Relative URLs can be done using either the folder with 
      * number prefix or the final name (with prefix stripped).
      * This ensures that we always use the final name when generating.
+     * @throws LinkNotFoundException
      */
-    protected function getCleanUrl(Image $element)
+    protected function getCleanUrl($url)
     {
-        $url = $element->getUrl();
-
         // empty urls and anchors should
         // not go through the url resolver
         if (!DauxHelper::isValidUrl($url)) {
@@ -55,8 +60,6 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
             if ($this->daux->isStatic()) {
                 throw $e;
             }
-
-            $element->setAttribute('class', 'Link--broken');
         }
 
         return $url;
@@ -67,11 +70,16 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      * @param ElementRendererInterface $htmlRenderer
      *
      * @return HtmlElement
+     * 
+     * @throws LinkNotFoundException
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
-        $original = $inline->getUrl();
-        $inline->setUrl($this->getCleanUrl($inline));
+        if (!($inline instanceof Image)) {
+            throw new \InvalidArgumentException('Incompatible inline type: ' . \get_class($inline));
+        }
+
+        $inline->setUrl($this->getCleanUrl($inline->getUrl()));
 
         return $this->parent->render($inline, $htmlRenderer);
     }

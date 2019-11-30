@@ -54,7 +54,7 @@ class Publisher
 
         $this->run(
             'Getting already published pages...',
-            function () use (&$published) {
+            function() use (&$published) {
                 if ($published != null) {
                     $published['children'] = $this->client->getList($published['id'], true);
                 }
@@ -63,7 +63,7 @@ class Publisher
 
         $published = $this->run(
             "Create placeholder pages...",
-            function () use ($tree, $published) {
+            function() use ($tree, $published) {
                 return $this->createRecursive($this->confluence['ancestor_id'], $tree, $published);
             }
         );
@@ -143,7 +143,7 @@ class Publisher
 
     protected function createRecursive($parent_id, $entry, $published)
     {
-        $callback = function ($parent_id, $entry, $published) {
+        $callback = function($parent_id, $entry, $published) {
             // nothing to do if the ID already exists
             if (array_key_exists('id', $published)) {
                 return $published;
@@ -164,7 +164,7 @@ class Publisher
 
     protected function updateRecursive($parent_id, $entry, $published)
     {
-        $callback = function ($parent_id, $entry, $published) {
+        $callback = function($parent_id, $entry, $published) {
             if (array_key_exists('id', $published) && array_key_exists('page', $entry)) {
                 $this->updatePage($parent_id, $entry, $published);
             }
@@ -182,7 +182,7 @@ class Publisher
 
         $this->run(
             '- ' . PublisherUtilities::niceTitle($entry['file']->getUrl()),
-            function () use ($entry, $published, $parent_id, $updateThreshold) {
+            function() use ($entry, $published, $parent_id, $updateThreshold) {
                 $generated_content = $entry['page']->getContent();
                 if (PublisherUtilities::shouldUpdate($entry['page'], $generated_content, $published, $updateThreshold)) {
                     $this->client->updatePage(
@@ -200,7 +200,7 @@ class Publisher
             foreach ($entry['page']->attachments as $attachment) {
                 $this->run(
                     "  With attachment: $attachment[filename]",
-                    function ($write) use ($published, $attachment) {
+                    function($write) use ($published, $attachment) {
                         $this->client->uploadAttachment($published['id'], $attachment, $write);
                     }
                 );

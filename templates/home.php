@@ -10,11 +10,11 @@
 
 <div class="Homepage">
     <div class="HomepageTitle Container">
-        <?= ($params['tagline'])? '<h2>' . $params['tagline'] . '</h2>' : '' ?>
+        <?= ($params['tagline']) ? '<h2>' . $params['tagline'] . '</h2>' : '' ?>
     </div>
 
     <div class="HomepageImage Container">
-        <?= ($params['image'])? '<img class="homepage-image img-responsive" src="' . $params['image'] . '" alt="' . $params['title'] . '">' : '' ?>
+        <?= ($params['image']) ? '<img class="homepage-image img-responsive" src="' . $params['image'] . '" alt="' . $params['title'] . '">' : '' ?>
     </div>
 
     <div class="HomepageButtons">
@@ -27,8 +27,8 @@
             foreach ($page['entry_page'] as $key => $node) {
                 echo '<a href="' . $node . '" class="Button Button--primary Button--hero">' . str_replace("__VIEW_DOCUMENTATION__", $view_doc, $key) . '</a>';
             }
-            if(isset($params['html']['buttons']) && is_array($params['html']['buttons'])) {
-                foreach ($params['html']['buttons'] as $name => $link ) {
+            if (isset($params['html']['buttons']) && is_array($params['html']['buttons'])) {
+                foreach ($params['html']['buttons'] as $name => $link) {
                     echo '<a href="' . $link . '" class="Button Button--secondary Button--hero">' . $name . '</a>';
                 }
             }

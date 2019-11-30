@@ -16,15 +16,8 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
-        // This can't be in the method type as
-        // the method is an abstract and should
-        // have the same interface
-        if (!$inline instanceof Link) {
-            throw new \RuntimeException(
-                'Wrong type passed to ' . __CLASS__ . '::' . __METHOD__ .
-                " the expected type was 'League\\CommonMark\\Inline\\Element\\Link' but '" .
-                get_class($inline) . "' was provided"
-            );
+        if (!($inline instanceof Link)) {
+            throw new \InvalidArgumentException('Incompatible inline type: ' . \get_class($inline));
         }
 
         // Default handling
@@ -34,7 +27,7 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
 
         // empty urls, anchors and absolute urls
         // should not go through the url resolver
-        if (!$this->isValidUrl($url) || $this->isExternalUrl($url)) {
+        if (!DauxHelper::isValidUrl($url) || DauxHelper::isExternalUrl($url)) {
             return $element;
         }
 

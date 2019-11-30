@@ -13,7 +13,7 @@
             "Link_next",
         ];
         $search_translations = [];
-        foreach($search_strings as $key) {
+        foreach ($search_strings as $key) {
             $search_translations[$key] = $this->translate($key);
         }
         ?>

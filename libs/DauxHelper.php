@@ -3,6 +3,7 @@
 use Todaymade\Daux\Exception\LinkNotFoundException;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Directory;
+use Todaymade\Daux\Tree\Entry;
 
 class DauxHelper
 {

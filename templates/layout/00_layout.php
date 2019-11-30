@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="<?=$params['language'] ?>">
 <head>
-    <title><?= $page['title']; ?> <?= ($page['title'] != $params['title'])? '- ' . $params['title'] : "" ?></title>
+    <title><?= $page['title']; ?> <?= ($page['title'] != $params['title']) ? '- ' . $params['title'] : "" ?></title>
 <?php //SEO meta tags...
     if (array_key_exists('attributes', $page) && array_key_exists('description', $page['attributes'])) {
         echo "    <meta name=\"description\" content=\"{$page['attributes']['description']}\">\n";
