@@ -4,9 +4,7 @@ use Todaymade\Daux\Config;
 
 class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
 {
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
-        $this->converter = new CommonMarkConverter(['daux' => $config]);
+    protected function createConverter() {
+        return new CommonMarkConverter(['daux' => $this->config]);
     }
 }

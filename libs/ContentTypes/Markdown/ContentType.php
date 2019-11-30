@@ -12,12 +12,23 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
     protected $config;
 
     /** @var CommonMarkConverter */
-    protected $converter;
+    private $converter;
 
     public function __construct(Config $config)
     {
         $this->config = $config;
-        $this->converter = new CommonMarkConverter(['daux' => $config]);
+    }
+
+    protected function createConverter() {
+        return new CommonMarkConverter(['daux' => $this->config]);
+    }
+
+    protected function getConverter() {
+        if (!$this->converter) {
+            $this->converter = $this->createConverter();
+        }
+
+        return $this->converter;
     }
 
     /**
@@ -31,7 +42,7 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
     protected function doConversion($raw)
     {
         Daux::writeln("Running conversion", OutputInterface::VERBOSITY_VERBOSE);
-        return $this->converter->convertToHtml($raw);
+        return $this->getConverter()->convertToHtml($raw);
     }
 
     public function convert($raw, Content $node)
