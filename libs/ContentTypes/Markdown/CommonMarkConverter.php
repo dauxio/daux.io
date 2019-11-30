@@ -29,8 +29,7 @@ class CommonMarkConverter extends \League\CommonMark\CommonMarkConverter
             $config['daux']['processor_instance']->extendCommonMarkEnvironment($environment);
         }
 
-        $this->docParser = new DocParser($environment);
-        $this->htmlRenderer = new HtmlRenderer($environment);
+        parent::__construct($config, $environment);
     }
 
     protected function getLinkRenderer(Environment $environment)

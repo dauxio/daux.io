@@ -1,5 +1,6 @@
 <?php namespace Todaymade\Daux;
 
+use Todaymade\Daux\Exception\LinkNotFoundException;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Directory;
 
@@ -525,5 +526,53 @@ class DauxHelper
 
     public static function is($path, $type) {
         return ($type == 'dir') ? is_dir($path) : file_exists($path);
+    }
+
+    /**
+     * @param Config $config
+     * @param string $url
+     * @return Entry
+     * @throws LinkNotFoundException
+     */
+    public static function resolveInternalFile($config, $url)
+    {
+        $triedAbsolute = false;
+
+        // Legacy absolute paths could start with
+        // "!" In this case we will try to find
+        // the file starting at the root
+        if ($url[0] == '!' || $url[0] == '/') {
+            $url = ltrim($url, '!/');
+
+            if ($file = DauxHelper::getFile($config['tree'], $url)) {
+                return $file;
+            }
+
+            $triedAbsolute = true;
+        }
+
+        // Seems it's not an absolute path or not found,
+        // so we'll continue with the current folder
+        if ($file = DauxHelper::getFile($config->getCurrentPage()->getParent(), $url)) {
+            return $file;
+        }
+
+        // If we didn't already try it, we'll
+        // do a pass starting at the root
+        if (!$triedAbsolute && $file = DauxHelper::getFile($config['tree'], $url)) {
+            return $file;
+        }
+
+        throw new LinkNotFoundException("Could not locate file '$url'");
+    }
+
+    public static function isValidUrl($url)
+    {
+        return !empty($url) && $url[0] != '#';
+    }
+
+    public static function isExternalUrl($url)
+    {
+        return preg_match('#^(?:[a-z]+:)?//|^mailto:#', $url);
     }
 }

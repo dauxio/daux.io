@@ -31,53 +31,6 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
     }
 
     /**
-     * @param string $url
-     * @return Entry
-     * @throws LinkNotFoundException
-     */
-    protected function resolveInternalFile($url)
-    {
-        $triedAbsolute = false;
-
-        // Legacy absolute paths could start with
-        // "!" In this case we will try to find
-        // the file starting at the root
-        if ($url[0] == '!' || $url[0] == '/') {
-            $url = ltrim($url, '!/');
-
-            if ($file = DauxHelper::getFile($this->daux['tree'], $url)) {
-                return $file;
-            }
-
-            $triedAbsolute = true;
-        }
-
-        // Seems it's not an absolute path or not found,
-        // so we'll continue with the current folder
-        if ($file = DauxHelper::getFile($this->daux->getCurrentPage()->getParent(), $url)) {
-            return $file;
-        }
-
-        // If we didn't already try it, we'll
-        // do a pass starting at the root
-        if (!$triedAbsolute && $file = DauxHelper::getFile($this->daux['tree'], $url)) {
-            return $file;
-        }
-
-        throw new LinkNotFoundException("Could not locate file '$url'");
-    }
-
-    protected function isValidUrl($url)
-    {
-        return !empty($url) && $url[0] != '#';
-    }
-
-    protected function isExternalUrl($url)
-    {
-        return preg_match('#^(?:[a-z]+:)?//|^mailto:#', $url);
-    }
-
-    /**
      * @param AbstractInline|Link $inline
      * @param ElementRendererInterface $htmlRenderer
      * @return HtmlElement
@@ -102,12 +55,12 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
 
         // empty urls and anchors should
         // not go through the url resolver
-        if (!$this->isValidUrl($url)) {
+        if (!DauxHelper::isValidUrl($url)) {
             return $element;
         }
 
         // Absolute urls, shouldn't either
-        if ($this->isExternalUrl($url)) {
+        if (DauxHelper::isExternalUrl($url)) {
             $element->setAttribute('class', 'Link--external');
 
             return $element;
@@ -121,16 +74,13 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         $foundWithHash = false;
 
         try {
-            $file = $this->resolveInternalFile($url);
+            $file = DauxHelper::resolveInternalFile($this->daux, $url);
             $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
         } catch (LinkNotFoundException $e) {
-
-
-
             // For some reason, the filename could contain a # and thus the link needs to resolve to that.
             try {
                 if (strlen($urlAndHash[1] ?? "") > 0) {
-                    $file = $this->resolveInternalFile($url . '#' . $urlAndHash[1]);
+                    $file = DauxHelper::resolveInternalFile($this->daux, $url . '#' . $urlAndHash[1]);
                     $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
                     $foundWithHash = true;
                 }

@@ -4,6 +4,7 @@ use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Inline\Element\Link;
+use Todaymade\Daux\DauxHelper;
 
 class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
 {
@@ -38,7 +39,7 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
         }
 
         //Internal links
-        $file = $this->resolveInternalFile($url);
+        $file = DauxHelper::resolveInternalFile($this->daux, $url);
 
         $link_props = [
             'ri:content-title' => trim(trim($this->daux['confluence']['prefix']) . ' ' . $file->getTitle()),
