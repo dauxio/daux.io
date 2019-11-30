@@ -18,18 +18,18 @@
     "bin": ["bin/daux"],
     "require": {
         "php": ">=7.2",
-        "guzzlehttp/guzzle": "~6.0",
-        "league/commonmark": "^1.0.0",
-        "league/commonmark-ext-table": "^2.0.0",
-        "league/plates": "~3.1",
-        "myclabs/deep-copy": "^1.5",
-        "symfony/console": "^5.0",
-        "symfony/http-foundation": "^5.0",
-        "symfony/polyfill-intl-icu": "^1.10",
-        "symfony/process": "^5.0",
-        "webuni/front-matter": "^1.0.0",
+        "guzzlehttp/guzzle": "6.4.1",
+        "league/commonmark": "1.1.1",
+        "league/commonmark-ext-table": "2.1.0",
+        "league/plates": "3.3.0",
+        "myclabs/deep-copy": "1.9.3",
+        "symfony/console": "5.0.0",
+        "symfony/http-foundation": "5.0.0",
+        "symfony/polyfill-intl-icu": "1.13.0",
+        "symfony/process": "5.0.0",
+        "webuni/front-matter": "1.1.0",
         "scrivo/highlight.php": "^9.15",
-        "symfony/mime": "^5.0"
+        "symfony/mime": "5.0.0"
     },
     "suggest":{
         "ext-intl": "Allows to translate the modified at date"
@@ -43,8 +43,8 @@
         "justinwalsh/daux.io": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0",
-        "mikey179/vfsstream": "^1.6"
+        "phpunit/phpunit": "8.4.3",
+        "mikey179/vfsstream": "1.6.8"
     },
     "scripts": {
         "test": "phpunit"

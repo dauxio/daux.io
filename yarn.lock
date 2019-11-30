@@ -829,7 +829,7 @@
     babel-plugin-transform-react-remove-prop-types "0.4.24"
     debug "^4.1.0"
 
-"@swissquote/crafty-preset-babel@^1.8.0":
+"@swissquote/crafty-preset-babel@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-preset-babel/-/crafty-preset-babel-1.8.0.tgz#405d1ac0d0459e44379e97d9f7ee3d0eac893d0f"
   integrity sha512-JaDA1kElH5JMrBI3UuSluw9Lty4Mh3j3gYWEzSYyldGWVgUTRO4kW13CbuwGaxFpipVyodfFtqj6bzsnoC2nqw==
@@ -864,7 +864,7 @@
     rollup-plugin-eslint "7.0.0"
     tmp "0.1.0"
 
-"@swissquote/crafty-preset-postcss@^1.8.0":
+"@swissquote/crafty-preset-postcss@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-preset-postcss/-/crafty-preset-postcss-1.8.0.tgz#e9df8cb6ff780f29422021f47d60480a12d2c946"
   integrity sha512-2LCX9nQ/oUgm7iqSNmCZPBFFPVReWnHWs4VN0IP1Na5mq8rsTT5j9yYgS2apyHowPduHBN0oopv3B3otQaWV1w==
@@ -895,7 +895,7 @@
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-preset-prettier/-/crafty-preset-prettier-1.8.0.tgz#55e998e5ba42eb93060bbcf47070bb4eb90d3ea5"
   integrity sha512-7UGPDn8//tAQ+DZVXeFLJtPTY5Y6LkiFmOOqBGMcoLdDEu+YG7n5k6D31tRDupcU1pagFW1gZyxLD1R33823LQ==
 
-"@swissquote/crafty-runner-gulp@^1.8.0":
+"@swissquote/crafty-runner-gulp@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-runner-gulp/-/crafty-runner-gulp-1.8.0.tgz#9441ce3a3b458a74255068c741d1835448f4b8cb"
   integrity sha512-FgrplPD2d9ms5pLj/RiEZuVTQPX24FuBN25FP1nZPPSAVaj6CrziQiVUit5L+tI88azvRuMDrxN5ZM6fMljaZw==
@@ -906,7 +906,7 @@
     gulp-plumber "1.2.1"
     vinyl-fs "^3.0.0"
 
-"@swissquote/crafty-runner-rollup@^1.8.0":
+"@swissquote/crafty-runner-rollup@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-runner-rollup/-/crafty-runner-rollup-1.8.0.tgz#8fc62e3ca1a492adc3a35d3e6b31f2fe68707f7c"
   integrity sha512-vGLcDqblGpubuPSt5UjJ6yOttzx7ilCk11mYznAAE0lonp757LAF/xl/5D8kjeVo/bw2P8BvJK/ZvQa1LDH5qA==
@@ -922,7 +922,7 @@
     rollup-plugin-replace "2.2.0"
     rollup-plugin-terser "5.1.1"
 
-"@swissquote/crafty@1.8.0", "@swissquote/crafty@^1.8.0":
+"@swissquote/crafty@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty/-/crafty-1.8.0.tgz#090ca25abfb29b8a6fd4b430580b60687669373f"
   integrity sha512-qp0kX/q5IjMSP6LeEkM0zDf/6Dt1bHwnPgC+coS1RqvpvTzqi2+at1LzgMjrvSKsQR4Hq95hGhILktR1mg2d2w==
@@ -3470,7 +3470,7 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
   integrity sha1-2uRqnXj74lKSJYzB54CkHZXAN4I=
 
-flexsearch@^0.6.32:
+flexsearch@0.6.32:
   version "0.6.32"
   resolved "https://registry.yarnpkg.com/flexsearch/-/flexsearch-0.6.32.tgz#1e20684d317af65baa445cdd9864a5f5b320f510"
   integrity sha512-EF1BWkhwoeLtbIlDbY/vDSLBen/E5l/f1Vg7iX5CDymQCamcx1vhlc3tIZxIDplPjgi0jhG37c67idFbjg+v+Q==
@@ -6274,7 +6274,7 @@ postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.10, postcss@^6.0.18, postcss@^6.0.2
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-preact@^10.0.5:
+preact@10.0.5:
   version "10.0.5"
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.0.5.tgz#16f0bcd77241693e710778069e703217dd497867"
   integrity sha512-62+J+GTrv3Uhp6DefqZTel6VYcdUA1zqHO7gjQSKdOwkU2sNOp/Vl6Zf2A3hIWV5EBgjeDA8gsOn6dmB3I1Dvg==
