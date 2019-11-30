@@ -2,6 +2,7 @@
   "extends": [
     "config:base",
     "group:allNonMajor",
+    ":preserveSemverRanges"
   ],
   "schedule": "every weekend"
 }
