@@ -3,13 +3,13 @@
 
     <div class="Page__header">
         <h1><?= $page['breadcrumbs'] ? $this->get_breadcrumb_title($page, $base_page) : $page['title'] ?></h1>
-        <?php if ($params['html']['date_modified']) { ?>
+        <?php if ($config->getHTML()->showDateModified()) { ?>
         <span class="ModifiedDate">
-            <?= Todaymade\Daux\FormatDate::format($params, $page['modified_time']) ?>
+            <?= Todaymade\Daux\FormatDate::format($config, $page['modified_time']) ?>
         </span>
         <?php } ?>
         <?php
-        $edit_on = $params->getHTML()->getEditOn();
+        $edit_on = $config->getHTML()->getEditOn();
         if ($edit_on) { ?>
         <span class="EditOn">
             <a href="<?= $edit_on['basepath'] ?>/<?= $page['relative_path'] ?>" target="_blank">
@@ -24,9 +24,8 @@
     </div>
 
     <?php
-    $buttons = (!empty($page['prev']) || !empty($page['next']));
-    $has_option = array_key_exists('jump_buttons', $params['html']);
-    if ($buttons && (($has_option && $params['html']['jump_buttons']) || !$has_option)) {
+    $hasPrevNext = (!empty($page['prev']) || !empty($page['next']));
+    if ($hasPrevNext && $config->getHTML()->showPreviousNextLinks()) {
     ?>
     <nav>
         <ul class="Pager">

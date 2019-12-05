@@ -25,8 +25,8 @@ class CommonMarkConverter extends \League\CommonMark\CommonMarkConverter
 
         $this->extendEnvironment($environment, $config['daux']);
 
-        if (array_key_exists('processor_instance', $config['daux'])) {
-            $config['daux']['processor_instance']->extendCommonMarkEnvironment($environment);
+        if ($config['daux']->hasProcessorInstance()) {
+            $config['daux']->getProcessorInstance()->extendCommonMarkEnvironment($environment);
         }
 
         parent::__construct($config, $environment);

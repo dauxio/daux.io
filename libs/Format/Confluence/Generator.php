@@ -30,7 +30,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
 
     public function checkConfiguration()
     {
-        $config = $this->daux->getParams();
+        $config = $this->daux->getConfig();
         $confluence = $config->getConfluenceConfiguration();
 
         if ($confluence == null) {
@@ -60,7 +60,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
     public function getContentTypes()
     {
         return [
-            new ContentTypes\Markdown\ContentType($this->daux->getParams()),
+            new ContentTypes\Markdown\ContentType($this->daux->getConfig()),
         ];
     }
 
@@ -69,10 +69,10 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
      */
     public function generateAll(InputInterface $input, OutputInterface $output, $width)
     {
-        $params = $this->daux->getParams();
+        $config = $this->daux->getConfig();
 
-        $confluence = $params['confluence'];
-        $this->prefix = trim($confluence['prefix']) . ' ';
+        $confluence = $config->getConfluenceConfiguration();
+        $this->prefix = trim($confluence->getPrefix()) . ' ';
         if ($this->prefix == ' ') {
             $this->prefix = '';
         }
@@ -80,9 +80,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $tree = $this->runAction(
             'Generating Tree ...',
             $width,
-            function() use ($params) {
-                $tree = $this->generateRecursive($this->daux->tree, $params);
-                $tree['title'] = $this->prefix . $params['title'];
+            function() use ($config) {
+                $tree = $this->generateRecursive($this->daux->tree, $config);
+                $tree['title'] = $this->prefix . $config->getTitle();
 
                 return $tree;
             }
@@ -96,31 +96,31 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $publisher->publish($tree);
     }
 
-    private function generateRecursive(Directory $tree, Config $params, $base_url = '')
+    private function generateRecursive(Directory $tree, Config $config, $base_url = '')
     {
         $final = ['title' => $this->prefix . $tree->getTitle()];
-        $params['base_url'] = $params['base_page'] = $base_url;
+        $config['base_url'] = $base_url;
 
-        $params['image'] = str_replace('<base_url>', $base_url, $params['image']);
+        $config->setImage(str_replace('<base_url>', $base_url, $config->getImage()));
         if ($base_url !== '') {
-            $params['entry_page'] = $tree->getFirstPage();
+            $config->setEntryPage($tree->getFirstPage());
         }
         foreach ($tree->getEntries() as $key => $node) {
             if ($node instanceof Directory) {
                 $final['children'][$this->prefix . $node->getTitle()] = $this->generateRecursive(
                     $node,
-                    $params,
+                    $config,
                     '../' . $base_url
                 );
             } elseif ($node instanceof Content) {
-                $params['request'] = $node->getUrl();
+                $config->setRequest($node->getUrl());
 
                 $contentType = $this->daux->getContentTypeHandler()->getType($node);
 
                 $data = [
                     'title' => $this->prefix . $node->getTitle(),
                     'file' => $node,
-                    'page' => ContentPage::fromFile($node, $params, $contentType),
+                    'page' => ContentPage::fromFile($node, $config, $contentType),
                 ];
 
                 if ($key == 'index.html') {

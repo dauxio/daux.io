@@ -16,52 +16,27 @@ class DauxHelper
     public static function rebaseConfiguration(Config $config, $base_url)
     {
         // Avoid changing the url if it is already correct
-        if ($config['base_url'] == $base_url && !empty($config['theme'])) {
+        if ($config->getBaseUrl() == $base_url && !empty($config->getTheme())) {
             return;
         }
 
         // Change base url for all links on the pages
-        $config['base_url'] = $config['base_page'] = $base_url;
+        $config['base_url'] = $base_url;
         $config['theme'] = static::getTheme($config, $base_url);
-        $config['image'] = str_replace('<base_url>', $base_url, $config['image']);
-    }
-
-    protected static function resolveVariant(Config $params)
-    {
-        if (array_key_exists('theme-variant', $params['html'])) {
-            return;
-        }
-
-        if (is_dir(realpath(($params->getThemesPath() . DIRECTORY_SEPARATOR . $params['html']['theme'])))) {
-            return;
-        }
-
-        $theme = explode('-', $params['html']['theme']);
-
-        // do we have a variant or only a theme ?
-        if (isset($theme[1])) {
-            $params['html']['theme-variant'] = array_pop($theme);
-            $params['html']['theme'] = implode('-', $theme);
-        } else {
-            $params['html']['theme'] = array_pop($theme);
-        }
-
-        if (!is_dir(realpath($params->getThemesPath() . DIRECTORY_SEPARATOR . $params['html']['theme']))) {
-            throw new \RuntimeException("Theme '{$params['html']['theme']}' not found");
-        }
+        $config['image'] = str_replace('<base_url>', $base_url, $config->getImage());
     }
 
     /**
-     * @param Config $params
+     * @param Config $config
      * @param string $current_url
      * @return array
      */
-    protected static function getTheme(Config $params, $current_url)
+    protected static function getTheme(Config $config, $current_url)
     {
-        self::resolveVariant($params);
+        $htmlTheme = $config->getHTML()->getTheme();
 
-        $theme_folder = $params->getThemesPath() . DIRECTORY_SEPARATOR . $params['html']['theme'];
-        $theme_url = $params['base_url'] . 'themes/' . $params['html']['theme'] . '/';
+        $theme_folder = $config->getThemesPath() . DIRECTORY_SEPARATOR . $htmlTheme;
+        $theme_url = $config->getBaseUrl() . 'themes/' . $htmlTheme . '/';
 
         $theme = [];
         if (is_file($theme_folder . DIRECTORY_SEPARATOR . 'config.json')) {
@@ -73,7 +48,7 @@ class DauxHelper
 
         //Default parameters for theme
         $theme += [
-            'name' => $params['html']['theme'],
+            'name' => $htmlTheme,
             'css' => [],
             'js' => [],
             'fonts' => [],
@@ -82,8 +57,8 @@ class DauxHelper
             'variants' => [],
         ];
 
-        if (array_key_exists('theme-variant', $params['html'])) {
-            $variant = $params['html']['theme-variant'];
+        if ($config->getHTML()->hasThemeVariant()) {
+            $variant = $config->getHTML()->getThemeVariant();
             if (!array_key_exists($variant, $theme['variants'])) {
                 throw new Exception("Variant '$variant' not found for theme '$theme[name]'");
             }
@@ -104,7 +79,7 @@ class DauxHelper
         }
 
         $substitutions = [
-            '<local_base>' => $params['local_base'],
+            '<local_base>' => $config->getLocalBase(),
             '<base_url>' => $current_url,
             '<theme_url>' => $theme_url,
         ];
@@ -156,7 +131,7 @@ class DauxHelper
      */
     public static function getFilenames(Config $config, $part)
     {
-        $extensions = implode('|', array_map('preg_quote', $config['valid_content_extensions'])) . '|html';
+        $extensions = implode('|', array_map('preg_quote', $config->getValidContentExtensions())) . '|html';
 
         $raw = preg_replace('/(.*)?\\.(' . $extensions . ')$/', '$1', $part);
         $raw = Builder::removeSortingInformations($raw);
@@ -487,44 +462,6 @@ class DauxHelper
         return getcwd() . '/' . $path;
     }
 
-    /**
-     * @param string|null $path
-     * @param string $basedir
-     * @param string $var The constant name to check
-     * @param "dir"|"file" $type
-     * @return false|null|string
-     */
-    public static function findLocation($path, $basedir, $var, $type) {
-        // VFS, used only in tests
-        if (substr($path, 0, 6) == "vfs://") {
-            return $path;
-        }
-
-        // When running through `daux --serve` we set an environment variable to know where we started from
-        $env = getenv($var);
-        if ($env && DauxHelper::is($env, $type)) {
-            return $env;
-        }
-
-        // If Path is explicitly null, it's useless to go further
-        if ($path == null) {
-            return null;
-        }
-
-        // Check if it's relative to the current directory or an absolute path
-        if (DauxHelper::is($path, $type)) {
-            return DauxHelper::getAbsolutePath($path);
-        }
-
-        // Check if it exists relative to Daux's root
-        $newPath = $basedir . DIRECTORY_SEPARATOR . $path;
-        if (DauxHelper::is($newPath, $type)) {
-            return $newPath;
-        }
-
-        return false;
-    }
-
     public static function is($path, $type) {
         return ($type == 'dir') ? is_dir($path) : file_exists($path);
     }
@@ -545,7 +482,7 @@ class DauxHelper
         if ($url[0] == '!' || $url[0] == '/') {
             $url = ltrim($url, '!/');
 
-            if ($file = DauxHelper::getFile($config['tree'], $url)) {
+            if ($file = DauxHelper::getFile($config->getTree(), $url)) {
                 return $file;
             }
 
@@ -560,7 +497,7 @@ class DauxHelper
 
         // If we didn't already try it, we'll
         // do a pass starting at the root
-        if (!$triedAbsolute && $file = DauxHelper::getFile($config['tree'], $url)) {
+        if (!$triedAbsolute && $file = DauxHelper::getFile($config->getTree(), $url)) {
             return $file;
         }
 

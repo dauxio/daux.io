@@ -36,4 +36,19 @@ class BaseConfig extends ArrayObject
             }
         }
     }
+
+    public function hasValue($key)
+    {
+        return array_key_exists($key, $this);
+    }
+
+    public function getValue($key)
+    {
+        return $this[$key];
+    }
+
+    public function setValue($key, $value)
+    {
+        $this[$key] = $value;
+    }
 }

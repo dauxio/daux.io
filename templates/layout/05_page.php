@@ -7,7 +7,7 @@
             <span class="Collapsible__trigger__bar"></span>
         </button>
 
-        <?php $this->insert('theme::partials/navbar_content', ['params' => $params]); ?>
+        <?php $this->insert('theme::partials/navbar_content'); ?>
 
         <div class="Collapsible__content" id="sidebar_content">
             <!-- Navigation -->
@@ -20,21 +20,20 @@
                 $path = $page['language'];
             }
 
-            echo $this->get_navigation($rendertree, $path, isset($params['request']) ? $params['request'] : '', $base_page, $params['mode']);
+            echo $this->get_navigation($rendertree, $path, $config->hasRequest() ? $config->getRequest() : '', $base_page, $config->getMode());
             ?>
 
-
             <div class="Links">
-                <?php if (!empty($params['html']['links'])) { ?>
+                <?php if ($config->getHTML()->hasLinks()) { ?>
                     <hr/>
-                    <?php foreach ($params['html']['links'] as $name => $url) { ?>
+                    <?php foreach ($config->getHTML()->getLinks() as $name => $url) { ?>
                         <a href="<?= $url ?>" target="_blank"><?= $name ?></a>
                         <br />
                     <?php } ?>
                 <?php } ?>
             </div>
 
-            <?php if ($params['html']['toggle_code']) { ?>
+            <?php if ($config->getHTML()->showCodeToggle()) { ?>
                 <div class="CodeToggler">
                     <hr/>
                     <label class="Checkbox"><?=$this->translate("CodeBlocks_show") ?>
@@ -44,17 +43,17 @@
                 </div>
             <?php } ?>
 
-                <?php if (!empty($params['html']['twitter'])) { ?>
+                <?php if ($config->getHTML()->hasTwitterHandles()) { ?>
                     <div class="Twitter">
                         <hr/>
-                        <?php $this->insert('theme::partials/twitter_buttons', ['params' => $params]); ?>
+                        <?php $this->insert('theme::partials/twitter_buttons'); ?>
                     </div>
                 <?php } ?>
 
-                <?php if (!empty($params['html']['powered_by'])) { ?>
+                <?php if ($config->getHTML()->hasPoweredBy()) { ?>
                     <div class="PoweredBy">
                         <hr/>
-                        <?= $params['html']['powered_by'] ?>
+                        <?= $config->getHTML()->getPoweredBy()?>
                     </div>
                 <?php } ?>
         </div>

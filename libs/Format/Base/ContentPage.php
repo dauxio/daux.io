@@ -14,7 +14,7 @@ abstract class ContentPage extends SimplePage
     /**
      * @var Config
      */
-    protected $params;
+    protected $config;
 
     /**
      * @var ContentType
@@ -38,9 +38,17 @@ abstract class ContentPage extends SimplePage
         return $this->file;
     }
 
-    public function setParams(Config $params)
+    public function setConfig(Config $config)
     {
-        $this->params = $params;
+        $this->config = $config;
+    }
+
+    /**
+     * @deprecated use setConfig instead
+     */
+    public function setParams(Config $config)
+    {
+        $this->setConfig($config);
     }
 
     /**
@@ -65,11 +73,11 @@ abstract class ContentPage extends SimplePage
         return $this->getPureContent();
     }
 
-    public static function fromFile(Content $file, $params, ContentType $contentType)
+    public static function fromFile(Content $file, $config, ContentType $contentType)
     {
         $page = new static($file->getTitle(), $file->getContent());
         $page->setFile($file);
-        $page->setParams($params);
+        $page->setConfig($config);
         $page->setContentType($contentType);
 
         return $page;

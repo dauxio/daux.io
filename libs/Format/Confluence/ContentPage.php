@@ -15,7 +15,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
         //Embed images
         // We do it after generation so we can catch the images that were in html already
-        $content = (new EmbedImages($this->params['tree']))
+        $content = (new EmbedImages($this->config->getTree()))
             ->embed(
                 $content,
                 $this->file,
@@ -36,10 +36,9 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                 }
             );
 
-
         $intro = '';
-        if (array_key_exists('confluence', $this->params) && array_key_exists('header', $this->params['confluence']) && !empty($this->params['confluence']['header'])) {
-            $intro = '<ac:structured-macro ac:name="info"><ac:rich-text-body>' . $this->params['confluence']['header'] . '</ac:rich-text-body></ac:structured-macro>';
+        if ($this->config->getConfluenceConfiguration()->hasHeader()) {
+            $intro = '<ac:structured-macro ac:name="info"><ac:rich-text-body>' . $this->config->getConfluenceConfiguration()->getHeader() . '</ac:rich-text-body></ac:structured-macro>';
         }
 
         return $intro . $content;

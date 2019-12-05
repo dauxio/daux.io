@@ -5,6 +5,7 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\Request;
 use Todaymade\Daux\Format\HTML\RawPage;
 use Todaymade\Daux\Config;
+use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\Server\Server;
 use org\bovigo\vfs\vfsStream;
@@ -21,11 +22,13 @@ class ServerTest extends TestCase
         ];
         $root = vfsStream::setup('root', null, $structure);
 
-        $daux = new Daux(Daux::LIVE_MODE, new NullOutput());
-        $daux->getParams()->setDocumentationDirectory($root->url());
 
-        $daux->initializeConfiguration();
-        $daux->getParams()['index_key'] = 'index';
+        $config = ConfigBuilder::withMode(Daux::LIVE_MODE)
+            ->withDocumentationDirectory($root->url())
+            ->build();
+
+        $daux = new Daux($config, new NullOutput());
+
         $daux->generateTree();
 
         $page = new RawPage($daux->tree['somefile.css']->getPath());

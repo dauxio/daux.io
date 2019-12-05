@@ -1,4 +1,9 @@
-<?php if ($params['html']['search']) { ?>
+<?php 
+if (!isset($config)) {
+    $config = $params;
+}
+?>
+<?php if ($config->getHTML()->hasSearch()) { ?>
     <script>
         <?php
         $search_strings = [

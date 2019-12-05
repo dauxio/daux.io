@@ -3,6 +3,7 @@ namespace Todaymade\Daux\Format\Template;
 
 use org\bovigo\vfs\vfsStream;
 use Todaymade\Daux\Config;
+use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Format\HTML\Template;
@@ -30,10 +31,11 @@ class TranslateTest extends TestCase
         ];
         $root = vfsStream::setup('root', null, $structure);
 
-        $config->setDocumentationDirectory($root->url());
-        $config['valid_content_extensions'] = ['md'];
-        $config['mode'] = Daux::STATIC_MODE;
-        $config['index_key'] = 'index.html';
+        $config = ConfigBuilder::withMode()
+            ->withDocumentationDirectory($root->url())
+            ->withValidContentExtensions(['md'])
+            ->build();
+
 
         $tree = new Root($config);
         Builder::build($tree, []);
@@ -61,35 +63,36 @@ class TranslateTest extends TestCase
         $entry = $this->prophesize(Entry::class);
 
         $config = new Config();
-        $config['tree']      = $this->getTree($config);
-        $config['title']     = '';
-        $config['index']     = $entry->reveal();
-        $config['language']  = $language;
-        $config['base_url']  = '';
-        $config['base_page'] = '';
-        $config['templates'] = '';
-        $config['page']['language'] = $language;
+        $config->setTree($this->getTree($config));
+        $config->merge([
+            'title' => '',
+            'index' => $entry->reveal(),
+            'language' => $language,
+            'base_url' => '',
+            'templates' => '',
+            'page' => [
+                'language' => $language,
+            ],
+            'html' => [
+                'search'           => '',
+                'toggle_code'      => false,
+                'piwik_analytics'  => '',
+                'google_analytics' => '',
+            ],
+            'theme' => [
+                'js'        => [''],
+                'css'       => [''],
+                'fonts'     => [''],
+                'favicon'   => '',
+                'templates' => 'name',
+            ],
+            'strings' => [
+                'en' => ['Link_previous' => 'Previous',],
+                'it' => ['Link_previous' => 'Pagina precedente',],
+            ]
+        ]);
 
-        $config['html'] = [
-            'search'           => '',
-            'toggle_code'      => false,
-            'piwik_analytics'  => '',
-            'google_analytics' => '',
-        ];
-        $config['theme'] = [
-            'js'        => [''],
-            'css'       => [''],
-            'fonts'     => [''],
-            'favicon'   => '',
-            'templates' => 'name',
-        ];
-        $config['strings'] = [
-            'en' => ['Link_previous' => 'Previous',],
-            'it' => ['Link_previous' => 'Pagina precedente',],
-        ];
-
-
-        $config->setCurrentPage(DauxHelper::getFile($config['tree'], $current));
+        $config->setCurrentPage(DauxHelper::getFile($config->getTree(), $current));
 
         $template = new Template($config);
         $value = $template->getEngine($config)->getFunction('translate')->call(null, ['Link_previous']);

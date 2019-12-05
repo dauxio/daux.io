@@ -13,7 +13,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
         // Embed images
         // We do it after generation so we can catch the images that were in html already
-        $content = (new EmbedImages($this->params['tree']))
+        $content = (new EmbedImages($this->config->getTree()))
             ->embed(
                 $content,
                 $this->file,

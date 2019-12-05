@@ -22,7 +22,7 @@ class PublisherDelete
      */
     protected $client;
 
-    public function __construct($output, $delete, $client)
+    public function __construct($output, bool $delete, $client)
     {
         $this->output = $output;
         $this->delete = $delete;
@@ -55,7 +55,6 @@ class PublisherDelete
 
         if ($this->delete) {
             $this->doDelete();
-
         } else {
             $this->displayDeletable();
         }

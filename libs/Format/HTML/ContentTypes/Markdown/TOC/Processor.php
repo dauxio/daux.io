@@ -17,16 +17,14 @@ use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;
 
 class Processor
 {
+    /**
+     * @var Config
+     */
     protected $config;
 
     public function __construct(Config $config)
     {
         $this->config = $config;
-    }
-
-    public function hasAutoTOC()
-    {
-        return array_key_exists('html', $this->config) && array_key_exists('auto_toc', $this->config['html']) && $this->config['html']['auto_toc'];
     }
 
     /**
@@ -60,7 +58,7 @@ class Processor
             $headings[] = new Entry($node);
         }
 
-        if (count($headings) && (count($tocs) || $this->hasAutoTOC())) {
+        if (count($headings) && (count($tocs) || $this->config->getHTML()->hasAutomaticTableOfContents())) {
             $generated = $this->generate($headings);
 
             if (count($tocs)) {

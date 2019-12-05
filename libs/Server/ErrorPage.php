@@ -12,17 +12,17 @@ class ErrorPage extends SimplePage
     /**
      * @var \Todaymade\Daux\Config
      */
-    private $params;
+    private $config;
 
     /**
      * @param string $title
      * @param string $content
-     * @param \Todaymade\Daux\Config $params
+     * @param \Todaymade\Daux\Config $config
      */
-    public function __construct($title, $content, $params)
+    public function __construct($title, $content, $config)
     {
         parent::__construct($title, $content);
-        $this->params = $params;
+        $this->config = $config;
     }
 
     /**
@@ -30,15 +30,15 @@ class ErrorPage extends SimplePage
      */
     protected function generatePage()
     {
-        $params = $this->params;
+        $config = $this->config;
         $page = [
             'title' => $this->title,
             'content' => $this->getPureContent(),
             'language' => '',
         ];
 
-        $template = new Template($params);
+        $template = new Template($config);
 
-        return $template->render('error', ['page' => $page, 'params' => $params]);
+        return $template->render('error', ['page' => $page, 'config' => $config]);
     }
 }

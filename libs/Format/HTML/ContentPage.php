@@ -4,7 +4,14 @@ use Todaymade\Daux\Tree\Root;
 
 class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 {
+    /**
+     * @var string
+     */
     private $language;
+
+    /**
+     * @var bool
+     */
     private $homepage;
 
     /**
@@ -12,24 +19,19 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
      */
     public $templateRenderer;
 
-    private function isHomepage()
+    private function isHomepage(): bool
     {
         // If the current page isn't the index, no chance it is the landing page
         if ($this->file->getParent()->getIndexPage() != $this->file) {
             return false;
         }
 
-        // If the direct parent is root, this is the homage
+        // If the direct parent is root, this is the homepage
         return $this->file->getParent() instanceof Root;
     }
 
-    private function isLanding() {
-        // If we don't have the auto_landing parameter, we don't want any homepage
-        if (array_key_exists('auto_landing', $this->params['html']) && !$this->params['html']['auto_landing']) {
-            return false;
-        }
-
-        return $this->homepage;
+    private function isLanding(): bool {
+        return $this->config->getHTML()->hasLandingPage() && $this->homepage;
     }
 
     private function initialize()
@@ -37,7 +39,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
         $this->homepage = $this->isHomepage();
 
         $this->language = '';
-        if ($this->params->isMultilanguage() && count($this->file->getParents())) {
+        if ($this->config->isMultilanguage() && count($this->file->getParents())) {
             $language_dir = $this->file->getParents()[0];
             $this->language = $language_dir->getName();
         }
@@ -67,16 +69,16 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
     protected function generatePage()
     {
         $this->initialize();
-        $params = $this->params;
+        $config = $this->config;
 
         $entry_page = [];
         if ($this->homepage) {
-            if ($params->isMultilanguage()) {
-                foreach ($params['languages'] as $key => $name) {
-                    $entry_page[$name] = $params['base_page'] . $params['entry_page'][$key]->getUrl();
+            if ($config->isMultilanguage()) {
+                foreach ($config->getLanguages() as $key => $name) {
+                    $entry_page[$name] = $config->getBasePage() . $config->getEntryPage()[$key]->getUrl();
                 }
             } else {
-                $entry_page['__VIEW_DOCUMENTATION__'] = $params['base_page'] . $params['entry_page']->getUrl();
+                $entry_page['__VIEW_DOCUMENTATION__'] = $config->getBasePage() . $config->getEntryPage()->getUrl();
             }
         }
 
@@ -90,24 +92,24 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             'relative_path' => $this->file->getRelativePath(),
             'modified_time' => filemtime($this->file->getPath()),
             'markdown' => $this->content,
-            'request' => $params['request'],
+            'request' => $config->getRequest(),
             'content' => $this->getPureContent(),
-            'breadcrumbs' => $params['html']['breadcrumbs'],
+            'breadcrumbs' => $config->getHTML()->hasBreadcrumbs(),
             'prev' => $this->file->getPrevious(),
             'next' => $this->file->getNext(),
             'attributes' => $this->file->getAttribute()
         ];
 
         if ($page['breadcrumbs']) {
-            $page['breadcrumb_trail'] = $this->getBreadcrumbTrail($this->file->getParents(), $params->isMultilanguage());
-            $page['breadcrumb_separator'] = $params['html']['breadcrumb_separator'];
+            $page['breadcrumb_trail'] = $this->getBreadcrumbTrail($this->file->getParents(), $config->isMultilanguage());
+            $page['breadcrumb_separator'] = $this->config->getHTML()->getBreadcrumbsSeparator();
 
             if ($this->homepage) {
                 $page['breadcrumb_trail'] = [['title' => $this->file->getTitle(), 'url' => '']];
             }
         }
 
-        $context = ['page' => $page, 'params' => $params];
+        $context = ['page' => $page, 'config' => $config];
 
         $template = "theme::content";
         if ($this->isLanding()) {

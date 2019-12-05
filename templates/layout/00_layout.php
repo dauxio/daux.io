@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html class="no-js" lang="<?=$params['language'] ?>">
+<html class="no-js" lang="<?=$config->getLanguage() ?>">
 <head>
-    <title><?= $page['title']; ?> <?= ($page['title'] != $params['title']) ? '- ' . $params['title'] : "" ?></title>
+    <title><?= $page['title']; ?> <?= ($page['title'] != $config->getTitle()) ? '- ' . $config->getTitle() : "" ?></title>
 <?php //SEO meta tags...
     if (array_key_exists('attributes', $page) && array_key_exists('description', $page['attributes'])) {
         echo "    <meta name=\"description\" content=\"{$page['attributes']['description']}\">\n";
-    } elseif (array_key_exists('tagline', $params)) {
-        echo "    <meta name=\"description\" content=\"{$params['tagline']}\">\n";
+    } elseif ($config->hasTagline()) {
+        echo "    <meta name=\"description\" content=\"{$config->getTagline()}\">\n";
     }
     if (array_key_exists('attributes', $page) && array_key_exists('keywords', $page['attributes'])) {
         echo "    <meta name=\"keywords\" content=\"{$page['attributes']['keywords']}\">\n";
     }
     if (array_key_exists('attributes', $page) && array_key_exists('author', $page['attributes'])) {
         echo "    <meta name=\"author\" content=\"{$page['attributes']['author']}\">\n";
-    } elseif (array_key_exists('author', $params)) {
-        echo "    <meta name=\"author\" content=\"{$params['author']}\">\n";
+    } elseif ($config->hasAuthor()) {
+        echo "    <meta name=\"author\" content=\"{$config->getAuthor()}\">\n";
     }
 ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="icon" href="<?= $params['theme']['favicon']; ?>" type="image/x-icon">
+    <link rel="icon" href="<?= $config->getTheme()->getFavicon(); ?>" type="image/x-icon">
 
     <!-- Mobile -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,16 +33,16 @@
     </script>
 
     <!-- Font -->
-    <?php foreach ($params['theme']['fonts'] as $font) {
+    <?php foreach ($config->getTheme()->getFonts() as $font) {
         echo "<link href='$font' rel='stylesheet' type='text/css'>";
     } ?>
 
     <!-- CSS -->
-    <?php foreach ($params['theme']['css'] as $css) {
+    <?php foreach ($config->getTheme()->getCSS() as $css) {
         echo "<link href='$css' rel='stylesheet' type='text/css'>";
     } ?>
 
-    <?php if ($params['html']['search']) { ?>
+    <?php if ($config->getHTML()->hasSearch()) { ?>
         <!-- Search -->
         <link href="<?= $base_url; ?>daux_libraries/search.css" rel="stylesheet">
     <?php } ?>
@@ -51,16 +51,16 @@
     <?= $this->section('content'); ?>
 
     <?php
-    if ($params['html']['google_analytics']) {
-        $this->insert('theme::partials/google_analytics', ['analytics' => $params['html']['google_analytics'], 'host' => array_key_exists('host', $params) ? $params['host'] : '']);
+    if ($config->getHTML()->hasGoogleAnalytics()) {
+        $this->insert('theme::partials/google_analytics', ['analytics' => $config->getHTML()->getGoogleAnalyticsId(), 'host' => $config->hasHost() ? $config->getHost() : '']);
     }
-    if ($params['html']['piwik_analytics']) {
-        $this->insert('theme::partials/piwik_analytics', ['url' => $params['html']['piwik_analytics'], 'id' => $params['html']['piwik_analytics_id']]);
+    if ($config->getHTML()->hasPiwikAnalytics()) {
+        $this->insert('theme::partials/piwik_analytics', ['url' => $config->getHTML()->getPiwikAnalyticsUrl(), 'id' => $config->getHTML()->getPiwikAnalyticsId()]);
     }
     ?>
 
     <!-- JS -->
-    <?php foreach ($params['theme']['js'] as $js) {
+    <?php foreach ($config->getTheme()->getJS() as $js) {
         echo '<script src="' . $js . '"></script>';
     } ?>
 

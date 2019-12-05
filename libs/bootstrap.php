@@ -16,6 +16,8 @@ function loadApp() {
 
 $loader = loadApp();
 
+// This will define the path at which to
+// find the daux processor extensions
 if ($loader) {
     $ext = __DIR__ . '/../daux';
     if (is_dir(getcwd() . "/daux")) {

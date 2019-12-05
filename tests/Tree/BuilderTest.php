@@ -3,6 +3,7 @@ namespace Todaymade\Daux\Tree;
 
 use org\bovigo\vfs\vfsStream;
 use Todaymade\Daux\Config;
+use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
 use PHPUnit\Framework\TestCase;
 
@@ -44,8 +45,7 @@ class BuilderTest extends TestCase
 
     public function testGetOrCreateDirNew()
     {
-        $config = new Config;
-        $config->setDocumentationDirectory('');
+        $config = ConfigBuilder::withMode()->build();
         $root = new Root($config);
 
         $dir = Builder::getOrCreateDir($root, 'directory');
@@ -57,8 +57,7 @@ class BuilderTest extends TestCase
 
     public function testGetOrCreateDirExisting()
     {
-        $config = new Config;
-        $config->setDocumentationDirectory('');
+        $config = ConfigBuilder::withMode()->build();
         $root = new Root($config);
         $directory = new Directory($root, 'directory');
         $directory->setTitle('directory');
@@ -73,11 +72,9 @@ class BuilderTest extends TestCase
 
     public function getStaticRoot()
     {
-        $config = new Config();
-        $config->setDocumentationDirectory('');
-        $config['mode'] = Daux::STATIC_MODE;
-        $config['index_key'] = 'index.html';
-        $config['valid_content_extensions'] = ['md'];
+        $config = ConfigBuilder::withMode()
+            ->withValidContentExtensions(['md'])
+            ->build();
 
         return new Root($config);
     }
@@ -168,11 +165,10 @@ class BuilderTest extends TestCase
         ];
         $root = vfsStream::setup('root', null, $structure);
 
-        $config = new Config;
-        $config->setDocumentationDirectory($root->url());
-        $config['valid_content_extensions'] = ['md'];
-        $config['mode'] = Daux::STATIC_MODE;
-        $config['index_key'] = 'index.html';
+        $config = ConfigBuilder::withMode()
+            ->withDocumentationDirectory($root->url())
+            ->withValidContentExtensions(['md'])
+            ->build();
 
         $tree = new Root($config);
         Builder::build($tree, []);
@@ -194,11 +190,10 @@ class BuilderTest extends TestCase
         ];
         $root = vfsStream::setup('root', null, $structure);
 
-        $config = new Config;
-        $config->setDocumentationDirectory($root->url());
-        $config['valid_content_extensions'] = ['md'];
-        $config['mode'] = Daux::STATIC_MODE;
-        $config['index_key'] = 'index.html';
+        $config = ConfigBuilder::withMode()
+            ->withDocumentationDirectory($root->url())
+            ->withValidContentExtensions(['md'])
+            ->build();
 
         $tree = new Root($config);
         Builder::build($tree, []);

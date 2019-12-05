@@ -4,6 +4,7 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
 
 class DauxCommand extends SymfonyCommand
@@ -12,78 +13,55 @@ class DauxCommand extends SymfonyCommand
     {
         $this
             ->addOption('configuration', 'c', InputOption::VALUE_REQUIRED, 'Configuration file')
-            ->addOption('value', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Set different configuration values')
             ->addOption('source', 's', InputOption::VALUE_REQUIRED, 'Where to take the documentation from')
             ->addOption('processor', 'p', InputOption::VALUE_REQUIRED, 'Manipulations on the tree')
-            ->addOption('no-cache', null, InputOption::VALUE_NONE, 'Disable Cache');
-
-        // HTML Format only
-        $this->addOption('themes', 't', InputOption::VALUE_REQUIRED, 'Set a different themes directory');
+            ->addOption('no-cache', null, InputOption::VALUE_NONE, 'Disable Cache')
+            ->addOption('themes', 't', InputOption::VALUE_REQUIRED, 'Set a different themes directory (Used by HTML format only)')
+            ->addOption('value', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Set different configuration values');
     }
 
-    private function setValue(&$array, $key, $value)
+    protected function prepareConfig($mode, InputInterface $input, OutputInterface $output): ConfigBuilder
     {
-        if (is_null($key)) {
-            return $array = $value;
-        }
-        $keys = explode('.', $key);
-        while (count($keys) > 1) {
-            $key = array_shift($keys);
-            if (!isset($array[$key]) || !is_array($array[$key])) {
-                $array[$key] = [];
-            }
-            $array = &$array[$key];
-        }
-        $array[array_shift($keys)] = $value;
-        return $array;
-    }
+        $builder = ConfigBuilder::withMode($mode);
 
-    private function applyConfiguration(array $options, Daux $daux)
-    {
-        $values = array_map(
-            function($value) {
-                return array_map("trim", explode('=', $value));
-            },
-            $options
-        );
-
-        foreach ($values as $value) {
-            $this->setValue($daux->options, $value[0], $value[1]);
-        }
-    }
-
-    protected function prepareDaux(InputInterface $input, OutputInterface $output)
-    {
-        $daux = new Daux(Daux::STATIC_MODE, $output);
-
-        // Set the format if requested
-        if ($input->hasOption('format') && $input->getOption('format')) {
-            $daux->getParams()->setFormat($input->getOption('format'));
+        if ($input->getOption('configuration')) {
+            $builder->withConfigurationOverride($input->getOption('configuration'));
         }
 
-        // Set the source directory
         if ($input->getOption('source')) {
-            $daux->getParams()->setDocumentationDirectory($input->getOption('source'));
+            $builder->withDocumentationDirectory($input->getOption('source'));
         }
 
-        if ($input->getOption('themes')) {
-            $daux->getParams()->setThemesDirectory($input->getOption('themes'));
-        }
-
-        $daux->initializeConfiguration($input->getOption('configuration'));
-
-        if ($input->hasOption('delete') && $input->getOption('delete')) {
-            $daux->getParams()['confluence']['delete'] = true;
-        }
-
-        if ($input->hasOption('value')) {
-            $this->applyConfiguration($input->getOption('value'), $daux);
+        if ($input->getOption('processor')) {
+            $builder->withProcessor($input->getOption('processor'));
         }
 
         if ($input->getOption('no-cache')) {
-            $daux->getParams()['cache'] = false;
+            $builder->withCache(false);
         }
 
-        return $daux;
+        if ($input->getOption('themes')) {
+            $builder->withThemesDirectory($input->getOption('themes'));
+        }
+
+        if ($input->hasOption('value')) {
+            $values = array_map(
+                function($value) {
+                    return array_map("trim", explode('=', $value));
+                },
+                $input->getOption('value')
+            );
+            $builder->withValues($values);
+        }
+
+        return $builder;
+    }
+
+    protected function prepareProcessor(Daux $daux, $width)
+    {
+        $class = $daux->getProcessorClass();
+        if (!empty($class)) {
+            $daux->setProcessor(new $class($daux, $output, $width));
+        }
     }
 }

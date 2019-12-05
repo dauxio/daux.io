@@ -13,25 +13,25 @@ class Template
 {
     protected $engine;
 
-    protected $params;
+    protected $config;
 
     /**
      * @param string $base
      * @param string $theme
      */
-    public function __construct(Config $params)
+    public function __construct(Config $config)
     {
-        $this->params = $params;
+        $this->config = $config;
     }
 
-    public function getEngine(Config $params)
+    public function getEngine(Config $config)
     {
         if ($this->engine) {
             return $this->engine;
         }
 
-        $base = $params['templates'];
-        $theme = $params['theme']['templates'];
+        $base = $config->getTemplates();
+        $theme = $config->getTheme()->getTemplates();
 
         // Use internal templates if no templates
         // dir exists in the working directory
@@ -60,14 +60,15 @@ class Template
      */
     public function render($name, array $data = [])
     {
-        $engine = $this->getEngine($data['params']);
+        $engine = $this->getEngine($data['config']);
 
         $engine->addData([
-            'base_url' => $data['params']['base_url'],
-            'base_page' => $data['params']['base_page'],
+            'base_url' => $data['config']->getBaseUrl(),
+            'base_page' => $data['config']->getBasePage(),
             'page' => $data['page'],
-            'params' => $data['params'],
-            'tree' => $data['params']['tree'],
+            'params' => $data['config'], // legacy name for config
+            'config' => $data['config'],
+            'tree' => $data['config']['tree'],
         ]);
 
         Daux::writeln("Rendering template '$name'", OutputInterface::VERBOSITY_VERBOSE);
@@ -84,7 +85,7 @@ class Template
         });
 
         $engine->registerFunction('translate', function($key) {
-            $language = $this->params['language'];
+            $language = $this->config->getLanguage();
 
             if (isset($this->engine->getData('page')['page'])) {
                 $page = $this->engine->getData('page');
@@ -93,14 +94,12 @@ class Template
                 }
             }
 
-            if (array_key_exists($language, $this->params['strings'])) {
-                if (array_key_exists($key, $this->params['strings'][$language])) {
-                    return $this->params['strings'][$language][$key];
-                }
+            if ($this->config->hasTranslationKey($language, $key)) {
+                return $this->config->getTranslationKey($language, $key);
             }
 
-            if (array_key_exists($key, $this->params['strings']['en'])) {
-                return $this->params['strings']['en'][$key];
+            if ($this->config->hasTranslationKey('en', $key)) {
+                return $this->config->getTranslationKey('en', $key);
             }
 
             return "Unknown key $key";

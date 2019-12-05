@@ -23,11 +23,11 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
      */
     public function __construct(Daux $daux)
     {
-        $params = $daux->getParams();
+        $config = $daux->getConfig();
 
         $this->daux = $daux;
-        $this->templateRenderer = new Template($params);
-        $params->templateRenderer = $this->templateRenderer;
+        $this->templateRenderer = new Template($config);
+        $config->templateRenderer = $this->templateRenderer;
     }
 
     /**
@@ -36,7 +36,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
     public function getContentTypes()
     {
         return [
-            'markdown' => new ContentType($this->daux->getParams()),
+            'markdown' => new ContentType($this->daux->getConfig()),
         ];
     }
 
@@ -47,9 +47,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
     {
         $destination = $input->getOption('destination');
 
-        $params = $this->daux->getParams();
+        $config = $this->daux->getConfig();
         if (is_null($destination)) {
-            $destination = $this->daux->local_base . DIRECTORY_SEPARATOR . 'static';
+            $destination = $this->config->getLocalBase() . DIRECTORY_SEPARATOR . 'static';
         }
 
         $this->runAction(
@@ -61,9 +61,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         );
 
         $data = [
-            'author' => $params['author'],
-            'title' => $params['title'],
-            'subject' => $params['tagline']
+            'author' => $config->getAuthor(),
+            'title' => $config->getTitle(),
+            'subject' => $config->getTagline()
         ];
 
         $book = new Book($this->daux->tree, $data);
@@ -73,9 +73,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
             $this->runAction(
                 'Generating ' . $current->getTitle(),
                 $width,
-                function () use ($book, $current, $params) {
+                function () use ($book, $current, $config) {
                     $contentType = $this->daux->getContentTypeHandler()->getType($current);
-                    $content = ContentPage::fromFile($current, $params, $contentType);
+                    $content = ContentPage::fromFile($current, $config, $contentType);
                     $content->templateRenderer = $this->templateRenderer;
                     $content = $content->getContent();
                     $book->addPage($current, $content);

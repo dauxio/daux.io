@@ -1,7 +1,8 @@
 <?php
 namespace Todaymade\Daux\Tree;
 
-use Todaymade\Daux\Config;
+use Todaymade\Daux\Daux;
+use Todaymade\Daux\ConfigBuilder;
 use PHPUnit\Framework\TestCase;
 
 class DirectoryTest extends TestCase
@@ -32,8 +33,8 @@ class DirectoryTest extends TestCase
     {
         shuffle($list);
 
-        $config = new Config;
-        $config->setDocumentationDirectory('');
+        $config = ConfigBuilder::withMode()
+            ->build();
 
         $directory = new Directory(new Root($config), 'dir');
 

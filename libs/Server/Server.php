@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\MimeTypes;
 use Todaymade\Daux\Daux;
+use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception;
 use Todaymade\Daux\Format\Base\ComputedRawPage;
@@ -16,7 +17,7 @@ use Todaymade\Daux\Format\HTML\RawPage;
 class Server
 {
     private $daux;
-    private $params;
+    private $config;
     private $base_url;
 
     /**
@@ -34,17 +35,19 @@ class Server
         $verbosity = getenv('DAUX_VERBOSITY');
         $output = new ConsoleOutput($verbosity);
 
-        $daux = new Daux(Daux::LIVE_MODE, $output);
-        $daux->initializeConfiguration();
+        $configFile = getenv('DAUX_CONFIG');
+        if ($configFile) {
+            $config = ConfigBuilder::fromFile($configFile);
+        } else {
+            $config = ConfigBuilder::withMode(Daux::LIVE_MODE)->build();
+        }
+
+        $daux = new Daux($config, $output);
 
         $class = $daux->getProcessorClass();
         if (!empty($class)) {
             $daux->setProcessor(new $class($daux, $output, 0));
         }
-
-        // Set this critical configuration
-        // for the tree generation
-        $daux->getParams()['index_key'] = 'index';
 
         // Improve the tree with a processor
         $daux->generateTree();
@@ -54,7 +57,7 @@ class Server
         try {
             $page = $server->handle();
         } catch (NotFoundException $e) {
-            $page = new ErrorPage('An error occured', $e->getMessage(), $daux->getParams());
+            $page = new ErrorPage('An error occured', $e->getMessage(), $daux->getConfig());
         }
 
         $server->createResponse($page)->prepare($server->request)->send();
@@ -118,20 +121,14 @@ class Server
     /**
      * @return \Todaymade\Daux\Config
      */
-    public function getParams()
+    public function getConfig()
     {
-        $params = $this->daux->getParams();
+        $config = $this->daux->getConfig();
 
-        DauxHelper::rebaseConfiguration($params, '//' . $this->base_url);
-        $params['base_page'] = '//' . $this->base_url;
-        if (!$this->daux->options['live']['clean_urls']) {
-            $params['base_page'] .= 'index.php/';
-        }
+        DauxHelper::rebaseConfiguration($config, '//' . $this->base_url);
 
-        // Text search would be too slow on live server
-        $params['html']['search'] = false;
 
-        return $params;
+        return $config;
     }
 
     /**
@@ -143,7 +140,7 @@ class Server
      */
     public function handle()
     {
-        $this->params = $this->getParams();
+        $this->config = $this->getConfig();
 
         $request = substr($this->request->getRequestUri(), strlen($this->request->getBaseUrl()) + 1);
 
@@ -167,7 +164,7 @@ class Server
      */
     public function serveTheme($request)
     {
-        $file = $this->getParams()->getThemesPath() . $request;
+        $file = $this->getConfig()->getThemesPath() . $request;
 
         if (file_exists($file)) {
             return new RawPage($file);
@@ -199,6 +196,6 @@ class Server
             );
         }
 
-        return $this->daux->getGenerator()->generateOne($file, $this->params);
+        return $this->daux->getGenerator()->generateOne($file, $this->config);
     }
 }

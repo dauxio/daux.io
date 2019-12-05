@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Terminal;
 use Todaymade\Daux\Daux;
+use Todaymade\Daux\ConfigBuilder;
 
 class Generate extends DauxCommand
 {
@@ -29,6 +30,26 @@ class Generate extends DauxCommand
             ->addOption('search', null, InputOption::VALUE_NONE, 'Generate full text search');
     }
 
+    protected function prepareConfig($mode, InputInterface $input, OutputInterface $output): ConfigBuilder
+    {
+        $builder = parent::prepareConfig($mode, $input, $output);
+
+        // Set the format if requested
+        if ($input->hasOption('format') && $input->getOption('format')) {
+            $builder->withFormat($input->getOption('format'));
+        }
+
+        if ($input->hasOption('delete') && $input->getOption('delete')) {
+            $builder->withConfluenceDelete(true);
+        }
+
+        if ($input->hasOption('search')) {
+            $builder->withSearch($input->getOption('search'));
+        }
+
+        return $builder;
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // When used as a default command,
@@ -42,12 +63,13 @@ class Generate extends DauxCommand
             $input = new ArgvInput($argv, $this->getDefinition());
         }
 
-        $daux = $this->prepareDaux($input, $output);
+        $builder = $this->prepareConfig(Daux::STATIC_MODE, $input, $output);
+        $daux = new Daux($builder->build(), $output);
 
         $width = (new Terminal)->getWidth();
 
         // Instiantiate the processor if one is defined
-        $this->prepareProcessor($daux, $input, $output, $width);
+        $this->prepareProcessor($daux, $width);
 
         // Generate the tree
         $daux->generateTree();
@@ -56,17 +78,5 @@ class Generate extends DauxCommand
         $daux->getGenerator()->generateAll($input, $output, $width);
 
         return 0;
-    }
-
-    protected function prepareProcessor(Daux $daux, InputInterface $input, OutputInterface $output, $width)
-    {
-        if ($input->getOption('processor')) {
-            $daux->getParams()['processor'] = $input->getOption('processor');
-        }
-
-        $class = $daux->getProcessorClass();
-        if (!empty($class)) {
-            $daux->setProcessor(new $class($daux, $output, $width));
-        }
     }
 }

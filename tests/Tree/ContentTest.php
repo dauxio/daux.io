@@ -1,15 +1,14 @@
 <?php
 namespace Todaymade\Daux\Tree;
 
-use Todaymade\Daux\Config;
+use Todaymade\Daux\ConfigBuilder;
 use PHPUnit\Framework\TestCase;
 
 class ContentTest extends TestCase
 {
     protected function createContent($content)
     {
-        $config = new Config;
-        $config->setDocumentationDirectory('');
+        $config = ConfigBuilder::withMode()->build();
 
         $dir = new Directory(new Root($config), '');
         $obj = new Content($dir, '');
