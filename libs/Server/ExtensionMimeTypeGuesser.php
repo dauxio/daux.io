@@ -20,7 +20,7 @@ class ExtensionMimeTypeGuesser implements MimeTypeGuesserInterface
      */
     public function guessMimeType(string $path): ?string
     {
-        $extension = pathinfo($path,PATHINFO_EXTENSION);
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
 
         if ($extension == "css") {
             return "text/css";

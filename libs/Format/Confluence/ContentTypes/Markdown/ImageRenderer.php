@@ -45,7 +45,7 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
             );
         }
 
-        return parent::render($inline, $htmlRenderer);
+        return $this->parent->render($inline, $htmlRenderer);
     }
 
     /**

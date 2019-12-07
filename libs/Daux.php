@@ -85,7 +85,7 @@ class Daux
                     $entry_page[$key] = $this->tree->getEntries()[$key]->getFirstPage();
                 }
             } else {
-                $entry_page= $this->tree->getFirstPage();
+                $entry_page = $this->tree->getFirstPage();
             }
             $this->config->setEntryPage($entry_page);
             $this->merged_tree = true;

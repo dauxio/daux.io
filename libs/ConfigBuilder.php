@@ -262,7 +262,7 @@ class ConfigBuilder
      */
     private function findLocation($path, $basedir, $type) {
         // If Path is explicitly null, it's useless to go further
-        if ($path == null) {
+        if ($path === null) {
             return null;
         }
 

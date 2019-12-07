@@ -49,7 +49,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
             throw new \RuntimeException("The following options are mandatory for confluence : '" . implode("', '", $errors) . "'");
         }
 
-        if (!array_key_exists('ancestor_id', $confluence) && !array_key_exists('root_id', $confluence)) {
+        if (!$confluence->hasAncestorId() && !$confluence->hasRootId()) {
             throw new \RuntimeException("You must specify an 'ancestor_id' or a 'root_id' for confluence.");
         }
     }

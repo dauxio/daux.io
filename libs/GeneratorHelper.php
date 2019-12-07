@@ -39,7 +39,7 @@ class GeneratorHelper
 
         $dir = opendir($source);
 
-        if (!$dir) {
+        if ($dir === false) {
             throw new RuntimeException("Cannot copy '$source' to '$destination'");
         }
 

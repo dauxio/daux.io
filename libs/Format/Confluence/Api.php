@@ -218,6 +218,11 @@ class Api
     public function showSourceCode($css, $lineNumber, $column)
     {
         $lines = preg_split("/\r?\n/", $css);
+
+        if ($lines === false) {
+            return $css;
+        }
+
         $start = max($lineNumber - 3, 0);
         $end   = min($lineNumber + 2, count($lines));
 

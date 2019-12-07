@@ -44,7 +44,7 @@ class Serve extends DauxCommand
         // Write the current configuration to a file to read it from the other serving side
         $file = tmpfile();
 
-        if (!$file) {
+        if ($file === false) {
             $output->writeln("<fg=red>Failed to create temporary file for configuration</fg=red>");
             return 1;
         }
@@ -54,7 +54,7 @@ class Serve extends DauxCommand
 
         chdir(__DIR__ . '/../../');
 
-        putenv('DAUX_CONFIG='. $path);
+        putenv('DAUX_CONFIG=' . $path);
         putenv('DAUX_VERBOSITY=' . $output->getVerbosity());
         putenv('DAUX_EXTENSION=' . DAUX_EXTENSION);
 

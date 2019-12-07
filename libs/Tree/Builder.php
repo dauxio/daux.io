@@ -59,7 +59,9 @@ class Builder
      */
     public static function build($node, $ignore)
     {
-        if (($it = new \FilesystemIterator($node->getPath())) == false) {
+        try {
+            $it = new \FilesystemIterator($node->getPath());
+        } catch (\UnexpectedValueException $e) {
             return;
         }
 
