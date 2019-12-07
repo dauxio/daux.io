@@ -16,17 +16,18 @@ class Config extends BaseConfig
 
     public function getEditOn()
     {
-        if (array_key_exists('edit_on', $this)) {
-            if (is_string($this['edit_on'])) {
-                return $this->prepareGithubUrl($this['edit_on']);
+        if ($this->hasValue('edit_on')) {
+            $edit_on = $this->getValue('edit_on');
+            if (is_string($edit_on)) {
+                return $this->prepareGithubUrl($edit_on);
             } else {
-                $this['edit_on']['basepath'] = rtrim($this['edit_on']['basepath'], '/');
+                $edit_on['basepath'] = rtrim($edit_on['basepath'], '/');
 
-                return $this['edit_on'];
+                return $edit_on;
             }
         }
 
-        if (array_key_exists('edit_on_github', $this)) {
+        if ($this->hasValue('edit_on_github')) {
             return $this->prepareGithubUrl($this->getValue('edit_on_github'));
         }
 

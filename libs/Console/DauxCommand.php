@@ -61,7 +61,7 @@ class DauxCommand extends SymfonyCommand
     {
         $class = $daux->getProcessorClass();
         if (!empty($class)) {
-            $daux->setProcessor(new $class($daux, $output, $width));
+            $daux->setProcessor(new $class($daux, $daux->getOutput(), $width));
         }
     }
 }

@@ -13,11 +13,11 @@ class ConfigBuilder
         $this->config['local_base'] = dirname(__DIR__);
     }
 
-    static function fromFile($file): Config {
+    public static function fromFile($file): Config {
         return unserialize(file_get_contents($file));
     }
 
-    static function withMode($mode = Daux::STATIC_MODE): ConfigBuilder {
+    public static function withMode($mode = Daux::STATIC_MODE): ConfigBuilder {
         $builder = new ConfigBuilder($mode);
         $builder->loadBaseConfiguration();
         return $builder;
@@ -101,7 +101,7 @@ class ConfigBuilder
         return $this;
     }
 
-    function build(): Config {
+    public function build(): Config {
         $this->initializeConfiguration();
 
         return $this->config;
@@ -257,7 +257,7 @@ class ConfigBuilder
     /**
      * @param string|null $path
      * @param string $basedir
-     * @param "dir"|"file" $type
+     * @param string $type
      * @return false|null|string
      */
     private function findLocation($path, $basedir, $type) {

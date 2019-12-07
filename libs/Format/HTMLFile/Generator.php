@@ -49,7 +49,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
 
         $config = $this->daux->getConfig();
         if (is_null($destination)) {
-            $destination = $this->config->getLocalBase() . DIRECTORY_SEPARATOR . 'static';
+            $destination = $config->getLocalBase() . DIRECTORY_SEPARATOR . 'static';
         }
 
         $this->runAction(

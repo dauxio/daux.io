@@ -2,7 +2,7 @@
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Todaymade\Daux\Config;
+use Todaymade\Daux\Config as GlobalConfig;
 use Todaymade\Daux\Console\RunAction;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\DauxHelper;
@@ -143,14 +143,14 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
      *
      * @param Directory $tree
      * @param string $output_dir
-     * @param \Todaymade\Daux\Config $config
+     * @param GlobalConfig $config
      * @param OutputInterface $output
      * @param int $width
      * @param bool $index_pages
      * @param string $base_url
      * @throws \Exception
      */
-    private function generateRecursive(Directory $tree, $output_dir, $config, $output, $width, $index_pages, $base_url = '')
+    private function generateRecursive(Directory $tree, $output_dir, GlobalConfig $config, $output, $width, $index_pages, $base_url = '')
     {
         DauxHelper::rebaseConfiguration($config, $base_url);
 
@@ -197,10 +197,10 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
     /**
      * @param Entry $node
-     * @param Config $config
+     * @param GlobalConfig $config
      * @return \Todaymade\Daux\Format\Base\Page
      */
-    public function generateOne(Entry $node, Config $config)
+    public function generateOne(Entry $node, GlobalConfig $config)
     {
         if ($node instanceof Raw) {
             return new RawPage($node->getPath());

@@ -1,6 +1,7 @@
 <?php namespace Todaymade\Daux;
 
 use Todaymade\Daux\Tree\Content;
+use Todaymade\Daux\Tree\Entry;
 use Todaymade\Daux\Format\HTML\Config as HTMLConfig;
 use Todaymade\Daux\Format\HTML\Theme as Theme;
 use Todaymade\Daux\Format\Confluence\Config as ConfluenceConfig;
@@ -95,7 +96,7 @@ class Config extends BaseConfig
         // As the global configuration is always present, we
         // need to test for the existence of the legacy value
         // first. Then use the current value.
-        if (array_key_exists('live', $this) && array_key_exists('inherit_index', $this['live'])) {
+        if ($this->hasValue('live') && array_key_exists('inherit_index', $this['live'])) {
             return $this['live']['inherit_index'];
         }
 
@@ -164,7 +165,7 @@ class Config extends BaseConfig
     }
 
     public function setImage($value) {
-        return $this->setValue('image', $value);
+        $this->setValue('image', $value);
     }
 
     public function getLocalBase() {
@@ -201,7 +202,7 @@ class Config extends BaseConfig
     }
 
     public function setEntryPage($value) {
-        return $this->setValue('entry_page', $value);
+        $this->setValue('entry_page', $value);
     }
 
     public function hasRequest(): bool {
@@ -213,7 +214,7 @@ class Config extends BaseConfig
     }
 
     public function setRequest($value) {
-        return $this->setValue('request', $value);
+        $this->setValue('request', $value);
     }
 
     public function getIndex() {
@@ -221,7 +222,7 @@ class Config extends BaseConfig
     }
 
     public function setIndex($value) {
-        return $this->setValue('index', $value);
+        $this->setValue('index', $value);
     }
 
     public function hasProcessorInstance() {
@@ -233,7 +234,7 @@ class Config extends BaseConfig
     }
 
     public function setProcessorInstance($value) {
-        return $this->setValue('processor_instance', $value);
+        $this->setValue('processor_instance', $value);
     }
 
     public function getIgnore() {

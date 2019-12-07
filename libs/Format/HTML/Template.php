@@ -4,7 +4,7 @@ namespace Todaymade\Daux\Format\HTML;
 
 use League\Plates\Engine;
 use Symfony\Component\Console\Output\OutputInterface;
-use Todaymade\Daux\Config;
+use Todaymade\Daux\Config as GlobalConfig;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Directory;
@@ -19,12 +19,12 @@ class Template
      * @param string $base
      * @param string $theme
      */
-    public function __construct(Config $config)
+    public function __construct(GlobalConfig $config)
     {
         $this->config = $config;
     }
 
-    public function getEngine(Config $config)
+    public function getEngine(GlobalConfig $config)
     {
         if ($this->engine) {
             return $this->engine;

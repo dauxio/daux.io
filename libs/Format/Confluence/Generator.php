@@ -2,7 +2,7 @@
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Todaymade\Daux\Config;
+use Todaymade\Daux\Config as GlobalConfig;
 use Todaymade\Daux\Console\RunAction;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\Tree\Content;
@@ -40,7 +40,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $mandatory = ['space_id', 'base_url', 'user', 'pass', 'prefix'];
         $errors = [];
         foreach ($mandatory as $key) {
-            if (!array_key_exists($key, $confluence)) {
+            if (!$confluence->hasValue($key)) {
                 $errors[] = $key;
             }
         }
@@ -96,7 +96,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $publisher->publish($tree);
     }
 
-    private function generateRecursive(Directory $tree, Config $config, $base_url = '')
+    private function generateRecursive(Directory $tree, GlobalConfig $config, $base_url = '')
     {
         $final = ['title' => $this->prefix . $tree->getTitle()];
         $config['base_url'] = $base_url;
