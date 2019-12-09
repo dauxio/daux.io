@@ -23,13 +23,13 @@
         "league/commonmark-ext-table": "^2.0.0",
         "league/plates": "~3.1",
         "myclabs/deep-copy": "^1.5",
+        "scrivo/highlight.php": "^9.15",
         "symfony/console": "^5.0",
         "symfony/http-foundation": "^5.0",
+        "symfony/mime": "^5.0",
         "symfony/polyfill-intl-icu": "^1.10",
         "symfony/process": "^5.0",
-        "webuni/front-matter": "^1.0.0",
-        "scrivo/highlight.php": "^9.15",
-        "symfony/mime": "^5.0"
+        "webuni/front-matter": "^1.0.0"
     },
     "suggest":{
         "ext-intl": "Allows to translate the modified at date"
