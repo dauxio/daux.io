@@ -14,6 +14,7 @@ use League\CommonMark\Node\Node;
 use ReflectionMethod;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;
+use Todaymade\Daux\DauxHelper;
 
 class Processor
 {
@@ -71,21 +72,6 @@ class Processor
         }
     }
 
-    /**
-     * Get an escaped version of the link
-     * @param string $url
-     * @return string
-     */
-    protected function escaped($url) {
-        $url = trim($url);
-        $url = preg_replace('~[^\\pL0-9_]+~u', '-', $url);
-        $url = trim($url, "-");
-        $url = iconv("utf-8", "ASCII//TRANSLIT//IGNORE", $url);
-        $url = preg_replace('~[^-a-zA-Z0-9_]+~', '', $url);
-
-        return $url;
-    }
-
     protected function getUniqueId(Document $document, $proposed) {
         if ($proposed == "page_") {
             $proposed = "page_section_" . (count($document->heading_ids) + 1);
@@ -138,7 +124,7 @@ class Processor
             }
         }
 
-        $node->data['attributes']['id'] = $this->getUniqueId($document, 'page_' . $this->escaped($text));
+        $node->data['attributes']['id'] = $this->getUniqueId($document, 'page_' . DauxHelper::slug($text));
     }
 
     /**

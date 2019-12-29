@@ -57,14 +57,14 @@ EXPECTED;
         $expected = <<<EXPECTED
 <ul class="TableOfContents">
 <li>
-<p><a href="#page_section_1">基础操作</a></p>
+<p><a href="#page_ji_chu_cao_zuo">基础操作</a></p>
 </li>
 <li>
-<p><a href="#page_section_2">操作基础</a></p>
+<p><a href="#page_cao_zuo_ji_chu">操作基础</a></p>
 </li>
 </ul>
-<h1 id="page_section_1">基础操作</h1>
-<h1 id="page_section_2">操作基础</h1>
+<h1 id="page_ji_chu_cao_zuo">基础操作</h1>
+<h1 id="page_cao_zuo_ji_chu">操作基础</h1>
 
 EXPECTED;
 
@@ -99,10 +99,10 @@ EXPECTED;
         $expected = <<<EXPECTED
 <ul class="TableOfContents">
 <li>
-<p><a href="#page_TEST-Test">TEST : Test</a></p>
+<p><a href="#page_TEST_Test">TEST : Test</a></p>
 </li>
 </ul>
-<h1 id="page_TEST-Test">TEST : Test</h1>
+<h1 id="page_TEST_Test">TEST : Test</h1>
 
 EXPECTED;
 

@@ -85,7 +85,7 @@ class BuilderTest extends TestCase
             // File, Url, Uri, Title
             ['A Page.md', 'dir/A_Page.html', 'A_Page.html', 'A Page'],
             ['Page#1.md', 'dir/Page1.html', 'Page1.html', 'Page#1'],
-            ['你好世界.md', 'dir/你好世界.html', '你好世界.html', '你好世界']
+            ['你好世界.md', 'dir/ni_hao_shi_jie.html', 'ni_hao_shi_jie.html', '你好世界']
         ];
     }
 
@@ -163,6 +163,7 @@ class BuilderTest extends TestCase
         $structure = [
             'Page.md' => 'another page',
             'Button.md' => 'another page',
+            '你好世界.md' => 'another page',
             '22.png' => ''
         ];
         $root = vfsStream::setup('root', null, $structure);
@@ -176,7 +177,7 @@ class BuilderTest extends TestCase
         Builder::build($tree, []);
 
         $this->assertEquals(
-            ['22.png', 'Button.html', 'Page.html'],
+            ['22.png', 'Button.html', 'Page.html', 'ni_hao_shi_jie.html'],
             array_keys($tree->getEntries())
         );
     }
