@@ -224,9 +224,12 @@ class DauxHelper
     public static function slug($title)
     {
         // Convert to ASCII
-        $title = transliterator_transliterate("Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC;", $title);
+        if (function_exists("transliterator_transliterate")) {
+            $title = transliterator_transliterate("Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC;", $title);
+        }
+        
         $title = iconv("utf-8", "ASCII//TRANSLIT//IGNORE", $title);
-
+        
         // Remove unsupported characters
         $title = preg_replace('/[^\x20-\x7E]/u', '', $title);
 
