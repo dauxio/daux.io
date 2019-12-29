@@ -44,7 +44,7 @@ jobs:
       uses: shivammathur/setup-php@master
       with:
         php-version: 7.4
-        extension-csv: mbstring, xdebug, dom
+        extension-csv: mbstring, xdebug, dom, intl
         coverage: xdebug
 
     - name: Install dependencies
