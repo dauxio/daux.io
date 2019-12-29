@@ -24,7 +24,7 @@ jobs:
       uses: shivammathur/setup-php@master
       with:
         php-version: ${{ matrix.php-versions }}
-        extension-csv: mbstring, dom
+        extension-csv: mbstring, dom, intl
 
     - name: Validate composer.json and composer.lock
       run: composer validate
