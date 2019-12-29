@@ -51,7 +51,7 @@ class Root extends Directory
         }
 
         foreach ($this->activeNode->getParents() as $parent) {
-            if ($node == $parent) {
+            if ($node === $parent) {
                 return true;
             }
         }
