@@ -82,8 +82,10 @@ class BuilderTest extends TestCase
     public function providerCreatePage()
     {
         return [
+            // File, Url, Uri, Title
             ['A Page.md', 'dir/A_Page.html', 'A_Page.html', 'A Page'],
-            ['Page#1.md', 'dir/Page1.html', 'Page1.html', 'Page#1']
+            ['Page#1.md', 'dir/Page1.html', 'Page1.html', 'Page#1'],
+            ['你好世界.md', 'dir/你好世界.html', '你好世界.html', '你好世界']
         ];
     }
 
