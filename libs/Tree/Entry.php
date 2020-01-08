@@ -134,7 +134,7 @@ abstract class Entry
     /**
      * @return string
      */
-    public function getPath(): string
+    public function getPath(): ?string
     {
         return $this->path;
     }
