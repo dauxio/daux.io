@@ -26,14 +26,24 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         ];
 
         foreach ($this->children as $key => $entry) {
+            // In case of generated pages, the name might be empty.
+            // Thus we are falling back to other solutions, otherwise the page would disappear from the tree.
             $name = $entry->getName();
 
-            if ($name == 'index' || $name == '_index') {
-                $buckets['index'][$key] = $entry;
-                continue;
+            if (!$name) {
+                $name = $entry->getTitle();
             }
 
             if (!$name) {
+                $name = $key;
+            }
+
+            if (!$name) {
+                continue;
+            }
+
+            if ($name == 'index' || $name == '_index') {
+                $buckets['index'][$key] = $entry;
                 continue;
             }
 
