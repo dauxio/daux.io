@@ -151,8 +151,10 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
      */
     public function getIndexPage(): ?Content
     {
-        if ($this->getLocalIndexPage()) {
-            return $this->getLocalIndexPage();
+        $indexPage = $this->getLocalIndexPage();
+
+        if ($indexPage instanceof Content) {
+            return $indexPage;
         }
 
         if ($this->getConfig()->shouldInheritIndex() && $first_page = $this->seekFirstPage()) {
@@ -170,7 +172,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     {
         if ($this instanceof self) {
             $index_key = $this->getConfig()->getIndexKey();
-            if (isset($this->children[$index_key])) {
+            if (isset($this->children[$index_key]) && $this->children[$index_key] instanceof Content) {
                 return $this->children[$index_key];
             }
             foreach ($this->children as $node_key => $node) {
