@@ -1,3 +1,5 @@
+import { ready } from "./utils";
+
 /**
  * After the transition finishes set the height to auto so child
  * menus can expand properly.
@@ -56,24 +58,28 @@ function toggleSubMenu(ev) {
     }
 }
 
-const navItems = document.querySelectorAll(
-    ".Nav__item.has-children i.Nav__arrow"
-);
+ready(() => {
+    const navItems = document.querySelectorAll(
+        ".Nav__item.has-children i.Nav__arrow"
+    );
 
-// Go in reverse here because on page load the child nav items need to be
-// opened first before their parents so the height on the parents can be
-// calculated properly.
-for (let i = navItems.length - 1, target; i >= 0; i--) {
-    target = navItems[i];
-    target.addEventListener("click", toggleSubMenu);
+    // Go in reverse here because on page load the child nav items need to be
+    // opened first before their parents so the height on the parents can be
+    // calculated properly.
+    for (let i = navItems.length - 1, target; i >= 0; i--) {
+        target = navItems[i];
+        target.addEventListener("click", toggleSubMenu);
 
-    if (target.parentNode.parentNode.classList.contains("Nav__item--open")) {
-        toggleSubMenu({ target });
+        if (
+            target.parentNode.parentNode.classList.contains("Nav__item--open")
+        ) {
+            toggleSubMenu({ target });
+        }
     }
-}
 
-// Some navigations just have sub-pages without having a page by themselves
-const ajNav = document.querySelectorAll(".Nav__item__link--nopage");
-for (const navItem of ajNav) {
-    navItem.addEventListener("click", toggleSubMenu);
-}
+    // Some navigations just have sub-pages without having a page by themselves
+    const ajNav = document.querySelectorAll(".Nav__item__link--nopage");
+    for (const navItem of ajNav) {
+        navItem.addEventListener("click", toggleSubMenu);
+    }
+});

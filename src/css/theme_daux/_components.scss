@@ -99,7 +99,8 @@ Components
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.no-js .CodeToggler {
+.no-js .CodeToggler,
+.CodeToggler--hidden {
     display: none;
 }
 
@@ -476,8 +477,4 @@ ul.TableOfContents {
     .Checkbox input:disabled ~ &:after {
         border-color: var(--checkbox-disabled-tick-color);
     }
-}
-
-.Hidden {
-    display: none;
 }

@@ -1,11 +1,10 @@
-const codeBlocks = document.querySelectorAll(".s-content pre");
-const toggleCodeSection = document.querySelector(".CodeToggler");
+import { ready } from "./utils";
 
 const LOCAL_STORAGE_KEY = "daux_code_blocks_hidden";
 
-function setCodeBlockStyle(hidden) {
+function setCodeBlockStyle(codeBlocks, hidden) {
     for (let a = 0; a < codeBlocks.length; a++) {
-        codeBlocks[a].classList.toggle("Hidden", hidden);
+        codeBlocks[a].classList.toggle("CodeToggler--hidden", hidden);
     }
     try {
         localStorage.setItem(LOCAL_STORAGE_KEY, hidden);
@@ -14,7 +13,7 @@ function setCodeBlockStyle(hidden) {
     }
 }
 
-function enableToggler() {
+function enableToggler(toggleCodeSection, codeBlocks) {
     const toggleCodeBlockBtnSet = toggleCodeSection.querySelector(
         ".CodeToggler__button--main"
     ); // available when floating is disabled
@@ -22,7 +21,7 @@ function enableToggler() {
     toggleCodeBlockBtnSet.addEventListener(
         "change",
         ev => {
-            setCodeBlockStyle(!ev.target.checked);
+            setCodeBlockStyle(codeBlocks, !ev.target.checked);
         },
         false
     );
@@ -38,7 +37,7 @@ function enableToggler() {
         }
 
         if (hidden) {
-            setCodeBlockStyle(!!hidden);
+            setCodeBlockStyle(codeBlocks, !!hidden);
             toggleCodeBlockBtnSet.checked = !hidden;
         }
     } catch (e) {
@@ -46,10 +45,17 @@ function enableToggler() {
     }
 }
 
-if (toggleCodeSection) {
-    if (codeBlocks.length) {
-        enableToggler();
-    } else {
-        toggleCodeSection.classList.add("Hidden");
+ready(() => {
+    const codeBlocks = document.querySelectorAll(".s-content pre");
+    const toggleCodeSection = document.querySelector(".CodeToggler");
+
+    if (!toggleCodeSection) {
+        return;
     }
-}
+
+    if (codeBlocks.length) {
+        enableToggler(toggleCodeSection, codeBlocks);
+    } else {
+        toggleCodeSection.classList.add("CodeToggler--hidden");
+    }
+});
