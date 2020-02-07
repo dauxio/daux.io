@@ -26,8 +26,7 @@ class Generate extends DauxCommand
             // Confluence format only
             ->addOption('delete', null, InputOption::VALUE_NONE, 'Delete pages not linked to a documentation page (confluence)')
 
-            ->addOption('destination', 'd', InputOption::VALUE_REQUIRED, $description, 'static')
-            ->addOption('search', null, InputOption::VALUE_NONE, 'Generate full text search');
+            ->addOption('destination', 'd', InputOption::VALUE_REQUIRED, $description, 'static');
     }
 
     protected function prepareConfig($mode, InputInterface $input, OutputInterface $output): ConfigBuilder
@@ -41,10 +40,6 @@ class Generate extends DauxCommand
 
         if ($input->hasOption('delete') && $input->getOption('delete')) {
             $builder->withConfluenceDelete(true);
-        }
-
-        if ($input->hasOption('search')) {
-            $builder->withSearch($input->getOption('search'));
         }
 
         return $builder;

@@ -91,11 +91,6 @@ class ConfigBuilder
         return $this;
     }
 
-    public function withSearch($value): ConfigBuilder {
-        $this->config['html']['search'] = $value;
-        return $this;
-    }
-
     public function withConfluenceDelete($value): ConfigBuilder {
         $this->config['confluence']['delete'] = $value;
         return $this;
