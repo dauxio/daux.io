@@ -145,19 +145,13 @@ Now that you got the basics, you can also [see what you can configure](05_Config
 
 ## PHP Requirements
 
-Daux.io is compatible with PHP 7.2.0 and up.
-
-The reason is because some dependencies we have (mainly Symfony and Guzzle) do not support PHP 5.6 anymore.
+Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions;  7.2.0 and up.
 
 ### Extensions
 
-PHP Needs the following extension to work : `php-mbstring` and `php-xml`.
+Daux.io needs the following PHP extensions to work : `php-mbstring` and `php-xml`.
 
-If you encounter an error similar to `utf8_decode() not found` this means that you're missing the `php-xml` package. (We've seen it happen only on PHP 7)
-
-## Known Issues
-
-- __Windows UTF-8 files support__ Files with UTF-8 characters cannot be handled on windows with PHP5, PHP7 should work fine.
+If you encounter an error similar to `utf8_decode() not found` this means that you're missing the `php-xml` package.
 
 
 ## Support

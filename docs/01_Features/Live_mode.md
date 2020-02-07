@@ -28,7 +28,7 @@ To enable the same, set the toggle in the `config.json` file in the `/docs` fold
 
 ### Apache
 
-Copy the files from the repo to a web server that can run PHP 5.6 or greater.
+Copy the files from the repo to a web server that can run PHP 7.2.0 or newer.
 
 There is an included `.htaccess` for Apache web server.
 

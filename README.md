@@ -168,7 +168,7 @@ Many other options are available:
 
 ## Running Remotely
 
-Copy the files from the repo to a web server that can run PHP 5.4 or greater.
+Copy the files from the repo to a web server that can run PHP 7.2.0 or newer.
 
 ## Running Locally
 
@@ -221,26 +221,13 @@ The `web.config` needs an entry for `<rewrite>` under `<system.webServer>`:
 
 To use clean URLs on IIS 6, you will need to use a custom URL rewrite module, such as [URL Rewriter](http://urlrewriter.net/).
 
-## Docker
-
-A docker configuration is also provided to run daux within a container, you can either run daux with php5 or php7.
-
-```
-cd docker
-docker-compose -f docker-compose.7.yml up -d
-```
-
-You can then point your browser to http://localhost:8086
-
 ## PHP Requirements
 
-Daux.io is compatible with PHP 7.2.0 and up.
-
-The reason is because some dependencies we have (mainly Symfony and Guzzle) do not support PHP 5.6 anymore.
+Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions;  7.2.0 and up.
 
 ### Extensions
 
-PHP Needs the following extension to work : `php-mbstring` and `php-xml`.
+Daux.io needs the following PHP extensions to work : `php-mbstring` and `php-xml`.
 
 If you encounter an error similar to `utf8_decode() not found` this means that you're missing the `php-xml` package.
 
