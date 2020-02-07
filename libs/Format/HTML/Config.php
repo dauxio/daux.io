@@ -78,7 +78,7 @@ class Config extends BaseConfig
 
     public function hasPiwikAnalytics()
     {
-        return $this->hasValue('piwik_analytics') && $this->hasValue('piwik_analytics_id');
+        return $this->getValue('piwik_analytics') && $this->hasValue('piwik_analytics_id');
     }
 
     public function getPiwikAnalyticsId()
