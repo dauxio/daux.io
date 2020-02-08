@@ -1,6 +1,5 @@
 module.exports = {
-    browsers:
-        "> 0.25%, Edge >= 15, Safari >= 10, iOS >= 10, Chrome >= 56, Firefox >= 51, IE >= 11, not op_mini all",
+    browsers: "defaults, not op_mini all",
     presets: [
         "@swissquote/crafty-preset-babel",
         "@swissquote/crafty-runner-rollup",
@@ -23,11 +22,13 @@ module.exports = {
     js: {
         search: {
             runner: "rollup",
+            format: "iife",
             source: "src/js/search/index.js",
             destination: "daux_libraries/search.min.js"
         },
         theme_daux: {
             runner: "rollup",
+            format: "iife",
             source: "src/js/theme_daux/index.js",
             destination: "themes/daux/js/daux.min.js"
         }
@@ -58,5 +59,9 @@ module.exports = {
             destination: "themes/daux_singlepage/css/main.min.css",
             watch: ["src/css/**/*.scss"]
         }
+    },
+    postcss(crafty, config, bundle) {
+        // Add postcss-page-break
+        config.processor("postcss-page-break").before("autoprefixer");
     }
 };

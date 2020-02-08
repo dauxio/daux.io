@@ -15,7 +15,7 @@ body {
 }
 
 body {
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility; // stylelint-disable-line plugin/no-unsupported-browser-features
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: var(--font-family-text);

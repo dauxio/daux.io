@@ -6,8 +6,8 @@ body {
     line-height: 1.5;
 
     font-family: var(--font-family-text);
-    font-feature-settings: "kern" 1;
-    font-kerning: normal;
+    font-feature-settings: "kern" 1; // stylelint-disable-line plugin/no-unsupported-browser-features
+    font-kerning: normal; // stylelint-disable-line plugin/no-unsupported-browser-features
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

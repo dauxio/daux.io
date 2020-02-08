@@ -11,19 +11,19 @@ h3,
 h4,
 h5,
 h6 {
-    page-break-after: avoid;
-    page-break-before: auto;
+    break-after: avoid; // stylelint-disable-line plugin/no-unsupported-browser-features
+    break-before: auto; // stylelint-disable-line plugin/no-unsupported-browser-features
 }
 
 pre,
 blockquote {
     border: 1px solid #999;
     font-style: italic;
-    page-break-inside: avoid;
+    break-inside: avoid; // stylelint-disable-line plugin/no-unsupported-browser-features
 }
 
 img {
-    page-break-inside: avoid;
+    break-inside: avoid; // stylelint-disable-line plugin/no-unsupported-browser-features
     border: 0; /* Some browsers like to show a border around images. Switch it off */
 }
 
@@ -50,7 +50,7 @@ q {
 
 .PageBreak {
     display: block;
-    page-break-before: always;
+    break-before: always; // stylelint-disable-line plugin/no-unsupported-browser-features
 }
 
 .NoPrint {

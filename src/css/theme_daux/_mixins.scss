@@ -4,7 +4,7 @@ Mixins
 
 @mixin kill-background-image {
     background-image: none;
-    filter: none;
+    filter: none; // stylelint-disable-line plugin/no-unsupported-browser-features
 }
 
 @mixin kill-box-shadow {
