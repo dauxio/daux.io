@@ -126,10 +126,6 @@ A string that isn't found will fall back to english.
 {
   "strings": {
     "fr": {
-      "CodeBlocks_title": "Afficher le code",
-      "CodeBlocks_hide": "Non",
-      "CodeBlocks_below": "En Dessous",
-      "CodeBlocks_inline": "A côté",
       "CodeBlocks_show": "Afficher le code",
       "Search_placeholder": "Rechercher...",
       "Link_previous": "Précédent",

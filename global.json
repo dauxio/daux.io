@@ -22,10 +22,6 @@
 
     "strings": {
         "en": {
-            "CodeBlocks_title": "Code blocks",
-            "CodeBlocks_hide": "No",
-            "CodeBlocks_below": "Below",
-            "CodeBlocks_inline": "Inline",
             "CodeBlocks_show": "Show Code Blocks",
             "Search_placeholder": "Search...",
             "Search_one_result": "1 result",
@@ -44,10 +40,6 @@
             "Toggle_navigation": "Toggle navigation"
         },
         "fr": {
-            "CodeBlocks_title": "Afficher le code",
-            "CodeBlocks_hide": "Non",
-            "CodeBlocks_below": "En Dessous",
-            "CodeBlocks_inline": "A côté",
             "CodeBlocks_show": "Afficher le code",
             "Search_placeholder": "Rechercher...",
             "Search_one_result": "1 résultat",
@@ -65,10 +57,6 @@
             "Table_of_contents": "Table des matières"
         },
         "de": {
-            "CodeBlocks_title": "Code-Blöcke",
-            "CodeBlocks_hide": "Aus",
-            "CodeBlocks_below": "Unterhalb",
-            "CodeBlocks_inline": "Linear",
             "CodeBlocks_show": "Code-Blöcke anzeigen",
             "Search_placeholder": "Suchen...",
             "Search_one_result": "1 Ergebnis",
@@ -86,10 +74,6 @@
             "Table_of_contents": "Inhaltsverzeichnis"
         },
         "it": {
-            "CodeBlocks_title": "Blocchi di codice",
-            "CodeBlocks_hide": "No",
-            "CodeBlocks_below": "Sotto",
-            "CodeBlocks_inline": "In linea",
             "CodeBlocks_show": "Mostra blocchi di codice",
             "Search_one_result": "1 risultato",
             "Search_results": "!count risultati",
