@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
     - name: Setup PHP
       uses: shivammathur/setup-php@master
@@ -32,23 +32,24 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-  -   name: Install tools
+    - name: Install tools
       run: ./scripts/install_tools.sh
 
     - name: Run test suite
       run: composer run-script test
 
-  scrutinizer-ci:
+  sonarcloud:
+    name: "SonarCloud"
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Setup PHP
       uses: shivammathur/setup-php@master
       with:
         php-version: 7.4
-        extension-csv: mbstring, xdebug, dom, intl
-        coverage: xdebug
+        extension-csv: mbstring, dom, intl
+        coverage: pcov
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
@@ -57,17 +58,17 @@ jobs:
       run: ./scripts/install_tools.sh
 
     - name: Run test suite
-      run: composer run-script test -- --coverage-clover=coverage.clover
+      run: composer run-script test -- --coverage-clover=coverage.clover --log-junit=test-report.xml
 
-    - run: wget https://scrutinizer-ci.com/ocular.phar
-    - name: Upload code coverage
-      run: php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+      # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747/5
+    - name: fix code coverage paths
+      run: sed -i 's/\/home\/runner\/work\/daux.io\/daux.io\//\/github\/workspace\//g' coverage.clover
 
   documentation:
     runs-on: ubuntu-latest
     if: github.repository == 'dauxio/daux.io' && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
     - name: Generate documentation
