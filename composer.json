@@ -50,7 +50,7 @@
         "test:coverage-html": "build/phpunit --coverage-html=build/coverage",
         "lint": "build/php-cs-fixer fix --config=.php_cs --dry-run -v",
         "lint:fix": "build/php-cs-fixer fix --config=.php_cs",
-        "phan": "build/phan --allow-polyfill-parser -m html --output build/phan.html",
+        "phan": "build/phan --allow-polyfill-parser",
         "phpstan": "build/phpstan analyze libs -l 4",
         "psalm": "build/psalm"
     }

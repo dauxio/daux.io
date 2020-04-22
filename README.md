@@ -1,13 +1,11 @@
 # Daux.io
 
-
 [![Latest Version](https://img.shields.io/github/release/dauxio/daux.io.svg?style=flat-square)](https://github.com/dauxio/daux.io/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/dauxio/daux.io/blob/master/LICENSE.md)
-[![Build Status](https://github.com/dauxio/daux.io/workflows/CI/badge.svg)](https://github.com/dauxio/daux.io/actions)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/dauxio/daux.io.svg?style=flat-square)](https://scrutinizer-ci.com/g/dauxio/daux.io/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/dauxio/daux.io.svg?style=flat-square)](https://scrutinizer-ci.com/g/dauxio/daux.io)
 [![Total Downloads](https://img.shields.io/packagist/dt/daux/daux.io.svg?style=flat-square)](https://packagist.org/packages/daux/daux.io)
-
+[![Sonar Quality Gate](https://img.shields.io/sonar/alert_status/dauxio_daux.io?server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/dashboard?id=dauxio_daux.io)
+[![Sonar Coverage](https://img.shields.io/sonar/coverage/dauxio_daux.io?server=https%3A%2F%2Fsonarcloud.io&style=flat-square)](https://sonarcloud.io/dashboard?id=dauxio_daux.io)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dauxio/daux.io/PHP?style=flat-square)](https://github.com/dauxio/daux.io/actions)
 
 **Daux.io** is a documentation generator that uses a simple folder structure and Markdown files to create custom documentation on the fly. It helps you create great looking documentation in a developer friendly way.
 
