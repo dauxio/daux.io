@@ -99,7 +99,10 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         $this->children = $final;
     }
 
-    private function sortBucket($bucket, $final)
+    /**
+     * @param array<Entry> $bucket
+     */
+    private function sortBucket($bucket, array $final)
     {
         uasort($bucket, function (Entry $a, Entry $b) {
             return strcasecmp($a->getName(), $b->getName());
@@ -247,7 +250,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         return false;
     }
 
-    public function dump()
+    public function dump(): array
     {
         $dump = parent::dump();
 

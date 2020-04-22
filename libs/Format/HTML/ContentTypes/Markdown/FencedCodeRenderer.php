@@ -63,7 +63,10 @@ class FencedCodeRenderer implements BlockRendererInterface
         );
     }
 
-    public function getLanguage($infoWords)
+    /**
+     * @param string[] $infoWords
+     */
+    public function getLanguage(array $infoWords)
     {
         if (count($infoWords) === 0 || strlen($infoWords[0]) === 0) {
             return false;

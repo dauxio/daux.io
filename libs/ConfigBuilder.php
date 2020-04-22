@@ -14,12 +14,12 @@ class ConfigBuilder
         $this->config['local_base'] = dirname(__DIR__);
     }
 
-    public static function fromFile($file): Config
+    public static function fromFile(string $file): Config
     {
         return unserialize(file_get_contents($file));
     }
 
-    public static function withMode($mode = Daux::STATIC_MODE): ConfigBuilder
+    public static function withMode(string $mode = Daux::STATIC_MODE): ConfigBuilder
     {
         $builder = new ConfigBuilder($mode);
         $builder->loadBaseConfiguration();
@@ -34,7 +34,13 @@ class ConfigBuilder
         return $this;
     }
 
-    private function setValue(&$array, $key, $value)
+    /**
+     * @param Config $array
+     * @param string $key
+     * @param mixed $value
+     * @return array|mixed|Config
+     */
+    private function setValue(Config &$array, $key, $value)
     {
         if (is_null($key)) {
             return $array = $value;
@@ -61,13 +67,16 @@ class ConfigBuilder
         return $this;
     }
 
-    public function withDocumentationDirectory($dir): ConfigBuilder
+    public function withDocumentationDirectory(string $dir): ConfigBuilder
     {
         $this->config['docs_directory'] = $dir;
 
         return $this;
     }
 
+    /**
+     * @param array<string> $value
+     */
     public function withValidContentExtensions(array $value): ConfigBuilder
     {
         $this->config['valid_content_extensions'] = $value;
@@ -75,14 +84,14 @@ class ConfigBuilder
         return $this;
     }
 
-    public function withThemesPath($themePath): ConfigBuilder
+    public function withThemesPath(string $themePath): ConfigBuilder
     {
         $this->config['themes_path'] = $themePath;
 
         return $this;
     }
 
-    public function withThemesDirectory($directory): ConfigBuilder
+    public function withThemesDirectory(string $directory): ConfigBuilder
     {
         $this->config['themes_directory'] = $directory;
 
@@ -96,28 +105,31 @@ class ConfigBuilder
         return $this;
     }
 
-    public function withFormat($format): ConfigBuilder
+    public function withFormat(string $format): ConfigBuilder
     {
         $this->config['format'] = $format;
 
         return $this;
     }
 
-    public function withConfigurationOverride($file): ConfigBuilder
+    public function withConfigurationOverride(string $file): ConfigBuilder
     {
         $this->configuration_override_file = $file;
 
         return $this;
     }
 
-    public function withProcessor($value): ConfigBuilder
+    public function withProcessor(string $value): ConfigBuilder
     {
         $this->config['processor'] = $value;
 
         return $this;
     }
 
-    public function withConfluenceDelete($value): ConfigBuilder
+    /**
+     * @param true $value
+     */
+    public function withConfluenceDelete(bool $value): ConfigBuilder
     {
         $this->config['confluence']['delete'] = $value;
 

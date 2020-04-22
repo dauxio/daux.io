@@ -13,7 +13,7 @@ interface Generator
      *
      * @return mixed
      */
-    public function generateAll(InputInterface $input, OutputInterface $output, $width);
+    public function generateAll(InputInterface $input, OutputInterface $output, int $width): void;
 
     /**
      * @return array

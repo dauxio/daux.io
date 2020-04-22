@@ -28,6 +28,11 @@ class Processor
         $this->config = $config;
     }
 
+    /**
+     * @param DocumentParsedEvent $event
+     *
+     * @return void
+     */
     public function onDocumentParsed(DocumentParsedEvent $event)
     {
         $document = $event->getDocument();
@@ -43,7 +48,6 @@ class Processor
 
             if ($node instanceof TableOfContents && !$event->isEntering()) {
                 $tocs[] = $node;
-
                 continue;
             }
 
@@ -68,27 +72,29 @@ class Processor
         }
     }
 
-    protected function getUniqueId(Document $document, $proposed)
+    protected function getUniqueId(Document $document, string $proposed)
     {
-        if ($proposed == 'page_') {
-            $proposed = 'page_section_' . (count($document->heading_ids) + 1);
+        if ($proposed == "page_") {
+            $proposed = "page_section_" . (count($document->heading_ids) + 1);
         }
 
         // Quick path, it's a unique ID
         if (!in_array($proposed, $document->heading_ids)) {
             $document->heading_ids[] = $proposed;
-
             return $proposed;
         }
 
         $extension = 1; // Initialize the variable at one, so on the first iteration we have 2
         do {
-            ++$extension;
+            $extension++;
         } while (in_array("$proposed-$extension", $document->heading_ids));
 
         return "$proposed-$extension";
     }
 
+    /**
+     * @param Heading $node
+     */
     protected function ensureHeadingHasId(Document $document, Heading $node)
     {
         // If the node has an ID, no need to generate it, just check it's unique
@@ -123,10 +129,9 @@ class Processor
     }
 
     /**
-     * Make a tree of the list of headings.
+     * Make a tree of the list of headings
      *
      * @param Entry[] $headings
-     *
      * @return RootEntry
      */
     public function generate($headings)
@@ -142,21 +147,19 @@ class Processor
 
                 $parent->addChild($heading);
                 $previous = $heading;
-
                 continue;
             }
+
 
             if ($heading->getLevel() > $previous->getLevel()) {
                 $previous->addChild($heading);
                 $previous = $heading;
-
                 continue;
             }
 
             //if ($heading->getLevel() == $previous->getLevel()) {
             $previous->getParent()->addChild($heading);
             $previous = $heading;
-
             continue;
             //}
         }
@@ -166,7 +169,6 @@ class Processor
 
     /**
      * @param Entry[] $entries
-     *
      * @return ListBlock
      */
     protected function render(array $entries)
@@ -218,6 +220,7 @@ class Processor
     }
 
     /**
+     * @param Heading $node
      * @return Node[]
      */
     protected function cloneChildren(Heading $node)

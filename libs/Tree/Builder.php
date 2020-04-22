@@ -97,6 +97,8 @@ class Builder
     }
 
     /**
+     * @param Directory $parent
+     * @param SplFileInfo $file
      * @return Content|Raw
      */
     public static function createContent(Directory $parent, SplFileInfo $file)
@@ -140,7 +142,6 @@ class Builder
 
     /**
      * @param string $filename
-     *
      * @return string
      */
     public static function removeSortingInformations($filename)
@@ -154,8 +155,8 @@ class Builder
     }
 
     /**
+     * @param Directory $parent
      * @param string $title
-     *
      * @return Directory
      */
     public static function getOrCreateDir(Directory $parent, $title)
@@ -173,8 +174,8 @@ class Builder
     }
 
     /**
+     * @param Directory $parent
      * @param string $path
-     *
      * @return ContentAbstract
      */
     public static function getOrCreatePage(Directory $parent, $path)
@@ -214,10 +215,11 @@ class Builder
     }
 
     /**
-     * Sort the tree recursively.
+     * Sort the tree recursively
+     *
+     * @param Directory $current
      */
-    public static function sortTree(Directory $current)
-    {
+    public static function sortTree(Directory $current) {
         $current->sort();
         foreach ($current->getEntries() as $entry) {
             if ($entry instanceof Directory) {
@@ -227,10 +229,10 @@ class Builder
     }
 
     /**
-     * Calculate next and previous for all pages.
+     * Calculate next and previous for all pages
      *
+     * @param Directory $current
      * @param null|Content $prev
-     *
      * @return null|Content
      */
     public static function finalizeTree(Directory $current, $prev = null)
@@ -250,4 +252,5 @@ class Builder
 
         return $prev;
     }
+
 }

@@ -38,7 +38,7 @@ class Publisher
         $this->client->setSpace($confluence->getSpaceId());
     }
 
-    public function run($title, $closure)
+    public function run(string $title, \Closure $closure)
     {
         try {
             return $this->runAction($title, $this->width, $closure);
@@ -75,7 +75,7 @@ class Publisher
         $delete->handle($published);
     }
 
-    protected function getRootPage($tree)
+    protected function getRootPage(array $tree)
     {
         if ($this->confluence->hasAncestorId()) {
             $pages = $this->client->getList($this->confluence->getAncestorId());
@@ -116,7 +116,7 @@ class Publisher
         return $published;
     }
 
-    protected function recursiveWithCallback($parent_id, $entry, $published, $callback)
+    protected function recursiveWithCallback($parent_id, $entry, $published, \Closure $callback)
     {
         $published = $callback($parent_id, $entry, $published);
 
@@ -141,7 +141,7 @@ class Publisher
         return $published;
     }
 
-    protected function createRecursive($parent_id, $entry, $published)
+    protected function createRecursive($parent_id, array $entry, $published)
     {
         $callback = function ($parent_id, $entry, $published) {
             // nothing to do if the ID already exists
@@ -162,7 +162,7 @@ class Publisher
         return $this->recursiveWithCallback($parent_id, $entry, $published, $callback);
     }
 
-    protected function updateRecursive($parent_id, $entry, $published)
+    protected function updateRecursive($parent_id, array $entry, $published)
     {
         $callback = function ($parent_id, $entry, $published) {
             if (array_key_exists('id', $published) && array_key_exists('page', $entry)) {

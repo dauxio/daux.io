@@ -46,7 +46,10 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
         ];
     }
 
-    public function generateAll(InputInterface $input, OutputInterface $output, $width)
+    /**
+     * {@inheritDoc}
+     */
+    public function generateAll(InputInterface $input, OutputInterface $output, int $width): void
     {
         $destination = $input->getOption('destination');
 

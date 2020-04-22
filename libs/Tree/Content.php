@@ -5,16 +5,16 @@ use Webuni\FrontMatter\FrontMatter;
 
 class Content extends ContentAbstract
 {
-    /** @var string */
+    /** @var string $content */
     protected $content;
 
-    /** @var Content */
+    /** @var Content $previous */
     protected $previous;
 
-    /** @var Content */
+    /** @var Content $next */
     protected $next;
 
-    /** @var array */
+    /** @var array $attributes */
     protected $attributes;
 
     /** @var bool */

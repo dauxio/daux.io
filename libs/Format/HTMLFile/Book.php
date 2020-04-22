@@ -21,7 +21,10 @@ class Book
         return '<style>' . file_get_contents('themes/daux_singlepage/css/main.min.css') . '</style>';
     }
 
-    protected function getPageUrl($page)
+    /**
+     * @param Content|null $page
+     */
+    protected function getPageUrl(?Content $page)
     {
         return 'file_' . str_replace('/', '_', $page->getUrl());
     }
@@ -107,7 +110,7 @@ class Book
         return $content;
     }
 
-    public function addPage($page, $content)
+    public function addPage(Content $page, $content)
     {
         $this->pages[] = ['page' => $page, 'content' => $content];
     }

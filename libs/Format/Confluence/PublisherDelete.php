@@ -31,7 +31,7 @@ class PublisherDelete
         $this->deletable = [];
     }
 
-    protected function listDeletable($published, $prefix = '')
+    protected function listDeletable($published, string $prefix = '')
     {
         foreach ($published['children'] as $child) {
             if (array_key_exists('children', $child) && count($child['children'])) {

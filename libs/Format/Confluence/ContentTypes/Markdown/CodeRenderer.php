@@ -10,7 +10,7 @@ abstract class CodeRenderer implements BlockRendererInterface
         return str_replace(']]>', ']]]]><![CDATA[>', $content);
     }
 
-    public function getHTMLElement($body, $language)
+    public function getHTMLElement(string $body, string $language)
     {
         $body = '<![CDATA[' . $this->escapeCDATA($body) . ']]>';
 

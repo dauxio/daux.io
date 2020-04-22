@@ -32,7 +32,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-  -   name: Install tools
+    - name: Install tools
       run: ./scripts/install_tools.sh
 
     - name: Run test suite
@@ -47,8 +47,8 @@ jobs:
       uses: shivammathur/setup-php@master
       with:
         php-version: 7.4
-        extension-csv: mbstring, xdebug, dom, intl
-        coverage: xdebug
+        extension-csv: mbstring, dom, intl
+        coverage: pcov
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
@@ -62,6 +62,10 @@ jobs:
     - run: wget https://scrutinizer-ci.com/ocular.phar
     - name: Upload code coverage
       run: php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+    - run: composer run-script psalm -- --output-format=github
+    - run: composer run-script phan
+    - run: composer run-script psalm
 
   documentation:
     runs-on: ubuntu-latest

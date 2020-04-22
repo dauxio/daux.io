@@ -68,17 +68,17 @@ class Config extends BaseConfig
         return isset($this['timezone']);
     }
 
-    public function getTimezone()
+    public function getTimezone(): string
     {
         return $this->getValue('timezone');
     }
 
-    public function getTree()
+    public function getTree(): ?Tree\Root
     {
         return $this->getValue('tree');
     }
 
-    public function setTree($tree)
+    public function setTree(Tree\Root $tree)
     {
         $this->setValue('tree', $tree);
     }
@@ -103,17 +103,17 @@ class Config extends BaseConfig
         return $this->getValue('mode');
     }
 
-    public function isLive()
+    public function isLive(): bool
     {
         return $this->getValue('mode') == Daux::LIVE_MODE;
     }
 
-    public function isStatic()
+    public function isStatic(): bool
     {
         return $this->getValue('mode') == Daux::STATIC_MODE;
     }
 
-    public function shouldInheritIndex()
+    public function shouldInheritIndex(): bool
     {
         // As the global configuration is always present, we
         // need to test for the existence of the legacy value
@@ -125,12 +125,12 @@ class Config extends BaseConfig
         return $this['html']['inherit_index'];
     }
 
-    public function getIndexKey()
+    public function getIndexKey(): string
     {
         return $this->getValue('mode') == Daux::STATIC_MODE ? 'index.html' : 'index';
     }
 
-    public function getProcessor()
+    public function getProcessor(): ?string
     {
         return $this->getValue('processor');
     }
@@ -150,17 +150,23 @@ class Config extends BaseConfig
         return $this->hasValue('theme') ? new Theme($this->getValue('theme')) : null;
     }
 
-    public function getValidContentExtensions()
+    /**
+     * @return array<string>
+     */
+    public function getValidContentExtensions(): array
     {
         return $this->getValue('valid_content_extensions');
     }
 
+    /**
+     * @param array<string> $value
+     */
     public function setValidContentExtensions(array $value)
     {
         $this->setValue('valid_content_extensions', $value);
     }
 
-    public function canCache()
+    public function canCache(): bool
     {
         if ($this->hasValue('cache')) {
             return $this->getValue('cache');
@@ -169,7 +175,7 @@ class Config extends BaseConfig
         return false;
     }
 
-    public function getCacheKey()
+    public function getCacheKey(): string
     {
         $cloned = [];
         foreach ($this as $key => $value) {
@@ -179,12 +185,12 @@ class Config extends BaseConfig
         return sha1(json_encode($cloned));
     }
 
-    public function hasTranslationKey($language, $key): bool
+    public function hasTranslationKey(string $language, $key): bool
     {
         return array_key_exists($language, $this['strings']) && array_key_exists($key, $this['strings'][$language]);
     }
 
-    public function getTranslationKey($language, $key)
+    public function getTranslationKey(string $language, $key)
     {
         return $this['strings'][$language][$key];
     }
@@ -243,6 +249,9 @@ class Config extends BaseConfig
         return $this->getValue('entry_page');
     }
 
+    /**
+     * @param Content|array|null $value
+     */
     public function setEntryPage($value)
     {
         $this->setValue('entry_page', $value);
@@ -258,7 +267,7 @@ class Config extends BaseConfig
         return $this->getValue('request');
     }
 
-    public function setRequest($value)
+    public function setRequest(string $value)
     {
         $this->setValue('request', $value);
     }
@@ -268,22 +277,25 @@ class Config extends BaseConfig
         return $this->getValue('index');
     }
 
-    public function setIndex($value)
+    /**
+     * @param Content|null $value
+     */
+    public function setIndex(?Content $value)
     {
         $this->setValue('index', $value);
     }
 
-    public function hasProcessorInstance()
+    public function hasProcessorInstance(): bool
     {
         return $this->hasValue('processor_instance');
     }
 
-    public function getProcessorInstance()
+    public function getProcessorInstance(): Processor
     {
         return $this->getValue('processor_instance');
     }
 
-    public function setProcessorInstance($value)
+    public function setProcessorInstance(Processor $value)
     {
         $this->setValue('processor_instance', $value);
     }
@@ -293,7 +305,7 @@ class Config extends BaseConfig
         return $this->getValue('ignore');
     }
 
-    public function hasHost()
+    public function hasHost(): bool
     {
         return $this->hasValue('host');
     }

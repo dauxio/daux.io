@@ -20,7 +20,7 @@ class DauxCommand extends SymfonyCommand
             ->addOption('value', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'Set different configuration values');
     }
 
-    protected function prepareConfig($mode, InputInterface $input, OutputInterface $output): ConfigBuilder
+    protected function prepareConfig(string $mode, InputInterface $input, OutputInterface $output): ConfigBuilder
     {
         $builder = ConfigBuilder::withMode($mode);
 
@@ -57,7 +57,7 @@ class DauxCommand extends SymfonyCommand
         return $builder;
     }
 
-    protected function prepareProcessor(Daux $daux, $width)
+    protected function prepareProcessor(Daux $daux, int $width)
     {
         $class = $daux->getProcessorClass();
         if (!empty($class)) {

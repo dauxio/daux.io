@@ -10,7 +10,7 @@ class BaseConfig extends ArrayObject
      * @param array $newValues
      * @param bool $override
      */
-    public function merge($newValues, $override = true)
+    public function merge($newValues, $override = true): void
     {
         foreach ($newValues as $key => $value) {
             // If the key doesn't exist yet,
@@ -38,17 +38,29 @@ class BaseConfig extends ArrayObject
         }
     }
 
-    public function hasValue($key)
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public function hasValue(string $key)
     {
         return array_key_exists($key, (array) $this);
     }
 
-    public function getValue($key)
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function getValue(string $key)
     {
         return $this[$key];
     }
 
-    public function setValue($key, $value)
+    /**
+     * @param string $key
+     * @param mixed $value
+     */
+    public function setValue(string $key, $value)
     {
         $this[$key] = $value;
     }

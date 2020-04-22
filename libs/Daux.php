@@ -156,7 +156,10 @@ class Daux
         return $class;
     }
 
-    protected function findAlternatives($input, $words)
+    /**
+     * @param array-key[] $words
+     */
+    protected function findAlternatives($input, array $words)
     {
         $alternatives = [];
 

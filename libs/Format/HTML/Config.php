@@ -4,7 +4,7 @@ use Todaymade\Daux\BaseConfig;
 
 class Config extends BaseConfig
 {
-    private function prepareGithubUrl($url)
+    private function prepareGithubUrl(string $url)
     {
         $url = str_replace('http://', 'https://', $url);
 

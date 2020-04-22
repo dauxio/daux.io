@@ -217,7 +217,7 @@ class Api
         }
     }
 
-    public function showSourceCode($css, $lineNumber, $column)
+    public function showSourceCode(string $css, $lineNumber, $column)
     {
         $lines = preg_split("/\r?\n/", $css);
 
@@ -264,7 +264,7 @@ class Api
         }
     }
 
-    private function getAttachment($id, $attachment)
+    private function getAttachment(int $id, array $attachment)
     {
         // Check if an attachment with
         // this name is uploaded
@@ -277,7 +277,7 @@ class Api
         }
     }
 
-    private function putAttachment($url, $attachment)
+    private function putAttachment(string $url, array $attachment)
     {
         $contents = array_key_exists('file', $attachment) ? fopen($attachment['file']->getPath(), 'r') : $attachment['content'];
 
@@ -294,7 +294,7 @@ class Api
         }
     }
 
-    private function getFileSize($attachment)
+    private function getFileSize(array $attachment)
     {
         if (array_key_exists('file', $attachment)) {
             return filesize($attachment['file']->getPath());

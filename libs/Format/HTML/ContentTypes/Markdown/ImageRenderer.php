@@ -43,7 +43,7 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      *
      * @throws LinkNotFoundException
      */
-    protected function getCleanUrl($url)
+    protected function getCleanUrl(string $url)
     {
         // empty urls and anchors should
         // not go through the url resolver

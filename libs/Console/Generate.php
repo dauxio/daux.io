@@ -29,7 +29,7 @@ class Generate extends DauxCommand
             ->addOption('destination', 'd', InputOption::VALUE_REQUIRED, $description, 'static');
     }
 
-    protected function prepareConfig($mode, InputInterface $input, OutputInterface $output): ConfigBuilder
+    protected function prepareConfig(string $mode, InputInterface $input, OutputInterface $output): ConfigBuilder
     {
         $builder = parent::prepareConfig($mode, $input, $output);
 

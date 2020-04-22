@@ -380,12 +380,12 @@ class DauxHelper
         throw new LinkNotFoundException("Could not locate file '$url'");
     }
 
-    public static function isValidUrl($url)
+    public static function isValidUrl(string $url)
     {
         return !empty($url) && $url[0] != '#';
     }
 
-    public static function isExternalUrl($url)
+    public static function isExternalUrl(string $url)
     {
         return preg_match('#^(?:[a-z]+:)?//|^mailto:#', $url);
     }

@@ -21,7 +21,7 @@ class EmbedImages
         $this->tree = $tree;
     }
 
-    public function embed($page, Content $file, $callback)
+    public function embed($page, Content $file, \Closure $callback)
     {
         return preg_replace_callback(
             "/<img\\s+[^>]*src=['\"]([^\"]*)['\"][^>]*>/",

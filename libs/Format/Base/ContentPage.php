@@ -73,7 +73,7 @@ abstract class ContentPage extends SimplePage
         return $this->getPureContent();
     }
 
-    public static function fromFile(Content $file, $config, ContentType $contentType)
+    public static function fromFile(Content $file, Config $config, ContentType $contentType)
     {
         $page = new static($file->getTitle(), $file->getContent());
         $page->setFile($file);

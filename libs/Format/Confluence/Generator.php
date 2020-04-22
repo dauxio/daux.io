@@ -64,7 +64,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
     /**
      * {@inheritdoc}
      */
-    public function generateAll(InputInterface $input, OutputInterface $output, $width)
+    public function generateAll(InputInterface $input, OutputInterface $output, int $width): void
     {
         $config = $this->daux->getConfig();
 
@@ -93,7 +93,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $publisher->publish($tree);
     }
 
-    private function generateRecursive(Directory $tree, GlobalConfig $config, $base_url = '')
+    private function generateRecursive(Directory $tree, GlobalConfig $config, string $base_url = '')
     {
         $final = ['title' => $this->prefix . $tree->getTitle()];
         $config['base_url'] = $base_url;

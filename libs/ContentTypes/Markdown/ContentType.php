@@ -41,7 +41,7 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
         return ['md', 'markdown'];
     }
 
-    protected function doConversion($raw)
+    protected function doConversion(string $raw)
     {
         Daux::writeln('Running conversion', OutputInterface::VERBOSITY_VERBOSE);
 

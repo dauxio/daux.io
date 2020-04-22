@@ -76,7 +76,7 @@ class Template
         return $engine->render($name, $data);
     }
 
-    protected function registerFunctions($engine)
+    protected function registerFunctions(Engine $engine)
     {
         $engine->registerFunction('get_navigation', function ($tree, $path, $current_url, $base_page, $mode) {
             $nav = $this->buildNavigation($tree, $path, $current_url, $base_page, $mode);
@@ -148,7 +148,7 @@ class Template
         return "<ul class='Nav'>$nav</ul>";
     }
 
-    private function buildNavigation(Directory $tree, $path, $current_url, $base_page, $mode)
+    private function buildNavigation(Directory $tree, string $path, $current_url, $base_page, $mode)
     {
         $nav = [];
         foreach ($tree->getEntries() as $node) {
