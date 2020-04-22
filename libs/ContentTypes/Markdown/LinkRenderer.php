@@ -10,7 +10,6 @@ use League\CommonMark\Util\ConfigurationInterface;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception\LinkNotFoundException;
-use Todaymade\Daux\Tree\Entry;
 
 class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {
@@ -55,6 +54,7 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         // Absolute urls, shouldn't either
         if (DauxHelper::isExternalUrl($url)) {
             $element->setAttribute('class', 'Link--external');
+            $element->setAttribute('rel', 'noopener noreferrer');
 
             return $element;
         }
@@ -78,8 +78,8 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
                     $foundWithHash = true;
                 }
             } catch (LinkNotFoundException $e2) {
-                // If it's still not found here, we'll only 
-                // report on the first error as the second 
+                // If it's still not found here, we'll only
+                // report on the first error as the second
                 // one will tell the same.
             }
 
@@ -87,7 +87,7 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
                 if ($this->daux->isStatic()) {
                     throw $e;
                 }
-    
+
                 $element->setAttribute('class', 'Link--broken');
             }
         }

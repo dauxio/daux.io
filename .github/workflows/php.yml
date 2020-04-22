@@ -32,6 +32,9 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+  -   name: Install tools
+      run: ./scripts/install_tools.sh
+
     - name: Run test suite
       run: composer run-script test
 
@@ -49,6 +52,9 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Install tools
+      run: ./scripts/install_tools.sh
 
     - name: Run test suite
       run: composer run-script test -- --coverage-clover=coverage.clover

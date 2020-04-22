@@ -1,9 +1,10 @@
 <?php namespace Todaymade\Daux\ContentTypes\Markdown;
 
-use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
-use League\CommonMark\HtmlRenderer;
-use League\CommonMark\Ext\Table\TableExtension;
+use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use League\CommonMark\Extension\SmartPunct\SmartPunctExtension;
+use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
+use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\Inline\Element as InlineElement;
 use Todaymade\Daux\Config;
 
@@ -18,6 +19,9 @@ class CommonMarkConverter extends \League\CommonMark\CommonMarkConverter
     {
         $environment = Environment::createCommonMarkEnvironment();
         $environment->mergeConfig($config);
+        $environment->addExtension(new AutolinkExtension());
+        $environment->addExtension(new SmartPunctExtension());
+        $environment->addExtension(new StrikethroughExtension());
         $environment->addExtension(new TableExtension());
 
         // Table of Contents
