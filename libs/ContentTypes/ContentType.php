@@ -8,7 +8,7 @@ interface ContentType
     public function __construct(Config $config);
 
     /**
-     * Get the file extensions supported by this Content Type
+     * Get the file extensions supported by this Content Type.
      *
      * @return string[]
      */
@@ -17,6 +17,7 @@ interface ContentType
     /**
      * @param string $raw The raw text to render
      * @param Content $node The original node we are converting
+     *
      * @return string The generated output
      */
     public function convert($raw, Content $node);

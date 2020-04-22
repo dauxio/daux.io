@@ -13,7 +13,7 @@ class PublisherDelete
     protected $deletable;
 
     /**
-     * @var boolean should delete ?
+     * @var bool should delete ?
      */
     protected $delete;
 
@@ -27,7 +27,6 @@ class PublisherDelete
         $this->output = $output;
         $this->delete = $delete;
         $this->client = $client;
-
 
         $this->deletable = [];
     }
@@ -72,8 +71,8 @@ class PublisherDelete
     protected function displayDeletable()
     {
         $this->output->writeLn('Listing obsolete pages...');
-        $this->output->writeLn("> The following pages will not be deleted, but just listed for information.");
-        $this->output->writeLn("> If you want to delete these pages, you need to set the --delete flag on the command.");
+        $this->output->writeLn('> The following pages will not be deleted, but just listed for information.');
+        $this->output->writeLn('> If you want to delete these pages, you need to set the --delete flag on the command.');
         foreach ($this->deletable as $id => $title) {
             $this->output->writeLn("- $title");
         }

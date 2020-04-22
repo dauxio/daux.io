@@ -11,7 +11,7 @@ function loadApp()
     if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
         return require_once __DIR__ . '/../vendor/autoload.php';
     }
-    
+
     throw new Exception('Impossible to load Daux, missing vendor/');
 }
 
@@ -21,16 +21,16 @@ $loader = loadApp();
 // find the daux processor extensions
 if ($loader) {
     $ext = __DIR__ . '/../daux';
-    if (is_dir(getcwd() . "/daux")) {
-        $ext = getcwd() . "/daux";
+    if (is_dir(getcwd() . '/daux')) {
+        $ext = getcwd() . '/daux';
     }
-    
+
     $env = getenv('DAUX_EXTENSION');
     if ($env && is_dir($env)) {
         $ext = $env;
     }
-    
+
     define('DAUX_EXTENSION', $ext);
 
-    $loader->setPsr4("Todaymade\\Daux\\Extension\\", $ext);
+    $loader->setPsr4('Todaymade\\Daux\\Extension\\', $ext);
 }

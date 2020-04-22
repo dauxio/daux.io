@@ -11,7 +11,7 @@ class Root extends Directory
     protected $activeNode;
 
     /**
-     * The root doesn't have a parent
+     * The root doesn't have a parent.
      */
     public function __construct(Config $config)
     {
@@ -21,17 +21,11 @@ class Root extends Directory
         $this->path = $config->getDocumentationDirectory();
     }
 
-    /**
-     * @return Config
-     */
     public function getConfig(): Config
     {
         return $this->config;
     }
 
-    /**
-     * @param Config $config
-     */
     public function setConfig(Config $config)
     {
         $this->config = $config;

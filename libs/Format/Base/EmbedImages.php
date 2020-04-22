@@ -3,7 +3,7 @@
  * Created by IntelliJ IDEA.
  * User: onigoetz
  * Date: 06/11/15
- * Time: 20:27
+ * Time: 20:27.
  */
 namespace Todaymade\Daux\Format\Base;
 
@@ -66,7 +66,6 @@ class EmbedImages
 
         //Get any file corresponding to the right one
         $file = DauxHelper::getFile($this->tree, $url);
-
 
         if ($file === false) {
             return false;

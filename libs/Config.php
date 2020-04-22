@@ -1,10 +1,10 @@
 <?php namespace Todaymade\Daux;
 
-use Todaymade\Daux\Tree\Content;
-use Todaymade\Daux\Tree\Entry;
+use Todaymade\Daux\Format\Confluence\Config as ConfluenceConfig;
 use Todaymade\Daux\Format\HTML\Config as HTMLConfig;
 use Todaymade\Daux\Format\HTML\Theme as Theme;
-use Todaymade\Daux\Format\Confluence\Config as ConfluenceConfig;
+use Todaymade\Daux\Tree\Content;
+use Todaymade\Daux\Tree\Entry;
 
 class Config extends BaseConfig
 {
@@ -229,6 +229,7 @@ class Config extends BaseConfig
 
             return $value;
         }
+
         return $this->getBaseUrl();
     }
 

@@ -1,8 +1,8 @@
 <?php
 namespace Todaymade\Daux\Tree;
 
-use Todaymade\Daux\ConfigBuilder;
 use PHPUnit\Framework\TestCase;
+use Todaymade\Daux\ConfigBuilder;
 
 class ContentTest extends TestCase
 {
@@ -31,6 +31,10 @@ class ContentTest extends TestCase
 
     /**
      * @dataProvider providerTestAttributes
+     *
+     * @param mixed $content
+     * @param mixed $attributes
+     * @param mixed $finalContent
      */
     public function testAttributes($content, $attributes, $finalContent)
     {

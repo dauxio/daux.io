@@ -25,7 +25,7 @@ class Content extends ContentAbstract
         if ($this->manuallySetContent) {
             $content = $this->content;
         } elseif (!$this->getPath()) {
-            throw new RuntimeException("Empty content");
+            throw new RuntimeException('Empty content');
         } else {
             $content = file_get_contents($this->getPath());
         }
@@ -40,9 +40,6 @@ class Content extends ContentAbstract
         return $frontMatter->parse($content);
     }
 
-    /**
-     * @return string
-     */
     public function getContent(): string
     {
         if ($this->attributes === null) {
@@ -52,9 +49,6 @@ class Content extends ContentAbstract
         return $this->content;
     }
 
-    /**
-     * @param string $content
-     */
     public function setContent(string $content): void
     {
         $this->manuallySetContent = true;
@@ -69,9 +63,6 @@ class Content extends ContentAbstract
         return $this->previous;
     }
 
-    /**
-     * @param Content $previous
-     */
     public function setPrevious(Content $previous)
     {
         $this->previous = $previous;
@@ -85,9 +76,6 @@ class Content extends ContentAbstract
         return $this->next;
     }
 
-    /**
-     * @param Content $next
-     */
     public function setNext(Content $next)
     {
         $this->next = $next;
@@ -130,10 +118,11 @@ class Content extends ContentAbstract
     }
 
     /**
-     * Get one or all attributes for the content
+     * Get one or all attributes for the content.
      *
-     * @param string|null $key
-     * @return array|mixed|null
+     * @param null|string $key
+     *
+     * @return null|array|mixed
      */
     public function getAttribute($key = null)
     {

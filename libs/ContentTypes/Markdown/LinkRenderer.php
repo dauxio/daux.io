@@ -31,9 +31,10 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
 
     /**
      * @param AbstractInline|Link $inline
-     * @param ElementRendererInterface $htmlRenderer
-     * @return HtmlElement
+     *
      * @throws LinkNotFoundException
+     *
+     * @return HtmlElement
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
@@ -72,7 +73,7 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         } catch (LinkNotFoundException $e) {
             // For some reason, the filename could contain a # and thus the link needs to resolve to that.
             try {
-                if (strlen($urlAndHash[1] ?? "") > 0) {
+                if (strlen($urlAndHash[1] ?? '') > 0) {
                     $file = DauxHelper::resolveInternalFile($this->daux, $url . '#' . $urlAndHash[1]);
                     $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
                     $foundWithHash = true;
@@ -101,9 +102,6 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         return $element;
     }
 
-    /**
-     * @param ConfigurationInterface $configuration
-     */
     public function setConfiguration(ConfigurationInterface $configuration)
     {
         $this->parent->setConfiguration($configuration);

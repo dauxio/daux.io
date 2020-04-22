@@ -10,7 +10,6 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
 {
     /**
      * @param AbstractInline|Link $inline
-     * @param ElementRendererInterface $htmlRenderer
      *
      * @return HtmlElement
      */

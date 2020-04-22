@@ -47,7 +47,7 @@ class DauxCommand extends SymfonyCommand
         if ($input->hasOption('value')) {
             $values = array_map(
                 function ($value) {
-                    return array_map("trim", explode('=', $value));
+                    return array_map('trim', explode('=', $value));
                 },
                 $input->getOption('value')
             );

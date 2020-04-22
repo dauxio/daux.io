@@ -26,6 +26,7 @@ trait RunAction
             });
         } catch (\Exception $e) {
             $this->status($padding, '[ <fg=red>FAIL</fg=red> ]');
+
             throw $e;
         }
         $this->status($padding, '[  <fg=green>OK</fg=green>  ]');

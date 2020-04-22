@@ -5,6 +5,10 @@ use Todaymade\Daux\Tree\Root;
 class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 {
     /**
+     * @var Template
+     */
+    public $templateRenderer;
+    /**
      * @var string
      */
     private $language;
@@ -13,11 +17,6 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
      * @var bool
      */
     private $homepage;
-
-    /**
-     * @var Template
-     */
-    public $templateRenderer;
 
     private function isHomepage(): bool
     {
@@ -49,6 +48,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
     /**
      * @param \Todaymade\Daux\Tree\Directory[] $parents
      * @param bool $multilanguage
+     *
      * @return array
      */
     private function getBreadcrumbTrail($parents, $multilanguage)
@@ -98,7 +98,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             'breadcrumbs' => $config->getHTML()->hasBreadcrumbs(),
             'prev' => $this->file->getPrevious(),
             'next' => $this->file->getNext(),
-            'attributes' => $this->file->getAttribute()
+            'attributes' => $this->file->getAttribute(),
         ];
 
         if ($page['breadcrumbs']) {
@@ -112,13 +112,13 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
         $context = ['page' => $page, 'config' => $config];
 
-        $template = "theme::content";
+        $template = 'theme::content';
         if ($this->isLanding()) {
-            $template = "theme::home";
+            $template = 'theme::home';
         }
 
         if (array_key_exists('template', $page['attributes'])) {
-            $template = "theme::" . $page['attributes']['template'];
+            $template = 'theme::' . $page['attributes']['template'];
         }
 
         return $this->templateRenderer->render($template, $context);

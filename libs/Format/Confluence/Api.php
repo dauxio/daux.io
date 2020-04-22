@@ -24,7 +24,8 @@ class Api
     }
 
     /**
-     * This method is public due to test purposes
+     * This method is public due to test purposes.
+     *
      * @return Client
      */
     public function getClient()
@@ -39,9 +40,8 @@ class Api
 
     /**
      * The standard error message from guzzle is quite poor in informations,
-     * this will give little bit more sense to it and return it
+     * this will give little bit more sense to it and return it.
      *
-     * @param BadResponseException $e
      * @return \Exception
      */
     protected function handleError(BadResponseException $e)
@@ -101,10 +101,11 @@ class Api
     }
 
     /**
-     * Get a list of pages
+     * Get a list of pages.
      *
      * @param int $rootPage
      * @param bool $recursive
+     *
      * @return array
      */
     public function getList($rootPage, $recursive = false)
@@ -153,6 +154,7 @@ class Api
      * @param int $parent_id
      * @param string $title
      * @param string $content
+     *
      * @return int
      */
     public function createPage($parent_id, $title, $content)
@@ -224,7 +226,7 @@ class Api
         }
 
         $start = max($lineNumber - 3, 0);
-        $end   = min($lineNumber + 2, count($lines));
+        $end = min($lineNumber + 2, count($lines));
 
         $maxWidth = strlen("$end");
 
@@ -236,7 +238,7 @@ class Api
             $gutter = substr(' ' . (' ' . $number), -$maxWidth) . ' | ';
 
             if ($number == $lineNumber) {
-                $spacing = str_repeat(" ", strlen($gutter) + $column - 2);
+                $spacing = str_repeat(' ', strlen($gutter) + $column - 2);
                 $prepared[] = '>' . $gutter . $line . "\n " . $spacing . '^';
             } else {
                 $prepared[] = ' ' . $gutter . $line;
@@ -247,9 +249,10 @@ class Api
     }
 
     /**
-     * Delete a page
+     * Delete a page.
      *
      * @param int $page_id
+     *
      * @return mixed
      */
     public function deletePage($page_id)
@@ -267,6 +270,7 @@ class Api
         // this name is uploaded
         try {
             $url = "content/$id/child/attachment?filename=" . urlencode($attachment['filename']);
+
             return json_decode($this->getClient()->get($url)->getBody(), true);
         } catch (BadResponseException $e) {
             throw $this->handleError($e);
@@ -318,7 +322,8 @@ class Api
         // the update URL is different
         if (count($result['results'])) {
             if ($this->getFileSize($attachment) == $result['results'][0]['extensions']['fileSize']) {
-                $write(" ( An attachment of the same size already exists, skipping. )");
+                $write(' ( An attachment of the same size already exists, skipping. )');
+
                 return;
             }
 

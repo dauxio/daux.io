@@ -1,7 +1,6 @@
 <?php namespace Todaymade\Daux;
 
 use Symfony\Component\Console\Output\OutputInterface;
-use Todaymade\Daux\Daux;
 
 class Cache
 {
@@ -9,7 +8,7 @@ class Cache
 
     public static function getDirectory(): string
     {
-        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . "dauxio" . DIRECTORY_SEPARATOR;
+        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'dauxio' . DIRECTORY_SEPARATOR;
 
         if (!Cache::$printed) {
             Cache::$printed = true;
@@ -21,10 +20,6 @@ class Cache
 
     /**
      * Store an item in the cache for a given number of minutes.
-     *
-     * @param  string  $key
-     * @param  string  $value
-     * @return void
      */
     public static function put(string $key, string $value): void
     {
@@ -34,9 +29,6 @@ class Cache
 
     /**
      * Create the file cache directory if necessary.
-     *
-     * @param  string  $path
-     * @return void
      */
     protected static function ensureCacheDirectoryExists(string $path): void
     {
@@ -49,9 +41,6 @@ class Cache
 
     /**
      * Remove an item from the cache.
-     *
-     * @param  string  $key
-     * @return bool
      */
     public static function forget(string $key): bool
     {
@@ -67,7 +56,6 @@ class Cache
     /**
      * Retrieve an item from the cache by key.
      *
-     * @param  string $key
      * @return mixed
      */
     public static function get(string $key): ?string
@@ -83,13 +71,11 @@ class Cache
 
     /**
      * Get the full path for the given cache key.
-     *
-     * @param  string  $key
-     * @return string
      */
     protected static function path(string $key): string
     {
         $parts = array_slice(str_split($hash = sha1($key), 2), 0, 2);
+
         return Cache::getDirectory() . '/' . implode('/', $parts) . '/' . $hash;
     }
 
@@ -103,11 +89,11 @@ class Cache
         if (is_dir($dir)) {
             $objects = scandir($dir);
             foreach ($objects as $object) {
-                if ($object != "." && $object != "..") {
-                    if (is_dir($dir . "/" . $object)) {
-                        Cache::rrmdir($dir . "/" . $object);
+                if ($object != '.' && $object != '..') {
+                    if (is_dir($dir . '/' . $object)) {
+                        Cache::rrmdir($dir . '/' . $object);
                     } else {
-                        unlink($dir . "/" . $object);
+                        unlink($dir . '/' . $object);
                     }
                 }
             }

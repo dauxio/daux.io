@@ -55,7 +55,7 @@ class Template
 
     /**
      * @param string $name
-     * @param array $data
+     *
      * @return string
      */
     public function render($name, array $data = [])
@@ -196,6 +196,7 @@ class Template
 
     /**
      * @param string $separator
+     *
      * @return string
      */
     private function getSeparator($separator)

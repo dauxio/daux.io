@@ -43,7 +43,8 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
 
     protected function doConversion($raw)
     {
-        Daux::writeln("Running conversion", OutputInterface::VERBOSITY_VERBOSE);
+        Daux::writeln('Running conversion', OutputInterface::VERBOSITY_VERBOSE);
+
         return $this->getConverter()->convertToHtml($raw);
     }
 
@@ -59,11 +60,11 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
         $payload = Cache::get($cacheKey);
 
         if ($can_cache && $payload) {
-            Daux::writeln("Using cached version", OutputInterface::VERBOSITY_VERBOSE);
+            Daux::writeln('Using cached version', OutputInterface::VERBOSITY_VERBOSE);
         }
 
         if (!$can_cache || !$payload) {
-            Daux::writeln($can_cache ? "Not found in the cache, generating..." : "Cache disabled, generating...", OutputInterface::VERBOSITY_VERBOSE);
+            Daux::writeln($can_cache ? 'Not found in the cache, generating...' : 'Cache disabled, generating...', OutputInterface::VERBOSITY_VERBOSE);
             $payload = $this->doConversion($raw);
         }
 

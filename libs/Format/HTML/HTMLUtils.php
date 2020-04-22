@@ -14,7 +14,7 @@ trait HTMLUtils
     }
 
     /**
-     * Copy all files from $local to $destination
+     * Copy all files from $local to $destination.
      *
      * @param string $destination
      * @param string $local_base

@@ -18,9 +18,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
     /** @var Daux */
     protected $daux;
 
-    /**
-     * @param Daux $daux
-     */
     public function __construct(Daux $daux)
     {
         $this->daux = $daux;

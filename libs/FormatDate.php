@@ -11,7 +11,7 @@ class FormatDate
         $timetype = IntlDateFormatter::SHORT;
         $timezone = null;
 
-        if (!extension_loaded("intl")) {
+        if (!extension_loaded('intl')) {
             $locale = 'en';
             $timezone = 'GMT';
         }

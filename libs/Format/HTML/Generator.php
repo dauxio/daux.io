@@ -16,7 +16,8 @@ use Todaymade\Daux\Tree\Raw;
 
 class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 {
-    use RunAction, HTMLUtils;
+    use RunAction;
+    use HTMLUtils;
 
     /** @var Daux */
     protected $daux;
@@ -26,9 +27,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
     protected $indexed_pages = [];
 
-    /**
-     * @param Daux $daux
-     */
     public function __construct(Daux $daux)
     {
         $config = $daux->getConfig();
@@ -93,9 +91,10 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
      * script code, and embedded objects.  Add line breaks around
      * block-level tags to prevent word joining after tag removal.
      * Also collapse whitespace to single space and trim result.
-     * modified from: http://nadeausoftware.com/articles/2007/09/php_tip_how_strip_html_tags_web_page
+     * modified from: http://nadeausoftware.com/articles/2007/09/php_tip_how_strip_html_tags_web_page.
      *
      * @param string $text
+     *
      * @return string
      */
     private function sanitize($text)
@@ -133,21 +132,18 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
         // Sometimes strings are detected as invalid UTF-8 and json_encode can't treat them
         // iconv can fix those strings
-        $text = iconv('UTF-8', 'UTF-8//IGNORE', $text);
-
-        return $text;
+        return iconv('UTF-8', 'UTF-8//IGNORE', $text);
     }
 
     /**
-     * Recursively generate the documentation
+     * Recursively generate the documentation.
      *
-     * @param Directory $tree
      * @param string $output_dir
-     * @param GlobalConfig $config
      * @param OutputInterface $output
      * @param int $width
      * @param bool $index_pages
      * @param string $base_url
+     *
      * @throws \Exception
      */
     private function generateRecursive(Directory $tree, $output_dir, GlobalConfig $config, $output, $width, $index_pages, $base_url = '')
@@ -185,7 +181,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
                             $this->indexed_pages[] = [
                                 'title' => $node->getTitle(),
                                 'text' => $this->sanitize($generated->getPureContent()),
-                                'tags' =>  '',
+                                'tags' => '',
                                 'url' => $node->getUrl(),
                             ];
                         }
@@ -196,8 +192,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
     }
 
     /**
-     * @param Entry $node
-     * @param GlobalConfig $config
      * @return \Todaymade\Daux\Format\Base\Page
      */
     public function generateOne(Entry $node, GlobalConfig $config)

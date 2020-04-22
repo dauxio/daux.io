@@ -3,9 +3,8 @@ namespace Todaymade\Daux\Tree;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
-use Todaymade\Daux\ConfigBuilder;
-use Todaymade\Daux\Daux;
 use PHPUnit\Framework\TestCase;
+use Todaymade\Daux\ConfigBuilder;
 
 class BuilderIntegrationTest extends TestCase
 {

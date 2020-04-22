@@ -13,7 +13,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
         // Embed images
         // We do it after generation so we can catch the images that were in html already
-        $content = (new EmbedImages($this->config->getTree()))
+        return (new EmbedImages($this->config->getTree()))
             ->embed(
                 $content,
                 $this->file,
@@ -29,7 +29,5 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                     return "<img $attr src=\"data:image/png;base64,$content\"/>";
                 }
             );
-
-        return $content;
     }
 }

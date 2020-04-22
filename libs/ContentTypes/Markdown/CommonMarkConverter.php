@@ -12,8 +12,6 @@ class CommonMarkConverter extends \League\CommonMark\CommonMarkConverter
 {
     /**
      * Create a new commonmark converter instance.
-     *
-     * @param array $config
      */
     public function __construct(array $config = [])
     {

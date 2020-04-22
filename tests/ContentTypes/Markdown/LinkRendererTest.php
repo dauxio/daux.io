@@ -1,12 +1,12 @@
 <?php namespace Todaymade\Daux\ContentTypes\Markdown;
 
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Root;
-use PHPUnit\Framework\TestCase;
 
 class LinkRendererTest extends TestCase
 {
@@ -45,6 +45,10 @@ class LinkRendererTest extends TestCase
 
     /**
      * @dataProvider providerRenderLink
+     *
+     * @param mixed $expected
+     * @param mixed $string
+     * @param mixed $current
      */
     public function testRenderLink($expected, $string, $current)
     {
@@ -64,10 +68,9 @@ class LinkRendererTest extends TestCase
             ->withDocumentationDirectory($root->url())
             ->withValidContentExtensions(['md'])
             ->with([
-                'base_url' => ''
+                'base_url' => '',
             ])
             ->build();
-
 
         $tree = new Root($config);
         Builder::build($tree, []);

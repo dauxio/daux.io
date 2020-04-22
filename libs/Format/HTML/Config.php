@@ -10,7 +10,7 @@ class Config extends BaseConfig
 
         return [
             'name' => 'GitHub',
-            'basepath' => (strpos($url, 'https://github.com/') === 0 ? '' : 'https://github.com/') . trim($url, '/')
+            'basepath' => (strpos($url, 'https://github.com/') === 0 ? '' : 'https://github.com/') . trim($url, '/'),
         ];
     }
 
@@ -20,11 +20,10 @@ class Config extends BaseConfig
             $edit_on = $this->getValue('edit_on');
             if (is_string($edit_on)) {
                 return $this->prepareGithubUrl($edit_on);
-            } else {
-                $edit_on['basepath'] = rtrim($edit_on['basepath'], '/');
-
-                return $edit_on;
             }
+            $edit_on['basepath'] = rtrim($edit_on['basepath'], '/');
+
+            return $edit_on;
         }
 
         if ($this->hasValue('edit_on_github')) {

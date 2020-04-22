@@ -3,7 +3,7 @@
 use Symfony\Component\Mime\MimeTypeGuesserInterface;
 
 /**
- * Guesses the mime type using the file's extension
+ * Guesses the mime type using the file's extension.
  */
 class ExtensionMimeTypeGuesser implements MimeTypeGuesserInterface
 {
@@ -22,12 +22,12 @@ class ExtensionMimeTypeGuesser implements MimeTypeGuesserInterface
     {
         $extension = pathinfo($path, PATHINFO_EXTENSION);
 
-        if ($extension == "css") {
-            return "text/css";
+        if ($extension == 'css') {
+            return 'text/css';
         }
 
-        if ($extension == "js") {
-            return "application/javascript";
+        if ($extension == 'js') {
+            return 'application/javascript';
         }
 
         return null;

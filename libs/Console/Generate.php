@@ -6,8 +6,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Terminal;
-use Todaymade\Daux\Daux;
 use Todaymade\Daux\ConfigBuilder;
+use Todaymade\Daux\Daux;
 
 class Generate extends DauxCommand
 {
@@ -61,7 +61,7 @@ class Generate extends DauxCommand
         $builder = $this->prepareConfig(Daux::STATIC_MODE, $input, $output);
         $daux = new Daux($builder->build(), $output);
 
-        $width = (new Terminal)->getWidth();
+        $width = (new Terminal())->getWidth();
 
         // Instiantiate the processor if one is defined
         $this->prepareProcessor($daux, $width);

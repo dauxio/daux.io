@@ -36,8 +36,6 @@ class FencedCodeRenderer extends CodeRenderer
     protected $known_conversions = ['html' => 'html/xml', 'xml' => 'html/xml', 'js' => 'javascript'];
 
     /**
-     * @param AbstractBlock $block
-     * @param ElementRendererInterface $htmlRenderer
      * @param bool $inTightList
      *
      * @return HtmlElement|string

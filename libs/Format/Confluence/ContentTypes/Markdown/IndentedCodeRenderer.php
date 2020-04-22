@@ -8,8 +8,6 @@ use League\CommonMark\HtmlElement;
 class IndentedCodeRenderer extends CodeRenderer
 {
     /**
-     * @param AbstractBlock $block
-     * @param ElementRendererInterface $htmlRenderer
      * @param bool $inTightList
      *
      * @return HtmlElement
@@ -20,6 +18,6 @@ class IndentedCodeRenderer extends CodeRenderer
             throw new \InvalidArgumentException('Incompatible block type: ' . get_class($block));
         }
 
-        return $this->getHTMLElement($block->getStringContent(), "");
+        return $this->getHTMLElement($block->getStringContent(), '');
     }
 }

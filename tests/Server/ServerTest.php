@@ -1,12 +1,12 @@
 <?php namespace Todaymade\Daux\Server;
 
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\Request;
-use Todaymade\Daux\Format\HTML\RawPage;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
-use org\bovigo\vfs\vfsStream;
+use Todaymade\Daux\Format\HTML\RawPage;
 
 class ServerTest extends TestCase
 {
@@ -16,10 +16,9 @@ class ServerTest extends TestCase
             'index.md' => 'first page',
             'Page.md' => 'another page',
             'somefile.css' => 'body {}',
-            '22.png' => ''
+            '22.png' => '',
         ];
         $root = vfsStream::setup('root', null, $structure);
-
 
         $config = ConfigBuilder::withMode(Daux::LIVE_MODE)
             ->withDocumentationDirectory($root->url())
@@ -34,6 +33,6 @@ class ServerTest extends TestCase
         $server = new Server($daux);
         $response = $server->createResponse($page)->prepare(Request::createFromGlobals());
 
-        $this->assertEquals("text/css", $response->headers->get('Content-Type'));
+        $this->assertEquals('text/css', $response->headers->get('Content-Type'));
     }
 }

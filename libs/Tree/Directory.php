@@ -44,6 +44,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 
             if ($name == 'index' || $name == '_index') {
                 $buckets['index'][$key] = $entry;
+
                 continue;
             }
 
@@ -51,10 +52,12 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
                 if (is_numeric($name[1])) {
                     $exploded = explode('_', $name);
                     $buckets['down_numeric'][abs(substr($exploded[0], 1))][$key] = $entry;
+
                     continue;
                 }
 
                 $buckets['down'][$key] = $entry;
+
                 continue;
             }
 
@@ -62,16 +65,19 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
                 if (is_numeric($name[1])) {
                     $exploded = explode('_', $name);
                     $buckets['up_numeric'][abs(substr($exploded[0], 1))][$key] = $entry;
+
                     continue;
                 }
 
                 $buckets['up'][$key] = $entry;
+
                 continue;
             }
 
             if (is_numeric($name[0])) {
                 $exploded = explode('_', $name);
                 $buckets['numeric'][abs($exploded[0])][$key] = $entry;
+
                 continue;
             }
 
@@ -124,9 +130,6 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         unset($this->children[$entry->getUri()]);
     }
 
-    /**
-     * @return Config
-     */
     public function getConfig(): Config
     {
         if (!$this->parent) {
@@ -147,9 +150,6 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         return false;
     }
 
-    /**
-     * @return Content|null
-     */
     public function getIndexPage(): ?Content
     {
         $indexPage = $this->getLocalIndexPage();
@@ -166,8 +166,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Seek the first available page from descendants
-     * @return Content|null
+     * Seek the first available page from descendants.
      */
     public function seekFirstPage(): ?Content
     {
@@ -191,9 +190,6 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         return null;
     }
 
-    /**
-     * @return Content|null
-     */
     public function getFirstPage(): ?Content
     {
         if ($this->first_page) {
@@ -226,9 +222,6 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         return null;
     }
 
-    /**
-     * @param Content $first_page
-     */
     public function setFirstPage(Content $first_page)
     {
         $this->first_page = $first_page;
@@ -236,16 +229,15 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 
     /**
      * Used when creating the navigation.
-     * Hides folders without showable content
-     *
-     * @return bool
+     * Hides folders without showable content.
      */
     public function hasContent(): bool
     {
         foreach ($this->getEntries() as $node) {
             if ($node instanceof Content) {
                 return true;
-            } elseif ($node instanceof self) {
+            }
+            if ($node instanceof self) {
                 if ($node->hasContent()) {
                     return true;
                 }
@@ -270,9 +262,11 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Whether a offset exists
-     * @param mixed $offset An offset to check for.
-     * @return bool true on success or false on failure.
+     * Whether a offset exists.
+     *
+     * @param mixed $offset an offset to check for
+     *
+     * @return bool true on success or false on failure
      */
     public function offsetExists($offset): bool
     {
@@ -280,9 +274,11 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Offset to retrieve
-     * @param mixed $offset The offset to retrieve.
-     * @return Entry Can return all value types.
+     * Offset to retrieve.
+     *
+     * @param mixed $offset the offset to retrieve
+     *
+     * @return Entry can return all value types
      */
     public function offsetGet($offset)
     {
@@ -290,10 +286,10 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Offset to set
-     * @param mixed $offset The offset to assign the value to.
-     * @param Entry $value The value to set.
-     * @return void
+     * Offset to set.
+     *
+     * @param mixed $offset the offset to assign the value to
+     * @param Entry $value the value to set
      */
     public function offsetSet($offset, $value)
     {
@@ -305,9 +301,9 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * Offset to unset
+     * Offset to unset.
+     *
      * @param string $offset the offset to unset
-     * @return void
      */
     public function offsetUnset($offset)
     {

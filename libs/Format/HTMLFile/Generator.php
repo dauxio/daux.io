@@ -4,13 +4,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Console\RunAction;
 use Todaymade\Daux\Daux;
-use Todaymade\Daux\Format\HTML\Template;
 use Todaymade\Daux\Format\HTML\HTMLUtils;
+use Todaymade\Daux\Format\HTML\Template;
 use Todaymade\Daux\Format\HTMLFile\ContentTypes\Markdown\ContentType;
 
 class Generator implements \Todaymade\Daux\Format\Base\Generator
 {
-    use RunAction, HTMLUtils;
+    use RunAction;
+    use HTMLUtils;
 
     /** @var Daux */
     protected $daux;
@@ -18,9 +19,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
     /** @var Template */
     protected $templateRenderer;
 
-    /**
-     * @param Daux $daux
-     */
     public function __construct(Daux $daux)
     {
         $config = $daux->getConfig();
@@ -63,7 +61,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $data = [
             'author' => $config->getAuthor(),
             'title' => $config->getTitle(),
-            'subject' => $config->getTagline()
+            'subject' => $config->getTagline(),
         ];
 
         $book = new Book($this->daux->tree, $data);

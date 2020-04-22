@@ -1,8 +1,8 @@
 <?php namespace Todaymade\Daux\Format\HTML\Test;
 
-use Todaymade\Daux\Config as MainConfig;
-use \Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter;
 use PHPUnit\Framework\TestCase;
+use Todaymade\Daux\Config as MainConfig;
+use Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter;
 
 class Engine
 {
@@ -16,7 +16,7 @@ class Template
 {
     public function getEngine()
     {
-        return new Engine;
+        return new Engine();
     }
 }
 
@@ -24,8 +24,8 @@ class TableOfContentsTest extends TestCase
 {
     public function getConfig()
     {
-        $config = new MainConfig;
-        $config->templateRenderer = new Template;
+        $config = new MainConfig();
+        $config->templateRenderer = new Template();
 
         return ['daux' => $config];
     }
@@ -42,7 +42,7 @@ class TableOfContentsTest extends TestCase
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# Title";
-        $expected = <<<EXPECTED
+        $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
 <p><a href="#page_Title">Title</a></p>
@@ -60,7 +60,7 @@ EXPECTED;
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# 基础操作\n# 操作基础";
-        $expected = <<<EXPECTED
+        $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
 <p><a href="#page_ji_chu_cao_zuo">基础操作</a></p>
@@ -82,7 +82,7 @@ EXPECTED;
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# Test\n# Test";
-        $expected = <<<EXPECTED
+        $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
 <p><a href="#page_Test">Test</a></p>
@@ -104,7 +104,7 @@ EXPECTED;
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# TEST : Test";
-        $expected = <<<EXPECTED
+        $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
 <p><a href="#page_TEST_Test">TEST : Test</a></p>

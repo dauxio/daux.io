@@ -14,7 +14,7 @@ class Builder
         '.DS_Store', 'Thumbs.db',
     ];
 
-    protected static function isIgnored(\SplFileInfo $file, $ignore)
+    protected static function isIgnored(SplFileInfo $file, $ignore)
     {
         $filename = $file->getFilename();
 
@@ -34,9 +34,10 @@ class Builder
     }
 
     /**
-     * Get name for a file
+     * Get name for a file.
      *
      * @param string $path
+     *
      * @return string
      */
     protected static function getName($path)
@@ -52,7 +53,7 @@ class Builder
     }
 
     /**
-     * Build the initial tree
+     * Build the initial tree.
      *
      * @param Directory $node
      * @param array $ignore
@@ -96,8 +97,6 @@ class Builder
     }
 
     /**
-     * @param Directory $parent
-     * @param SplFileInfo $file
      * @return Content|Raw
      */
     public static function createContent(Directory $parent, SplFileInfo $file)
@@ -141,6 +140,7 @@ class Builder
 
     /**
      * @param string $filename
+     *
      * @return string
      */
     public static function removeSortingInformations($filename)
@@ -154,8 +154,8 @@ class Builder
     }
 
     /**
-     * @param Directory $parent
      * @param string $title
+     *
      * @return Directory
      */
     public static function getOrCreateDir(Directory $parent, $title)
@@ -173,8 +173,8 @@ class Builder
     }
 
     /**
-     * @param Directory $parent
      * @param string $path
+     *
      * @return ContentAbstract
      */
     public static function getOrCreatePage(Directory $parent, $path)
@@ -214,9 +214,7 @@ class Builder
     }
 
     /**
-     * Sort the tree recursively
-     *
-     * @param Directory $current
+     * Sort the tree recursively.
      */
     public static function sortTree(Directory $current)
     {
@@ -229,10 +227,10 @@ class Builder
     }
 
     /**
-     * Calculate next and previous for all pages
+     * Calculate next and previous for all pages.
      *
-     * @param Directory $current
      * @param null|Content $prev
+     *
      * @return null|Content
      */
     public static function finalizeTree(Directory $current, $prev = null)

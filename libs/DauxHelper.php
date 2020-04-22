@@ -8,9 +8,8 @@ use Todaymade\Daux\Tree\Entry;
 class DauxHelper
 {
     /**
-     * Set a new base_url for the configuration
+     * Set a new base_url for the configuration.
      *
-     * @param Config $config
      * @param string $base_url
      */
     public static function rebaseConfiguration(Config $config, $base_url)
@@ -27,8 +26,8 @@ class DauxHelper
     }
 
     /**
-     * @param Config $config
      * @param string $current_url
+     *
      * @return array
      */
     protected static function getTheme(Config $config, $current_url)
@@ -98,9 +97,10 @@ class DauxHelper
     }
 
     /**
-     * Remove all '/./' and '/../' in a path, without actually checking the path
+     * Remove all '/./' and '/../' in a path, without actually checking the path.
      *
      * @param string $path
+     *
      * @return string
      */
     public static function getCleanPath($path)
@@ -125,8 +125,8 @@ class DauxHelper
     /**
      * Get the possible output file names for a source file.
      *
-     * @param Config $config
      * @param string $part
+     *
      * @return string[]
      */
     public static function getFilenames(Config $config, $part)
@@ -140,11 +140,12 @@ class DauxHelper
     }
 
     /**
-     * Locate a file in the tree. Returns the file if found or false
+     * Locate a file in the tree. Returns the file if found or false.
      *
      * @param Directory $tree
      * @param string $request
-     * @return Tree\Content|Tree\Raw|false
+     *
+     * @return false|Tree\Content|Tree\Raw
      */
     public static function getFile($tree, $request)
     {
@@ -163,6 +164,7 @@ class DauxHelper
 
             if ($node == '..') {
                 $tree = $tree->getParent();
+
                 continue;
             }
 
@@ -171,6 +173,7 @@ class DauxHelper
             // node and proceed to the next url part
             if (isset($tree->getEntries()[$node])) {
                 $tree = $tree->getEntries()[$node];
+
                 continue;
             }
 
@@ -178,6 +181,7 @@ class DauxHelper
             $node = DauxHelper::slug(urldecode($node));
             if (isset($tree->getEntries()[$node])) {
                 $tree = $tree->getEntries()[$node];
+
                 continue;
             }
 
@@ -187,6 +191,7 @@ class DauxHelper
             foreach (static::getFilenames($tree->getConfig(), $node) as $filename) {
                 if (isset($tree->getEntries()[$filename])) {
                     $tree = $tree->getEntries()[$filename];
+
                     continue 2;
                 }
             }
@@ -219,17 +224,18 @@ class DauxHelper
      * Taken from Stringy
      *
      * @param  string $title
+     *
      * @return string
      */
     public static function slug($title)
     {
         // Convert to ASCII
-        if (function_exists("transliterator_transliterate")) {
-            $title = transliterator_transliterate("Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC;", $title);
+        if (function_exists('transliterator_transliterate')) {
+            $title = transliterator_transliterate('Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC;', $title);
         }
-        
-        $title = iconv("utf-8", "ASCII//TRANSLIT//IGNORE", $title);
-        
+
+        $title = iconv('utf-8', 'ASCII//TRANSLIT//IGNORE', $title);
+
         // Remove unsupported characters
         $title = preg_replace('/[^\x20-\x7E]/u', '', $title);
 
@@ -250,6 +256,7 @@ class DauxHelper
     /**
      * @param string $from
      * @param string $to
+     *
      * @return string
      */
     public static function getRelativePath($from, $to)
@@ -276,10 +283,10 @@ class DauxHelper
                     // add traversals up to first matching dir
                     $padLength = (count($relPath) + $remaining - 1) * -1;
                     $relPath = array_pad($relPath, $padLength, '..');
+
                     break;
-                } else {
-                    //$relPath[0] = './' . $relPath[0];
                 }
+                //$relPath[0] = './' . $relPath[0];
             }
         }
 
@@ -290,11 +297,13 @@ class DauxHelper
     {
         if (!is_string($path)) {
             $mess = sprintf('String expected but was given %s', gettype($path));
+
             throw new \InvalidArgumentException($mess);
         }
 
         if (!ctype_print($path)) {
             $mess = 'Path can NOT have non-printable characters or be empty';
+
             throw new \DomainException($mess);
         }
 
@@ -310,6 +319,7 @@ class DauxHelper
         $parts = [];
         if (!preg_match($regExp, $path, $parts)) {
             $mess = sprintf('Path is NOT valid, was given %s', $path);
+
             throw new \DomainException($mess);
         }
 
@@ -333,8 +343,10 @@ class DauxHelper
     /**
      * @param Config $config
      * @param string $url
-     * @return Entry
+     *
      * @throws LinkNotFoundException
+     *
+     * @return Entry
      */
     public static function resolveInternalFile($config, $url)
     {

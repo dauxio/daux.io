@@ -38,6 +38,9 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      * Relative URLs can be done using either the folder with
      * number prefix or the final name (with prefix stripped).
      * This ensures that we always use the final name when generating.
+     *
+     * @param mixed $url
+     *
      * @throws LinkNotFoundException
      */
     protected function getCleanUrl($url)
@@ -55,6 +58,7 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
 
         try {
             $file = DauxHelper::resolveInternalFile($this->daux, $url);
+
             return DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
         } catch (LinkNotFoundException $e) {
             if ($this->daux->isStatic()) {
@@ -67,11 +71,10 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
 
     /**
      * @param Image                    $inline
-     * @param ElementRendererInterface $htmlRenderer
-     *
-     * @return HtmlElement
      *
      * @throws LinkNotFoundException
+     *
+     * @return HtmlElement
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
@@ -84,9 +87,6 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
         return $this->parent->render($inline, $htmlRenderer);
     }
 
-    /**
-     * @param ConfigurationInterface $configuration
-     */
     public function setConfiguration(ConfigurationInterface $configuration)
     {
         $this->config = $configuration;

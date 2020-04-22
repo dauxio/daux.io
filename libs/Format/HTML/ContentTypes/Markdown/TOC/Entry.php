@@ -6,7 +6,7 @@ class Entry
 {
     protected $content;
     protected $level;
-    protected $parent = null;
+    protected $parent;
     protected $children = [];
 
     public function __construct(Heading $content)
@@ -56,7 +56,6 @@ class Entry
     }
 
     /**
-     * @param Entry $parent
      * @param bool $addChild
      */
     public function setParent(Entry $parent, $addChild = true)
@@ -67,9 +66,6 @@ class Entry
         }
     }
 
-    /**
-     * @param Entry $child
-     */
     public function addChild(Entry $child)
     {
         $child->setParent($this, false);

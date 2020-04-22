@@ -6,11 +6,7 @@ use League\CommonMark\Cursor;
 class TableOfContents extends AbstractBlock
 {
     /**
-     * Returns true if this block can contain the given block as a child node
-     *
-     * @param AbstractBlock $block
-     *
-     * @return bool
+     * Returns true if this block can contain the given block as a child node.
      */
     public function canContain(AbstractBlock $block): bool
     {
@@ -18,20 +14,13 @@ class TableOfContents extends AbstractBlock
     }
 
     /**
-     * Whether this is a code block
-     *
-     * @return bool
+     * Whether this is a code block.
      */
     public function isCode(): bool
     {
         return false;
     }
 
-    /**
-     * @param Cursor $cursor
-     *
-     * @return bool
-     */
     public function matchesNextLine(Cursor $cursor): bool
     {
         return false;

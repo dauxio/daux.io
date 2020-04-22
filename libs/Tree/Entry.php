@@ -23,7 +23,6 @@ abstract class Entry
     protected $path;
 
     /**
-     * @param Directory $parent
      * @param string $uri
      * @param SplFileInfo $info
      */
@@ -86,9 +85,6 @@ abstract class Entry
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
     public function setTitle(string $title)
     {
         $this->title = $title;
@@ -103,7 +99,7 @@ abstract class Entry
     }
 
     /**
-     * Return all parents starting with the root
+     * Return all parents starting with the root.
      *
      * @return Directory[]
      */
@@ -118,9 +114,6 @@ abstract class Entry
         return $parents;
     }
 
-    /**
-     * @param Directory $parent
-     */
     protected function setParent(Directory $parent)
     {
         if ($this->parent) {
@@ -140,9 +133,7 @@ abstract class Entry
     }
 
     /**
-     * Get the path to the file from the root of the documentation
-     *
-     * @return string
+     * Get the path to the file from the root of the documentation.
      */
     public function getRelativePath(): string
     {
@@ -154,17 +145,11 @@ abstract class Entry
         return substr($this->path, strlen($root->getPath()) + 1);
     }
 
-    /**
-     * @return SplFileInfo
-     */
     public function getFileinfo(): SplFileInfo
     {
         return $this->info;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         $url = '';

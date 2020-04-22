@@ -5,7 +5,7 @@ use ArrayObject;
 class BaseConfig extends ArrayObject
 {
     /**
-     * Merge an array into the object
+     * Merge an array into the object.
      *
      * @param array $newValues
      * @param bool $override
@@ -17,6 +17,7 @@ class BaseConfig extends ArrayObject
             // we can simply set it.
             if (!array_key_exists($key, (array) $this)) {
                 $this[$key] = $value;
+
                 continue;
             }
 

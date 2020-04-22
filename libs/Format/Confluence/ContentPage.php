@@ -20,7 +20,6 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                 $content,
                 $this->file,
                 function ($src, array $attributes, Entry $file) {
-
                     //Add the attachment for later upload
                     if ($file instanceof Raw) {
                         $filename = basename($file->getPath());
@@ -45,10 +44,11 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
     }
 
     /**
-     * Create an image tag for the specified filename
+     * Create an image tag for the specified filename.
      *
      * @param string $filename
      * @param array $attributes
+     *
      * @return string
      */
     private function createImageTag($filename, $attributes)
@@ -60,7 +60,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                 $re = '/float:\s*?(left|right);?/';
                 if (preg_match($re, $value, $matches)) {
                     $img .= ' ac:align="' . $matches[1] . '"';
-                    $value = preg_replace($re, "", $value, 1);
+                    $value = preg_replace($re, '', $value, 1);
                 }
             }
 

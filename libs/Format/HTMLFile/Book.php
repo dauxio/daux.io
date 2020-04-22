@@ -1,6 +1,5 @@
 <?php namespace Todaymade\Daux\Format\HTMLFile;
 
-use RuntimeException;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Directory;
 
@@ -24,7 +23,7 @@ class Book
 
     protected function getPageUrl($page)
     {
-        return "file_" . str_replace('/', '_', $page->getUrl());
+        return 'file_' . str_replace('/', '_', $page->getUrl());
     }
 
     protected function buildNavigation(Directory $tree)
@@ -38,7 +37,7 @@ class Book
 
                 $nav[] = [
                     'title' => $node->getTitle(),
-                    'href' => "#" . $this->getPageUrl($node),
+                    'href' => '#' . $this->getPageUrl($node),
                 ];
             } elseif ($node instanceof Directory) {
                 if (!$node->hasContent()) {
@@ -49,7 +48,7 @@ class Book
 
                 $nav[] = [
                     'title' => $node->getTitle(),
-                    'href' => "#" . $this->getPageUrl($page_index),
+                    'href' => '#' . $this->getPageUrl($page_index),
                     'children' => $this->buildNavigation($node),
                 ];
             }
@@ -89,7 +88,7 @@ class Book
 
     protected function generateCover()
     {
-        return "<div>" .
+        return '<div>' .
         "<h1 style='font-size:40pt; margin-bottom:0;'>{$this->cover['title']}</h1>" .
         "<p><strong>{$this->cover['subject']}</strong> by {$this->cover['author']}</p>" .
         '</div><div class="PageBreak">&nbsp;</div>';

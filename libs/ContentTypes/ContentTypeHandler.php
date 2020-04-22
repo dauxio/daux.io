@@ -18,7 +18,7 @@ class ContentTypeHandler
     }
 
     /**
-     * Get all valid content file extensions
+     * Get all valid content file extensions.
      *
      * @return string[]
      */
@@ -33,9 +33,8 @@ class ContentTypeHandler
     }
 
     /**
-     * Get the ContentType able to handle this node
+     * Get the ContentType able to handle this node.
      *
-     * @param Content $node
      * @return ContentType
      */
     public function getType(Content $node)

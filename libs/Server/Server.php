@@ -5,8 +5,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\MimeTypes;
-use Todaymade\Daux\Daux;
 use Todaymade\Daux\ConfigBuilder;
+use Todaymade\Daux\Daux;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception;
 use Todaymade\Daux\Format\Base\ComputedRawPage;
@@ -25,8 +25,16 @@ class Server
      */
     private $request;
 
+    public function __construct(Daux $daux)
+    {
+        $this->daux = $daux;
+
+        $this->request = Request::createFromGlobals();
+        $this->base_url = $this->request->getHttpHost() . $this->request->getBaseUrl() . '/';
+    }
+
     /**
-     * Serve the documentation
+     * Serve the documentation.
      *
      * @throws Exception
      */
@@ -63,25 +71,18 @@ class Server
         $server->createResponse($page)->prepare($server->request)->send();
     }
 
-    public function __construct(Daux $daux)
-    {
-        $this->daux = $daux;
-
-        $this->request = Request::createFromGlobals();
-        $this->base_url = $this->request->getHttpHost() . $this->request->getBaseUrl() . "/";
-    }
-
     /**
      * Create a temporary file with the file suffix, for mime type detection.
      *
      * @param string $postfix
+     *
      * @return string
      */
     private function getTemporaryFile($postfix)
     {
         $sysFileName = tempnam(sys_get_temp_dir(), 'daux');
         if ($sysFileName === false) {
-            throw new \RuntimeException("Could not create temporary file");
+            throw new \RuntimeException('Could not create temporary file');
         }
 
         $newFileName = $sysFileName . $postfix;
@@ -93,11 +94,10 @@ class Server
             return $newFileName;
         }
 
-        throw new \RuntimeException("Could not create temporary file");
+        throw new \RuntimeException('Could not create temporary file');
     }
 
     /**
-     * @param Page $page
      * @return Response
      */
     public function createResponse(Page $page)
@@ -114,6 +114,7 @@ class Server
         if ($page instanceof ComputedRawPage) {
             $file = $this->getTemporaryFile($page->getFilename());
             file_put_contents($file, $page->getContent());
+
             return new BinaryFileResponse($file);
         }
 
@@ -129,16 +130,16 @@ class Server
 
         DauxHelper::rebaseConfiguration($config, '//' . $this->base_url);
 
-
         return $config;
     }
 
     /**
-     * Handle an incoming request
+     * Handle an incoming request.
      *
-     * @return \Todaymade\Daux\Format\Base\Page
      * @throws Exception
      * @throws NotFoundException
+     *
+     * @return \Todaymade\Daux\Format\Base\Page
      */
     public function handle()
     {
@@ -158,11 +159,13 @@ class Server
     }
 
     /**
-     * Handle a request on custom themes
+     * Handle a request on custom themes.
      *
      * @param string $request
-     * @return \Todaymade\Daux\Format\Base\Page
+     *
      * @throws NotFoundException
+     *
+     * @return \Todaymade\Daux\Format\Base\Page
      */
     public function serveTheme($request)
     {
@@ -172,13 +175,15 @@ class Server
             return new RawPage($file);
         }
 
-        throw new NotFoundException;
+        throw new NotFoundException();
     }
 
     /**
      * @param string $request
-     * @return \Todaymade\Daux\Format\Base\Page
+     *
      * @throws NotFoundException
+     *
+     * @return \Todaymade\Daux\Format\Base\Page
      */
     private function getPage($request)
     {

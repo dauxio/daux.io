@@ -4,18 +4,17 @@ use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Inline\Element\Link;
-use Todaymade\Daux\Config;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception\LinkNotFoundException;
-use Todaymade\Daux\Tree\Entry;
 
 class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
 {
     /**
      * @param AbstractInline|Link $inline
-     * @param ElementRendererInterface $htmlRenderer
-     * @return HtmlElement
+     *
      * @throws LinkNotFoundException
+     *
+     * @return HtmlElement
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
@@ -44,7 +43,7 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
         $urlAndHash = explode('#', $url);
         if (isset($urlAndHash[1])) {
             $element->setAttribute('href', '#' . $urlAndHash[1]);
-            
+
             return $element;
         }
 

@@ -13,6 +13,12 @@ class Daux
 
     public static $output;
 
+    /** @var Tree\Root */
+    public $tree;
+
+    /** @var Config */
+    public $config;
+
     /** @var \Todaymade\Daux\Format\Base\Generator */
     protected $generator;
 
@@ -25,12 +31,6 @@ class Daux
     /** @var Processor */
     protected $processor;
 
-    /** @var Tree\Root */
-    public $tree;
-
-    /** @var Config */
-    public $config;
-
     /** @var bool */
     private $merged_tree = false;
 
@@ -38,12 +38,11 @@ class Daux
     {
         Daux::$output = $output;
 
-
         $this->config = $config;
     }
 
     /**
-     * Generate the tree that will be used
+     * Generate the tree that will be used.
      */
     public function generateTree()
     {
@@ -94,6 +93,7 @@ class Daux
 
     /**
      * @return Config
+     *
      * @deprecated Use getConfig instead
      */
     public function getParams()
@@ -113,9 +113,6 @@ class Daux
         return $this->processor;
     }
 
-    /**
-     * @param Processor $processor
-     */
     public function setProcessor(Processor $processor)
     {
         $this->processor = $processor;
@@ -232,7 +229,7 @@ class Daux
     }
 
     /**
-     * Get all content file extensions
+     * Get all content file extensions.
      *
      * @return string[]
      */
@@ -257,7 +254,7 @@ class Daux
     /**
      * Writes a message to the output.
      *
-     * @param string|array $messages The message as an array of lines or a single string
+     * @param array|string $messages The message as an array of lines or a single string
      * @param bool         $newline  Whether to add a newline
      * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
      */
@@ -269,7 +266,7 @@ class Daux
     /**
      * Writes a message to the output and adds a newline at the end.
      *
-     * @param string|array $messages The message as an array of lines of a single string
+     * @param array|string $messages The message as an array of lines of a single string
      * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
      */
     public static function writeln($messages, $options = 0)

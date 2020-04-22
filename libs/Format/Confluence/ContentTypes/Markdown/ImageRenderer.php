@@ -27,7 +27,6 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
 
     /**
      * @param Image                    $inline
-     * @param ElementRendererInterface $htmlRenderer
      *
      * @return HtmlElement
      */
@@ -49,9 +48,6 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
         return $this->parent->render($inline, $htmlRenderer);
     }
 
-    /**
-     * @param ConfigurationInterface $configuration
-     */
     public function setConfiguration(ConfigurationInterface $configuration)
     {
         $this->parent->setConfiguration($configuration);

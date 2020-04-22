@@ -1,7 +1,7 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
-use League\CommonMark\Environment;
 use League\CommonMark\Block\Element as BlockElement;
+use League\CommonMark\Environment;
 use League\CommonMark\Inline\Element as InlineElement;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;

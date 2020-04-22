@@ -8,16 +8,6 @@ class Publisher
     use RunAction;
 
     /**
-     * @var Api
-     */
-    protected $client;
-
-    /**
-     * @var Config
-     */
-    protected $confluence;
-
-    /**
      * @var int terminal width
      */
     public $width;
@@ -26,6 +16,16 @@ class Publisher
      * @var \Symfony\Component\Console\Output\OutputInterface
      */
     public $output;
+
+    /**
+     * @var Api
+     */
+    protected $client;
+
+    /**
+     * @var Config
+     */
+    protected $confluence;
 
     /**
      * @param $confluence
@@ -62,7 +62,7 @@ class Publisher
         );
 
         $published = $this->run(
-            "Create placeholder pages...",
+            'Create placeholder pages...',
             function () use ($tree, $published) {
                 return $this->createRecursive($this->confluence->getAncestorId(), $tree, $published);
             }
@@ -89,6 +89,7 @@ class Publisher
         if ($this->confluence->hasRootId()) {
             $published = $this->client->getPage($this->confluence->getRootId());
             $this->confluence->setAncestorId($published['ancestor_id']);
+
             return $published;
         }
 

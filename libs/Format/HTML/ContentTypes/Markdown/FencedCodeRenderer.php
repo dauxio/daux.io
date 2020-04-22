@@ -21,8 +21,6 @@ class FencedCodeRenderer implements BlockRendererInterface
     }
 
     /**
-     * @param AbstractBlock $block
-     * @param ElementRendererInterface $htmlRenderer
      * @param bool $inTightList
      *
      * @return HtmlElement|string

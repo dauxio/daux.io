@@ -1,14 +1,11 @@
 <?php namespace Todaymade\Daux\Console;
 
-use Exception;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\PhpExecutableFinder;
-use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Console\Terminal;
+use Symfony\Component\Process\PhpExecutableFinder;
 use Todaymade\Daux\Daux;
-use Todaymade\Daux\Server\Server;
 
 class Serve extends DauxCommand
 {
@@ -36,7 +33,7 @@ class Serve extends DauxCommand
 
         $daux = new Daux($builder->build(), $output);
 
-        $width = (new Terminal)->getWidth();
+        $width = (new Terminal())->getWidth();
 
         // Instiantiate the processor if one is defined
         $this->prepareProcessor($daux, $width);
@@ -45,7 +42,8 @@ class Serve extends DauxCommand
         $file = tmpfile();
 
         if ($file === false) {
-            $output->writeln("<fg=red>Failed to create temporary file for configuration</fg=red>");
+            $output->writeln('<fg=red>Failed to create temporary file for configuration</fg=red>');
+
             return 1;
         }
 
@@ -59,7 +57,7 @@ class Serve extends DauxCommand
         putenv('DAUX_EXTENSION=' . DAUX_EXTENSION);
 
         $base = escapeshellarg(__DIR__ . '/../../');
-        $binary = escapeshellarg((new PhpExecutableFinder)->find(false));
+        $binary = escapeshellarg((new PhpExecutableFinder())->find(false));
 
         echo "Daux development server started on http://{$host}:{$port}/\n";
 

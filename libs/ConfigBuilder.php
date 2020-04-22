@@ -5,7 +5,7 @@ class ConfigBuilder
     /** @var Config */
     private $config;
 
-    private $configuration_override_file = null;
+    private $configuration_override_file;
 
     private function __construct(string $mode)
     {
@@ -23,12 +23,14 @@ class ConfigBuilder
     {
         $builder = new ConfigBuilder($mode);
         $builder->loadBaseConfiguration();
+
         return $builder;
     }
 
     public function with(array $values): ConfigBuilder
     {
         $this->config->merge($values);
+
         return $this;
     }
 
@@ -46,6 +48,7 @@ class ConfigBuilder
             $array = &$array[$key];
         }
         $array[array_shift($keys)] = $value;
+
         return $array;
     }
 
@@ -54,60 +57,70 @@ class ConfigBuilder
         foreach ($values as $value) {
             $this->setValue($this->config, $value[0], $value[1]);
         }
+
         return $this;
     }
 
     public function withDocumentationDirectory($dir): ConfigBuilder
     {
         $this->config['docs_directory'] = $dir;
+
         return $this;
     }
 
     public function withValidContentExtensions(array $value): ConfigBuilder
     {
         $this->config['valid_content_extensions'] = $value;
+
         return $this;
     }
 
     public function withThemesPath($themePath): ConfigBuilder
     {
         $this->config['themes_path'] = $themePath;
+
         return $this;
     }
 
     public function withThemesDirectory($directory): ConfigBuilder
     {
         $this->config['themes_directory'] = $directory;
+
         return $this;
     }
 
     public function withCache(bool $value): ConfigBuilder
     {
         $this->config['cache'] = $value;
+
         return $this;
     }
 
     public function withFormat($format): ConfigBuilder
     {
         $this->config['format'] = $format;
+
         return $this;
     }
 
     public function withConfigurationOverride($file): ConfigBuilder
     {
         $this->configuration_override_file = $file;
+
         return $this;
     }
 
     public function withProcessor($value): ConfigBuilder
     {
         $this->config['processor'] = $value;
+
         return $this;
     }
 
     public function withConfluenceDelete($value): ConfigBuilder
     {
         $this->config['confluence']['delete'] = $value;
+
         return $this;
     }
 
@@ -146,6 +159,7 @@ class ConfigBuilder
 
     /**
      * @param string $override_file
+     *
      * @throws Exception
      */
     private function initializeConfiguration()
@@ -207,7 +221,7 @@ class ConfigBuilder
     }
 
     /**
-     * Load and validate the global configuration
+     * Load and validate the global configuration.
      *
      * @throws Exception
      */
@@ -231,6 +245,7 @@ class ConfigBuilder
     /**
      * @param string $config_file
      * @param bool $optional
+     *
      * @throws Exception
      */
     private function loadConfiguration($config_file, $optional = true)
@@ -251,11 +266,13 @@ class ConfigBuilder
     }
 
     /**
-     * Get the file requested for configuration overrides
+     * Get the file requested for configuration overrides.
      *
-     * @param string|null $path
-     * @return string|null the path to a file to load for configuration overrides
+     * @param null|string $path
+     *
      * @throws Exception
+     *
+     * @return null|string the path to a file to load for configuration overrides
      */
     private function getConfigurationOverride($path)
     {
@@ -273,10 +290,11 @@ class ConfigBuilder
     }
 
     /**
-     * @param string|null $path
+     * @param null|string $path
      * @param string $basedir
      * @param string $type
-     * @return false|null|string
+     *
+     * @return null|false|string
      */
     private function findLocation($path, $basedir, $type)
     {
@@ -286,10 +304,9 @@ class ConfigBuilder
         }
 
         // VFS, used only in tests
-        if (substr($path, 0, 6) == "vfs://") {
+        if (substr($path, 0, 6) == 'vfs://') {
             return $path;
         }
-
 
         // Check if it's relative to the current directory or an absolute path
         if (DauxHelper::is($path, $type)) {
