@@ -19,11 +19,13 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
         $this->config = $config;
     }
 
-    protected function createConverter() {
+    protected function createConverter()
+    {
         return new CommonMarkConverter(['daux' => $this->config]);
     }
 
-    protected function getConverter() {
+    protected function getConverter()
+    {
         if (!$this->converter) {
             $this->converter = $this->createConverter();
         }
@@ -67,7 +69,7 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
 
         if ($can_cache) {
             Cache::put($cacheKey, $payload);
-        } 
+        }
 
         return $payload;
     }

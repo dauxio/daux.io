@@ -1,5 +1,4 @@
-<?php
-namespace Todaymade\Daux\ContentTypes\Markdown;
+<?php namespace Todaymade\Daux\ContentTypes\Markdown;
 
 use org\bovigo\vfs\vfsStream;
 use Todaymade\Daux\Config;
@@ -13,7 +12,6 @@ class LinkRendererTest extends TestCase
 {
     protected function getTree(Config $config)
     {
-
     }
 
     public function providerRenderLink()

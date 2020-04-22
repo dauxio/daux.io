@@ -60,7 +60,8 @@ class PublisherDelete
         }
     }
 
-    protected function doDelete() {
+    protected function doDelete()
+    {
         $this->output->writeLn('Deleting obsolete pages...');
         foreach ($this->deletable as $id => $title) {
             $this->output->writeLn("- $title");
@@ -68,7 +69,8 @@ class PublisherDelete
         }
     }
 
-    protected function displayDeletable() {
+    protected function displayDeletable()
+    {
         $this->output->writeLn('Listing obsolete pages...');
         $this->output->writeLn("> The following pages will not be deleted, but just listed for information.");
         $this->output->writeLn("> If you want to delete these pages, you need to set the --delete flag on the command.");

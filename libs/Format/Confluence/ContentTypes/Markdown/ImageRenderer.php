@@ -20,7 +20,8 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      */
     protected $parent;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->parent = new \League\CommonMark\Inline\Renderer\ImageRenderer();
     }
 

@@ -37,7 +37,8 @@ class Root extends Directory
         $this->config = $config;
     }
 
-    public function isHotPath(Entry $node = null): bool {
+    public function isHotPath(Entry $node = null): bool
+    {
         if ($node == null) {
             return true;
         }
@@ -59,7 +60,8 @@ class Root extends Directory
         return false;
     }
 
-    public function setActiveNode(Entry $node) {
+    public function setActiveNode(Entry $node)
+    {
         $this->activeNode = $node;
     }
 }

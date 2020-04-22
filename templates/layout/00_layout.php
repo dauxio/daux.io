@@ -34,13 +34,13 @@
 
     <!-- Font -->
     <?php foreach ($config->getTheme()->getFonts() as $font) {
-        echo "<link href='$font' rel='stylesheet' type='text/css'>";
-    } ?>
+    echo "<link href='$font' rel='stylesheet' type='text/css'>";
+} ?>
 
     <!-- CSS -->
     <?php foreach ($config->getTheme()->getCSS() as $css) {
-        echo "<link href='$css' rel='stylesheet' type='text/css'>";
-    } ?>
+    echo "<link href='$css' rel='stylesheet' type='text/css'>";
+} ?>
 
     <?php if ($config->getHTML()->hasSearch()) { ?>
         <!-- Search -->

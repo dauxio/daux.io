@@ -4,7 +4,8 @@ use Todaymade\Daux\BaseConfig;
 
 class Config extends BaseConfig
 {
-    public function shouldAutoDeleteOrphanedPages() {
+    public function shouldAutoDeleteOrphanedPages()
+    {
         if ($this->hasValue('delete')) {
             return $this->getValue('delete');
         }
@@ -12,55 +13,68 @@ class Config extends BaseConfig
         return false;
     }
 
-    public function getUpdateThreshold() {
+    public function getUpdateThreshold()
+    {
         return $this->hasValue('update_threshold') ? $this->getValue('update_threshold') : 2;
     }
 
-    public function getPrefix() {
+    public function getPrefix()
+    {
         return $this->getValue('prefix');
     }
 
-    public function getBaseUrl() {
+    public function getBaseUrl()
+    {
         return $this->getValue('base_url');
     }
 
-    public function getUser() {
+    public function getUser()
+    {
         return $this->getValue('user');
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->getValue('pass');
     }
 
-    public function getSpaceId() {
+    public function getSpaceId()
+    {
         return $this->getValue('space_id');
     }
 
-    public function hasAncestorId() {
+    public function hasAncestorId()
+    {
         return $this->hasValue('ancestor_id');
     }
 
-    public function getAncestorId() {
+    public function getAncestorId()
+    {
         return $this->getValue('ancestor_id');
     }
 
-    public function setAncestorId($value) {
+    public function setAncestorId($value)
+    {
         $this->setValue('ancestor_id', $value);
     }
 
-    public function hasRootId() {
+    public function hasRootId()
+    {
         return $this->hasValue('root_id');
     }
 
-    public function getRootId() {
+    public function getRootId()
+    {
         return $this->getValue('root_id');
     }
 
-    public function hasHeader() {
+    public function hasHeader()
+    {
         return $this->hasValue('header');
     }
 
-    public function getHeader() {
+    public function getHeader()
+    {
         return $this->getValue('header');
     }
 }

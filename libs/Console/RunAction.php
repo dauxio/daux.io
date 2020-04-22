@@ -5,7 +5,8 @@ use Todaymade\Daux\Daux;
 
 trait RunAction
 {
-    protected function getLength($content) {
+    protected function getLength($content)
+    {
         return function_exists('mb_strlen') ? mb_strlen($content) : strlen($content);
     }
 
@@ -19,7 +20,7 @@ trait RunAction
         $padding = $width - $this->getLength($title) - 10;
 
         try {
-            $response = $closure(function($content) use (&$padding, $verbose) {
+            $response = $closure(function ($content) use (&$padding, $verbose) {
                 $padding -= $this->getLength($content);
                 Daux::write($content, $verbose);
             });

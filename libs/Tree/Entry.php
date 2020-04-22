@@ -190,7 +190,8 @@ abstract class Entry
         ];
     }
 
-    public function isHotPath(Entry $node = null) {
+    public function isHotPath(Entry $node = null)
+    {
         return $this->parent->isHotPath($node ?: $this);
     }
 }

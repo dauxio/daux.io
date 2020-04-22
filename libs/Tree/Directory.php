@@ -95,7 +95,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 
     private function sortBucket($bucket, $final)
     {
-        uasort($bucket, function(Entry $a, Entry $b) {
+        uasort($bucket, function (Entry $a, Entry $b) {
             return strcasecmp($a->getName(), $b->getName());
         });
 
@@ -136,7 +136,8 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         return $this->parent->getConfig();
     }
 
-    public function getLocalIndexPage() {
+    public function getLocalIndexPage()
+    {
         $index_key = $this->getConfig()->getIndexKey();
 
         if (isset($this->children[$index_key])) {

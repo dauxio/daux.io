@@ -2,7 +2,8 @@
 
 use Todaymade\Daux\GeneratorHelper;
 
-trait HTMLUtils {
+trait HTMLUtils
+{
     public function ensureEmptyDestination($destination)
     {
         if (is_dir($destination)) {

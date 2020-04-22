@@ -55,7 +55,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $this->runAction(
             'Cleaning destination folder ...',
             $width,
-            function() use ($destination) {
+            function () use ($destination) {
                 $this->ensureEmptyDestination($destination);
             }
         );
@@ -73,7 +73,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
             $this->runAction(
                 'Generating ' . $current->getTitle(),
                 $width,
-                function() use ($book, $current, $config) {
+                function () use ($book, $current, $config) {
                     $contentType = $this->daux->getContentTypeHandler()->getType($current);
                     $content = ContentPage::fromFile($current, $config, $contentType);
                     $content->templateRenderer = $this->templateRenderer;

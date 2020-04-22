@@ -6,7 +6,8 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
-    function testHTMLConfigCreation() {
+    public function testHTMLConfigCreation()
+    {
         $config = new MainConfig(['html' => ['edit_on' => 'test']]);
 
         $this->assertInstanceOf(Config::class, $config->getHTML());

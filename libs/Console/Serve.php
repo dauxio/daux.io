@@ -49,7 +49,7 @@ class Serve extends DauxCommand
             return 1;
         }
 
-        $path = stream_get_meta_data($file)['uri']; 
+        $path = stream_get_meta_data($file)['uri'];
         fwrite($file, serialize($daux->getConfig()));
 
         chdir(__DIR__ . '/../../');

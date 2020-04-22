@@ -72,7 +72,8 @@ class Processor
         }
     }
 
-    protected function getUniqueId(Document $document, $proposed) {
+    protected function getUniqueId(Document $document, $proposed)
+    {
         if ($proposed == "page_") {
             $proposed = "page_section_" . (count($document->heading_ids) + 1);
         }

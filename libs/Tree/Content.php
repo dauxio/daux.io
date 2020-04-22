@@ -24,7 +24,7 @@ class Content extends ContentAbstract
     {
         if ($this->manuallySetContent) {
             $content = $this->content;
-        } else if (!$this->getPath()) {
+        } elseif (!$this->getPath()) {
             throw new RuntimeException("Empty content");
         } else {
             $content = file_get_contents($this->getPath());

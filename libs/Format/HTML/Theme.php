@@ -4,23 +4,28 @@ use Todaymade\Daux\BaseConfig;
 
 class Theme extends BaseConfig
 {
-    public function getFonts() {
+    public function getFonts()
+    {
         return $this->getValue('fonts');
     }
 
-    public function getCSS() {
+    public function getCSS()
+    {
         return $this->getValue('css');
     }
 
-    public function getJS() {
+    public function getJS()
+    {
         return $this->getValue('js');
     }
 
-    public function getFavicon() {
+    public function getFavicon()
+    {
         return $this->getValue('favicon');
     }
 
-    public function getTemplates() {
+    public function getTemplates()
+    {
         return $this->getValue('templates');
     }
 }

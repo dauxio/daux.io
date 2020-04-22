@@ -1,6 +1,7 @@
 <?php
 
-function loadApp() {
+function loadApp()
+{
     // Loaded as a dependency
     if (file_exists(__DIR__ . '/../../../autoload.php')) {
         return require_once __DIR__ . '/../../../autoload.php';

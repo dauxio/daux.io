@@ -46,6 +46,8 @@
         "mikey179/vfsstream": "^1.6"
     },
     "scripts": {
-        "test": "build/phpunit"
+        "test": "build/phpunit",
+        "lint": "build/php-cs-fixer fix --config=.php_cs --dry-run -v",
+        "lint:fix": "build/php-cs-fixer fix --config=.php_cs"
     }
 }

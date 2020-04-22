@@ -1,39 +1,44 @@
-<?php
-
-namespace Todaymade\Daux\Format\HTML\Test;
+<?php namespace Todaymade\Daux\Format\HTML\Test;
 
 use Todaymade\Daux\Config as MainConfig;
 use \Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter;
 use PHPUnit\Framework\TestCase;
 
-class Engine {
-    function render($template, $data) {
+class Engine
+{
+    public function render($template, $data)
+    {
         return $data['content'];
     }
 }
 
-class Template {
-    function getEngine() {
+class Template
+{
+    public function getEngine()
+    {
         return new Engine;
     }
 }
 
 class TableOfContentsTest extends TestCase
 {
-    function getConfig() {
+    public function getConfig()
+    {
         $config = new MainConfig;
         $config->templateRenderer = new Template;
-        
+
         return ['daux' => $config];
     }
 
-    function testNoTOCByDefault() {
+    public function testNoTOCByDefault()
+    {
         $converter = new CommonMarkConverter($this->getConfig());
 
         $this->assertEquals("<h1 id=\"page_Test\">Test</h1>\n", $converter->convertToHtml('# Test'));
     }
 
-    function testTOCToken() {
+    public function testTOCToken()
+    {
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# Title";
@@ -50,7 +55,8 @@ EXPECTED;
         $this->assertEquals($expected, $converter->convertToHtml($source));
     }
 
-    function testUnicodeTOC() {
+    public function testUnicodeTOC()
+    {
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# 基础操作\n# 操作基础";
@@ -71,7 +77,8 @@ EXPECTED;
         $this->assertEquals($expected, $converter->convertToHtml($source));
     }
 
-    function testDuplicatedTOC() {
+    public function testDuplicatedTOC()
+    {
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# Test\n# Test";
@@ -92,7 +99,8 @@ EXPECTED;
         $this->assertEquals($expected, $converter->convertToHtml($source));
     }
 
-    function testEscapedTOC() {
+    public function testEscapedTOC()
+    {
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# TEST : Test";

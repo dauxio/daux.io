@@ -8,91 +8,113 @@ use Todaymade\Daux\Format\Confluence\Config as ConfluenceConfig;
 
 class Config extends BaseConfig
 {
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->getValue('title');
     }
 
-    public function hasAuthor(): bool {
+    public function hasAuthor(): bool
+    {
         return $this->hasValue('author');
     }
 
-    public function getAuthor() {
+    public function getAuthor()
+    {
         return $this->getValue('author');
     }
 
-    public function hasTagline(): bool {
+    public function hasTagline(): bool
+    {
         return $this->hasValue('tagline');
     }
 
-    public function getTagline() {
+    public function getTagline()
+    {
         return $this->getValue('tagline');
     }
 
-    public function getCurrentPage() {
+    public function getCurrentPage()
+    {
         return $this->getValue('current_page');
     }
 
-    public function setCurrentPage(Content $entry) {
+    public function setCurrentPage(Content $entry)
+    {
         $this->setValue('current_page', $entry);
     }
 
-    public function getDocumentationDirectory() {
+    public function getDocumentationDirectory()
+    {
         return $this->getValue('docs_directory');
     }
 
-    public function getThemesDirectory() {
+    public function getThemesDirectory()
+    {
         return $this->getValue('themes_directory');
     }
 
-    public function getThemesPath() {
+    public function getThemesPath()
+    {
         return $this->getValue('themes_path');
     }
 
-    public function getFormat() {
+    public function getFormat()
+    {
         return $this->getValue('format');
     }
 
-    public function hasTimezone(): bool {
+    public function hasTimezone(): bool
+    {
         return isset($this['timezone']);
     }
 
-    public function getTimezone() {
+    public function getTimezone()
+    {
         return $this->getValue('timezone');
     }
 
-    public function getTree() {
+    public function getTree()
+    {
         return $this->getValue('tree');
     }
 
-    public function setTree($tree) {
+    public function setTree($tree)
+    {
         $this->setValue('tree', $tree);
     }
 
-    public function isMultilanguage(): bool {
+    public function isMultilanguage(): bool
+    {
         return $this->hasValue('languages') && !empty($this->getValue('languages'));
     }
 
-    public function getLanguages(): array {
+    public function getLanguages(): array
+    {
         return $this->getValue('languages');
     }
 
-    public function getLanguage(): string {
+    public function getLanguage(): string
+    {
         return $this->getValue('language');
     }
 
-    public function getMode() {
+    public function getMode()
+    {
         return $this->getValue('mode');
     }
 
-    public function isLive() {
+    public function isLive()
+    {
         return $this->getValue('mode') == Daux::LIVE_MODE;
     }
 
-    public function isStatic() {
+    public function isStatic()
+    {
         return $this->getValue('mode') == Daux::STATIC_MODE;
     }
 
-    public function shouldInheritIndex() {
+    public function shouldInheritIndex()
+    {
         // As the global configuration is always present, we
         // need to test for the existence of the legacy value
         // first. Then use the current value.
@@ -103,35 +125,43 @@ class Config extends BaseConfig
         return $this['html']['inherit_index'];
     }
 
-    public function getIndexKey() {
+    public function getIndexKey()
+    {
         return $this->getValue('mode') == Daux::STATIC_MODE ? 'index.html' : 'index';
     }
 
-    public function getProcessor() {
+    public function getProcessor()
+    {
         return $this->getValue('processor');
     }
 
-    public function getConfluenceConfiguration(): ConfluenceConfig {
+    public function getConfluenceConfiguration(): ConfluenceConfig
+    {
         return new ConfluenceConfig($this->hasValue('confluence') ? $this->getValue('confluence') : []);
     }
 
-    public function getHTML(): HTMLConfig {
+    public function getHTML(): HTMLConfig
+    {
         return new HTMLConfig($this->hasValue('html') ? $this->getValue('html') : []);
     }
 
-    public function getTheme(): ?Theme {
+    public function getTheme(): ?Theme
+    {
         return $this->hasValue('theme') ? new Theme($this->getValue('theme')) : null;
     }
 
-    public function getValidContentExtensions() {
+    public function getValidContentExtensions()
+    {
         return $this->getValue('valid_content_extensions');
     }
 
-    public function setValidContentExtensions(array $value) {
+    public function setValidContentExtensions(array $value)
+    {
         $this->setValue('valid_content_extensions', $value);
     }
 
-    public function canCache() {
+    public function canCache()
+    {
         if ($this->hasValue('cache')) {
             return $this->getValue('cache');
         }
@@ -139,7 +169,8 @@ class Config extends BaseConfig
         return false;
     }
 
-    public function getCacheKey() {
+    public function getCacheKey()
+    {
         $cloned = [];
         foreach ($this as $key => $value) {
             $cloned[$key] = ($value instanceof Entry) ? $value->dump() : $value;
@@ -148,40 +179,48 @@ class Config extends BaseConfig
         return sha1(json_encode($cloned));
     }
 
-    public function hasTranslationKey($language, $key): bool {
+    public function hasTranslationKey($language, $key): bool
+    {
         return array_key_exists($language, $this['strings']) && array_key_exists($key, $this['strings'][$language]);
     }
 
-    public function getTranslationKey($language, $key) {
+    public function getTranslationKey($language, $key)
+    {
         return $this['strings'][$language][$key];
     }
 
-    public function hasImage(): bool {
+    public function hasImage(): bool
+    {
         return $this->hasValue('image');
     }
 
-    public function getImage() {
+    public function getImage()
+    {
         return $this->getValue('image');
     }
 
-    public function setImage($value) {
+    public function setImage($value)
+    {
         $this->setValue('image', $value);
     }
 
-    public function getLocalBase() {
+    public function getLocalBase()
+    {
         return $this->getValue('local_base');
     }
 
-    public function getTemplates() {
+    public function getTemplates()
+    {
         return $this->getValue('templates');
     }
 
-    public function getBaseUrl() {
+    public function getBaseUrl()
+    {
         return $this->getValue('base_url');
     }
 
-    public function getBasePage() {
-
+    public function getBasePage()
+    {
         if ($this->isLive()) {
             $value = '//' . $this->getBaseUrl();
             if (!$this['live']['clean_urls']) {
@@ -193,59 +232,73 @@ class Config extends BaseConfig
         return $this->getBaseUrl();
     }
 
-    public function hasEntryPage(): bool {
+    public function hasEntryPage(): bool
+    {
         return $this->hasValue('entry_page') && !empty($this->getValue('entry_page'));
     }
 
-    public function getEntryPage() {
+    public function getEntryPage()
+    {
         return $this->getValue('entry_page');
     }
 
-    public function setEntryPage($value) {
+    public function setEntryPage($value)
+    {
         $this->setValue('entry_page', $value);
     }
 
-    public function hasRequest(): bool {
+    public function hasRequest(): bool
+    {
         return $this->hasValue('request') && !empty($this->getValue('request'));
     }
 
-    public function getRequest() {
+    public function getRequest()
+    {
         return $this->getValue('request');
     }
 
-    public function setRequest($value) {
+    public function setRequest($value)
+    {
         $this->setValue('request', $value);
     }
 
-    public function getIndex() {
+    public function getIndex()
+    {
         return $this->getValue('index');
     }
 
-    public function setIndex($value) {
+    public function setIndex($value)
+    {
         $this->setValue('index', $value);
     }
 
-    public function hasProcessorInstance() {
+    public function hasProcessorInstance()
+    {
         return $this->hasValue('processor_instance');
     }
 
-    public function getProcessorInstance() {
+    public function getProcessorInstance()
+    {
         return $this->getValue('processor_instance');
     }
 
-    public function setProcessorInstance($value) {
+    public function setProcessorInstance($value)
+    {
         $this->setValue('processor_instance', $value);
     }
 
-    public function getIgnore() {
+    public function getIgnore()
+    {
         return $this->getValue('ignore');
     }
 
-    public function hasHost() {
+    public function hasHost()
+    {
         return $this->hasValue('host');
     }
 
-    public function getHost() {
+    public function getHost()
+    {
         return $this->getValue('host');
     }
 }

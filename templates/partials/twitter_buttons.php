@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (!isset($config)) {
     $config = $params;
 }

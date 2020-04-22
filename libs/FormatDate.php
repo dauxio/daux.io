@@ -4,7 +4,8 @@ use IntlDateFormatter;
 
 class FormatDate
 {
-    public static function format($config, $date) {
+    public static function format($config, $date)
+    {
         $locale = $config->getLanguage();
         $datetype = IntlDateFormatter::LONG;
         $timetype = IntlDateFormatter::SHORT;

@@ -77,7 +77,8 @@ class Server
      * @param string $postfix
      * @return string
      */
-    private function getTemporaryFile($postfix) {
+    private function getTemporaryFile($postfix)
+    {
         $sysFileName = tempnam(sys_get_temp_dir(), 'daux');
         if ($sysFileName === false) {
             throw new \RuntimeException("Could not create temporary file");
@@ -99,7 +100,8 @@ class Server
      * @param Page $page
      * @return Response
      */
-    public function createResponse(Page $page) {
+    public function createResponse(Page $page)
+    {
         // Add a custom MimeType guesser in case the default ones are not available
         // This makes sure that at least CSS and JS work fine.
         $mimeTypes = MimeTypes::getDefault();

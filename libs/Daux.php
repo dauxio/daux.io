@@ -4,8 +4,6 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\ContentTypes\ContentTypeHandler;
 use Todaymade\Daux\Tree\Builder;
-use Todaymade\Daux\Tree\Content;
-use Todaymade\Daux\Tree\Directory;
 use Todaymade\Daux\Tree\Root;
 
 class Daux
@@ -40,7 +38,7 @@ class Daux
     {
         Daux::$output = $output;
 
-        
+
         $this->config = $config;
     }
 
@@ -161,7 +159,8 @@ class Daux
         return $class;
     }
 
-    protected function findAlternatives($input, $words) {
+    protected function findAlternatives($input, $words)
+    {
         $alternatives = [];
 
         foreach ($words as $word) {
@@ -246,7 +245,8 @@ class Daux
         return $this->validExtensions = $this->getContentTypeHandler()->getContentExtensions();
     }
 
-    public static function getOutput() {
+    public static function getOutput()
+    {
         if (!Daux::$output) {
             Daux::$output = new NullOutput();
         }
@@ -261,7 +261,8 @@ class Daux
      * @param bool         $newline  Whether to add a newline
      * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
      */
-    public static function write($messages, $newline = false, $options = 0) {
+    public static function write($messages, $newline = false, $options = 0)
+    {
         Daux::getOutput()->write($messages, $newline, $options);
     }
 
@@ -271,11 +272,13 @@ class Daux
      * @param string|array $messages The message as an array of lines of a single string
      * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
      */
-    public static function writeln($messages, $options = 0) {
+    public static function writeln($messages, $options = 0)
+    {
         Daux::getOutput()->write($messages, true, $options);
     }
 
-    public static function getVerbosity() {
+    public static function getVerbosity()
+    {
         return Daux::getOutput()->getVerbosity();
     }
 }

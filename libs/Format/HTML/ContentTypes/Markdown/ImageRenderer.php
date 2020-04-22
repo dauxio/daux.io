@@ -35,7 +35,7 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
     }
 
     /**
-     * Relative URLs can be done using either the folder with 
+     * Relative URLs can be done using either the folder with
      * number prefix or the final name (with prefix stripped).
      * This ensures that we always use the final name when generating.
      * @throws LinkNotFoundException
@@ -70,7 +70,7 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      * @param ElementRendererInterface $htmlRenderer
      *
      * @return HtmlElement
-     * 
+     *
      * @throws LinkNotFoundException
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)

@@ -232,7 +232,6 @@ class Api
 
         $prepared = [];
         foreach ($filtered as $index => $line) {
-
             $number = $start + 1 + $index;
             $gutter = substr(' ' . (' ' . $number), -$maxWidth) . ' | ';
 
@@ -318,7 +317,6 @@ class Api
         // If the attachment is already uploaded,
         // the update URL is different
         if (count($result['results'])) {
-
             if ($this->getFileSize($attachment) == $result['results'][0]['extensions']['fileSize']) {
                 $write(" ( An attachment of the same size already exists, skipping. )");
                 return;

@@ -237,7 +237,7 @@ class DauxHelper
         // Convert all dashes into underscores
         $title = preg_replace('![' . preg_quote('-') . ']+!u', $separator, $title);
 
-        // Remove all characters that are not valid in a URL: 
+        // Remove all characters that are not valid in a URL:
         // $-_.+!*'(), separator, letters, numbers, or whitespace.
         $title = preg_replace('![^-' . preg_quote($separator) . '\!\'\(\),\.\+\*\$\pL\pN\s]+!u', '', $title);
 
@@ -316,7 +316,8 @@ class DauxHelper
         return '' !== $parts['root'];
     }
 
-    public static function getAbsolutePath($path) {
+    public static function getAbsolutePath($path)
+    {
         if (DauxHelper::isAbsolutePath($path)) {
             return $path;
         }
@@ -324,7 +325,8 @@ class DauxHelper
         return getcwd() . '/' . $path;
     }
 
-    public static function is($path, $type) {
+    public static function is($path, $type)
+    {
         return ($type == 'dir') ? is_dir($path) : file_exists($path);
     }
 

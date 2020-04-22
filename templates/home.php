@@ -53,8 +53,8 @@
             <?php if ($config->getHTML()->hasLinks()) { ?>
                 <ul class="HomepageFooter__links">
                     <?php foreach ($config->getHTML()->getLinks() as $name => $url) {
-                    echo '<li><a href="' . $url . '" target="_blank">' . $name . '</a></li>';
-                } ?>
+                echo '<li><a href="' . $url . '" target="_blank">' . $name . '</a></li>';
+            } ?>
                 </ul>
             <?php } ?>
 

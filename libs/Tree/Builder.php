@@ -218,7 +218,8 @@ class Builder
      *
      * @param Directory $current
      */
-    public static function sortTree(Directory $current) {
+    public static function sortTree(Directory $current)
+    {
         $current->sort();
         foreach ($current->getEntries() as $entry) {
             if ($entry instanceof Directory) {
@@ -251,5 +252,4 @@ class Builder
 
         return $prev;
     }
-
 }

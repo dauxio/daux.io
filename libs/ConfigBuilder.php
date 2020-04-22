@@ -7,28 +7,33 @@ class ConfigBuilder
 
     private $configuration_override_file = null;
 
-    private function __construct(string $mode) {
+    private function __construct(string $mode)
+    {
         $this->config = new Config();
         $this->config['mode'] = $mode;
         $this->config['local_base'] = dirname(__DIR__);
     }
 
-    public static function fromFile($file): Config {
+    public static function fromFile($file): Config
+    {
         return unserialize(file_get_contents($file));
     }
 
-    public static function withMode($mode = Daux::STATIC_MODE): ConfigBuilder {
+    public static function withMode($mode = Daux::STATIC_MODE): ConfigBuilder
+    {
         $builder = new ConfigBuilder($mode);
         $builder->loadBaseConfiguration();
         return $builder;
     }
 
-    public function with(array $values): ConfigBuilder {
+    public function with(array $values): ConfigBuilder
+    {
         $this->config->merge($values);
         return $this;
     }
 
-    private function setValue(&$array, $key, $value) {
+    private function setValue(&$array, $key, $value)
+    {
         if (is_null($key)) {
             return $array = $value;
         }
@@ -44,65 +49,77 @@ class ConfigBuilder
         return $array;
     }
 
-    public function withValues(array $values): ConfigBuilder {
+    public function withValues(array $values): ConfigBuilder
+    {
         foreach ($values as $value) {
             $this->setValue($this->config, $value[0], $value[1]);
         }
         return $this;
     }
 
-    public function withDocumentationDirectory($dir): ConfigBuilder {
+    public function withDocumentationDirectory($dir): ConfigBuilder
+    {
         $this->config['docs_directory'] = $dir;
         return $this;
     }
 
-    public function withValidContentExtensions(array $value): ConfigBuilder {
+    public function withValidContentExtensions(array $value): ConfigBuilder
+    {
         $this->config['valid_content_extensions'] = $value;
         return $this;
     }
 
-    public function withThemesPath($themePath): ConfigBuilder {
+    public function withThemesPath($themePath): ConfigBuilder
+    {
         $this->config['themes_path'] = $themePath;
         return $this;
     }
 
-    public function withThemesDirectory($directory): ConfigBuilder {
+    public function withThemesDirectory($directory): ConfigBuilder
+    {
         $this->config['themes_directory'] = $directory;
         return $this;
     }
 
-    public function withCache(bool $value): ConfigBuilder {
+    public function withCache(bool $value): ConfigBuilder
+    {
         $this->config['cache'] = $value;
         return $this;
     }
 
-    public function withFormat($format): ConfigBuilder {
+    public function withFormat($format): ConfigBuilder
+    {
         $this->config['format'] = $format;
         return $this;
     }
 
-    public function withConfigurationOverride($file): ConfigBuilder {
+    public function withConfigurationOverride($file): ConfigBuilder
+    {
         $this->configuration_override_file = $file;
         return $this;
     }
 
-    public function withProcessor($value): ConfigBuilder {
+    public function withProcessor($value): ConfigBuilder
+    {
         $this->config['processor'] = $value;
         return $this;
     }
 
-    public function withConfluenceDelete($value): ConfigBuilder {
+    public function withConfluenceDelete($value): ConfigBuilder
+    {
         $this->config['confluence']['delete'] = $value;
         return $this;
     }
 
-    public function build(): Config {
+    public function build(): Config
+    {
         $this->initializeConfiguration();
 
         return $this->config;
     }
 
-    private function resolveThemeVariant() {
+    private function resolveThemeVariant()
+    {
         $theme = $this->config->getHTML()->getTheme();
         $themesPath = $this->config->getThemesPath() . DIRECTORY_SEPARATOR;
 
@@ -131,7 +148,8 @@ class ConfigBuilder
      * @param string $override_file
      * @throws Exception
      */
-    private function initializeConfiguration() {
+    private function initializeConfiguration()
+    {
         // Validate and set theme path
         $docs_path = $this->normalizeDocumentationPath($this->config->getDocumentationDirectory());
         $this->config['docs_directory'] = $docs_path;
@@ -163,10 +181,11 @@ class ConfigBuilder
         // Text search would be too slow on live server
         if ($this->config->isLive()) {
             $this->config['html']['search'] = false;
-        } 
+        }
     }
 
-    private function normalizeThemePath($path) {
+    private function normalizeThemePath($path)
+    {
         $validPath = $this->findLocation($path, $this->config->getLocalBase(), 'dir');
 
         if (!$validPath) {
@@ -176,7 +195,8 @@ class ConfigBuilder
         return $validPath;
     }
 
-    private function normalizeDocumentationPath($path) {
+    private function normalizeDocumentationPath($path)
+    {
         $validPath = $this->findLocation($path, $this->config->getLocalBase(), 'dir');
 
         if (!$validPath) {
@@ -191,7 +211,8 @@ class ConfigBuilder
      *
      * @throws Exception
      */
-    private function loadBaseConfiguration() {
+    private function loadBaseConfiguration()
+    {
         // Set the default configuration
         $this->config->merge([
             'docs_directory' => 'docs',
@@ -212,7 +233,8 @@ class ConfigBuilder
      * @param bool $optional
      * @throws Exception
      */
-    private function loadConfiguration($config_file, $optional = true) {
+    private function loadConfiguration($config_file, $optional = true)
+    {
         if (!file_exists($config_file)) {
             if ($optional) {
                 return;
@@ -235,7 +257,8 @@ class ConfigBuilder
      * @return string|null the path to a file to load for configuration overrides
      * @throws Exception
      */
-    private function getConfigurationOverride($path) {
+    private function getConfigurationOverride($path)
+    {
         $validPath = $this->findLocation($path, $this->config->getLocalBase(), 'file');
 
         if ($validPath === null) {
@@ -255,7 +278,8 @@ class ConfigBuilder
      * @param string $type
      * @return false|null|string
      */
-    private function findLocation($path, $basedir, $type) {
+    private function findLocation($path, $basedir, $type)
+    {
         // If Path is explicitly null, it's useless to go further
         if ($path === null) {
             return null;

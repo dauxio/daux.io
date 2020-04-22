@@ -26,21 +26,18 @@
     <?php
     $hasPrevNext = (!empty($page['prev']) || !empty($page['next']));
     if ($hasPrevNext && $config->getHTML()->showPreviousNextLinks()) {
-    ?>
+        ?>
     <nav>
         <ul class="Pager">
             <?php if (!empty($page['prev'])) {
-        ?><li class=Pager--prev><a href="<?= $base_url . $page['prev']->getUrl() ?>"><?= $this->translate("Link_previous") ?></a></li><?php
-
-    } ?>
+            ?><li class=Pager--prev><a href="<?= $base_url . $page['prev']->getUrl() ?>"><?= $this->translate("Link_previous") ?></a></li><?php
+        } ?>
             <?php if (!empty($page['next'])) {
-        ?><li class=Pager--next><a href="<?= $base_url . $page['next']->getUrl() ?>"><?= $this->translate("Link_next") ?></a></li><?php
-
-    } ?>
+            ?><li class=Pager--next><a href="<?= $base_url . $page['next']->getUrl() ?>"><?= $this->translate("Link_next") ?></a></li><?php
+        } ?>
         </ul>
     </nav>
     <?php
-
-} ?>
+    } ?>
 </article>
 

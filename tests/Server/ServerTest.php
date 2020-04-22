@@ -4,16 +4,14 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\Request;
 use Todaymade\Daux\Format\HTML\RawPage;
-use Todaymade\Daux\Config;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
-use Todaymade\Daux\Server\Server;
 use org\bovigo\vfs\vfsStream;
 
 class ServerTest extends TestCase
 {
-    function testCreateResponse() {
-
+    public function testCreateResponse()
+    {
         $structure = [
             'index.md' => 'first page',
             'Page.md' => 'another page',
@@ -39,4 +37,3 @@ class ServerTest extends TestCase
         $this->assertEquals("text/css", $response->headers->get('Content-Type'));
     }
 }
-

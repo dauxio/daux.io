@@ -34,7 +34,8 @@ class Config extends BaseConfig
         return null;
     }
 
-    public function hasSearch() {
+    public function hasSearch()
+    {
         return $this->hasValue('search') && $this->getValue('search');
     }
 

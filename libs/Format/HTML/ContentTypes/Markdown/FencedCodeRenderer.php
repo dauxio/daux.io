@@ -15,7 +15,8 @@ class FencedCodeRenderer implements BlockRendererInterface
      */
     private $hl;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->hl = new Highlighter();
     }
 

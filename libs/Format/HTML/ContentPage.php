@@ -30,7 +30,8 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
         return $this->file->getParent() instanceof Root;
     }
 
-    private function isLanding(): bool {
+    private function isLanding(): bool
+    {
         return $this->config->getHTML()->hasLandingPage() && $this->homepage;
     }
 

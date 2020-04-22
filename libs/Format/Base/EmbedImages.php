@@ -25,7 +25,7 @@ class EmbedImages
     {
         return preg_replace_callback(
             "/<img\\s+[^>]*src=['\"]([^\"]*)['\"][^>]*>/",
-            function($matches) use ($file, $callback) {
+            function ($matches) use ($file, $callback) {
                 if ($result = $this->findImage($matches[1], $matches[0], $file, $callback)) {
                     return $result;
                 }

@@ -5,7 +5,7 @@ use Todaymade\Daux\Daux;
 
 class Cache
 {
-    static $printed = false;
+    public static $printed = false;
 
     public static function getDirectory(): string
     {
@@ -109,7 +109,6 @@ class Cache
                     } else {
                         unlink($dir . "/" . $object);
                     }
-
                 }
             }
             rmdir($dir);

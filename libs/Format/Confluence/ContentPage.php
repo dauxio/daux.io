@@ -19,13 +19,13 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             ->embed(
                 $content,
                 $this->file,
-                function($src, array $attributes, Entry $file) {
+                function ($src, array $attributes, Entry $file) {
 
                     //Add the attachment for later upload
                     if ($file instanceof Raw) {
                         $filename = basename($file->getPath());
                         $this->attachments[$filename] = ['filename' => $filename, 'file' => $file];
-                    } else if ($file instanceof ComputedRaw) {
+                    } elseif ($file instanceof ComputedRaw) {
                         $filename = $file->getUri();
                         $this->attachments[$filename] = ['filename' => $filename, 'content' => $file->getContent()];
                     } else {

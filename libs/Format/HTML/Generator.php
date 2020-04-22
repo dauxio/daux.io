@@ -60,7 +60,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
         $this->runAction(
             'Copying Static assets ...',
             $width,
-            function() use ($destination, $config) {
+            function () use ($destination, $config) {
                 $this->ensureEmptyDestination($destination);
 
                 $this->copyThemes($destination, $config->getThemesPath());
@@ -170,7 +170,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
                 $this->runAction(
                     '- ' . $node->getUrl(),
                     $width,
-                    function() use ($node, $output_dir, $key, $config, $index_pages) {
+                    function () use ($node, $output_dir, $key, $config, $index_pages) {
                         if ($node instanceof Raw) {
                             copy($node->getPath(), $output_dir . DIRECTORY_SEPARATOR . $key);
 

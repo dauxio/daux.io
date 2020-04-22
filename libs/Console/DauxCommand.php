@@ -9,7 +9,7 @@ use Todaymade\Daux\Daux;
 
 class DauxCommand extends SymfonyCommand
 {
-    protected function configure() 
+    protected function configure()
     {
         $this
             ->addOption('configuration', 'c', InputOption::VALUE_REQUIRED, 'Configuration file')
@@ -46,7 +46,7 @@ class DauxCommand extends SymfonyCommand
 
         if ($input->hasOption('value')) {
             $values = array_map(
-                function($value) {
+                function ($value) {
                     return array_map("trim", explode('=', $value));
                 },
                 $input->getOption('value')

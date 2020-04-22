@@ -78,13 +78,13 @@ class Template
 
     protected function registerFunctions($engine)
     {
-        $engine->registerFunction('get_navigation', function($tree, $path, $current_url, $base_page, $mode) {
+        $engine->registerFunction('get_navigation', function ($tree, $path, $current_url, $base_page, $mode) {
             $nav = $this->buildNavigation($tree, $path, $current_url, $base_page, $mode);
 
             return $this->renderNavigation($nav);
         });
 
-        $engine->registerFunction('translate', function($key) {
+        $engine->registerFunction('translate', function ($key) {
             $language = $this->config->getLanguage();
 
             if (isset($this->engine->getData('page')['page'])) {
@@ -105,7 +105,7 @@ class Template
             return "Unknown key $key";
         });
 
-        $engine->registerFunction('get_breadcrumb_title', function($page, $base_page) {
+        $engine->registerFunction('get_breadcrumb_title', function ($page, $base_page) {
             $title = '';
             $breadcrumb_trail = $page['breadcrumb_trail'];
             $separator = $this->getSeparator($page['breadcrumb_separator']);
