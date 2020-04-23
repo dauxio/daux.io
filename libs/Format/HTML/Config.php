@@ -68,7 +68,7 @@ class Config extends BaseConfig
 
     public function hasGoogleAnalytics()
     {
-        return $this->hasValue('google_analytics');
+        return $this->hasValue('google_analytics') && $this->getValue('google_analytics');
     }
 
     public function getGoogleAnalyticsId()
