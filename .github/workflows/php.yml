@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: Setup PHP
       uses: shivammathur/setup-php@master
       with:
@@ -60,9 +60,8 @@ jobs:
     - name: Run test suite
       run: composer run-script test -- --coverage-clover=coverage.clover --log-junit=test-report.xml
 
-      # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747/5
-    - name: fix code coverage paths
-      run: sed -i 's/\/home\/runner\/work\/daux.io\/daux.io\//\/github\/workspace\//g' coverage.clover
+    - name: Fix reports
+      run: scripts/fix_reports.sh
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.1
