@@ -10,7 +10,6 @@ if (!isset($config)) {
         <label for="search_input">
             <span class='u-visuallyHidden'>Search</span>
         </label>
-
         <input
             type="search"
             id="search_input"
@@ -29,11 +28,4 @@ if (!isset($config)) {
             </svg>
         </label>
     </form>
-
-
-
-    <div  role="search">
-
-
-    </div>
 <?php } ?>
