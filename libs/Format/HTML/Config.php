@@ -76,6 +76,16 @@ class Config extends BaseConfig
         return $this->getValue('google_analytics');
     }
 
+    public function hasPlausibleAnalyticsDomain()
+    {
+        return $this->hasValue('plausible_domain') && $this->getValue('plausible_domain');
+    }
+
+    public function getPlausibleAnalyticsDomain()
+    {
+        return $this->getValue('plausible_domain');
+    }
+
     public function hasPiwikAnalytics()
     {
         return $this->getValue('piwik_analytics') && $this->hasValue('piwik_analytics_id');

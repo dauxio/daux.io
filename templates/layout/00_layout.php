@@ -2,19 +2,26 @@
 <html class="no-js" lang="<?=$config->getLanguage() ?>">
 <head>
     <title><?= $page['title']; ?> <?= ($page['title'] != $config->getTitle()) ? '- ' . $config->getTitle() : "" ?></title>
-<?php //SEO meta tags...
+<?php
+    //SEO meta tags...
+    $meta = [];
+
     if (array_key_exists('attributes', $page) && array_key_exists('description', $page['attributes'])) {
-        echo "    <meta name=\"description\" content=\"{$page['attributes']['description']}\">\n";
+        $meta['description'] = $page['attributes']['description'];
     } elseif ($config->hasTagline()) {
-        echo "    <meta name=\"description\" content=\"{$config->getTagline()}\">\n";
+        $meta['description'] = $config->getTagLine();
     }
     if (array_key_exists('attributes', $page) && array_key_exists('keywords', $page['attributes'])) {
-        echo "    <meta name=\"keywords\" content=\"{$page['attributes']['keywords']}\">\n";
+        $meta['keywords'] = $page['attributes']['keywords'];
     }
     if (array_key_exists('attributes', $page) && array_key_exists('author', $page['attributes'])) {
-        echo "    <meta name=\"author\" content=\"{$page['attributes']['author']}\">\n";
+        $meta['author'] = $page['attributes']['author'];
     } elseif ($config->hasAuthor()) {
-        echo "    <meta name=\"author\" content=\"{$config->getAuthor()}\">\n";
+        $meta['author'] = $config->getAuthor();
+    }
+
+    foreach ($meta as $name => $content) {
+        echo "    <meta name=\"{$name}\" content=\"{$content}\">\n";
     }
 ?>
     <meta charset="UTF-8">
@@ -28,19 +35,19 @@
 
     <!-- JS -->
     <script>
-        window.base_url = "<?php echo $base_url?>";
+        window.base_url = "<?= $base_url?>";
         document.documentElement.classList.remove('no-js');
     </script>
 
     <!-- Font -->
-    <?php foreach ($config->getTheme()->getFonts() as $font) {
-    echo "<link href='$font' rel='stylesheet' type='text/css'>";
-} ?>
+    <?php foreach ($config->getTheme()->getFonts() as $font) { ?>
+        <link href='<?= $font; ?>' rel='stylesheet' type='text/css'>
+    <?php } ?>
 
     <!-- CSS -->
-    <?php foreach ($config->getTheme()->getCSS() as $css) {
-    echo "<link href='$css' rel='stylesheet' type='text/css'>";
-} ?>
+    <?php foreach ($config->getTheme()->getCSS() as $css) { ?>
+        <link href='<?= $css; ?>' rel='stylesheet' type='text/css'>
+    <?php } ?>
 
     <?php if ($config->getHTML()->hasSearch()) { ?>
         <!-- Search -->
@@ -57,14 +64,16 @@
     if ($config->getHTML()->hasPiwikAnalytics()) {
         $this->insert('theme::partials/piwik_analytics', ['url' => $config->getHTML()->getPiwikAnalyticsUrl(), 'id' => $config->getHTML()->getPiwikAnalyticsId()]);
     }
+    if ($config->getHTML()->hasPlausibleAnalyticsDomain()) {
+        $this->insert('theme::partials/plausible_analytics', ['domain' => $config->getHTML()->getPlausibleAnalyticsDomain()]);
+    }
     ?>
 
     <!-- JS -->
-    <?php foreach ($config->getTheme()->getJS() as $js) {
-        echo '<script src="' . $js . '"></script>';
-    } ?>
+    <?php foreach ($config->getTheme()->getJS() as $js) { ?>
+        <script src="<?= $js; ?>"></script>
+    <?php } ?>
 
     <?php $this->insert('theme::partials/search_script', ['page' => $page, 'base_url' => $base_url]); ?>
-
 </body>
 </html>

@@ -21,13 +21,13 @@
         "repo": "dauxio/daux.io",
         "edit_on_github": "dauxio/daux.io/blob/master/docs",
         "twitter": ["onigoetz"],
-        "google_analytics": "UA-3551397-7",
+        "google_analytics": false,
+        "plausible_domain": false,
         "links": {
             "Download": "https://github.com/dauxio/daux.io/archive/master.zip",
             "GitHub Repo": "https://github.com/dauxio/daux.io",
             "Help/Support/Bugs": "https://github.com/dauxio/daux.io/issues"
         },
-
         "powered_by": "Powered by Daux.io"
     },
     "confluence": {

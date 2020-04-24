@@ -5,6 +5,9 @@ class ConfigBuilder
     /** @var Config */
     private $config;
 
+    /** @var array */
+    private $overrideValues = [];
+
     private $configuration_override_file;
 
     private function __construct(string $mode)
@@ -34,7 +37,7 @@ class ConfigBuilder
         return $this;
     }
 
-    private function setValue(&$array, $key, $value)
+    private function setValue(Config $array, $key, $value)
     {
         if (is_null($key)) {
             return $array = $value;
@@ -48,15 +51,11 @@ class ConfigBuilder
             $array = &$array[$key];
         }
         $array[array_shift($keys)] = $value;
-
-        return $array;
     }
 
     public function withValues(array $values): ConfigBuilder
     {
-        foreach ($values as $value) {
-            $this->setValue($this->config, $value[0], $value[1]);
-        }
+        $this->overrideValues = $values;
 
         return $this;
     }
@@ -127,6 +126,10 @@ class ConfigBuilder
     public function build(): Config
     {
         $this->initializeConfiguration();
+
+        foreach ($this->overrideValues as $value) {
+            $this->setValue($this->config, $value[0], $value[1]);
+        }
 
         return $this->config;
     }

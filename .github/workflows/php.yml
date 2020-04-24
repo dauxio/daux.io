@@ -77,7 +77,7 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
     - name: Generate documentation
-      run: bin/daux generate
+      run: bin/daux generate --value html.plausible_domain=daux.io
     - uses: JamesIves/github-pages-deploy-action@2.0.3
       env:
         FOLDER: "static"

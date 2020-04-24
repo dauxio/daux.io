@@ -30,6 +30,15 @@ You can Also give a specific Piwik ID as well.
 }
 ```
 
+### Plausible Analytics
+This will embed the https://plausible.io/ tracking code.
+
+```json
+{
+  "html": { "plausible_domain": "daux.io" }
+}
+```
+
 ## Automatic Table of Contents
 You can add a table of contents on each page automatically, read about it [here](../01_Features/Table_of_contents.md)
 
