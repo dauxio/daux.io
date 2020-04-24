@@ -15,6 +15,7 @@
   "scripts": {
     "build": "crafty run",
     "watch": "crafty watch",
+    "lint:js": "crafty jsLint --fix src/js/**/*.js",
     "lint:css": "crafty cssLint --fix --preset recommended themes/daux_singlepage/scss/*.scss themes/daux/scss/*.scss"
   }
 }

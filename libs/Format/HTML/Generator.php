@@ -76,8 +76,8 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
         if ($config->getHTML()->hasSearch()) {
             file_put_contents(
-                $destination . DIRECTORY_SEPARATOR . 'daux_search_index.json',
-                json_encode(['pages' => $this->indexed_pages])
+                $destination . DIRECTORY_SEPARATOR . 'daux_search_index.js',
+                'load_search_index(' . json_encode(['pages' => $this->indexed_pages]) . ');'
             );
 
             if (json_last_error()) {
