@@ -24,9 +24,10 @@
         "google_analytics": false,
         "plausible_domain": false,
         "links": {
-            "Download": "https://github.com/dauxio/daux.io/archive/master.zip",
-            "GitHub Repo": "https://github.com/dauxio/daux.io",
-            "Help/Support/Bugs": "https://github.com/dauxio/daux.io/issues"
+            "GitHub Repository": "https://github.com/dauxio/daux.io",
+            "Help/Support/Bugs": "https://github.com/dauxio/daux.io/issues",
+            "Packagist": "https://packagist.org/packages/daux/daux.io",
+            "Docker Images": "https://hub.docker.com/r/daux/daux.io"
         },
         "powered_by": "Powered by Daux.io"
     },

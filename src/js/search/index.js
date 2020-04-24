@@ -23,6 +23,7 @@ class SearchEngine {
     constructor(options) {
         this.settings = {
             field: document.getElementById("search_input"),
+            form: document.getElementById("search_form"),
             show: 10,
             showURL: true,
             showTitleCount: true,
@@ -95,6 +96,13 @@ class SearchEngine {
                     this.displaySearch();
                 });
             }
+        });
+
+        this.settings.form.addEventListener("submit", event => {
+            event.preventDefault();
+            this.loadData().then(() => {
+                this.displaySearch();
+            });
         });
     }
 

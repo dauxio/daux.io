@@ -27,7 +27,7 @@
                 <?php if ($config->getHTML()->hasLinks()) { ?>
                     <hr/>
                     <?php foreach ($config->getHTML()->getLinks() as $name => $url) { ?>
-                        <a href="<?= $url ?>" target="_blank"><?= $name ?></a>
+                        <a href="<?= $url ?>" target="_blank"  rel="noopener noreferrer"><?= $name ?></a>
                         <br />
                     <?php } ?>
                 <?php } ?>

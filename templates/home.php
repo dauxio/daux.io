@@ -19,10 +19,11 @@
 
     <div class="HomepageButtons">
         <div class="Container">
-            <?php
-            if ($config->getHTML()->hasRepository()) {
-                echo '<a href="https://github.com/' . $config->getHTML()->getRepository() . '" class="Button Button--secondary Button--hero">' . $this->translate("View_on_github") . '</a>';
-            }
+            <?php if ($config->getHTML()->hasRepository()) { ?>
+               <a href="https://github.com/<?= $config->getHTML()->getRepository(); ?>" class="Button Button--secondary Button--hero" rel="noopener noreferrer">
+                   <?= $this->translate("View_on_github") ?>
+               </a>
+            <?php }
             $view_doc = $this->translate("View_documentation");
             foreach ($page['entry_page'] as $key => $node) {
                 echo '<a href="' . $node . '" class="Button Button--primary Button--hero">' . str_replace("__VIEW_DOCUMENTATION__", $view_doc, $key) . '</a>';
@@ -52,9 +53,9 @@
         <div class="Container--inner">
             <?php if ($config->getHTML()->hasLinks()) { ?>
                 <ul class="HomepageFooter__links">
-                    <?php foreach ($config->getHTML()->getLinks() as $name => $url) {
-                echo '<li><a href="' . $url . '" target="_blank">' . $name . '</a></li>';
-            } ?>
+                    <?php foreach ($config->getHTML()->getLinks() as $name => $url) { ?>
+                        <li><a href="<?= $url; ?>" target="_blank" rel="noopener noreferrer"><?= $name ?></a></li>
+                    <?php } ?>
                 </ul>
             <?php } ?>
 
