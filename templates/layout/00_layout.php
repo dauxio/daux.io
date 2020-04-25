@@ -48,11 +48,6 @@
     <?php foreach ($config->getTheme()->getCSS() as $css) { ?>
         <link href='<?= $css; ?>' rel='stylesheet' type='text/css'>
     <?php } ?>
-
-    <?php if ($config->getHTML()->hasSearch()) { ?>
-        <!-- Search -->
-        <link href="<?= $base_url; ?>daux_libraries/search.css" rel="stylesheet">
-    <?php } ?>
 </head>
 <body class="<?= $this->section('classes'); ?>">
     <?= $this->section('content'); ?>

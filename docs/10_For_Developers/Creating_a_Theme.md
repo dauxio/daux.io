@@ -2,6 +2,11 @@ In its simplest form, a theme is an empty folder with a `config.json` file conta
 
 After that, every setting is optional, but you can override everything if you'd like to.
 
+> **Overriding styles**
+>
+> If you want to tweak a few styles, you can create a `style.css` file at the root of your documentation 
+> directory and it will be included automatically. By doing this, you don't need to create a new theme.
+
 ## `config.json` options
 
 Here is an example `config.json` file :

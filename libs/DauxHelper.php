@@ -32,10 +32,17 @@ class DauxHelper
      */
     protected static function getTheme(Config $config, $current_url)
     {
+        static $cache = [];
+
         $htmlTheme = $config->getHTML()->getTheme();
 
         $theme_folder = $config->getThemesPath() . DIRECTORY_SEPARATOR . $htmlTheme;
         $theme_url = $config->getBaseUrl() . 'themes/' . $htmlTheme . '/';
+
+        $cache_key = "$current_url-$htmlTheme";
+        if (array_key_exists($cache_key, $cache)) {
+            return $cache[$cache_key];
+        }
 
         $theme = [];
         if (is_file($theme_folder . DIRECTORY_SEPARATOR . 'config.json')) {
@@ -45,7 +52,7 @@ class DauxHelper
             }
         }
 
-        //Default parameters for theme
+        // Default parameters for theme
         $theme += [
             'name' => $htmlTheme,
             'css' => [],
@@ -54,6 +61,7 @@ class DauxHelper
             'favicon' => '<base_url>themes/daux/img/favicon.png',
             'templates' => $theme_folder . DIRECTORY_SEPARATOR . 'templates',
             'variants' => [],
+            'with_search' => $config->getHTML()->hasSearch()
         ];
 
         if ($config->getHTML()->hasThemeVariant()) {
@@ -77,6 +85,14 @@ class DauxHelper
             }
         }
 
+        if ($theme['with_search']) {
+            $theme['css'][] = '<base_url>daux_libraries/search.css';
+        }
+
+        if (is_file($config->getDocumentationDirectory() . DIRECTORY_SEPARATOR . 'style.css')) {
+            $theme['css'][]= '<base_url>style.css';
+        }
+
         $substitutions = [
             '<local_base>' => $config->getLocalBase(),
             '<base_url>' => $current_url,
@@ -92,6 +108,8 @@ class DauxHelper
                 $theme[$element][$key] = utf8_encode(strtr($value, $substitutions));
             }
         }
+
+        $cache[$cache_key] = $theme;
 
         return $theme;
     }
