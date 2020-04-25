@@ -6,49 +6,48 @@
 
 ### For Authors
 
-* [Auto Generated Navigation / Page sorting](01_Features/Navigation_and_Sorting.md)
-* [Internal documentation links](01_Features/Internal_links.md)
-* [CommonMark compliant](01_Features/CommonMark_compliant.md)
-* [Auto created homepage/landing page](01_Features/Landing_page.md)
-* [Multiple Output Formats](01_Features/Multiple_Output_Formats.md)
-* [Multiple Languages Support](01_Features/Multilanguage.md)
-* [No Build Step](01_Features/Live_mode.md)
-* [Static Output Generation](01_Features/Static_Site_Generation.md)
-* [Table of Contents](01_Features/Table_of_contents.md)
+-   [Auto Generated Navigation / Page sorting](01_Features/Navigation_and_Sorting.md)
+-   [Internal documentation links](01_Features/Internal_links.md)
+-   [CommonMark compliant](01_Features/CommonMark_compliant.md)
+-   [Auto created homepage/landing page](01_Features/Landing_page.md)
+-   [Multiple Output Formats](01_Features/Multiple_Output_Formats.md)
+-   [Multiple Languages Support](01_Features/Multilanguage.md)
+-   [No Build Step](01_Features/Live_mode.md)
+-   [Static Output Generation](01_Features/Static_Site_Generation.md)
+-   [Table of Contents](01_Features/Table_of_contents.md)
 
 ### For Developers
 
-* [Auto Syntax Highlighting](01_Features/Auto_Syntax_Highlight.md)
-* [Extend Daux.io with Processors](01_For_Developers/Creating_a_Processor.md)
-* Full access to the internal API to create new pages programatically
-* Work with pages metadata
+-   [Auto Syntax Highlighting](01_Features/Auto_Syntax_Highlight.md)
+-   [Extend Daux.io with Processors](01_For_Developers/Creating_a_Processor.md)
+-   Full access to the internal API to create new pages programatically
+-   Work with pages metadata
 
 ### For Marketing
 
-* 100% Mobile Responsive
-* 4 Built-In Themes or roll your own
-* Functional, Flat Design Style
-* Optional code float layout
-* Shareable/Linkable SEO Friendly URLs
-* Supports Google Analytics and Piwik Analytics
+-   100% Mobile Responsive
+-   4 Built-In Themes or roll your own
+-   Functional, Flat Design Style
+-   Optional code float layout
+-   Shareable/Linkable SEO Friendly URLs
+-   Supports Google Analytics and Piwik Analytics
 
 ## Demos
 
 This is a list of sites using Daux.io:
 
-- With a custom theme:
-    * [Crafty](https://swissquote.github.io/crafty)	
-    * [Pixolution flow](https://docs.pixolution.org)
-	* [Soisy](https://doc.soisy.it/)
-    * [Vulkan Tutorial](https://vulkan-tutorial.com)
-    * [3Q](https://docs.3q.video/)
-- With the default Theme
-    * [Daux.io](https://daux.io/)
-	* [DoctrineWatcher](https://dsentker.github.io/WatcherDocumentation/)
-	* [DrupalGap](http://docs.drupalgap.org/8/)
-    * [ICADMIN: An admin panel powered by CodeIgniter.](http://istocode.com/shared/ic-admin/)
-    * [Munee: Standalone PHP 5.3 Asset Optimisation & Manipulation](http://mun.ee)
-    * [Nuntius: A PHP framework for bots](https://roysegall.github.io/nuntius-bot/)
+-   With a custom theme:
+    -   [Crafty](https://swissquote.github.io/crafty)
+    -   [Pixolution flow](https://docs.pixolution.org) \* [Soisy](https://doc.soisy.it/)
+    -   [Vulkan Tutorial](https://vulkan-tutorial.com)
+    -   [3Q](https://docs.3q.video/)
+-   With the default Theme
+    -   [Daux.io](https://daux.io/)
+        _ [DoctrineWatcher](https://dsentker.github.io/WatcherDocumentation/)
+        _ [DrupalGap](http://docs.drupalgap.org/8/)
+    -   [ICADMIN: An admin panel powered by CodeIgniter.](http://istocode.com/shared/ic-admin/)
+    -   [Munee: Standalone PHP 5.3 Asset Optimisation & Manipulation](http://mun.ee)
+    -   [Nuntius: A PHP framework for bots](https://roysegall.github.io/nuntius-bot/)
 
 Do you use Daux.io? Send us a pull request or open an [issue](https://github.com/dauxio/daux.io/issues) and I will add you to the list.
 
@@ -81,10 +80,10 @@ docker run --rm -it -w /build -v "$PWD":/build daux/daux.io daux
 
 Any parameter valid in the PHP version is valid in the Docker version
 
-
 ### Writing pages
 
 Creating new pages is very easy:
+
 1. Create a markdown file (`*.md` or `*.markdown`)
 2. Start writing
 
@@ -98,14 +97,14 @@ You must use underscores instead of spaces. Here are some example file names and
 
 **Good:**
 
-* 01_Getting_Started.md = Getting Started
-* API_Calls.md = API Calls
-* 200_Something_Else-Cool.md = Something Else-Cool
-* _5_Ways_to_Be_Happy.md = 5 Ways To Be Happy
+-   01_Getting_Started.md = Getting Started
+-   API_Calls.md = API Calls
+-   200_Something_Else-Cool.md = Something Else-Cool
+-   \_5_Ways_to_Be_Happy.md = 5 Ways To Be Happy
 
 **Bad:**
 
-* File Name With Space.md = FAIL
+-   File Name With Space.md = FAIL
 
 ### See your pages
 
@@ -129,9 +128,9 @@ Upload your files to an apache / nginx server and see your documentation
 
 Daux.io is extendable and comes by default with three export formats:
 
-- Export to HTML, same as the website, but can be hosted without PHP.
-- Export all documentation in a single HTML page
-- Upload to your Atlassian Confluence server.
+-   Export to HTML, same as the website, but can be hosted without PHP.
+-   Export all documentation in a single HTML page
+-   Upload to your Atlassian Confluence server.
 
 [See a detailed feature comparison matrix](01_Features/Multiple_Output_Formats.md)
 
@@ -145,14 +144,13 @@ Now that you got the basics, you can also [see what you can configure](05_Config
 
 ## PHP Requirements
 
-Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions;  7.2.0 and up.
+Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions; 7.2.0 and up.
 
 ### Extensions
 
 Daux.io needs the following PHP extensions to work : `php-mbstring` and `php-xml`.
 
 If you encounter an error similar to `utf8_decode() not found` this means that you're missing the `php-xml` package.
-
 
 ## Support
 

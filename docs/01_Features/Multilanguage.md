@@ -4,11 +4,12 @@ Add this to your config.json :
 
 ```json
 {
-  "languages": { "en": "English", "de": "German" }
+    "languages": { "en": "English", "de": "German" }
 }
 ```
 
 You will the need separate directories for each language in `docs/` folder.
+
 ```
 ├── docs/
 │   ├── _index.md

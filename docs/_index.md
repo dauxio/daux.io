@@ -13,37 +13,37 @@
 
 #### For Authors
 
-* [Auto Generated Navigation / Page sorting](01_Features/Navigation_and_Sorting.md)
-* [Internal documentation links](01_Features/Internal_links.md)
-* [CommonMark compliant](01_Features/CommonMark_compliant.md)
-* [Auto created homepage/landing page](01_Features/Landing_page.md)
-* [Multiple Output Formats](01_Features/Multiple_Output_Formats.md)
-* [Multiple Languages Support](01_Features/Multilanguage.md)
-* [No Build Step](01_Features/Live_mode.md)
-* [Static Output Generation](01_Features/Static_Site_Generation.md)
-* [Table of Contents](01_Features/Table_of_contents.md)
+-   [Auto Generated Navigation / Page sorting](01_Features/Navigation_and_Sorting.md)
+-   [Internal documentation links](01_Features/Internal_links.md)
+-   [CommonMark compliant](01_Features/CommonMark_compliant.md)
+-   [Auto created homepage/landing page](01_Features/Landing_page.md)
+-   [Multiple Output Formats](01_Features/Multiple_Output_Formats.md)
+-   [Multiple Languages Support](01_Features/Multilanguage.md)
+-   [No Build Step](01_Features/Live_mode.md)
+-   [Static Output Generation](01_Features/Static_Site_Generation.md)
+-   [Table of Contents](01_Features/Table_of_contents.md)
 
 </div>
 <div class="Row__third">
 
 #### For Developers
 
-* [Auto Syntax Highlighting](01_Features/Auto_Syntax_Highlight.md)
-* [Extend Daux.io with Processors](01_For_Developers/Creating_a_Processor.md)
-* Full access to the internal API to create new pages programatically
-* Work with pages metadata
+-   [Auto Syntax Highlighting](01_Features/Auto_Syntax_Highlight.md)
+-   [Extend Daux.io with Processors](01_For_Developers/Creating_a_Processor.md)
+-   Full access to the internal API to create new pages programatically
+-   Work with pages metadata
 
 </div>
 <div class="Row__third">
 
 #### For Marketing
 
-* 100% Mobile Responsive
-* 4 Built-In Themes or roll your own
-* Functional, Flat Design Style
-* Optional code float layout
-* Shareable/Linkable SEO Friendly URLs
-* Supports Google Analytics and Piwik Analytics
+-   100% Mobile Responsive
+-   4 Built-In Themes or roll your own
+-   Functional, Flat Design Style
+-   Optional code float layout
+-   Shareable/Linkable SEO Friendly URLs
+-   Supports Google Analytics and Piwik Analytics
 
 </div>
 </div>
@@ -52,7 +52,7 @@
 
 ### Installation and usage
 
-If you have __PHP__ and Composer installed
+If you have **PHP** and Composer installed
 
 ```bash
 composer global require daux/daux.io
@@ -61,7 +61,7 @@ composer global require daux/daux.io
 daux generate
 ```
 
-Or if you wish to use __Docker__
+Or if you wish to use **Docker**
 
 ```bash
 # Next to your `docs` folder, run

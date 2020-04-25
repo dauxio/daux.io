@@ -1,9 +1,8 @@
+If you don't want to serve the live version of your site, you can also generate files, these can be one of the three supported formats :
 
-If you  don't want to serve the live version of your site, you can also generate files, these can be one of the three supported formats :
-
-- HTML output
-- Single page HTML output
-- Atlassian Confluence upload
+-   HTML output
+-   Single page HTML output
+-   Atlassian Confluence upload
 
 Generating a complete set of pages, with navigation
 
@@ -13,7 +12,7 @@ daux --destination=[Output Directory Relative Direction]
 
 ## Options
 
-For more options, run 
+For more options, run
 
 ```bash
 daux generate --help
@@ -32,7 +31,7 @@ daux --format=html
 
 ### Specify a processor
 
-A processor can be specified through the  `--processor` option, this should be the name of a class inside the `Todaymade\Daux\Extension` namespace.
+A processor can be specified through the `--processor` option, this should be the name of a class inside the `Todaymade\Daux\Extension` namespace.
 
 By running :
 

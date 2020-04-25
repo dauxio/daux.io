@@ -7,7 +7,7 @@ The main advantage, is that you can run it with the source or with `daux` indepe
 Next to your `docs` directory, you can create a `daux` directory that can contain your Processor.
 
 The classes must respect the PSR-4 Naming convention. And have `\Todaymade\Daux\Extension` as a base namespace.
- 
+
 By default, we created a `daux/Processor.php` file to get you started.
 
 ## A quick test ?
@@ -40,7 +40,7 @@ There are a few methods that you can override to add some
 
 By default, Daux.io parses your directory to find pages. but, for a reason or another, you might want to programmatically add some pages.
 
-This can be done with: 
+This can be done with:
 
 ```php
 public function manipulateTree(Root $root)
@@ -65,7 +65,7 @@ Both methods `getOrCreateDir` and `getOrCreatePage` take two parameters : `paren
 The page will automatically be treated as markdown and converted like a normal page.
 
 If you create a new ContentType, like let's say LaTeX, you would set the title `My Page.tex` it will keep the title `My Page` and use your renderer.
-  
+
 If the extension is not mapped to a Generator, it will simply create the file as-is without manipulation.
 
 ### Extend the Markdown Generator
@@ -82,9 +82,9 @@ See the details on [CommonMark's website](http://commonmark.thephpleague.com/cus
 
 ### Add new generators
 
-You can add new generators to Daux.io and use them right away, they must implement the 
-`\Todaymade\Daux\Format\Base\Generator` interface and if you want to use the live mode with your generator 
-you have to implement `\Todaymade\Daux\Format\Base\LiveGenerator`. 
+You can add new generators to Daux.io and use them right away, they must implement the
+`\Todaymade\Daux\Format\Base\Generator` interface and if you want to use the live mode with your generator
+you have to implement `\Todaymade\Daux\Format\Base\LiveGenerator`.
 
 ```php
 public function addGenerators()
@@ -92,4 +92,3 @@ public function addGenerators()
     return ['custom_generator' => '\Todaymade\Daux\Extension\MyNewGenerator'];
 }
 ```
-

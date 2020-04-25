@@ -10,7 +10,6 @@ The easiest is to use PHP's built-in server.
 
 For that i've included a short command, run `daux serve` in the projects folder to start the local web server. By default the server will run at: <a href="http://localhost:8085" target="_blank">http://localhost:8085</a>
 
-
 ## Running Remotely
 
 ### Clean URLs configuration
@@ -20,9 +19,9 @@ To enable the same, set the toggle in the `config.json` file in the `/docs` fold
 
 ```json
 {
-  "live": {
-    "clean_urls": true
-  }
+    "live": {
+        "clean_urls": true
+    }
 }
 ```
 
@@ -70,8 +69,8 @@ server {
 
 If you have set up a local or remote IIS web site, you may need a `web.config` with:
 
-* A rewrite configuration, for handling clean urls.
-* A mime type handler for less files, if using a custom theme.
+-   A rewrite configuration, for handling clean urls.
+-   A mime type handler for less files, if using a custom theme.
 
 ### Clean URLs
 
@@ -79,20 +78,32 @@ The `web.config` needs an entry for `<rewrite>` under `<system.webServer>`:
 
 ```xml
 <configuration>
-	<system.webServer>
-		<rewrite>
-			<rules>
-				<rule name="Main Rule" stopProcessing="true">
-					<match url=".*" />
-					<conditions logicalGrouping="MatchAll">
-						<add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-						<add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-					</conditions>
-					<action type="Rewrite" url="index.php" appendQueryString="false" />
-				</rule>
-			</rules>
-		</rewrite>
-	</system.webServer>
+    <system.webServer>
+        <rewrite>
+            <rules>
+                <rule name="Main Rule" stopProcessing="true">
+                    <match url=".*" />
+                    <conditions logicalGrouping="MatchAll">
+                        <add
+                            input="{REQUEST_FILENAME}"
+                            matchType="IsFile"
+                            negate="true"
+                        />
+                        <add
+                            input="{REQUEST_FILENAME}"
+                            matchType="IsDirectory"
+                            negate="true"
+                        />
+                    </conditions>
+                    <action
+                        type="Rewrite"
+                        url="index.php"
+                        appendQueryString="false"
+                    />
+                </rule>
+            </rules>
+        </rewrite>
+    </system.webServer>
 </configuration>
 ```
 
