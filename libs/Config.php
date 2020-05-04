@@ -191,7 +191,7 @@ class Config extends BaseConfig
 
     public function hasImage(): bool
     {
-        return $this->hasValue('image');
+        return $this->hasValue('image') && !empty($this->getValue('image'));
     }
 
     public function getImage()
