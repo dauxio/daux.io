@@ -30,15 +30,25 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
             return $element;
         }
 
+        // if there's a hash component in the url, ensure we
+        // don't put that part through the resolver.
+        $urlAndHash = explode('#', $url);
+        $url = $urlAndHash[0];
+
         //Internal links
         $file = DauxHelper::resolveInternalFile($this->daux, $url);
 
-        $link_props = [
+        $link_props = [];
+        if (isset($urlAndHash[1])) {
+            $link_props["ac:anchor"] = $urlAndHash[1];
+        }
+
+        $page_props = [
             'ri:content-title' => trim(trim($this->daux['confluence']['prefix']) . ' ' . $file->getTitle()),
             'ri:space-key' => $this->daux['confluence']['space_id'],
         ];
 
-        $page = strval(new HtmlElement('ri:page', $link_props, '', true));
+        $page = strval(new HtmlElement('ri:page', $page_props, '', true));
         $children = $htmlRenderer->renderInlines($inline->children());
         if (strpos($children, '<') !== false) {
             $children = '<ac:link-body>' . $children . '</ac:link-body>';
@@ -46,6 +56,6 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
             $children = '<ac:plain-text-link-body><![CDATA[' . $children . ']]></ac:plain-text-link-body>';
         }
 
-        return new HtmlElement('ac:link', [], $page . $children);
+        return new HtmlElement('ac:link', $link_props, $page . $children);
     }
 }
