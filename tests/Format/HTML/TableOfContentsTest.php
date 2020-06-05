@@ -81,7 +81,7 @@ EXPECTED;
     {
         $converter = new CommonMarkConverter($this->getConfig());
 
-        $source = "[TOC]\n# Test\n# Test";
+        $source = "[TOC]\n# Test\n# Test\n# Test";
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
@@ -90,9 +90,13 @@ EXPECTED;
 <li>
 <p><a href="#page_Test-2">Test</a></p>
 </li>
+<li>
+<p><a href="#page_Test-3">Test</a></p>
+</li>
 </ul>
 <h1 id="page_Test">Test</h1>
 <h1 id="page_Test-2">Test</h1>
+<h1 id="page_Test-3">Test</h1>
 
 EXPECTED;
 

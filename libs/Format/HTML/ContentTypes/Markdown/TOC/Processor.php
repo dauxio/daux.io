@@ -86,6 +86,8 @@ class Processor
             ++$extension;
         } while (in_array("$proposed-$extension", $document->heading_ids));
 
+        $document->heading_ids[] = "$proposed-$extension";
+
         return "$proposed-$extension";
     }
 
