@@ -75,7 +75,7 @@ If the command isn't found, ensure your `$PATH` contains `~/.composer/vendor/bin
 Or if you wish to use Docker, the start of the command will be :
 
 ```bash
-docker run --rm -it -w /build -v "$PWD":/build daux/daux.io daux
+docker run --rm -it -p 8085:8085 -w /build -v "$PWD":/build daux/daux.io daux
 ```
 
 Any parameter valid in the PHP version is valid in the Docker version
