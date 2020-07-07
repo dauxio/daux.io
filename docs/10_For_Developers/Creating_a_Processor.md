@@ -70,7 +70,7 @@ If the extension is not mapped to a Generator, it will simply create the file as
 
 ### Extend the Markdown Generator
 
-You can extend the Markdown Parser in any way wou want with this method.
+You can extend the Markdown Parser in any way you want with this method.
 
 ```php
 public function extendCommonMarkEnvironment(Environment $environment)
