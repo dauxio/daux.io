@@ -136,6 +136,12 @@ class Daux
         return array_replace($default, $extended);
     }
 
+    /**
+     * Absolute class name
+     * @example -p \\Todaymade\\Daux\\Extension\\Processor
+     * @throws \RuntimeException
+     * @return NULL|string
+     */
     public function getProcessorClass()
     {
         $processor = $this->getConfig()->getProcessor();
@@ -144,16 +150,15 @@ class Daux
             return null;
         }
 
-        $class = '\\Todaymade\\Daux\\Extension\\' . $processor;
-        if (!class_exists($class)) {
-            throw new \RuntimeException("Class '$class' not found. We cannot use it as a Processor");
+        if (!class_exists($processor)) {
+            throw new \RuntimeException("Class '$processor' not found. We cannot use it as a Processor");
         }
 
-        if (!array_key_exists('Todaymade\\Daux\\Processor', class_parents($class))) {
-            throw new \RuntimeException("Class '$class' invalid, should extend '\\Todaymade\\Daux\\Processor'");
+        if (!array_key_exists('Todaymade\\Daux\\Processor', class_parents($processor))) {
+            throw new \RuntimeException("Class '$processor' invalid, should extend '\\Todaymade\\Daux\\Processor'");
         }
 
-        return $class;
+        return $processor;
     }
 
     protected function findAlternatives($input, $words)
