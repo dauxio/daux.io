@@ -137,7 +137,12 @@ class Daux
     }
 
     /**
-     * Absolute class name
+     * Processor class
+     * 
+     * You can provide absolute class name or short class name if processor locates in \Todaymade\Daux\Extension namespace. 
+     * Location: vendor/daux/daux.io/daux
+     * 
+     * @see \Todaymade\Daux\Extension\Processor
      * @example -p \\Todaymade\\Daux\\Extension\\Processor
      * @throws \RuntimeException
      * @return NULL|string
@@ -149,11 +154,15 @@ class Daux
         if (empty($processor)) {
             return null;
         }
-
+        
+        if (!strstr($processor, "\\")) {
+            $processor = '\\Todaymade\\Daux\\Extension\\' . $processor;
+        }
+        
         if (!class_exists($processor)) {
             throw new \RuntimeException("Class '$processor' not found. We cannot use it as a Processor");
         }
-
+        
         if (!array_key_exists('Todaymade\\Daux\\Processor', class_parents($processor))) {
             throw new \RuntimeException("Class '$processor' invalid, should extend '\\Todaymade\\Daux\\Processor'");
         }
