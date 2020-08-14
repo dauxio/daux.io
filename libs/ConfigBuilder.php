@@ -209,7 +209,7 @@ class ConfigBuilder
             throw new Exception('The Themes directory does not exist. Check the path again : ' . $path);
         }
 
-        return $validPath;
+        return realpath($validPath);
     }
 
     private function normalizeDocumentationPath($path)
@@ -220,7 +220,7 @@ class ConfigBuilder
             throw new Exception('The Docs directory does not exist. Check the path again : ' . $path);
         }
 
-        return $validPath;
+        return realpath($validPath);
     }
 
     /**
