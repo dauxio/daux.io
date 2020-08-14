@@ -140,7 +140,7 @@ class ConfigBuilder
         $themesPath = $this->config->getThemesPath() . DIRECTORY_SEPARATOR;
 
         // If theme directory exists, we're good with that
-        if (is_dir(realpath(($themesPath . $theme)))) {
+        if (is_dir(($themesPath . $theme))) {
             return [$theme, ''];
         }
 
@@ -153,7 +153,7 @@ class ConfigBuilder
             $theme = implode('-', $themePieces);
         }
 
-        if (!is_dir(realpath($themesPath . $theme))) {
+        if (!is_dir($themesPath . $theme)) {
             throw new \RuntimeException("Theme '{$theme}' not found");
         }
 
@@ -209,7 +209,7 @@ class ConfigBuilder
             throw new Exception('The Themes directory does not exist. Check the path again : ' . $path);
         }
 
-        return realpath($validPath);
+        return $validPath;
     }
 
     private function normalizeDocumentationPath($path)
@@ -220,7 +220,7 @@ class ConfigBuilder
             throw new Exception('The Docs directory does not exist. Check the path again : ' . $path);
         }
 
-        return realpath($validPath);
+        return $validPath;
     }
 
     /**
@@ -313,13 +313,13 @@ class ConfigBuilder
 
         // Check if it's relative to the current directory or an absolute path
         if (DauxHelper::is($path, $type)) {
-            return DauxHelper::getAbsolutePath($path);
+            return realpath(DauxHelper::getAbsolutePath($path));
         }
 
         // Check if it exists relative to Daux's root
         $newPath = $basedir . DIRECTORY_SEPARATOR . $path;
         if (DauxHelper::is($newPath, $type)) {
-            return $newPath;
+            return realpath($newPath);
         }
 
         return false;
