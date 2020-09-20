@@ -6513,12 +6513,10 @@ postcss-nesting@7.0.1:
   dependencies:
     postcss "^7.0.2"
 
-postcss-page-break@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-page-break/-/postcss-page-break-2.0.0.tgz#add52d0e0a528cabe6afee8b46e2abb277df46bf"
-  integrity sha512-tkpTSrLpfLfD9HvgOlJuigLuk39wVTbbd8RKcy8/ugV2bNBUW3xU+AIqyxhDrQr1VUj1RmyJrBn1YWrqUm9zAQ==
-  dependencies:
-    postcss "^7.0.2"
+postcss-page-break@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-page-break/-/postcss-page-break-3.0.0.tgz#e8396125e753fe9a1af1c9e403db26c00549982e"
+  integrity sha512-4xCmh44hgZ6nM4ph37girEcyeISwRwTXX+jM5M96LNRWEPYJ+u1DEINEevbCp1jbczX2r3M3nw8JcJtRETJxDQ==
 
 postcss-property-lookup@2.0.0:
   version "2.0.0"

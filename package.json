@@ -9,7 +9,7 @@
     "@swissquote/crafty-runner-gulp": "^1.8.0",
     "@swissquote/crafty-runner-rollup": "^1.8.0",
     "flexsearch": "^0.6.32",
-    "postcss-page-break": "^2.0.0",
+    "postcss-page-break": "^3.0.0",
     "preact": "^10.0.5"
   },
   "scripts": {
