@@ -50,11 +50,14 @@ jobs:
     steps:
     - name: set locale
       run: |
-        locale-gen "en_US.UTF-8"
-        update-locale LC_ALL="en_US.UTF-8"
-        export LANG="en_US.UTF-8"
+        sudo locale-gen "en_US.UTF-8"
+        sudo update-locale LC_ALL="en_US.UTF-8"
+        export 
 
     - uses: actions/checkout@v2
+      env:
+        LANG: en_US.UTF-8
+
     - name: Setup PHP
       uses: shivammathur/setup-php@master
       with:
@@ -79,3 +82,4 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          LANG: en_US.UTF-8
