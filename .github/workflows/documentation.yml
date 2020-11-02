@@ -17,7 +17,7 @@ jobs:
       run: bin/daux generate --value html.plausible_domain=daux.io
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
-      env:
+      with:
         FOLDER: "static"
         BRANCH: gh-pages
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
