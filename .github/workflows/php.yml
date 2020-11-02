@@ -51,12 +51,9 @@ jobs:
     - name: set locale
       run: |
         sudo locale-gen "en_US.UTF-8"
-        sudo update-locale LC_ALL="en_US.UTF-8"
-        export 
+        sudo update-locale
 
     - uses: actions/checkout@v2
-      env:
-        LANG: en_US.UTF-8
 
     - name: Setup PHP
       uses: shivammathur/setup-php@master
@@ -77,9 +74,15 @@ jobs:
     - name: Fix reports
       run: ./scripts/fix_reports.sh
 
+    - run: locale
+      env: 
+          LANG: en_US.UTF-8
+          LC_ALL: en_US.UTF-8
+
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.4
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           LANG: en_US.UTF-8
+          LC_ALL: en_US.UTF-8
