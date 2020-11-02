@@ -39,6 +39,7 @@ jobs:
 
     - name: Install tools
       run: ./scripts/install_tools.sh
+      shell: bash
 
     - name: Run test suite
       run: composer run-script test
@@ -71,7 +72,7 @@ jobs:
       run: composer run-script test -- --coverage-clover=coverage.clover --log-junit=test-report.xml
 
     - name: Fix reports
-      run: scripts/fix_reports.sh
+      run: ./scripts/fix_reports.sh
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.4

@@ -46,9 +46,9 @@
         "mikey179/vfsstream": "^1.6"
     },
     "scripts": {
-        "test": "build/phpunit",
-        "test:coverage-html": "build/phpunit --coverage-html=build/coverage",
-        "lint": "build/php-cs-fixer fix --config=.php_cs --dry-run -v",
-        "lint:fix": "build/php-cs-fixer fix --config=.php_cs"
+        "test": "php build/phpunit",
+        "test:coverage-html": "php build/phpunit --coverage-html=build/coverage",
+        "lint": "php build/php-cs-fixer fix --config=.php_cs --dry-run -v",
+        "lint:fix": "php build/php-cs-fixer fix --config=.php_cs"
     }
 }
