@@ -12,12 +12,12 @@ jobs:
     strategy:
       max-parallel: 15
       matrix:
-        # TODO : enable tests on windows
         operating-system: [ubuntu-latest, macOS-latest]
         php-versions: ['7.2', '7.3', '7.4']
-        include:
-          - operating-system: windows-latest
-            php-versions: 7.4
+        # TODO : enable tests on windows
+        #include:
+        #  - operating-system: windows-latest
+        #    php-versions: 7.4
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     runs-on: ${{ matrix.operating-system }}
@@ -78,7 +78,7 @@ jobs:
       run: ./scripts/fix_reports.sh
 
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@v1.4
+      uses: SonarSource/sonarcloud-github-action@v1.1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
