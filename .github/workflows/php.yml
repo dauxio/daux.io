@@ -26,10 +26,10 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@master
+      uses: shivammathur/setup-php@2.7.0
       with:
         php-version: ${{ matrix.php-versions }}
-        extension-csv: mbstring, dom, intl
+        extension: [ mbstring, dom, intl ]
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -56,10 +56,10 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@master
+      uses: shivammathur/setup-php@2.7.0
       with:
         php-version: 7.4
-        extension-csv: mbstring, dom, intl
+        extension: [ mbstring, dom, intl ]
         coverage: pcov
 
     - name: Install dependencies
