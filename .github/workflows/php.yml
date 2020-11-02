@@ -1,6 +1,11 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+      types: [opened, synchronize, reopened]
 
 jobs:
   build:
@@ -12,6 +17,9 @@ jobs:
         php-versions: ['7.2', '7.3', '7.4']
         exclude:
           - operating-system: macos-latest
+            php-versions: 7.4
+        include:
+          - operating-system: windows-latest
             php-versions: 7.4
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
