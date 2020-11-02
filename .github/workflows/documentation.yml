@@ -1,0 +1,23 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Generate documentation
+      run: vendor/bin/daux generate --themes=docs_theme
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@2.0.3
+      env:
+        FOLDER: "static"
+        BRANCH: gh-pages
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -68,18 +68,3 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-  documentation:
-    runs-on: ubuntu-latest
-    if: github.repository == 'dauxio/daux.io' && github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-    - name: Generate documentation
-      run: bin/daux generate --value html.plausible_domain=daux.io
-    - uses: JamesIves/github-pages-deploy-action@2.0.3
-      env:
-        FOLDER: "static"
-        BRANCH: gh-pages
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
