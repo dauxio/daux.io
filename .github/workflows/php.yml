@@ -15,9 +15,6 @@ jobs:
         # TODO : enable tests on windows
         operating-system: [ubuntu-latest, macOS-latest]
         php-versions: ['7.2', '7.3', '7.4']
-        exclude:
-          - operating-system: macos-latest
-            php-versions: 7.4
         include:
           - operating-system: windows-latest
             php-versions: 7.4
@@ -49,8 +46,13 @@ jobs:
   sonarcloud:
     name: "SonarCloud"
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
     steps:
+    - name: set locale
+      run: |
+        locale-gen "en_US.UTF-8"
+        update-locale LC_ALL="en_US.UTF-8"
+        export LANG="en_US.UTF-8"
+
     - uses: actions/checkout@v2
     - name: Setup PHP
       uses: shivammathur/setup-php@master
