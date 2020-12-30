@@ -21,7 +21,6 @@
         "guzzlehttp/guzzle": "~6.0 || ~7.0",
         "league/commonmark": "^1.0.0",
         "league/plates": "~3.1",
-        "myclabs/deep-copy": "^1.5",
         "scrivo/highlight.php": "^9.15",
         "symfony/console": "^4.4|^5.0",
         "symfony/http-foundation": "^4.4|^5.0",

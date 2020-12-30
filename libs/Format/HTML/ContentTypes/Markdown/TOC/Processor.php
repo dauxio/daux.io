@@ -1,6 +1,5 @@
 <?php namespace Todaymade\Daux\Format\HTML\ContentTypes\Markdown\TOC;
 
-use DeepCopy\DeepCopy;
 use League\CommonMark\Block\Element\Document;
 use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\Block\Element\ListBlock;
@@ -11,7 +10,6 @@ use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Inline\Element\Link;
 use League\CommonMark\Inline\Element\Text;
 use League\CommonMark\Node\Node;
-use ReflectionMethod;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;
 use Todaymade\Daux\DauxHelper;
@@ -186,7 +184,8 @@ class Processor
 
             $content = $entry->getContent();
             if ($content != null) {
-                foreach ($this->cloneChildren($content) as $node) {
+                $cloned = clone $content;
+                foreach ($cloned->children() as $node) {
                     $a->appendChild($node);
                 }
             }
@@ -206,39 +205,5 @@ class Processor
         return $list;
     }
 
-    /**
-     * Set the specified property to null on the object.
-     *
-     * @param Heading $object The object to modify
-     * @param string $property The property to nullify
-     */
-    protected function setNull(Heading $object, $property)
-    {
-        $prop = new \ReflectionProperty(get_class($object), $property);
-        $prop->setAccessible(true);
-        $prop->setValue($object, null);
-    }
 
-    /**
-     * @return Node[]
-     */
-    protected function cloneChildren(Heading $node)
-    {
-        $firstClone = clone $node;
-
-        // We have no choice but to hack into the
-        // system to reset the parent, previous and next
-        $this->setNull($firstClone, 'parent');
-        $this->setNull($firstClone, 'previous');
-        $this->setNull($firstClone, 'next');
-
-        // Also, the child elements need to know the next parents
-        foreach ($firstClone->children() as $subnode) {
-            $method = new ReflectionMethod(get_class($subnode), 'setParent');
-            $method->setAccessible(true);
-            $method->invoke($subnode, $firstClone);
-        }
-
-        return (new DeepCopy())->copy($firstClone)->children();
-    }
 }

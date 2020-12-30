@@ -120,4 +120,23 @@ EXPECTED;
 
         $this->assertEquals($expected, $converter->convertToHtml($source));
     }
+
+
+    public function testQuotesWorkCorrectly()
+    {
+        $converter = new CommonMarkConverter($this->getConfig());
+
+        $source = "[TOC]\n# Daux's bug";
+        $expected = <<<'EXPECTED'
+<ul class="TableOfContents">
+<li>
+<p><a href="#page_Daux_s_bug">Daux’s bug</a></p>
+</li>
+</ul>
+<h1 id="page_Daux_s_bug">Daux’s bug</h1>
+
+EXPECTED;
+
+        $this->assertEquals($expected, $converter->convertToHtml($source));
+    }
 }
