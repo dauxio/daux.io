@@ -3,13 +3,13 @@
   "version": "0.3.0",
   "private": true,
   "devDependencies": {
-    "@swissquote/crafty": "^1.8.0",
-    "@swissquote/crafty-preset-babel": "^1.8.0",
-    "@swissquote/crafty-preset-postcss": "^1.8.0",
-    "@swissquote/crafty-runner-gulp": "^1.8.0",
-    "@swissquote/crafty-runner-rollup": "^1.8.0",
+    "@swissquote/crafty": "1.14.0-beta.7",
+    "@swissquote/crafty-preset-babel": "1.14.0-beta.7",
+    "@swissquote/crafty-preset-postcss": "1.14.0-beta.7",
+    "@swissquote/crafty-runner-gulp": "1.14.0-beta.7",
+    "@swissquote/crafty-runner-rollup": "1.14.0-beta.7",
     "flexsearch": "^0.6.32",
-    "postcss-page-break": "^3.0.0",
+    "postcss-page-break": "^2.0.0",
     "preact": "^10.0.5"
   },
   "scripts": {
@@ -17,5 +17,8 @@
     "watch": "crafty watch",
     "lint:js": "crafty jsLint --fix src/js/**/*.js",
     "lint:css": "crafty cssLint --fix --preset recommended themes/daux_singlepage/scss/*.scss themes/daux/scss/*.scss"
+  },
+  "dependencies": {
+    "@rollup/plugin-eslint": "^8.0.1"
   }
 }

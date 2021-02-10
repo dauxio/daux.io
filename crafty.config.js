@@ -13,6 +13,16 @@ module.exports = {
         "!*.min.css",
         "!**/vendor/**/*.scss"
     ],
+    eslint: {
+        settings: {
+            react: {
+                version: "16.0"
+            }
+        },
+        rules: {
+            "@swissquote/swissquote/react/no-deprecated": 0
+        }
+    },
     stylelint: {
         rules: {
             "swissquote/no-type-outside-scope": null,
