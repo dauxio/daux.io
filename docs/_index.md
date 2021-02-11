@@ -29,6 +29,7 @@
 #### For Developers
 
 -   [Auto Syntax Highlighting](01_Features/Auto_Syntax_Highlight.md)
+-   [Math, Diagrams and Flowcharts](01_Features/Math_Diagrams_Flowcharts.md)
 -   [Extend Daux.io with Processors](01_For_Developers/Creating_a_Processor.md)
 -   Full access to the internal API to create new pages programatically
 -   Work with pages metadata

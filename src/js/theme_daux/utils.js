@@ -7,3 +7,21 @@ export function ready(fn) {
         fn();
     }
 }
+
+export function loadJS(url, callback) {
+    const head = document.getElementsByTagName("head")[0],
+        script = document.createElement("script");
+    script.type = "text/javascript";
+    script.async = true;
+    script.src = url;
+    script.onload = callback;
+    head.appendChild(script);
+}
+
+export function loadCSS(url) {
+    const head = document.getElementsByTagName("head")[0],
+        link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = url;
+    head.appendChild(link);
+}

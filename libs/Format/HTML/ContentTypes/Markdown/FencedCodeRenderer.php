@@ -20,6 +20,14 @@ class FencedCodeRenderer implements BlockRendererInterface
         $this->hl = new Highlighter();
     }
 
+    public function pre($attrs, $content) {
+        return new HtmlElement(
+            'pre',
+            [],
+            new HtmlElement('code', $attrs, $content)
+        );
+    }
+
     /**
      * @param bool $inTightList
      *
@@ -39,6 +47,21 @@ class FencedCodeRenderer implements BlockRendererInterface
         $content = $block->getStringContent();
 
         $language = $this->getLanguage($block->getInfoWords());
+
+        if ($language === 'tex') {
+            $attrs['class'] = 'katex';
+            return $this->pre($attrs, Xml::escape($content));
+        }
+
+        if ($language === 'mermaid') {
+            return new HtmlElement('div', ['class' => 'mermaid'], Xml::escape($content));
+        }
+
+        return $this->renderCode($content, $language, $attrs);
+    }
+
+    public function renderCode($content, $language, $attrs)
+    {
         $highlighted = false;
         if ($language) {
             $attrs['class'] = isset($attrs['class']) ? $attrs['class'] . ' ' : '';
@@ -56,11 +79,7 @@ class FencedCodeRenderer implements BlockRendererInterface
             $content = Xml::escape($content);
         }
 
-        return new HtmlElement(
-            'pre',
-            [],
-            new HtmlElement('code', $attrs, $content)
-        );
+        return $this->pre($attrs, $content);
     }
 
     public function getLanguage($infoWords)

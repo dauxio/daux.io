@@ -6,16 +6,17 @@ Daux.io is extendable and comes by default with three export formats:
 
 ## Feature Matrix
 
-|                  Feature | HTML | Single Page HTML |         Confluence          |
-| -----------------------: | :--: | :--------------: | :-------------------------: |
-|            Multilanguage |  √   |   X (Planned)    |              X              |
-|            Landing Pages |  √   |        X         |              X              |
-|              Index Pages |  √   |        √         |              √              |
-|           Internal Links |  √   |   X (Planned)    |              √              |
-|           Code Highlight |  √   |   X (Planned)    |      √ (Using macros)       |
-|                Live Mode |  √   |        X         |              X              |
-|           Pages Ordering |  √   |        √         |     X (API Limitation)      |
-| Google / Piwik analytics |  √   |        √         | √ (Configured on Conflence) |
+|                    Feature | HTML | Single Page HTML |         Confluence          |
+| -------------------------: | :--: | :--------------: | :-------------------------: |
+|                Index Pages |  √   |        √         |              √              |
+|             Internal Links |  √   |        X         |              √              |
+|              Landing Pages |  √   |        X         |              X              |
+|             Code Highlight |  √   |        X         |      √ (Using macros)       |
+| Math, Diagrams, Flowcharts |  √   |        X         |              X              |
+|                  Live Mode |  √   |        X         |              X              |
+|              Multilanguage |  √   |        X         |              X              |
+|             Pages Ordering |  √   |        √         |     X (API Limitation)      |
+|   Google / Piwik analytics |  √   |        √         | √ (Configured on Conflence) |
 
 ## Confluence Example
 
