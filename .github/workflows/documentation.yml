@@ -28,6 +28,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   confluence:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
       with:
         persist-credentials: false
