@@ -48,6 +48,11 @@ class BaseConfig extends ArrayObject
         return $this[$key];
     }
 
+    public function isTruthy($key)
+    {
+        return $this->hasValue($key) && !!$this->getValue($key);
+    }
+
     public function setValue($key, $value)
     {
         $this[$key] = $value;

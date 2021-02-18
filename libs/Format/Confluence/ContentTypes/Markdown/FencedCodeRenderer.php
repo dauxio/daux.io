@@ -5,6 +5,7 @@ use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Util\Xml;
+use Todaymade\Daux\Config;
 
 class FencedCodeRenderer extends CodeRenderer
 {
@@ -32,8 +33,18 @@ class FencedCodeRenderer extends CodeRenderer
         'scala',
         'sql',
         'vb',
+
+        // Special treatment
+        'tex',
+        'mermaid',
     ];
     protected $known_conversions = ['html' => 'html/xml', 'xml' => 'html/xml', 'js' => 'javascript'];
+
+    protected Config $config;
+
+    function __construct(Config $config) {
+        $this->config = $config;
+    }
 
     /**
      * @param bool $inTightList
@@ -47,6 +58,20 @@ class FencedCodeRenderer extends CodeRenderer
         }
 
         $language = $this->getLanguage($block->getInfoWords());
+
+        if ($language === 'tex') {
+            $this->config['__confluence__tex'] = true;
+            return new HtmlElement(
+                'pre',
+                [],
+                new HtmlElement('code', ['class' => 'katex'], Xml::escape($block->getStringContent()))
+            );
+        }
+
+        if ($language === 'mermaid') {
+            $this->config['__confluence__mermaid'] = true;
+            return new HtmlElement('div', ['class' => 'mermaid'], Xml::escape($block->getStringContent()));
+        }
 
         return $this->getHTMLElement($block->getStringContent(), $language);
     }
