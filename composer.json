@@ -17,7 +17,7 @@
     ],
     "bin": ["bin/daux"],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "guzzlehttp/guzzle": "~6.0 || ~7.0",
         "league/commonmark": "^1.0.0",
         "league/plates": "~3.1",
