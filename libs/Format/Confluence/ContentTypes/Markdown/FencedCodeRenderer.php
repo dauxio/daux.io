@@ -40,7 +40,10 @@ class FencedCodeRenderer extends CodeRenderer
     ];
     protected $known_conversions = ['html' => 'html/xml', 'xml' => 'html/xml', 'js' => 'javascript'];
 
-    protected Config $config;
+    /**
+     * @var Config
+     */
+    protected $config;
 
     function __construct(Config $config) {
         $this->config = $config;
