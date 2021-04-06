@@ -168,7 +168,7 @@ Many other options are available:
 
 ## Running Remotely
 
-Copy the files from the repo to a web server that can run PHP 7.2.0 or newer.
+Copy the files from the repo to a web server that can run PHP 7.3.0 or newer.
 
 ## Running Locally
 
@@ -235,7 +235,7 @@ To use clean URLs on IIS 6, you will need to use a custom URL rewrite module, su
 
 ## PHP Requirements
 
-Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions; 7.2.0 and up.
+Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions; 7.3.0 and up.
 
 ### Extensions
 
