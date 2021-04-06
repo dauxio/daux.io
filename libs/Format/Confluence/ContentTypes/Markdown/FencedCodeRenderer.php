@@ -73,7 +73,11 @@ class FencedCodeRenderer extends CodeRenderer
 
         if ($language === 'mermaid') {
             $this->config['__confluence__mermaid'] = true;
-            return new HtmlElement('div', ['class' => 'mermaid'], Xml::escape($block->getStringContent()));
+            // We render this as <pre> so confluence will leave the content as-is, otherwise it will remove
+            // newlines and other formatting.
+            // There is a script to transform it back to a <div>
+            // Also, if the diagram can't be rendered at least it is displayed in a formatted way
+            return new HtmlElement('pre', ['class' => 'mermaid'], Xml::escape($block->getStringContent()));
         }
 
         return $this->getHTMLElement($block->getStringContent(), $language);

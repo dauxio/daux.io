@@ -14,7 +14,7 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
 return <<<EOD
 <ac:structured-macro ac:name="html">
    <ac:plain-text-body> <![CDATA[
-
+<script>
 function daux_ready(fn) {
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", fn);
@@ -41,12 +41,12 @@ function daux_loadCSS(url) {
     head.appendChild(link);
 }
 
-ready(function() {
+daux_ready(function() {
     var codeBlocks = document.querySelectorAll("pre > code.katex");
     if (codeBlocks.length) {
-        loadCSS(`https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css`);
+        daux_loadCSS(`https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css`);
 
-        loadJS(`https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js`, function() {
+        daux_loadJS(`https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js`, function() {
             [].forEach.call(codeBlocks, function(e) {
                 var content = e.innerHTML;
                 var p = document.createElement("p");
@@ -66,14 +66,26 @@ ready(function() {
     }
 });
 
-ready(function() {
-    var mermaidBlocks = document.querySelectorAll("div.mermaid");
+daux_ready(function() {
+    var mermaidBlocks = document.querySelectorAll("pre.mermaid");
     if (mermaidBlocks.length) {
-        loadJS(`https://cdn.jsdelivr.net/npm/mermaid@8.9.1/dist/mermaid.min.js`, function() {
+        daux_loadJS(`https://cdn.jsdelivr.net/npm/mermaid@8.9.1/dist/mermaid.min.js`, function() {
+            [].forEach.call(mermaidBlocks, function(pre) {
+                var content = pre.innerHTML;
+                var div = document.createElement("div");
+                div.className = "mermaid";
+                div.innerHTML = content;
+
+                var container = pre.parentElement;
+                container.insertBefore(div, pre);
+                container.removeChild(pre);
+            });
+
             window.mermaid.initialize({ startOnLoad: true });
         });
     }
 });
+</script>
 ]]></ac:plain-text-body>
 </ac:structured-macro>
 

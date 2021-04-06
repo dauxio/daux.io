@@ -27,12 +27,12 @@ class ContentTypeTest extends TestCase
         $expected = <<<EOD
         <pre><code class="katex">c = \pm\sqrt{a^2 + b^2}\in\RR
         </code></pre>
-        <div class="mermaid">graph TD
+        <pre class="mermaid">graph TD
         A[Hard] --&gt;|Text| B(Round)
         B --&gt; C{Decision}
         C --&gt;|One| D[Result 1]
         C --&gt;|Two| E[Result 2]
-        </div>
+        </pre>
         <ac:structured-macro ac:name="html">
            <ac:plain-text-body> <![CDATA[...]]></ac:plain-text-body>
         </ac:structured-macro>
