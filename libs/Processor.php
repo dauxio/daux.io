@@ -36,7 +36,7 @@ class Processor
      * the tree as you want, move pages, modify
      * pages and even add new ones.
      */
-    public function manipulateTree(/* @scrutinizer ignore-unused */ Root $root)
+    public function manipulateTree(Root $root)
     {
     }
 
@@ -45,7 +45,7 @@ class Processor
      * a way to extend the Markdown
      * parser and renderer.
      */
-    public function extendCommonMarkEnvironment(/* @scrutinizer ignore-unused */ Environment $environment)
+    public function extendCommonMarkEnvironment(Environment $environment)
     {
     }
 
