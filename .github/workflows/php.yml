@@ -47,7 +47,8 @@ jobs:
 
   # Disabled until we find a fix for the Malformed input issue
   # https://community.sonarsource.com/t/analysis-failed-with-malformed-input-or-input-contains-unmappable-characters/19452/8
- sonarcloud:
+
+  sonarcloud:
     name: "SonarCloud"
     runs-on: ubuntu-latest
     steps:
