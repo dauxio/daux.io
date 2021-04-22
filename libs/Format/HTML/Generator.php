@@ -99,6 +99,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
      */
     private function sanitize($text)
     {
+        $space = ' ';
+        $addNewline = "\n\$0";
+
         $text = preg_replace(
             [
                 // Remove invisible content
@@ -121,9 +124,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
                 '@</?((frameset)|(frame)|(iframe))@iu',
             ],
             [
-                ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-                "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0",
-                "\n\$0", "\n\$0",
+                $space, $space, $space, $space, $space, $space, $space, $space, $space,
+                $addNewline, $addNewline, $addNewline, $addNewline, $addNewline,
+                $addNewline, $addNewline, $addNewline,
             ],
             $text
         );

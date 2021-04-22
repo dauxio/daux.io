@@ -30,15 +30,14 @@ class ErrorPage extends SimplePage
      */
     protected function generatePage()
     {
-        $config = $this->config;
         $page = [
             'title' => $this->title,
             'content' => $this->getPureContent(),
             'language' => '',
         ];
 
-        $template = new Template($config);
+        $template = new Template($this->config);
 
-        return $template->render('error', ['page' => $page, 'config' => $config]);
+        return $template->render('error', ['page' => $page, 'config' => $this->config]);
     }
 }

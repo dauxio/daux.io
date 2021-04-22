@@ -53,7 +53,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
      */
     private function createImageTag($filename, $attributes)
     {
-        $img = '<ac:image';
+        $img = "";
 
         foreach ($attributes as $name => $value) {
             if ($name == 'style') {
@@ -67,8 +67,6 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             $img .= ' ac:' . $name . '="' . htmlentities($value, ENT_QUOTES, 'UTF-8', false) . '"';
         }
 
-        $img .= "><ri:attachment ri:filename=\"$filename\" /></ac:image>";
-
-        return $img;
+        return '<ac:image' . $img . "><ri:attachment ri:filename=\"$filename\" /></ac:image>";
     }
 }

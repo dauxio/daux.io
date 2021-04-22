@@ -85,7 +85,7 @@ class FencedCodeRenderer extends CodeRenderer
 
     public function getLanguage($infoWords)
     {
-        if (count($infoWords) === 0 || strlen($infoWords[0]) === 0) {
+        if (empty($infoWords) || strlen($infoWords[0]) === 0) {
             return false;
         }
 

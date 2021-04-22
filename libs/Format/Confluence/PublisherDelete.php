@@ -73,7 +73,7 @@ class PublisherDelete
         $this->output->writeLn('Listing obsolete pages...');
         $this->output->writeLn('> The following pages will not be deleted, but just listed for information.');
         $this->output->writeLn('> If you want to delete these pages, you need to set the --delete flag on the command.');
-        foreach ($this->deletable as $id => $title) {
+        foreach ($this->deletable as $title) {
             $this->output->writeLn("- $title");
         }
     }

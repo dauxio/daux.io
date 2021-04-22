@@ -153,12 +153,8 @@ class Processor
                 continue;
             }
 
-            //if ($heading->getLevel() == $previous->getLevel()) {
             $previous->getParent()->addChild($heading);
             $previous = $heading;
-
-            continue;
-            //}
         }
 
         return $root;

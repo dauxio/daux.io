@@ -115,7 +115,7 @@ class Api
         // We set a limit of 15 as it appears that
         // Confluence fails silently when retrieving
         // more than 20 entries with "body.storage"
-        $base_url = $url = "content/$rootPage/child/page?expand=version,body.storage&limit=$increment";
+        $baseUrl = $url = "content/$rootPage/child/page?expand=version,body.storage&limit=$increment";
         $start = 0;
 
         $pages = [];
@@ -144,7 +144,7 @@ class Api
             // it doesn't show any new elements. This seems
             // to be a bug in Confluence
             $start += $increment;
-            $url = "$base_url&start=$start";
+            $url = "$baseUrl&start=$start";
         } while (!empty($hierarchy['results']));
 
         return $pages;

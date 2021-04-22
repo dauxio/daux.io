@@ -50,7 +50,7 @@ class BaseConfig extends ArrayObject
 
     public function isTruthy($key)
     {
-        return $this->hasValue($key) && !!$this->getValue($key);
+        return $this->hasValue($key) && (bool)$this->getValue($key);
     }
 
     public function setValue($key, $value)

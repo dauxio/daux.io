@@ -304,7 +304,6 @@ class DauxHelper
 
                     break;
                 }
-                //$relPath[0] = './' . $relPath[0];
             }
         }
 
