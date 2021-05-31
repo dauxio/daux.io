@@ -1,4 +1,4 @@
-FROM composer:2.0.13 AS composer
+FROM composer:2.0.14 AS composer
 
 FROM php:7-stretch
 
