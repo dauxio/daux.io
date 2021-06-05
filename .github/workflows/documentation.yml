@@ -21,7 +21,7 @@ jobs:
     - name: Generate documentation
       run: bin/daux generate --value html.plausible_domain=daux.io
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.3
+      uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         folder: "static"
         branch: gh-pages
