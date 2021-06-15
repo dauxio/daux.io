@@ -8,7 +8,6 @@ use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Format\HTML\Template;
 use Todaymade\Daux\Tree\Builder;
-use Todaymade\Daux\Tree\Entry;
 use Todaymade\Daux\Tree\Root;
 
 /**
@@ -56,13 +55,18 @@ class TranslateTest extends TestCase
     public function testTranslate($expectedTranslation, $language)
     {
         $current = $language . '/Page.html';
-        $entry = $this->prophesize(Entry::class);
 
         $config = new Config();
         $config->setTree($this->getTree($config));
+        $config->setValue('docs_directory', '');
+        $config->setValue('valid_content_extensions', []);
+
+        $root = new Root($config);
+        $entry = Builder::getOrCreatePage($root, 'index');
+
         $config->merge([
             'title' => '',
-            'index' => $entry->reveal(),
+            'index' => $entry,
             'language' => $language,
             'base_url' => '',
             'templates' => '',

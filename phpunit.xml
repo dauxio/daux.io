@@ -8,16 +8,19 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
     >
+
     <testsuites>
         <testsuite name="Daux Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
+    <coverage>
+        <include>
             <directory suffix=".php">libs</directory>
-        </whitelist>
-    </filter>
+        </include>
+    </coverage>
 </phpunit>
