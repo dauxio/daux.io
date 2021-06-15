@@ -11,10 +11,13 @@ The connection requires three parameters `base_url`, `user` and `pass`. While `u
     "confluence": {
         "base_url": "http://my_confluence_server.com/",
         "user": "my_username",
-        "pass": "my_password"
+        "pass": "my_password_or_token"
     }
 }
 ```
+
+If you are using Atlassian.com you might need to use a token instead of a password.
+You can create a token by [following this documentation](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
 
 ## Where to upload
 
