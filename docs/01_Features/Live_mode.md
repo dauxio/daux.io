@@ -31,9 +31,13 @@ Copy the files from the repo to a web server that can run PHP 7.3.0 or newer.
 
 There is an included `.htaccess` for Apache web server.
 
+You can follow this tutorial for [install apache on Ubuntu/Debian](https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart).
+
 ### Nginx
 
 Daux.io works perfectly fine on Nginx too, just drop this configuration in your `nginx.conf`
+
+You can follow this tutorial for [install nginx on Ubuntu/Debian](https://www.armanism.com/blog/install-nginx-on-ubuntu).
 
 ```
 server {
