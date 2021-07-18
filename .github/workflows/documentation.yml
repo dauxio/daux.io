@@ -20,11 +20,18 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
     - name: Generate documentation
       run: bin/daux generate --value html.plausible_domain=daux.io
-    - name: Deploy 🚀
+    - name: Deploy same repository 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         folder: "static"
         branch: gh-pages
+    - name: Deploy daux.io 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        folder: "static"
+        token: ${{ secrets.GH_TOKEN_DAUX }}
+        branch: master
+        repository-name: dauxio/dauxio.github.io
 
   confluence:
     runs-on: ubuntu-latest
@@ -39,7 +46,5 @@ jobs:
         extensions: mbstring, dom, intl
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
-    - name: Generate documentation
-      run: bin/daux generate --value html.plausible_domain=daux.io
     - name: Deploy 🚀
       run: bin/daux generate -f confluence --value confluence.user=${{ secrets.CONFLUENCE_USERNAME }} --value confluence.pass=${{ secrets.CONFLUENCE_PASSWORD }}
