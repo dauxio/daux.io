@@ -2,11 +2,9 @@
 
 class ConfigBuilder
 {
-    /** @var Config */
-    private $config;
+    private Config $config;
 
-    /** @var array */
-    private $overrideValues = [];
+    private array $overrideValues = [];
 
     private $configuration_override_file;
 

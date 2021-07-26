@@ -13,11 +13,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
     use RunAction;
     use HTMLUtils;
 
-    /** @var Daux */
-    protected $daux;
+    protected Daux $daux;
 
-    /** @var Template */
-    protected $templateRenderer;
+    protected Template $templateRenderer;
 
     public function __construct(Daux $daux)
     {

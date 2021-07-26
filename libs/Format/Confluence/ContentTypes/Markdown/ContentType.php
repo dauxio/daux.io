@@ -93,7 +93,6 @@ EOD;
 
     }
 
-
     protected function doConversion($raw)
     {
         $content = parent::doConversion($raw);

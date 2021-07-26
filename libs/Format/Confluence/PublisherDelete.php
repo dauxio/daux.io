@@ -1,26 +1,22 @@
 <?php namespace Todaymade\Daux\Format\Confluence;
 
+use Symfony\Component\Console\Output\OutputInterface;
+
 class PublisherDelete
 {
-    /**
-     * @var \Symfony\Component\Console\Output\OutputInterface
-     */
-    public $output;
+    public OutputInterface $output;
 
     /**
      * @var array files that can be deleted
      */
-    protected $deletable;
+    protected array $deletable;
 
     /**
      * @var bool should delete ?
      */
-    protected $delete;
+    protected bool $delete;
 
-    /**
-     * @var Api
-     */
-    protected $client;
+    protected Api $client;
 
     public function __construct($output, bool $delete, $client)
     {

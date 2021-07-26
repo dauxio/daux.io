@@ -19,11 +19,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
     use RunAction;
     use HTMLUtils;
 
-    /** @var Daux */
-    protected $daux;
+    protected Daux $daux;
 
-    /** @var Template */
-    protected $templateRenderer;
+    protected Template $templateRenderer;
 
     protected $indexed_pages = [];
 

@@ -16,14 +16,11 @@ use Todaymade\Daux\Format\HTML\RawPage;
 
 class Server
 {
-    private $daux;
+    private Daux $daux;
     private $config;
-    private $base_url;
+    private string $base_url;
 
-    /**
-     * @var Request
-     */
-    private $request;
+    private Request $request;
 
     public function __construct(Daux $daux)
     {

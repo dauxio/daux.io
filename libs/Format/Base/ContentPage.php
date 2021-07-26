@@ -6,20 +6,11 @@ use Todaymade\Daux\Tree\Content;
 
 abstract class ContentPage extends SimplePage
 {
-    /**
-     * @var Content
-     */
-    protected $file;
+    protected Content $file;
 
-    /**
-     * @var Config
-     */
-    protected $config;
+    protected Config $config;
 
-    /**
-     * @var ContentType
-     */
-    protected $contentType;
+    protected ContentType $contentType;
 
     protected $generatedContent;
 

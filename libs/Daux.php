@@ -3,6 +3,7 @@
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\ContentTypes\ContentTypeHandler;
+use Todaymade\Daux\Format\Base\Generator;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Root;
 
@@ -13,32 +14,27 @@ class Daux
 
     public static $output;
 
-    /** @var Tree\Root */
-    public $tree;
+    public ?Root $tree;
 
-    /** @var Config */
-    public $config;
+    public Config $config;
 
-    /** @var \Todaymade\Daux\Format\Base\Generator */
-    protected $generator;
+    protected Generator $generator;
 
-    /** @var ContentTypeHandler */
-    protected $typeHandler;
+    protected ContentTypeHandler $typeHandler;
 
     /** @var string[] */
     protected $validExtensions;
 
-    /** @var Processor */
-    protected $processor;
+    protected ?Processor $processor;
 
-    /** @var bool */
-    private $merged_tree = false;
+    private bool $merged_tree = false;
 
     public function __construct(Config $config, OutputInterface $output)
     {
         Daux::$output = $output;
 
         $this->config = $config;
+        $this->tree = null;
     }
 
     /**
@@ -75,7 +71,6 @@ class Daux
         if ($this->tree && !$this->merged_tree) {
             $this->config->setTree($this->tree);
             $this->config->setIndex($this->tree->getIndexPage() ?: $this->tree->getFirstPage());
-            $entry_page = null;
             if ($this->config->isMultilanguage()) {
                 $entry_page = [];
                 foreach ($this->config->getLanguages() as $key => $name) {
@@ -106,7 +101,7 @@ class Daux
      */
     public function getProcessor()
     {
-        if (!$this->processor) {
+        if (!isset($this->processor)) {
             $this->processor = new Processor($this, Daux::getOutput(), 0);
         }
 
@@ -138,10 +133,10 @@ class Daux
 
     /**
      * Processor class
-     * 
-     * You can provide absolute class name or short class name if processor locates in \Todaymade\Daux\Extension namespace. 
+     *
+     * You can provide absolute class name or short class name if processor locates in \Todaymade\Daux\Extension namespace.
      * Location: vendor/daux/daux.io/daux
-     * 
+     *
      * @see \Todaymade\Daux\Extension\Processor
      * @example -p \\Todaymade\\Daux\\Extension\\Processor
      * @throws \RuntimeException
@@ -154,15 +149,15 @@ class Daux
         if (empty($processor)) {
             return null;
         }
-        
+
         if (!strstr($processor, "\\")) {
             $processor = '\\Todaymade\\Daux\\Extension\\' . $processor;
         }
-        
+
         if (!class_exists($processor)) {
             throw new \RuntimeException("Class '$processor' not found. We cannot use it as a Processor");
         }
-        
+
         if (!array_key_exists('Todaymade\\Daux\\Processor', class_parents($processor))) {
             throw new \RuntimeException("Class '$processor' invalid, should extend '\\Todaymade\\Daux\\Processor'");
         }
@@ -190,7 +185,7 @@ class Daux
      */
     public function getGenerator()
     {
-        if ($this->generator) {
+        if (isset($this->generator)) {
             return $this->generator;
         }
 
@@ -229,7 +224,7 @@ class Daux
 
     public function getContentTypeHandler()
     {
-        if ($this->typeHandler) {
+        if (isset($this->typeHandler)) {
             return $this->typeHandler;
         }
 

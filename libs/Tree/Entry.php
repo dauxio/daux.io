@@ -4,23 +4,17 @@ use SplFileInfo;
 
 abstract class Entry
 {
-    /** @var string */
-    protected $title;
+    protected ?string $title;
 
-    /** @var string */
-    protected $name;
+    protected ?string $name;
 
-    /** @var string */
-    protected $uri;
+    protected ?string $uri;
 
-    /** @var Directory */
-    protected $parent;
+    protected ?Directory $parent;
 
-    /** @var SplFileInfo */
-    protected $info;
+    protected SplFileInfo $info;
 
-    /** @var string */
-    protected $path;
+    protected string $path;
 
     /**
      * @param string $uri
@@ -28,6 +22,8 @@ abstract class Entry
      */
     public function __construct(Directory $parent, $uri, SplFileInfo $info = null)
     {
+        $this->title = null;
+        $this->name = null;
         $this->setUri($uri);
         $this->setParent($parent);
 
@@ -37,65 +33,47 @@ abstract class Entry
         }
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): ?string
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : null;
     }
 
-    /**
-     * @param string $name
-     */
-    public function setName($name)
+    public function setName($name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return string
-     */
-    public function getUri()
+    public function getUri(): ?string
     {
         return $this->uri;
     }
 
-    /**
-     * @param string $uri
-     */
-    public function setUri($uri)
+    public function setUri($uri): void
     {
-        if ($this->parent) {
+        if (isset($this->parent)) {
             $this->parent->removeChild($this);
         }
 
         $this->uri = $uri;
 
-        if ($this->parent) {
+        if (isset($this->parent)) {
             $this->parent->addChild($this);
         }
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): ?string
     {
-        return $this->title;
+        return isset($this->title) ? $this->title : null;
     }
 
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    /**
-     * @return Directory
-     */
     public function getParent(): ?Directory
     {
-        return $this->parent;
+        return isset($this->parent) ? $this->parent : null;
     }
 
     /**
@@ -114,9 +92,9 @@ abstract class Entry
         return $parents;
     }
 
-    protected function setParent(Directory $parent)
+    protected function setParent(Directory $parent): void
     {
-        if ($this->parent) {
+        if (isset($this->parent)) {
             $this->parent->removeChild($this);
         }
 

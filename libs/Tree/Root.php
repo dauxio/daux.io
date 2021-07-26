@@ -4,11 +4,9 @@ use Todaymade\Daux\Config;
 
 class Root extends Directory
 {
-    /** @var Config */
-    protected $config;
+    protected Config $config;
 
-    /** @var Entry */
-    protected $activeNode;
+    protected Entry $activeNode;
 
     /**
      * The root doesn't have a parent.

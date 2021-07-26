@@ -1,31 +1,20 @@
 <?php namespace Todaymade\Daux\Format\Confluence;
 
 use GuzzleHttp\Exception\BadResponseException;
+use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Console\RunAction;
 
 class Publisher
 {
     use RunAction;
 
-    /**
-     * @var int terminal width
-     */
-    public $width;
+    public int $width;
 
-    /**
-     * @var \Symfony\Component\Console\Output\OutputInterface
-     */
-    public $output;
+    public OutputInterface $output;
 
-    /**
-     * @var Api
-     */
-    protected $client;
+    protected Api $client;
 
-    /**
-     * @var Config
-     */
-    protected $confluence;
+    protected Config $confluence;
 
     /**
      * @param $confluence

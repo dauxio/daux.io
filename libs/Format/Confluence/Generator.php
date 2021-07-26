@@ -12,11 +12,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
 {
     use RunAction;
 
-    /** @var string */
-    protected $prefix;
+    protected string $prefix;
 
-    /** @var Daux */
-    protected $daux;
+    protected Daux $daux;
 
     public function __construct(Daux $daux)
     {

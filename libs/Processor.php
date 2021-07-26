@@ -6,25 +6,13 @@ use Todaymade\Daux\Tree\Root;
 
 class Processor
 {
-    /**
-     * @var Daux
-     */
-    protected $daux;
+    protected Daux $daux;
 
-    /**
-     * @var OutputInterface
-     */
-    protected $output;
+    protected OutputInterface $output;
 
-    /**
-     * @var int
-     */
-    protected $width;
+    protected int $width;
 
-    /**
-     * @param int $width
-     */
-    public function __construct(Daux $daux, OutputInterface $output, $width)
+    public function __construct(Daux $daux, OutputInterface $output, int $width)
     {
         $this->daux = $daux;
         $this->output = $output;

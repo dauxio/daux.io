@@ -2,8 +2,7 @@
 
 abstract class ContentAbstract extends Entry
 {
-    /** @var string */
-    protected $content;
+    protected string $content;
 
     public function getContent(): string
     {

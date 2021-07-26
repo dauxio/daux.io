@@ -4,19 +4,11 @@ use Todaymade\Daux\Tree\Root;
 
 class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 {
-    /**
-     * @var Template
-     */
-    public $templateRenderer;
-    /**
-     * @var string
-     */
-    private $language;
+    public Template $templateRenderer;
 
-    /**
-     * @var bool
-     */
-    private $homepage;
+    private string $language;
+
+    private bool $homepage;
 
     private function isHomepage(): bool
     {

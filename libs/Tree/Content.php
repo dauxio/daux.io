@@ -1,24 +1,26 @@
 <?php namespace Todaymade\Daux\Tree;
 
 use RuntimeException;
+use SplFileInfo;
 use Webuni\FrontMatter\FrontMatter;
 
 class Content extends ContentAbstract
 {
-    /** @var string */
-    protected $content;
+    protected string $content;
 
-    /** @var Content */
-    protected $previous;
+    protected ?Content $previous;
 
-    /** @var Content */
-    protected $next;
+    protected ?Content $next;
 
-    /** @var array */
-    protected $attributes;
+    protected array $attributes;
 
-    /** @var bool */
-    protected $manuallySetContent = false;
+    protected bool $manuallySetContent = false;
+
+    public function __construct(Directory $parent, $uri, SplFileInfo $info = null) {
+        parent::__construct($parent, $uri, $info);
+        $this->previous = null;
+        $this->next = null;
+    }
 
     protected function getFrontMatter()
     {
@@ -42,7 +44,7 @@ class Content extends ContentAbstract
 
     public function getContent(): string
     {
-        if ($this->attributes === null) {
+        if (!isset($this->attributes)) {
             $this->parseAttributes();
         }
 
@@ -126,7 +128,7 @@ class Content extends ContentAbstract
      */
     public function getAttribute($key = null)
     {
-        if ($this->attributes === null) {
+        if (!isset($this->attributes)) {
             $this->parseAttributes();
         }
 

@@ -1,5 +1,6 @@
 <?php namespace Todaymade\Daux\Server;
 
+use Todaymade\Daux\Config;
 use Todaymade\Daux\Format\HTML\SimplePage;
 use Todaymade\Daux\Format\HTML\Template;
 
@@ -9,10 +10,7 @@ class ErrorPage extends SimplePage
     const MISSING_PAGE_ERROR_TYPE = 'MISSING_PAGE_ERROR';
     const FATAL_ERROR_TYPE = 'FATAL_ERROR';
 
-    /**
-     * @var \Todaymade\Daux\Config
-     */
-    private $config;
+    private Config $config;
 
     /**
      * @param string $title

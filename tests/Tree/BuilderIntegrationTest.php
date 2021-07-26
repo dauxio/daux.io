@@ -8,10 +8,7 @@ use Todaymade\Daux\ConfigBuilder;
 
 class BuilderIntegrationTest extends TestCase
 {
-    /**
-     * @var vfsStreamDirectory
-     */
-    private $root;
+    private vfsStreamDirectory $root;
 
     public function setUp(): void
     {

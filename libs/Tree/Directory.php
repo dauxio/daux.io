@@ -9,8 +9,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     /** @var Entry[] */
     protected $children = [];
 
-    /** @var Content */
-    protected $first_page;
+    protected Content $first_page;
 
     public function sort()
     {
@@ -192,7 +191,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 
     public function getFirstPage(): ?Content
     {
-        if ($this->first_page) {
+        if (isset($this->first_page)) {
             return $this->first_page;
         }
 

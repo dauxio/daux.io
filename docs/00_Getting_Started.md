@@ -145,7 +145,7 @@ Now that you got the basics, you can also [see what you can configure](05_Config
 
 ## PHP Requirements
 
-Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions; 7.3.0 and up.
+Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions; 7.4.0 and up.
 
 ### Extensions
 

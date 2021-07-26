@@ -13,7 +13,7 @@ jobs:
       max-parallel: 15
       matrix:
         operating-system: [ubuntu-latest, macOS-latest]
-        php-versions: ['7.3', '7.4', '8.0']
+        php-versions: ['7.4', '8.0']
         # TODO : enable tests on windows
         #include:
         #  - operating-system: windows-latest

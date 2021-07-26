@@ -8,11 +8,9 @@ use Todaymade\Daux\Tree\Content;
 
 class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
 {
-    /** @var Config */
-    protected $config;
+    protected Config $config;
 
-    /** @var CommonMarkConverter */
-    private $converter;
+    private ?CommonMarkConverter $converter;
 
     public function __construct(Config $config)
     {
@@ -26,7 +24,7 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
 
     protected function getConverter()
     {
-        if (!$this->converter) {
+        if (!isset($this->converter)) {
             $this->converter = $this->createConverter();
         }
 
