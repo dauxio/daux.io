@@ -1,28 +1,41 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
-use League\CommonMark\Block\Element as BlockElement;
-use League\CommonMark\Environment;
-use League\CommonMark\Inline\Element as InlineElement;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\TableOfContents\Node\TableOfContents;
+use League\CommonMark\Extension\TableOfContents\Node\TableOfContentsPlaceholder;
+use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use Todaymade\Daux\Config;
-use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;
 
 class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMarkConverter
 {
-    protected function getLinkRenderer(Environment $environment)
+    public function __construct($config)
     {
-        return new LinkRenderer($environment->getConfig('daux'));
+        $config['table_of_contents'] = [
+            'position' => 'placeholder',
+            'placeholder' => '[TOC]'
+        ];
+
+        parent::__construct($config);
+    }
+
+    protected function getLinkRenderer(Config $config)
+    {
+        return new LinkRenderer($config);
     }
 
     protected function extendEnvironment(Environment $environment, Config $config)
     {
         parent::extendEnvironment($environment, $config);
 
-        $environment->addBlockRenderer(TableOfContents::class, new TOCRenderer());
+        $environment->addExtension(new TableOfContentsExtension());
 
-        //Add code renderer
-        $environment->addBlockRenderer(BlockElement\FencedCode::class, new FencedCodeRenderer($config));
-        $environment->addBlockRenderer(BlockElement\IndentedCode::class, new IndentedCodeRenderer());
-
-        $environment->addInlineRenderer(InlineElement\Image::class, new ImageRenderer());
+        $environment->addRenderer(TableOfContents::class, new TableOfContentsRenderer());
+        $environment->addRenderer(TableOfContentsPlaceholder::class, new TableOfContentsRenderer());
+        $environment->addRenderer(FencedCode::class, new FencedCodeRenderer($config));
+        $environment->addRenderer(IndentedCode::class, new IndentedCodeRenderer());
+        $environment->addRenderer(Image::class, new ImageRenderer());
     }
 }

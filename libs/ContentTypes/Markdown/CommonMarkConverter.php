@@ -1,29 +1,35 @@
 <?php namespace Todaymade\Daux\ContentTypes\Markdown;
 
-use League\CommonMark\Environment;
+use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\SmartPunct\SmartPunctExtension;
 use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\Extension\Table\TableExtension;
-use League\CommonMark\Inline\Element as InlineElement;
+use League\CommonMark\MarkdownConverter;
 use Todaymade\Daux\Config;
 
-class CommonMarkConverter extends \League\CommonMark\CommonMarkConverter
+class CommonMarkConverter extends MarkdownConverter
 {
     /**
-     * Create a new commonmark converter instance.
+     * Create a new Markdown converter pre-configured for CommonMark
+     *
+     * @param array<string, mixed> $config
      */
     public function __construct(array $config = [])
     {
-        $environment = Environment::createCommonMarkEnvironment();
-        $environment->mergeConfig($config);
+        // We have a custom normalizer that does some transliteration
+        $config['slug_normalizer']['instance'] = new TextNormalization();
+
+        $environment = new Environment($config);
+        $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new AutolinkExtension());
         $environment->addExtension(new SmartPunctExtension());
         $environment->addExtension(new StrikethroughExtension());
         $environment->addExtension(new TableExtension());
 
-        // Table of Contents
-        $environment->addBlockParser(new TableOfContentsParser());
+        $environment->addExtension(new DauxExtension());
 
         $this->extendEnvironment($environment, $config['daux']);
 
@@ -31,16 +37,16 @@ class CommonMarkConverter extends \League\CommonMark\CommonMarkConverter
             $config['daux']->getProcessorInstance()->extendCommonMarkEnvironment($environment);
         }
 
-        parent::__construct($config, $environment);
+        parent::__construct($environment);
     }
 
-    protected function getLinkRenderer(Environment $environment)
+    protected function getLinkRenderer(Config $config)
     {
-        return new LinkRenderer($environment->getConfig('daux'));
+        return new LinkRenderer($config);
     }
 
     protected function extendEnvironment(Environment $environment, Config $config)
     {
-        $environment->addInlineRenderer(InlineElement\Link::class, $this->getLinkRenderer($environment));
+        $environment->addRenderer(Link::class, $this->getLinkRenderer($config));
     }
 }

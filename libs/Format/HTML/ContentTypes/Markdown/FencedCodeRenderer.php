@@ -1,19 +1,16 @@
 <?php namespace Todaymade\Daux\Format\HTML\ContentTypes\Markdown;
 
 use Highlight\Highlighter;
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\FencedCode;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
 use League\CommonMark\Util\Xml;
 
-class FencedCodeRenderer implements BlockRendererInterface
+class FencedCodeRenderer implements NodeRendererInterface
 {
-    /**
-     * @var Highlighter
-     */
-    private $hl;
+    private Highlighter $hl;
 
     public function __construct()
     {
@@ -24,7 +21,7 @@ class FencedCodeRenderer implements BlockRendererInterface
         return new HtmlElement(
             'pre',
             [],
-            new HtmlElement('code', $attrs, $content)
+            new HtmlElement('code', $attrs->export(), $content)
         );
     }
 
@@ -33,20 +30,15 @@ class FencedCodeRenderer implements BlockRendererInterface
      *
      * @return HtmlElement|string
      */
-    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
-        if (!($block instanceof FencedCode)) {
-            throw new \InvalidArgumentException('Incompatible block type: ' . get_class($block));
-        }
+        FencedCode::assertInstanceOf($node);
 
-        $attrs = [];
-        foreach ($block->getData('attributes', []) as $key => $value) {
-            $attrs[$key] = Xml::escape($value);
-        }
+        $attrs = $node->data->getData('attributes');
 
-        $content = $block->getStringContent();
+        $content = $node->getLiteral();
 
-        $language = $this->getLanguage($block->getInfoWords());
+        $language = $this->getLanguage($node->getInfoWords());
 
         if ($language === 'tex') {
             $attrs['class'] = 'katex';

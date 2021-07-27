@@ -1,9 +1,9 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\FencedCode;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
 use League\CommonMark\Util\Xml;
 use Todaymade\Daux\Config;
 
@@ -40,13 +40,10 @@ class FencedCodeRenderer extends CodeRenderer
     ];
     protected $known_conversions = ['html' => 'html/xml', 'xml' => 'html/xml', 'js' => 'javascript'];
 
-    /**
-     * @var Config
-     */
-    protected $config;
+    protected Config $dauxConfig;
 
-    function __construct(Config $config) {
-        $this->config = $config;
+    function __construct(Config $dauxConfig) {
+        $this->dauxConfig = $dauxConfig;
     }
 
     /**
@@ -54,33 +51,31 @@ class FencedCodeRenderer extends CodeRenderer
      *
      * @return HtmlElement|string
      */
-    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
-        if (!($block instanceof FencedCode)) {
-            throw new \InvalidArgumentException('Incompatible block type: ' . get_class($block));
-        }
+        FencedCode::assertInstanceOf($node);
 
-        $language = $this->getLanguage($block->getInfoWords());
+        $language = $this->getLanguage($node->getInfoWords());
 
         if ($language === 'tex') {
-            $this->config['__confluence__tex'] = true;
+            $this->dauxConfig['__confluence__tex'] = true;
             return new HtmlElement(
                 'pre',
                 [],
-                new HtmlElement('code', ['class' => 'katex'], Xml::escape($block->getStringContent()))
+                new HtmlElement('code', ['class' => 'katex'], Xml::escape($node->getLiteral()))
             );
         }
 
         if ($language === 'mermaid') {
-            $this->config['__confluence__mermaid'] = true;
+            $this->dauxConfig['__confluence__mermaid'] = true;
             // We render this as <pre> so confluence will leave the content as-is, otherwise it will remove
             // newlines and other formatting.
             // There is a script to transform it back to a <div>
             // Also, if the diagram can't be rendered at least it is displayed in a formatted way
-            return new HtmlElement('pre', ['class' => 'mermaid'], Xml::escape($block->getStringContent()));
+            return new HtmlElement('pre', ['class' => 'mermaid'], Xml::escape($node->getLiteral()));
         }
 
-        return $this->getHTMLElement($block->getStringContent(), $language);
+        return $this->getHTMLElement($node->getLiteral(), $language);
     }
 
     public function getLanguage($infoWords)

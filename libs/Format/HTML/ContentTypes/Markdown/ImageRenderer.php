@@ -1,37 +1,27 @@
 <?php namespace Todaymade\Daux\Format\HTML\ContentTypes\Markdown;
 
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Image;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
-use League\CommonMark\Util\ConfigurationAwareInterface;
-use League\CommonMark\Util\ConfigurationInterface;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\CommonMark\Renderer\Inline\ImageRenderer as OriginalImageRenderer;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Xml\XmlNodeRendererInterface;
+use League\Config\ConfigurationAwareInterface;
+use League\Config\ConfigurationInterface;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception\LinkNotFoundException;
 
-class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterface
+class ImageRenderer implements NodeRendererInterface, XmlNodeRendererInterface, ConfigurationAwareInterface
 {
-    /**
-     * @var Config
-     */
-    protected $daux;
+    private Config $dauxConfig;
 
-    /**
-     * @var ConfigurationInterface
-     */
-    protected $config;
+    protected OriginalImageRenderer $parent;
 
-    /**
-     * @var \League\CommonMark\Inline\Renderer\ImageRenderer
-     */
-    protected $parent;
-
-    public function __construct($daux)
+    public function __construct(Config $dauxConfig)
     {
-        $this->daux = $daux;
-        $this->parent = new \League\CommonMark\Inline\Renderer\ImageRenderer();
+        $this->dauxConfig = $dauxConfig;
+        $this->parent = new OriginalImageRenderer();
     }
 
     /**
@@ -57,11 +47,11 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
         }
 
         try {
-            $file = DauxHelper::resolveInternalFile($this->daux, $url);
+            $file = DauxHelper::resolveInternalFile($this->dauxConfig, $url);
 
-            return DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
+            return DauxHelper::getRelativePath($this->dauxConfig->getCurrentPage()->getUrl(), $file->getUrl());
         } catch (LinkNotFoundException $e) {
-            if ($this->daux->isStatic()) {
+            if ($this->dauxConfig->isStatic()) {
                 throw $e;
             }
         }
@@ -70,26 +60,33 @@ class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterf
     }
 
     /**
-     * @param Image                    $inline
+     * @param Image $node
      *
-     * @throws LinkNotFoundException
+     * {@inheritDoc}
      *
-     * @return HtmlElement
+     * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
-        if (!($inline instanceof Image)) {
-            throw new \InvalidArgumentException('Incompatible inline type: ' . \get_class($inline));
-        }
+        Image::assertInstanceOf($node);
 
-        $inline->setUrl($this->getCleanUrl($inline->getUrl()));
+        $node->setUrl($this->getCleanUrl($node->getUrl()));
 
-        return $this->parent->render($inline, $htmlRenderer);
+        return $this->parent->render($node, $childRenderer);
     }
 
-    public function setConfiguration(ConfigurationInterface $configuration)
+    public function setConfiguration(ConfigurationInterface $configuration): void
     {
-        $this->config = $configuration;
         $this->parent->setConfiguration($configuration);
+    }
+
+    public function getXmlTagName(Node $node): string
+    {
+        return $this->parent->getXmlTagName($node);
+    }
+
+    public function getXmlAttributes(Node $node): array
+    {
+        return $this->parent->getXmlAttributes($node);
     }
 }

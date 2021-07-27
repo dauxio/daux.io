@@ -1,54 +1,49 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Image;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
-use League\CommonMark\Util\ConfigurationAwareInterface;
-use League\CommonMark\Util\ConfigurationInterface;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\CommonMark\Renderer\Inline\ImageRenderer as OriginalImageRenderer;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
+use League\Config\ConfigurationAwareInterface;
+use League\Config\ConfigurationInterface;
 
-class ImageRenderer implements InlineRendererInterface, ConfigurationAwareInterface
+class ImageRenderer implements NodeRendererInterface, ConfigurationAwareInterface
 {
-    /**
-     * @var ConfigurationInterface
-     */
-    protected $config;
+    protected ConfigurationInterface $config;
 
-    /**
-     * @var \League\CommonMark\Inline\Renderer\ImageRenderer
-     */
-    protected $parent;
+    protected OriginalImageRenderer $parent;
 
     public function __construct()
     {
-        $this->parent = new \League\CommonMark\Inline\Renderer\ImageRenderer();
+        $this->parent = new OriginalImageRenderer();
     }
 
     /**
-     * @param Image                    $inline
+     * @param Image $node
      *
-     * @return HtmlElement
+     * {@inheritDoc}
+     *
+     * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
-        if (!($inline instanceof Image)) {
-            throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
-        }
+        Image::assertInstanceOf($node);
 
         // External Images need special handling
-        if (strpos($inline->getUrl(), 'http') === 0) {
+        if (strpos($node->getUrl(), 'http') === 0) {
             return new HtmlElement(
                 'ac:image',
                 [],
-                new HtmlElement('ri:url', ['ri:value' => $inline->getUrl()])
+                new HtmlElement('ri:url', ['ri:value' => $node->getUrl()])
             );
         }
 
-        return $this->parent->render($inline, $htmlRenderer);
+        return $this->parent->render($node, $childRenderer);
     }
 
-    public function setConfiguration(ConfigurationInterface $configuration)
+    public function setConfiguration(ConfigurationInterface $configuration): void
     {
         $this->parent->setConfiguration($configuration);
     }

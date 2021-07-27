@@ -1,6 +1,6 @@
 <?php namespace Todaymade\Daux;
 
-use League\CommonMark\Environment;
+use League\CommonMark\Environment\Environment;
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Tree\Root;
 

@@ -34,7 +34,48 @@ class TableOfContentsTest extends TestCase
     {
         $converter = new CommonMarkConverter($this->getConfig());
 
-        $this->assertEquals("<h1 id=\"page_Test\">Test</h1>\n", $converter->convertToHtml('# Test'));
+        $this->assertEquals("<h1><a id=\"page_test\" href=\"#page_test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">#</a>Test</h1>\n", $converter->convertToHtml('# Test')->getContent());
+    }
+
+    public function testShouldAddTOCWhenAutoTOCisOn()
+    {
+        $config = $this->getConfig();
+        $config['daux']['html']['auto_toc'] = true;
+        $converter = new CommonMarkConverter($config);
+
+        $source = "# Title";
+        $expected = <<<'EXPECTED'
+<ul class="TableOfContents">
+<li>
+<a href="#page_title">Title</a>
+</li>
+</ul>
+<h1><a id="page_title" href="#page_title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
+
+EXPECTED;
+
+        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+    }
+
+    public function testShouldNotAddTOCWhenAutoTOCisOnAndTOCisPresent()
+    {
+        $config = $this->getConfig();
+        $config['daux']['html']['auto_toc'] = true;
+        $converter = new CommonMarkConverter($config);
+
+        $source = "Some Content\n[TOC]\n# Title";
+        $expected = <<<'EXPECTED'
+<p>Some Content</p>
+<ul class="TableOfContents">
+<li>
+<a href="#page_title">Title</a>
+</li>
+</ul>
+<h1><a id="page_title" href="#page_title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
+
+EXPECTED;
+
+        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
     }
 
     public function testTOCToken()
@@ -45,14 +86,14 @@ class TableOfContentsTest extends TestCase
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<p><a href="#page_Title">Title</a></p>
+<a href="#page_title">Title</a>
 </li>
 </ul>
-<h1 id="page_Title">Title</h1>
+<h1><a id="page_title" href="#page_title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source));
+        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
     }
 
     public function testUnicodeTOC()
@@ -63,18 +104,18 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<p><a href="#page_ji_chu_cao_zuo">基础操作</a></p>
+<a href="#page_ji_chu_cao_zuo">基础操作</a>
 </li>
 <li>
-<p><a href="#page_cao_zuo_ji_chu">操作基础</a></p>
+<a href="#page_cao_zuo_ji_chu">操作基础</a>
 </li>
 </ul>
-<h1 id="page_ji_chu_cao_zuo">基础操作</h1>
-<h1 id="page_cao_zuo_ji_chu">操作基础</h1>
+<h1><a id="page_ji_chu_cao_zuo" href="#page_ji_chu_cao_zuo" class="Permalink" aria-hidden="true" title="Permalink">#</a>基础操作</h1>
+<h1><a id="page_cao_zuo_ji_chu" href="#page_cao_zuo_ji_chu" class="Permalink" aria-hidden="true" title="Permalink">#</a>操作基础</h1>
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source));
+        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
     }
 
     public function testDuplicatedTOC()
@@ -85,22 +126,22 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<p><a href="#page_Test">Test</a></p>
+<a href="#page_test">Test</a>
 </li>
 <li>
-<p><a href="#page_Test-2">Test</a></p>
+<a href="#page_test-1">Test</a>
 </li>
 <li>
-<p><a href="#page_Test-3">Test</a></p>
+<a href="#page_test-2">Test</a>
 </li>
 </ul>
-<h1 id="page_Test">Test</h1>
-<h1 id="page_Test-2">Test</h1>
-<h1 id="page_Test-3">Test</h1>
+<h1><a id="page_test" href="#page_test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
+<h1><a id="page_test-1" href="#page_test-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
+<h1><a id="page_test-2" href="#page_test-2" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source));
+        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
     }
 
     public function testEscapedTOC()
@@ -111,16 +152,15 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<p><a href="#page_TEST_Test">TEST : Test</a></p>
+<a href="#page_test_test">TEST : Test</a>
 </li>
 </ul>
-<h1 id="page_TEST_Test">TEST : Test</h1>
+<h1><a id="page_test_test" href="#page_test_test" class="Permalink" aria-hidden="true" title="Permalink">#</a>TEST : Test</h1>
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source));
+        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
     }
-
 
     public function testQuotesWorkCorrectly()
     {
@@ -130,13 +170,13 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<p><a href="#page_Daux_s_bug">Daux’s bug</a></p>
+<a href="#page_daux_s_bug">Daux’s bug</a>
 </li>
 </ul>
-<h1 id="page_Daux_s_bug">Daux’s bug</h1>
+<h1><a id="page_daux_s_bug" href="#page_daux_s_bug" class="Permalink" aria-hidden="true" title="Permalink">#</a>Daux’s bug</h1>
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source));
+        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
     }
 }

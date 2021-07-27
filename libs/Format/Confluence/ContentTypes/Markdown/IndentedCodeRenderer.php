@@ -1,23 +1,22 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\IndentedCode;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
+use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
 
 class IndentedCodeRenderer extends CodeRenderer
 {
     /**
-     * @param bool $inTightList
+     * @param IndentedCode $node
      *
-     * @return HtmlElement
+     * {@inheritDoc}
+     *
+     * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = false)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
-        if (!($block instanceof IndentedCode)) {
-            throw new \InvalidArgumentException('Incompatible block type: ' . get_class($block));
-        }
+        IndentedCode::assertInstanceOf($node);
 
-        return $this->getHTMLElement($block->getStringContent(), '');
+        return $this->getHTMLElement($node->getLiteral(), '');
     }
 }

@@ -1,50 +1,42 @@
 <?php namespace Todaymade\Daux\ContentTypes\Markdown;
 
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Link;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
-use League\CommonMark\Util\ConfigurationAwareInterface;
-use League\CommonMark\Util\ConfigurationInterface;
+use League\CommonMark\Extension\CommonMark\Renderer\Inline\LinkRenderer as OriginalLinkRenderer;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\Config\ConfigurationAwareInterface;
+use League\Config\ConfigurationInterface;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception\LinkNotFoundException;
 
-class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterface
+class LinkRenderer implements NodeRendererInterface, ConfigurationAwareInterface
 {
-    /**
-     * @var Config
-     */
-    protected $daux;
+    protected Config $dauxConfig;
 
-    /**
-     * @var \League\CommonMark\Inline\Renderer\LinkRenderer
-     */
-    protected $parent;
+    protected OriginalLinkRenderer $parent;
 
-    public function __construct($daux)
+    public function __construct(Config $dauxConfig)
     {
-        $this->daux = $daux;
-        $this->parent = new \League\CommonMark\Inline\Renderer\LinkRenderer();
+        $this->dauxConfig = $dauxConfig;
+        $this->parent = new OriginalLinkRenderer();
     }
 
     /**
-     * @param AbstractInline|Link $inline
+     * @param Link $node
      *
-     * @throws LinkNotFoundException
+     * {@inheritDoc}
      *
-     * @return HtmlElement
+     * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
-        if (!($inline instanceof Link)) {
-            throw new \InvalidArgumentException('Incompatible inline type: ' . \get_class($inline));
-        }
+        Link::assertInstanceOf($node);
 
-        $element = $this->parent->render($inline, $htmlRenderer);
+        $element = $this->parent->render($node, $childRenderer);
 
-        $url = $inline->getUrl();
+        $url = $node->getUrl();
 
         // empty urls and anchors should
         // not go through the url resolver
@@ -68,14 +60,14 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         $foundWithHash = false;
 
         try {
-            $file = DauxHelper::resolveInternalFile($this->daux, $url);
-            $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
+            $file = DauxHelper::resolveInternalFile($this->dauxConfig, $url);
+            $url = DauxHelper::getRelativePath($this->dauxConfig->getCurrentPage()->getUrl(), $file->getUrl());
         } catch (LinkNotFoundException $e) {
             // For some reason, the filename could contain a # and thus the link needs to resolve to that.
             try {
                 if (strlen($urlAndHash[1] ?? '') > 0) {
-                    $file = DauxHelper::resolveInternalFile($this->daux, $url . '#' . $urlAndHash[1]);
-                    $url = DauxHelper::getRelativePath($this->daux->getCurrentPage()->getUrl(), $file->getUrl());
+                    $file = DauxHelper::resolveInternalFile($this->dauxConfig, $url . '#' . $urlAndHash[1]);
+                    $url = DauxHelper::getRelativePath($this->dauxConfig->getCurrentPage()->getUrl(), $file->getUrl());
                     $foundWithHash = true;
                 }
             } catch (LinkNotFoundException $e2) {
@@ -85,7 +77,7 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
             }
 
             if (!$foundWithHash) {
-                if ($this->daux->isStatic()) {
+                if ($this->dauxConfig->isStatic()) {
                     throw $e;
                 }
 
@@ -102,7 +94,7 @@ class LinkRenderer implements InlineRendererInterface, ConfigurationAwareInterfa
         return $element;
     }
 
-    public function setConfiguration(ConfigurationInterface $configuration)
+    public function setConfiguration(ConfigurationInterface $configuration): void
     {
         $this->parent->setConfiguration($configuration);
     }

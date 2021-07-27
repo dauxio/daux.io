@@ -78,7 +78,7 @@ class Builder
             }
 
             if ($file->isDir()) {
-                $title = DauxHelper::slug(static::removeSortingInformations($file->getFilename()));
+                $title = DauxHelper::urlSlug(static::removeSortingInformations($file->getFilename()));
                 $new = new Directory($node, $title, $file);
                 $new->setName(static::getName($file->getPathName()));
                 $new->setTitle(str_replace('_', ' ', static::removeSortingInformations($new->getName())));
@@ -116,7 +116,7 @@ class Builder
         }
 
         $uri = static::removeSortingInformations($name);
-        $uri = DauxHelper::slug($uri);
+        $uri = DauxHelper::urlSlug($uri);
         if ($config->isStatic()) {
             $uri .= '.html';
         }
@@ -160,7 +160,7 @@ class Builder
      */
     public static function getOrCreateDir(Directory $parent, $title)
     {
-        $slug = DauxHelper::slug($title);
+        $slug = DauxHelper::urlSlug($title);
 
         if (array_key_exists($slug, $parent->getEntries())) {
             return $parent->getEntries()[$slug];
@@ -191,7 +191,7 @@ class Builder
         $title = $uri = $path;
         if (!$raw) {
             $title = static::getName($path);
-            $uri = DauxHelper::slug($title);
+            $uri = DauxHelper::urlSlug($title);
             if ($parent->getConfig()->isStatic()) {
                 $uri .= '.html';
             }

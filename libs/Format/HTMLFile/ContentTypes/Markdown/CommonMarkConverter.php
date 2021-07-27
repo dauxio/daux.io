@@ -1,6 +1,6 @@
 <?php namespace Todaymade\Daux\Format\HTMLFile\ContentTypes\Markdown;
 
-use League\CommonMark\Environment;
+use League\CommonMark\Environment\Environment;
 
 class CommonMarkConverter extends \Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter
 {

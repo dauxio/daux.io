@@ -196,7 +196,7 @@ class DauxHelper
             }
 
             // We try a second time by decoding the url
-            $node = DauxHelper::slug(urldecode($node));
+            $node = DauxHelper::urlSlug(urldecode($node));
             if (isset($tree->getEntries()[$node])) {
                 $tree = $tree->getEntries()[$node];
 
@@ -236,6 +236,23 @@ class DauxHelper
         return false;
     }
 
+    private static function slugBase($slug)
+    {
+        // Convert to ASCII
+        if (function_exists('transliterator_transliterate')) {
+            $slug = transliterator_transliterate('Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC;', $slug);
+        }
+
+        if (function_exists('iconv')) {
+            $slug = iconv('utf-8', 'ASCII//TRANSLIT//IGNORE', $slug);
+        }
+
+        // Remove unsupported characters
+        $slug = preg_replace('/[^\x20-\x7E]/u', '', $slug);
+
+        return $slug;
+    }
+
     /**
      * Generate a URL friendly "slug" from a given string.
      *
@@ -245,30 +262,40 @@ class DauxHelper
      *
      * @return string
      */
-    public static function slug($title)
+    public static function urlSlug($slug)
     {
-        // Convert to ASCII
-        if (function_exists('transliterator_transliterate')) {
-            $title = transliterator_transliterate('Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC;', $title);
-        }
-
-        $title = iconv('utf-8', 'ASCII//TRANSLIT//IGNORE', $title);
-
-        // Remove unsupported characters
-        $title = preg_replace('/[^\x20-\x7E]/u', '', $title);
+        $slug = static::slugBase($slug);
 
         $separator = '_';
         // Convert all dashes into underscores
-        $title = preg_replace('![' . preg_quote('-') . ']+!u', $separator, $title);
+        $slug = preg_replace('![' . preg_quote('-') . ']+!u', $separator, $slug);
 
         // Remove all characters that are not valid in a URL:
         // $-_.+!*'(), separator, letters, numbers, or whitespace.
-        $title = preg_replace('![^-' . preg_quote($separator) . '\!\'\(\),\.\+\*\$\pL\pN\s]+!u', '', $title);
+        $slug = preg_replace('![^-' . preg_quote($separator) . '\!\'\(\),\.\+\*\$\pL\pN\s]+!u', '', $slug);
 
         // Replace all separator characters and whitespace by a single separator
-        $title = preg_replace('![' . preg_quote($separator) . '\s]+!u', $separator, $title);
+        $slug = preg_replace('![_\s]+!u', $separator, $slug);
 
-        return trim($title, $separator);
+        return trim($slug, $separator);
+    }
+
+    public static function linkSlug($slug)
+    {
+        $slug = static::slugBase($slug);
+
+        $separator = '_';
+
+        // Replace characters other than letters, numbers, and marks with a separator.
+        $slug = \preg_replace('/[^\p{L}\p{Nd}\p{Nl}\p{M}\s_-]+/u', $separator, $slug) ?? $slug;
+
+        // Replace all separator characters and whitespace by a single separator
+        $slug = preg_replace('/[-_\s]+/u', $separator, $slug);
+
+        // Convert to lowercase
+        $slug = \mb_strtolower($slug);
+
+        return trim($slug, $separator);
     }
 
     /**

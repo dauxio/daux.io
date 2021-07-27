@@ -1,9 +1,9 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\HtmlElement;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
 
-abstract class CodeRenderer implements BlockRendererInterface
+abstract class CodeRenderer implements NodeRendererInterface
 {
     public function escapeCDATA($content)
     {

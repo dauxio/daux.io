@@ -62,6 +62,25 @@ Components
     }
 }
 
+.Permalink {
+    text-decoration: none !important;
+    color: #333;
+    float: left;
+    font-size: 0.8em;
+    margin-left: -0.7em;
+    padding-right: 4px;
+    visibility: hidden;
+
+    h1:hover &,
+    h2:hover &,
+    h3:hover &,
+    h4:hover &,
+    h5:hover &,
+    h6:hover & {
+        visibility: visible;
+    }
+}
+
 .Brand {
     display: block;
     background-color: var(--brand-background);

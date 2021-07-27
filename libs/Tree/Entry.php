@@ -12,9 +12,9 @@ abstract class Entry
 
     protected ?Directory $parent;
 
-    protected SplFileInfo $info;
+    protected ?SplFileInfo $info;
 
-    protected string $path;
+    protected ?string $path;
 
     /**
      * @param string $uri
@@ -30,6 +30,9 @@ abstract class Entry
         if ($info !== null) {
             $this->info = $info;
             $this->path = $info->getPathname();
+        } else {
+            $this->info = null;
+            $this->path = null;
         }
     }
 

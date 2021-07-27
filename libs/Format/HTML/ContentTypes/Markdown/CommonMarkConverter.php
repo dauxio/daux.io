@@ -1,24 +1,44 @@
 <?php namespace Todaymade\Daux\Format\HTML\ContentTypes\Markdown;
 
-use League\CommonMark\Block\Element as BlockElement;
-use League\CommonMark\Environment;
-use League\CommonMark\Event\DocumentParsedEvent;
-use League\CommonMark\Inline\Element as InlineElement;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
+use League\CommonMark\Extension\TableOfContents\Node\TableOfContents;
+use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use Todaymade\Daux\Config;
-use Todaymade\Daux\ContentTypes\Markdown\TableOfContents;
 
 class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMarkConverter
 {
+    public function __construct($config)
+    {
+        $config['heading_permalink'] = [
+            'html_class' => 'Permalink',
+            'symbol' => '#',
+            // due to https://github.com/thephpleague/commonmark/issues/690
+            // the prefix has to be handled by TextNormalization
+            'fragment_prefix' => '',
+            'id_prefix' => ''
+        ];
+
+        $config['table_of_contents'] = [
+            'html_class' => 'TableOfContents',
+            'position' => 'placeholder',
+            'placeholder' => '[TOC]'
+        ];
+
+        parent::__construct($config);
+    }
+
     protected function extendEnvironment(Environment $environment, Config $config)
     {
         parent::extendEnvironment($environment, $config);
 
-        $environment->addBlockRenderer(BlockElement\FencedCode::class, new FencedCodeRenderer());
+        $environment->addExtension(new HeadingPermalinkExtension());
+        $environment->addExtension(new TableOfContentsExtension());
 
-        $processor = new TOC\Processor($config);
-        $environment->addEventListener(DocumentParsedEvent::class, [$processor, 'onDocumentParsed']);
-        $environment->addBlockRenderer(TableOfContents::class, new TOC\Renderer($config));
-
-        $environment->addInlineRenderer(InlineElement\Image::class, new ImageRenderer($config));
+        $environment->addRenderer(TableOfContents::class, new TableOfContentsRenderer($config));
+        $environment->addRenderer(FencedCode::class, new FencedCodeRenderer());
+        $environment->addRenderer(Image::class, new ImageRenderer($config));
     }
 }

@@ -1,30 +1,27 @@
 <?php namespace Todaymade\Daux\Format\HTMLFile\ContentTypes\Markdown;
 
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Element\Link;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception\LinkNotFoundException;
 
 class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
 {
     /**
-     * @param AbstractInline|Link $inline
+     * @param Link $node
      *
-     * @throws LinkNotFoundException
+     * {@inheritDoc}
      *
-     * @return HtmlElement
+     * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
-        if (!($inline instanceof Link)) {
-            throw new \InvalidArgumentException('Incompatible inline type: ' . \get_class($inline));
-        }
+        Link::assertInstanceOf($node);
 
-        $element = parent::render($inline, $htmlRenderer);
+        $element = parent::render($node, $childRenderer);
 
-        $url = $inline->getUrl();
+        $url = $node->getUrl();
 
         // empty urls and anchors should
         // not go through the url resolver
