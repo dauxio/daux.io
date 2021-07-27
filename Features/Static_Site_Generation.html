@@ -103,7 +103,7 @@
     <div class="Page__header">
         <h1><a href="../Features/Auto_Syntax_Highlight.html">Features</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Features/Static_Site_Generation.html">Static Site Generation</a></h1>
                 <span class="ModifiedDate">
-            July 24, 2021 at 12:34 PM        </span>
+            July 27, 2021 at 11:55 AM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/01_Features/Static_Site_Generation.md" target="_blank">
                 Edit on GitHub            </a>
@@ -120,29 +120,29 @@
 <p>Generating a complete set of pages, with navigation</p>
 <pre><code class="hljs bash">daux --destination=[Output Directory Relative Direction]
 </code></pre>
-<h2 id="page_Options">Options</h2>
+<h2><a id="page_options" href="#page_options" class="Permalink" aria-hidden="true" title="Permalink">#</a>Options</h2>
 <p>For more options, run</p>
 <pre><code class="hljs bash">daux generate --<span class="hljs-built_in">help</span>
 </code></pre>
-<h3 id="page_Specify_the_configuration_file">Specify the configuration file</h3>
-<h3 id="page_Specify_the_format">Specify the format</h3>
+<h3><a id="page_specify_the_configuration_file" href="#page_specify_the_configuration_file" class="Permalink" aria-hidden="true" title="Permalink">#</a>Specify the configuration file</h3>
+<h3><a id="page_specify_the_format" href="#page_specify_the_format" class="Permalink" aria-hidden="true" title="Permalink">#</a>Specify the format</h3>
 <p>Valid options are <code>html</code>, <code>confluence</code> or <code>html-file</code>.
 You can also add your own formats through Processors</p>
 <pre><code class="hljs bash">daux --format=html
 </code></pre>
-<h3 id="page_Specify_a_processor">Specify a processor</h3>
+<h3><a id="page_specify_a_processor" href="#page_specify_a_processor" class="Permalink" aria-hidden="true" title="Permalink">#</a>Specify a processor</h3>
 <p>A processor can be specified through the <code>--processor</code> option, this should be the name of a class inside the <code>Todaymade\Daux\Extension</code> namespace.</p>
 <p>By running :</p>
 <pre><code class="hljs bash">daux --processor=Processor
 </code></pre>
 <p>Daux will be looking for <code>Todaymade\Daux\Extension\Processor</code> inside the <code>daux</code> folder.</p>
 <p>You can try to run this command, we added a small example Processor.</p>
-<h3 id="page_Specify_the_source">Specify the source</h3>
+<h3><a id="page_specify_the_source" href="#page_specify_the_source" class="Permalink" aria-hidden="true" title="Permalink">#</a>Specify the source</h3>
 <p>By default, the source is taken from the <code>docs_directory</code> configuration value in <code>global.json</code> but you can override it here.</p>
 <pre><code class="hljs bash">daux --<span class="hljs-built_in">source</span>=docs_to_generate
 </code></pre>
 <p>The path can be absolute or relative</p>
-<h3 id="page_Specify_the_destination">Specify the destination</h3>
+<h3><a id="page_specify_the_destination" href="#page_specify_the_destination" class="Permalink" aria-hidden="true" title="Permalink">#</a>Specify the destination</h3>
 <p>By default the destination is <code>static</code></p>
 <pre><code class="hljs bash">daux --destination=generated_docs
 </code></pre>

@@ -103,7 +103,7 @@
     <div class="Page__header">
         <h1><a href="../Configuration/index.html">Configuration</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Configuration/Confluence_upload.html">Confluence upload</a></h1>
                 <span class="ModifiedDate">
-            July 24, 2021 at 12:34 PM        </span>
+            July 27, 2021 at 11:55 AM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/05_Configuration/Confluence_upload.md" target="_blank">
                 Edit on GitHub            </a>
@@ -117,26 +117,26 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<p><a href="#page_Configuring_the_connection">Configuring the connection</a></p>
+<a href="#page_configuring_the_connection">Configuring the connection</a>
 </li>
 <li>
-<p><a href="#page_Where_to_upload">Where to upload</a></p>
+<a href="#page_where_to_upload">Where to upload</a>
 </li>
 <li>
-<p><a href="#page_Prefix">Prefix</a></p>
+<a href="#page_prefix">Prefix</a>
 </li>
 <li>
-<p><a href="#page_Update_threshold">Update threshold</a></p>
+<a href="#page_update_threshold">Update threshold</a>
 </li>
 <li>
-<p><a href="#page_Delete_old_pages">Delete old pages</a></p>
+<a href="#page_delete_old_pages">Delete old pages</a>
 </li>
 <li>
-<p><a href="#page_Information_message">Information message</a></p>
+<a href="#page_information_message">Information message</a>
 </li>
 </ul>    </div>
 </div>
-<h2 id="page_Configuring_the_connection">Configuring the connection</h2>
+<h2><a id="page_configuring_the_connection" href="#page_configuring_the_connection" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuring the connection</h2>
 <p>The connection requires three parameters <code>base_url</code>, <code>user</code> and <code>pass</code>. While <code>user</code> and <code>pass</code> don’t really need an explanation, for <code>base_url</code> you need to set the path to the server without <code>rest/api</code>, this will be added automatically.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"confluence"</span>: {
@@ -148,7 +148,7 @@
 </code></pre>
 <p>If you are using Atlassian.com you might need to use a token instead of a password.
 You can create a token by <a href="https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/" class="Link--external" rel="noopener noreferrer">following this documentation</a>.</p>
-<h2 id="page_Where_to_upload">Where to upload</h2>
+<h2><a id="page_where_to_upload" href="#page_where_to_upload" class="Permalink" aria-hidden="true" title="Permalink">#</a>Where to upload</h2>
 <p>Now that the connection is defined, you need to tell it where you want your documentation to be uploaded.</p>
 <p>For that you need a <code>space_id</code> (name that appears at the beginning of the urls) and an <code>ancestor_id</code>; the id of the page that will be the parent of the documentation’s homepage.</p>
 <p>You can obtain the <code>ancestor_id</code> id by editing the page you want to define as a parent: the ID is at the end of the URL</p>
@@ -161,13 +161,13 @@ You can create a token by <a href="https://support.atlassian.com/atlassian-accou
 </code></pre>
 <p>You can also provide a <code>root_id</code> instead of an <code>ancestor_id</code> in this case, you specify the id as the homepage of your documentation.</p>
 <p>You can use that when you’re uploading your documentation to the root of a Confluence Space or if your page already exists.</p>
-<h2 id="page_Prefix">Prefix</h2>
+<h2><a id="page_prefix" href="#page_prefix" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prefix</h2>
 <p>Because confluence can’t have two pages with the same name in a space, I recommend you define a prefix for your pages.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"confluence"</span>: { <span class="hljs-attr">"prefix"</span>: <span class="hljs-string">"DAUX -"</span> }
 }
 </code></pre>
-<h2 id="page_Update_threshold">Update threshold</h2>
+<h2><a id="page_update_threshold" href="#page_update_threshold" class="Permalink" aria-hidden="true" title="Permalink">#</a>Update threshold</h2>
 <p>To make the upload quicker, we try to determine if a page changed or not, first with a strict comparison and if it’s not completely identical, we compute the difference.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"confluence"</span>: { <span class="hljs-attr">"update_threshold"</span>: <span class="hljs-number">1</span> }
@@ -176,7 +176,7 @@ You can create a token by <a href="https://support.atlassian.com/atlassian-accou
 <p>If you set <code>update_threshold</code> to 1, it will upload only if the page has more than 1% difference with the previous one.</p>
 <p>By default the threshold is 2%.</p>
 <p>Setting the value to <code>0</code> disables the feature altogether.</p>
-<h2 id="page_Delete_old_pages">Delete old pages</h2>
+<h2><a id="page_delete_old_pages" href="#page_delete_old_pages" class="Permalink" aria-hidden="true" title="Permalink">#</a>Delete old pages</h2>
 <p>When a page is renamed, there is no way to tell it was renamed, so when uploading to Confluence, the page will be uploaded and the old page will stay here.</p>
 <p>By default, it will inform you that some pages aren’t needed anymore and you can delete them by hand.</p>
 <pre><code class="hljs json">{
@@ -184,7 +184,7 @@ You can create a token by <a href="https://support.atlassian.com/atlassian-accou
 }
 </code></pre>
 <p>By setting <code>delete</code> to <code>true</code> (or running <code>daux</code> with the <code>--delete</code> flag) you tell the generator that it can safely delete the pages.</p>
-<h2 id="page_Information_message">Information message</h2>
+<h2><a id="page_information_message" href="#page_information_message" class="Permalink" aria-hidden="true" title="Permalink">#</a>Information message</h2>
 <p>When you create your page. there is no indication that the upload process will override the content of the pages.</p>
 <p>It happens sometimes that users edit the pages to add / fix an information.</p>
 <p>You can add a text in a “information” macro on top of the document by setting the following configuration :</p>

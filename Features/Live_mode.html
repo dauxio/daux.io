@@ -103,7 +103,7 @@
     <div class="Page__header">
         <h1><a href="../Features/Auto_Syntax_Highlight.html">Features</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Features/Live_mode.html">Live mode</a></h1>
                 <span class="ModifiedDate">
-            July 24, 2021 at 12:34 PM        </span>
+            July 27, 2021 at 11:55 AM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/01_Features/Live_mode.md" target="_blank">
                 Edit on GitHub            </a>
@@ -113,12 +113,12 @@
     <div class="s-content">
         <p>Keep in mind, this mode can be used for production, but it is not recommended.</p>
 <p>The whole directory must be scanned on each request. This might not make a big impact on small documentations but can be a bottleneck on bigger ones.</p>
-<h2 id="page_Running_Locally">Running Locally</h2>
+<h2><a id="page_running_locally" href="#page_running_locally" class="Permalink" aria-hidden="true" title="Permalink">#</a>Running Locally</h2>
 <p>There are several ways to run the docs locally. You can use something like <a href="http://www.mamp.info/en/index.html" target="_blank">MAMP</a> or <a href="http://www.wampserver.com/en/" target="_blank">WAMP</a>.</p>
 <p>The easiest is to use PHP’s built-in server.</p>
-<p>For that i’ve included a short command, run <code>daux serve</code> in the projects folder to start the local web server. By default the server will run at: <a href="http://localhost:8085" target="_blank"><a href="http://localhost:8085" class="Link--external" rel="noopener noreferrer">http://localhost:8085</a></a></p>
-<h2 id="page_Running_Remotely">Running Remotely</h2>
-<h3 id="page_Clean_URLs_configuration">Clean URLs configuration</h3>
+<p>For that i’ve included a short command, run <code>daux serve</code> in the projects folder to start the local web server. By default the server will run at: <a href="http://localhost:8085" target="_blank">http://localhost:8085</a></p>
+<h2><a id="page_running_remotely" href="#page_running_remotely" class="Permalink" aria-hidden="true" title="Permalink">#</a>Running Remotely</h2>
+<h3><a id="page_clean_urls_configuration" href="#page_clean_urls_configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Clean URLs configuration</h3>
 <p>Daux provides native support for Clean URLs provided the webserver has its URL Rewrite module enabled.
 To enable the same, set the toggle in the <code>config.json</code> file in the <code>/docs</code> folder.</p>
 <pre><code class="hljs json">{
@@ -127,11 +127,11 @@ To enable the same, set the toggle in the <code>config.json</code> file in the <
     }
 }
 </code></pre>
-<h3 id="page_Apache">Apache</h3>
-<p>Copy the files from the repo to a web server that can run PHP 7.3.0 or newer.</p>
+<h3><a id="page_apache" href="#page_apache" class="Permalink" aria-hidden="true" title="Permalink">#</a>Apache</h3>
+<p>Copy the files from the repo to a web server that can run PHP 7.4.0 or newer.</p>
 <p>There is an included <code>.htaccess</code> for Apache web server.</p>
 <p>You can follow this tutorial for <a href="https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart" class="Link--external" rel="noopener noreferrer">install apache on Ubuntu/Debian</a>.</p>
-<h3 id="page_Nginx">Nginx</h3>
+<h3><a id="page_nginx" href="#page_nginx" class="Permalink" aria-hidden="true" title="Permalink">#</a>Nginx</h3>
 <p>Daux.io works perfectly fine on Nginx too, just drop this configuration in your <code>nginx.conf</code></p>
 <p>You can follow this tutorial for <a href="https://www.armanism.com/blog/install-nginx-on-ubuntu" class="Link--external" rel="noopener noreferrer">install nginx on Ubuntu/Debian</a>.</p>
 <pre><code>server {
@@ -162,13 +162,13 @@ To enable the same, set the toggle in the <code>config.json</code> file in the <
     }
 }
 </code></pre>
-<h2 id="page_IIS">IIS</h2>
+<h2><a id="page_iis" href="#page_iis" class="Permalink" aria-hidden="true" title="Permalink">#</a>IIS</h2>
 <p>If you have set up a local or remote IIS web site, you may need a <code>web.config</code> with:</p>
 <ul>
 <li>A rewrite configuration, for handling clean urls.</li>
 <li>A mime type handler for less files, if using a custom theme.</li>
 </ul>
-<h3 id="page_Clean_URLs">Clean URLs</h3>
+<h3><a id="page_clean_urls" href="#page_clean_urls" class="Permalink" aria-hidden="true" title="Permalink">#</a>Clean URLs</h3>
 <p>The <code>web.config</code> needs an entry for <code>&lt;rewrite&gt;</code> under <code>&lt;system.webServer&gt;</code>:</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">system.webServer</span>&gt;</span>
@@ -200,7 +200,7 @@ To enable the same, set the toggle in the <code>config.json</code> file in the <
 <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
 </code></pre>
 <p>To use clean URLs on IIS 6, you will need to use a custom URL rewrite module, such as <a href="http://urlrewriter.net/" class="Link--external" rel="noopener noreferrer">URL Rewriter</a>.</p>
-<h2 id="page_Docker">Docker</h2>
+<h2><a id="page_docker" href="#page_docker" class="Permalink" aria-hidden="true" title="Permalink">#</a>Docker</h2>
 <p>This is not meant for production use, but you can bundle your documentation in Daux’s docker container</p>
 <pre><code>FROM daux/daux.io
 
