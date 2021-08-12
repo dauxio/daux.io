@@ -1,8 +1,9 @@
 <?php namespace Todaymade\Daux\Tree;
 
+use League\CommonMark\Extension\FrontMatter\Data\SymfonyYamlFrontMatterParser;
+use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
 use RuntimeException;
 use SplFileInfo;
-use Webuni\FrontMatter\FrontMatter;
 
 class Content extends ContentAbstract
 {
@@ -32,14 +33,13 @@ class Content extends ContentAbstract
             $content = file_get_contents($this->getPath());
         }
 
-        $frontMatter = new FrontMatter();
-
         // Remove BOM if it's present
         if (substr($content, 0, 3) == "\xef\xbb\xbf") {
             $content = substr($content, 3);
         }
 
-        return $frontMatter->parse($content);
+        $frontMatterParser = new FrontMatterParser(new SymfonyYamlFrontMatterParser());
+        return $frontMatterParser->parse($content);
     }
 
     public function getContent(): string
@@ -109,7 +109,8 @@ class Content extends ContentAbstract
         $this->attributes = [];
 
         $document = $this->getFrontMatter();
-        $this->attributes = array_replace_recursive($this->attributes, $document->getData());
+        $frontMatter = $document->getFrontMatter();
+        $this->attributes = array_replace_recursive($this->attributes, $frontMatter ?: []);
 
         $this->content = $document->getContent();
     }

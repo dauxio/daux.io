@@ -17,6 +17,7 @@
     ],
     "bin": ["bin/daux"],
     "require": {
+        "ext-json": "*",
         "php": ">=7.4",
         "guzzlehttp/guzzle": "~6.0 || ~7.0",
         "league/commonmark": "^2.0.0",
@@ -27,8 +28,7 @@
         "symfony/mime": "^4.4|^5.0",
         "symfony/polyfill-intl-icu": "^1.10",
         "symfony/process": "^4.4|^5.0",
-        "webuni/front-matter": "^1.0.0",
-        "ext-json": "*"
+        "symfony/yaml": "^4.4|^5.0"
     },
     "suggest":{
         "ext-intl": "Allows to translate the modified at date"
