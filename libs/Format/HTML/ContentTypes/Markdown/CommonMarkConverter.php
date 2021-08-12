@@ -15,8 +15,6 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
         $config['heading_permalink'] = [
             'html_class' => 'Permalink',
             'symbol' => '#',
-            // due to https://github.com/thephpleague/commonmark/issues/690
-            // the prefix has to be handled by TextNormalization
             'fragment_prefix' => '',
             'id_prefix' => ''
         ];

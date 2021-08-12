@@ -18,6 +18,8 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
             'placeholder' => '[TOC]'
         ];
 
+        $config['heading_permalink']['fragment_prefix'] = '';
+
         parent::__construct($config);
     }
 
@@ -31,6 +33,7 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
         parent::extendEnvironment($environment, $config);
 
         $environment->addExtension(new TableOfContentsExtension());
+        $environment->addExtension(new FakeHeadingPermalinkExtension());
 
         $environment->addRenderer(TableOfContents::class, new TableOfContentsRenderer());
         $environment->addRenderer(TableOfContentsPlaceholder::class, new TableOfContentsRenderer());

@@ -40,8 +40,7 @@ class LinkRendererTest extends TestCase
             ['<ac:link><ri:page ri:content-title="Button" ri:space-key="DOC" /><ac:plain-text-link-body><![CDATA[Link]]></ac:plain-text-link-body></ac:link>', '[Link](!Widgets/Button)', 'Content/Page.html'],
 
             // Mailto links
-            // TODO :: re-enable once https://github.com/thephpleague/commonmark/issues/689 is fixed
-            //['<a href="mailto:me@mydomain.com" class="Link--external" rel="noopener noreferrer">me@mydomain.com</a>', '[me@mydomain.com](mailto:me@mydomain.com)', 'Content/Page.html'],
+            ['<a href="mailto:me@mydomain.com" class="Link--external" rel="noopener noreferrer">me@mydomain.com</a>', '[me@mydomain.com](mailto:me@mydomain.com)', 'Content/Page.html'],
         ];
     }
 
