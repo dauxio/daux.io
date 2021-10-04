@@ -1,5 +1,7 @@
+version = 1
+
 exclude_patterns = [
   "**/node_modules/",
-  "**/*.min.js"
+  "**/*.min.js",
   "**/*.pack.js
 ]
