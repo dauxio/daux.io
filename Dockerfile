@@ -2,9 +2,11 @@ FROM composer:2.1.5 AS composer
 
 FROM php:7-stretch
 
-RUN apt-get update && apt-get install -y libicu-dev git unzip
-RUN docker-php-ext-configure intl \
-&& docker-php-ext-install intl
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libicu-dev git unzip \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /daux && mkdir /build
 
