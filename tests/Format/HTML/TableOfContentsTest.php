@@ -162,6 +162,9 @@ EXPECTED;
         $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
     }
 
+    /**
+     * @requires PHP > 7.4
+     */
     public function testQuotesWorkCorrectly()
     {
         $converter = new CommonMarkConverter($this->getConfig());
