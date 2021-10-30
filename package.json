@@ -3,11 +3,11 @@
   "version": "0.3.0",
   "private": true,
   "devDependencies": {
-    "@swissquote/crafty": "1.16.3",
-    "@swissquote/crafty-preset-babel": "1.16.3",
-    "@swissquote/crafty-preset-postcss": "1.16.3",
-    "@swissquote/crafty-runner-gulp": "1.16.3",
-    "@swissquote/crafty-runner-rollup": "1.16.3",
+    "@swissquote/crafty": "1.17.1",
+    "@swissquote/crafty-preset-babel": "1.17.1",
+    "@swissquote/crafty-preset-postcss": "1.17.1",
+    "@swissquote/crafty-runner-gulp": "1.17.1",
+    "@swissquote/crafty-runner-rollup": "1.17.1",
     "flexsearch": "^0.7.0",
     "postcss-page-break": "^2.0.0",
     "preact": "^10.0.5"
