@@ -69,7 +69,7 @@ daux_ready(function() {
 daux_ready(function() {
     var mermaidBlocks = document.querySelectorAll("pre.mermaid");
     if (mermaidBlocks.length) {
-        daux_loadJS(`https://cdn.jsdelivr.net/npm/mermaid@8.9.1/dist/mermaid.min.js`, function() {
+        daux_loadJS(`https://cdn.jsdelivr.net/npm/mermaid@8.13.3/dist/mermaid.min.js`, function() {
             [].forEach.call(mermaidBlocks, function(pre) {
                 var content = pre.innerHTML;
                 var div = document.createElement("div");
