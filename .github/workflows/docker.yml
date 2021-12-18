@@ -30,9 +30,6 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: daux/daux.io
-          tags: |
-            type=ref,event=branch
-            type=match,pattern=\d.\d.\d
 
       - name: Build and push
         id: docker_build
