@@ -1,6 +1,6 @@
 FROM composer:2.1.14 AS composer
 
-FROM php:7-stretch
+FROM php:8.0.14
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libicu-dev git unzip \
@@ -29,6 +29,9 @@ COPY global.json /daux/global.json
 COPY index.php /daux/index.php
 
 RUN ln -s /daux/bin/daux /usr/local/bin/daux
+
+ARG DAUX_VERSION=unknown
+ENV DAUX_VERSION=$DAUX_VERSION
 
 WORKDIR /build
 

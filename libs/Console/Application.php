@@ -16,7 +16,7 @@ class Application extends SymfonyApplication
 
         $up = '..' . DIRECTORY_SEPARATOR;
         $composer = __DIR__ . DIRECTORY_SEPARATOR . $up . $up . $up . $up . $up . 'composer.lock';
-        $version = 'unknown';
+        $version = 'unknown-version';
 
         if (file_exists($composer)) {
             $app = json_decode(file_get_contents($composer));
@@ -27,6 +27,13 @@ class Application extends SymfonyApplication
                     $version = $package->version;
                 }
             }
+        }
+
+        // When running inside a Docker image
+        // Daux isn't installed through composer
+        // In exchange the version is set as an env variable
+        if (array_key_exists('DAUX_VERSION', $_ENV)) {
+            $version = $_ENV['DAUX_VERSION'];
         }
 
         $this->setVersion($version);
