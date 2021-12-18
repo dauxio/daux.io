@@ -29,7 +29,6 @@
 -   100% Mobile Responsive
 -   4 Built-In Themes or roll your own
 -   Functional, Flat Design Style
--   Optional code float layout
 -   Shareable/Linkable SEO Friendly URLs
 -   Supports Google Analytics and Piwik Analytics
 

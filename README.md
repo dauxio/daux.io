@@ -24,7 +24,6 @@
 -   No Build Step
 -   Git/SVN Friendly
 -   Supports Google Analytics and Piwik Analytics
--   Optional code float layout
 -   Static Output Generation
 
 ## Demos
