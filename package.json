@@ -10,11 +10,13 @@
     "@swissquote/crafty-runner-rollup": "1.17.2",
     "flexsearch": "^0.7.0",
     "postcss-page-break": "^2.0.0",
-    "preact": "^10.0.5"
+    "preact": "^10.0.5",
+    "testcafe": "^1.18.1"
   },
   "scripts": {
     "build": "crafty run",
     "watch": "crafty watch",
+    "test": "./test.sh",
     "lint:js": "crafty jsLint --fix src/js/**/*.js",
     "lint:css": "crafty cssLint --fix --preset recommended themes/daux_singlepage/scss/*.scss themes/daux/scss/*.scss"
   }

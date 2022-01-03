@@ -44,6 +44,39 @@ jobs:
     - name: Run test suite
       run: composer run-script test
 
+  frontend:
+    name: Frontend tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@2.16.0
+      with:
+        php-version: '8.0'
+        extensions: mbstring, dom, intl, iconv
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Generate documentation
+      run: bin/daux generate
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2.5.1
+      with:
+        node-version: '16.x'
+        cache: 'yarn'
+
+    - name: yarn install
+      run: yarn install
+
+    - name: yarn build
+      run: yarn build
+
+    - name: yarn test
+      run: yarn test
 
   sonarcloud:
     name: "SonarCloud"
