@@ -37,8 +37,8 @@ function enableToggler(toggleCodeSection, codeBlocks) {
         }
 
         if (hidden) {
-            setCodeBlockStyle(codeBlocks, !!hidden);
-            toggleCodeBlockBtnSet.checked = !hidden;
+            setCodeBlockStyle(codeBlocks, true);
+            toggleCodeBlockBtnSet.checked = false;
         }
     } catch (e) {
         // local storage operations can fail with the file:// protocol

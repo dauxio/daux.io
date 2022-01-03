@@ -1,5 +1,5 @@
 import * as preact from "preact";
-import FlexSearch from "flexsearch";
+import { Document } from "flexsearch";
 
 import Search from "./Search";
 
@@ -54,10 +54,12 @@ class SearchEngine {
             this.loadingPromise = new Promise(resolve => {
                 window.load_search_index = data => resolve(data);
             }).then(json => {
-                this.searchIndex = new FlexSearch({
+                this.searchIndex = new Document({
                     doc: {
                         id: "url",
-                        field: ["title", "text", "tags"]
+                        tag: "tags",
+                        field: ["title", "text"],
+                        store: ["title", "text"]
                     }
                 });
 
@@ -71,7 +73,7 @@ class SearchEngine {
                     );
                 }
 
-                this.searchIndex.add(pages);
+                pages.forEach(page => this.searchIndex.add(page));
             });
         }
 
@@ -133,7 +135,9 @@ class SearchEngine {
 
         preact.render(
             <Search
-                onSearch={term => this.searchIndex.search(term)}
+                onSearch={term =>
+                    this.searchIndex.search(term, { enrich: true })
+                }
                 onClose={this.handleClose}
                 onTitleChange={title => {
                     document.title = `${title} ${originalTitle}`;

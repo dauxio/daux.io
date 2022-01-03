@@ -66,7 +66,25 @@ export default class Search extends preact.Component {
             return { warnings, counter, results, start };
         }
 
-        const found = this.props.onSearch(this.state.search);
+        const found = Object.values(
+            this.props
+                .onSearch(this.state.search)
+                .reduce((acc, fieldResult) => {
+                    // FlexSearch returns results per field
+                    // We de-duplicate them here and have a single array of results
+                    fieldResult.result.forEach(result => {
+                        if (!acc.hasOwnProperty(result.id)) {
+                            acc[result.id] = {
+                                url: result.id,
+                                title: result.doc.title,
+                                text: result.doc.text
+                            };
+                        }
+                    });
+
+                    return acc;
+                }, {})
+        );
 
         counter = found.length;
 
