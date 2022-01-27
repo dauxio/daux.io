@@ -3,6 +3,7 @@
 use ArrayIterator;
 use RuntimeException;
 use Todaymade\Daux\Config;
+use Traversable;
 
 class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 {
@@ -279,7 +280,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
      *
      * @return Entry can return all value types
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->children[$offset];
     }
@@ -290,7 +291,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
      * @param mixed $offset the offset to assign the value to
      * @param Entry $value the value to set
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (!$value instanceof Entry) {
             throw new RuntimeException('The value is not of type Entry');
@@ -304,12 +305,12 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
      *
      * @param string $offset the offset to unset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->children[$offset]);
     }
 
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->children);
     }
