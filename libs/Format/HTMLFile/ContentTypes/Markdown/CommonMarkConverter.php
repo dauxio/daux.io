@@ -1,11 +1,11 @@
 <?php namespace Todaymade\Daux\Format\HTMLFile\ContentTypes\Markdown;
 
-use League\CommonMark\Environment\Environment;
+use Todaymade\Daux\Config;
 
 class CommonMarkConverter extends \Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter
 {
-    protected function getLinkRenderer(Environment $environment)
+    protected function getLinkRenderer(Config $config)
     {
-        return new LinkRenderer($environment->getConfig('daux'));
+        return new LinkRenderer($config);
     }
 }

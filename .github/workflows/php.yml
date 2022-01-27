@@ -63,6 +63,9 @@ jobs:
     - name: Generate documentation
       run: bin/daux generate
 
+    - name: Generate documentation in single file
+      run: bin/daux generate --format=html-file --destination=static-single
+
     - name: Setup Node.js
       uses: actions/setup-node@v2.5.1
       with:

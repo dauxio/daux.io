@@ -3,6 +3,7 @@ node_modules
 .idea
 /sftp-config.json
 static
+static-single
 
 /vendor
 /build

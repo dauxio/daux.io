@@ -45,7 +45,7 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
         }
 
         try {
-            $file = DauxHelper::resolveInternalFile($this->daux, $url);
+            $file = DauxHelper::resolveInternalFile($this->dauxConfig, $url);
             $url = $file->getUrl();
         } catch (LinkNotFoundException $e) {
             if ($this->daux->isStatic()) {

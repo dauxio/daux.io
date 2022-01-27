@@ -4,6 +4,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Console\RunAction;
 use Todaymade\Daux\Daux;
+use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Format\HTML\HTMLUtils;
 use Todaymade\Daux\Format\HTML\Template;
 use Todaymade\Daux\Format\HTMLFile\ContentTypes\Markdown\ContentType;
@@ -55,6 +56,8 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
                 $this->ensureEmptyDestination($destination);
             }
         );
+
+        DauxHelper::rebaseConfiguration($config, '');
 
         $data = [
             'author' => $config->getAuthor(),
