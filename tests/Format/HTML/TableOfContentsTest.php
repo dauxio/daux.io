@@ -164,10 +164,6 @@ EXPECTED;
 
     public function testQuotesWorkCorrectly()
     {
-        if (version_compare(PHP_VERSION, '8.0.0', '<')) {
-            $this->markTestSkipped('This seems to not work with PHP 7.4, though the output is still valid');
-        }
-
         $converter = new CommonMarkConverter($this->getConfig());
 
         $source = "[TOC]\n# Daux's bug";

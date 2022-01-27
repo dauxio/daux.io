@@ -13,11 +13,11 @@ jobs:
       max-parallel: 15
       matrix:
         operating-system: [ubuntu-latest, macOS-latest]
-        php-versions: ['7.4', '8.0', '8.1']
+        php-versions: ['8.0', '8.1']
         # TODO : enable tests on windows
         #include:
         #  - operating-system: windows-latest
-        #    php-versions: 7.4
+        #    php-versions: 8.0
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     runs-on: ${{ matrix.operating-system }}
@@ -90,7 +90,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@2.16.0
       with:
-        php-version: 7.4
+        php-version: 8.0
         extensions: mbstring, dom, intl, iconv
 
     - name: Install dependencies

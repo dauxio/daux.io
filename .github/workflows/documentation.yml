@@ -14,7 +14,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@2.16.0
       with:
-        php-version: 7.4
+        php-version: 8.0
         extensions: mbstring, dom, intl, iconv
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
@@ -42,7 +42,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@2.16.0
       with:
-        php-version: 7.4
+        php-version: 8.0
         extensions: mbstring, dom, intl
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
