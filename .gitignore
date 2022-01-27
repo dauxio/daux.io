@@ -10,6 +10,7 @@ static
 .php_cs.cache
 coverage.clover
 test-report.xml
+composer.lock
 
 /prettier.config.js
 /.eslintrc.js
