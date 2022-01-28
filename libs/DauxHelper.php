@@ -284,7 +284,7 @@ class DauxHelper
     {
         $slug = static::slugBase($slug);
 
-        $separator = '_';
+        $separator = '-';
 
         // Replace characters other than letters, numbers, and marks with a separator.
         $slug = \preg_replace('/[^\p{L}\p{Nd}\p{Nl}\p{M}\s_-]+/u', $separator, $slug) ?? $slug;

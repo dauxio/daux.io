@@ -34,7 +34,7 @@ class TableOfContentsTest extends TestCase
     {
         $converter = new CommonMarkConverter($this->getConfig());
 
-        $this->assertEquals("<h1><a id=\"page_test\" href=\"#page_test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">#</a>Test</h1>\n", $converter->convertToHtml('# Test')->getContent());
+        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">#</a>Test</h1>\n", $converter->convertToHtml('# Test')->getContent());
     }
 
     public function testShouldAddTOCWhenAutoTOCisOn()
@@ -47,10 +47,10 @@ class TableOfContentsTest extends TestCase
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<a href="#page_title">Title</a>
+<a href="#title">Title</a>
 </li>
 </ul>
-<h1><a id="page_title" href="#page_title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
+<h1><a id="title" href="#title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
 
 EXPECTED;
 
@@ -68,10 +68,10 @@ EXPECTED;
 <p>Some Content</p>
 <ul class="TableOfContents">
 <li>
-<a href="#page_title">Title</a>
+<a href="#title">Title</a>
 </li>
 </ul>
-<h1><a id="page_title" href="#page_title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
+<h1><a id="title" href="#title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
 
 EXPECTED;
 
@@ -86,10 +86,10 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<a href="#page_title">Title</a>
+<a href="#title">Title</a>
 </li>
 </ul>
-<h1><a id="page_title" href="#page_title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
+<h1><a id="title" href="#title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
 
 EXPECTED;
 
@@ -104,14 +104,14 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<a href="#page_ji_chu_cao_zuo">基础操作</a>
+<a href="#ji-chu-cao-zuo">基础操作</a>
 </li>
 <li>
-<a href="#page_cao_zuo_ji_chu">操作基础</a>
+<a href="#cao-zuo-ji-chu">操作基础</a>
 </li>
 </ul>
-<h1><a id="page_ji_chu_cao_zuo" href="#page_ji_chu_cao_zuo" class="Permalink" aria-hidden="true" title="Permalink">#</a>基础操作</h1>
-<h1><a id="page_cao_zuo_ji_chu" href="#page_cao_zuo_ji_chu" class="Permalink" aria-hidden="true" title="Permalink">#</a>操作基础</h1>
+<h1><a id="ji-chu-cao-zuo" href="#ji-chu-cao-zuo" class="Permalink" aria-hidden="true" title="Permalink">#</a>基础操作</h1>
+<h1><a id="cao-zuo-ji-chu" href="#cao-zuo-ji-chu" class="Permalink" aria-hidden="true" title="Permalink">#</a>操作基础</h1>
 
 EXPECTED;
 
@@ -126,18 +126,18 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<a href="#page_test">Test</a>
+<a href="#test">Test</a>
 </li>
 <li>
-<a href="#page_test-1">Test</a>
+<a href="#test-1">Test</a>
 </li>
 <li>
-<a href="#page_test-2">Test</a>
+<a href="#test-2">Test</a>
 </li>
 </ul>
-<h1><a id="page_test" href="#page_test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
-<h1><a id="page_test-1" href="#page_test-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
-<h1><a id="page_test-2" href="#page_test-2" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
+<h1><a id="test" href="#test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
+<h1><a id="test-1" href="#test-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
+<h1><a id="test-2" href="#test-2" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
 
 EXPECTED;
 
@@ -152,10 +152,10 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<a href="#page_test_test">TEST : Test</a>
+<a href="#test-test">TEST : Test</a>
 </li>
 </ul>
-<h1><a id="page_test_test" href="#page_test_test" class="Permalink" aria-hidden="true" title="Permalink">#</a>TEST : Test</h1>
+<h1><a id="test-test" href="#test-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>TEST : Test</h1>
 
 EXPECTED;
 
@@ -170,10 +170,10 @@ EXPECTED;
         $expected = <<<'EXPECTED'
 <ul class="TableOfContents">
 <li>
-<a href="#page_daux_s_bug">Daux’s bug</a>
+<a href="#daux-s-bug">Daux’s bug</a>
 </li>
 </ul>
-<h1><a id="page_daux_s_bug" href="#page_daux_s_bug" class="Permalink" aria-hidden="true" title="Permalink">#</a>Daux’s bug</h1>
+<h1><a id="daux-s-bug" href="#daux-s-bug" class="Permalink" aria-hidden="true" title="Permalink">#</a>Daux’s bug</h1>
 
 EXPECTED;
 

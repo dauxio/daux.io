@@ -17,7 +17,7 @@ class TextNormalization implements TextNormalizerInterface, ConfigurationAwareIn
     public function normalize(string $text, $context = null): string
     {
         // Add any requested prefix
-        $slug = 'page_' . ($context['prefix'] ?? '') . $text;
+        $slug = ($context['prefix'] ?? '') . $text;
 
         // Normalize
         $slug = DauxHelper::linkSlug($slug);
