@@ -103,7 +103,7 @@
     <div class="Page__header">
         <h1><a href="../For_Developers/Creating_a_Processor.html">For Developers</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../For_Developers/Creating_a_Theme.html">Creating a Theme</a></h1>
                 <span class="ModifiedDate">
-            January 28, 2022 at 1:11 PM        </span>
+            January 28, 2022 at 2:26 PM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/10_For_Developers/Creating_a_Theme.md" target="_blank">
                 Edit on GitHub            </a>
@@ -118,7 +118,7 @@
 <p>If you want to tweak a few styles, you can create a <code>style.css</code> file at the root of your documentation
 directory and it will be included automatically. By doing this, you don’t need to create a new theme.</p>
 </blockquote>
-<h2><a id="page_config_json_options" href="#page_config_json_options" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>config.json</code> options</h2>
+<h2><a id="config-json-options" href="#config-json-options" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>config.json</code> options</h2>
 <p>Here is an example <code>config.json</code> file :</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"favicon"</span>: <span class="hljs-string">"&lt;theme_url&gt;img/favicon.png"</span>,
@@ -161,14 +161,14 @@ This is automatically substituted with the final url to the theme when generatin
 <li>
 <strong><code>&lt;base_url&gt;</code></strong>: The url to the documentation root</li>
 </ul>
-<h2><a id="page_theme_variants" href="#page_theme_variants" class="Permalink" aria-hidden="true" title="Permalink">#</a>Theme variants</h2>
+<h2><a id="theme-variants" href="#theme-variants" class="Permalink" aria-hidden="true" title="Permalink">#</a>Theme variants</h2>
 <p>Like the default Daux.io theme, you might want to provide variants of your theme.</p>
 <p>In the example before, there were two variants : blue and green.</p>
 <p>The configuration of a variant is added to the configuration of the main theme, it doesn’t replace it.</p>
 <p>For example the main CSS files defined are: <code>[&quot;&lt;theme_url&gt;css/theme.min.css&quot;]</code> and the green variant defines <code>[&quot;&lt;theme_url&gt;css/theme-green.min.css&quot;]</code>.</p>
 <p>The final list of CSS files will be <code>[&quot;&lt;theme_url&gt;css/theme.min.css&quot;, &quot;&lt;theme_url&gt;css/theme-green.min.css&quot;]</code>.</p>
 <p>This doesn’t apply to <code>favicon</code>, only the last value set is kept.</p>
-<h2><a id="page_setting_the_theme_for_your_documentation" href="#page_setting_the_theme_for_your_documentation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setting the theme for your documentation</h2>
+<h2><a id="setting-the-theme-for-your-documentation" href="#setting-the-theme-for-your-documentation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setting the theme for your documentation</h2>
 <p>In your documentation’s <code>config.json</code> (not the theme’s <code>config.json</code>)</p>
 <p>Change the <code>theme</code> option inside <code>html</code></p>
 <pre><code class="hljs json">{
@@ -181,7 +181,7 @@ This is automatically substituted with the final url to the theme when generatin
 <p>The name of the theme, is the folder name.</p>
 <p>You can use the <code>themes_directory</code> setting if you want to specify a custom location of your <code>themes</code> folder.</p>
 <p>A variant is optional, if you want to add one, separate it from the theme with a dash.</p>
-<h2><a id="page_overriding_templates" href="#page_overriding_templates" class="Permalink" aria-hidden="true" title="Permalink">#</a>Overriding templates</h2>
+<h2><a id="overriding-templates" href="#overriding-templates" class="Permalink" aria-hidden="true" title="Permalink">#</a>Overriding templates</h2>
 <p>By default, you have a list of templates in <code>templates</code></p>
 <p>You can create a folder named <code>templates</code> in your theme, copy-paste the original template in that folder, and you can modify it freely.</p>
 <p>You can even do it one template at a time if you wish to do only small changes.</p>

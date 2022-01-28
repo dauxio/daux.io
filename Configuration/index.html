@@ -103,7 +103,7 @@
     <div class="Page__header">
         <h1><a href="../Configuration/index.html">Configuration</a></h1>
                 <span class="ModifiedDate">
-            January 28, 2022 at 1:11 PM        </span>
+            January 28, 2022 at 2:26 PM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/05_Configuration/_index.md" target="_blank">
                 Edit on GitHub            </a>
@@ -118,62 +118,62 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#page_title">Title</a>
+<a href="#title">Title</a>
 </li>
 <li>
-<a href="#page_tagline">Tagline</a>
+<a href="#tagline">Tagline</a>
 </li>
 <li>
-<a href="#page_author">Author</a>
+<a href="#author">Author</a>
 </li>
 <li>
-<a href="#page_image">Image</a>
+<a href="#image">Image</a>
 </li>
 <li>
-<a href="#page_format">Format</a>
+<a href="#format">Format</a>
 </li>
 <li>
-<a href="#page_ignore">Ignore</a>
+<a href="#ignore">Ignore</a>
 </li>
 <li>
-<a href="#page_timezone">Timezone</a>
+<a href="#timezone">Timezone</a>
 </li>
 <li>
-<a href="#page_multi_language">Multi-language</a>
+<a href="#multi-language">Multi-language</a>
 </li>
 <li>
-<a href="#page_language">Language</a>
+<a href="#language">Language</a>
 </li>
 <li>
-<a href="#page_processor">Processor</a>
+<a href="#processor">Processor</a>
 </li>
 </ul>    </div>
 </div>
-<h3><a id="page_title" href="#page_title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h3>
+<h3><a id="title" href="#title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h3>
 <p>Change the title bar in the docs</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Daux.io"</span>
 }
 </code></pre>
-<h3><a id="page_tagline" href="#page_tagline" class="Permalink" aria-hidden="true" title="Permalink">#</a>Tagline</h3>
+<h3><a id="tagline" href="#tagline" class="Permalink" aria-hidden="true" title="Permalink">#</a>Tagline</h3>
 <p>Change the tagline bar in the docs</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"tagline"</span>: <span class="hljs-string">"The Easiest Way To Document Your Project"</span>
 }
 </code></pre>
-<h3><a id="page_author" href="#page_author" class="Permalink" aria-hidden="true" title="Permalink">#</a>Author</h3>
+<h3><a id="author" href="#author" class="Permalink" aria-hidden="true" title="Permalink">#</a>Author</h3>
 <p>Change the documentation’s author</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"author"</span>: <span class="hljs-string">"Stéphane Goetz"</span>
 }
 </code></pre>
-<h3><a id="page_image" href="#page_image" class="Permalink" aria-hidden="true" title="Permalink">#</a>Image</h3>
+<h3><a id="image" href="#image" class="Permalink" aria-hidden="true" title="Permalink">#</a>Image</h3>
 <p>An image to show on the landing page. A relative path from the documentation root.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"image"</span>: <span class="hljs-string">"image.png"</span>
 }
 </code></pre>
-<h3><a id="page_format" href="#page_format" class="Permalink" aria-hidden="true" title="Permalink">#</a>Format</h3>
+<h3><a id="format" href="#format" class="Permalink" aria-hidden="true" title="Permalink">#</a>Format</h3>
 <p>Change the output format. It is recommended you set only formats that support the live mode as this will also
 be read by the integrated web server. And you set the other formats (like confluence) only by command line</p>
 <pre><code class="hljs json">{
@@ -189,7 +189,7 @@ be read by the integrated web server. And you set the other formats (like conflu
 </li>
 </ul>
 <p>Available formats are <strong>HTML</strong> and <strong>Confluence</strong></p>
-<h3><a id="page_ignore" href="#page_ignore" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ignore</h3>
+<h3><a id="ignore" href="#ignore" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ignore</h3>
 <p>Set custom files and entire folders to ignore within your <code>/docs</code> folder. For files make sure to include the file extension in the name. For both files and folders, names are case-sensitive.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"ignore"</span>: {
@@ -198,13 +198,13 @@ be read by the integrated web server. And you set the other formats (like conflu
     }
 }
 </code></pre>
-<h3><a id="page_timezone" href="#page_timezone" class="Permalink" aria-hidden="true" title="Permalink">#</a>Timezone</h3>
+<h3><a id="timezone" href="#timezone" class="Permalink" aria-hidden="true" title="Permalink">#</a>Timezone</h3>
 <p>If your server does not have a default timezone set in php.ini, it may return errors when it tries to generate the last modified date/time for docs. To fix these errors, specify a timezone in your config file. Valid options are available in the <a href="http://php.net/manual/en/timezones.php" class="Link--external" rel="noopener noreferrer">PHP Manual</a>.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"timezone"</span>: <span class="hljs-string">"America/Los_Angeles"</span>
 }
 </code></pre>
-<h3><a id="page_multi_language" href="#page_multi_language" class="Permalink" aria-hidden="true" title="Permalink">#</a>Multi-language</h3>
+<h3><a id="multi-language" href="#multi-language" class="Permalink" aria-hidden="true" title="Permalink">#</a>Multi-language</h3>
 <p>Enables multi-language support which needs separate directories for each language in <code>docs/</code> folder.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"languages"</span>: { <span class="hljs-attr">"en"</span>: <span class="hljs-string">"English"</span>, <span class="hljs-attr">"de"</span>: <span class="hljs-string">"German"</span> }
@@ -230,7 +230,7 @@ be read by the integrated web server. And you set the other formats (like conflu
 │   │   │   ├── Hello_World.md
 │   │   │   ├── 05_Code_Highlighting.md
 </code></pre>
-<h3><a id="page_language" href="#page_language" class="Permalink" aria-hidden="true" title="Permalink">#</a>Language</h3>
+<h3><a id="language" href="#language" class="Permalink" aria-hidden="true" title="Permalink">#</a>Language</h3>
 <p>You can change the default language with the <code>language</code> option.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"language"</span>: <span class="hljs-string">"fr"</span>
@@ -253,7 +253,7 @@ A string that isn’t found will fall back to english.</p>
     }
 }
 </code></pre>
-<h3><a id="page_processor" href="#page_processor" class="Permalink" aria-hidden="true" title="Permalink">#</a>Processor</h3>
+<h3><a id="processor" href="#processor" class="Permalink" aria-hidden="true" title="Permalink">#</a>Processor</h3>
 <p>You can set the processor in the documentation or as an option to the command line. If you need it when running the server, you should add it to the configuration.</p>
 <p>More information on how to create a Processor can be found <a href="../For_Developers/Creating_a_Processor.html">here</a>.</p>
 <pre><code class="hljs json">{

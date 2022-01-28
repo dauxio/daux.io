@@ -103,7 +103,7 @@
     <div class="Page__header">
         <h1><a href="../Configuration/index.html">Configuration</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Configuration/Html_export.html">Html export</a></h1>
                 <span class="ModifiedDate">
-            January 28, 2022 at 1:11 PM        </span>
+            January 28, 2022 at 2:26 PM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/05_Configuration/Html_export.md" target="_blank">
                 Edit on GitHub            </a>
@@ -117,68 +117,68 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#page_analytics">Analytics</a>
+<a href="#analytics">Analytics</a>
 <ul>
 <li>
-<a href="#page_google_analytics">Google Analytics</a>
+<a href="#google-analytics">Google Analytics</a>
 </li>
 <li>
-<a href="#page_piwik_analytics">Piwik Analytics</a>
+<a href="#piwik-analytics">Piwik Analytics</a>
 </li>
 <li>
-<a href="#page_plausible_analytics">Plausible Analytics</a>
+<a href="#plausible-analytics">Plausible Analytics</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#page_automatic_table_of_contents">Automatic Table of Contents</a>
+<a href="#automatic-table-of-contents">Automatic Table of Contents</a>
 </li>
 <li>
-<a href="#page_buttons">Buttons</a>
+<a href="#buttons">Buttons</a>
 </li>
 <li>
-<a href="#page_breadcrumb_titles">Breadcrumb titles</a>
+<a href="#breadcrumb-titles">Breadcrumb titles</a>
 </li>
 <li>
-<a href="#page_date_modified">Date Modified</a>
+<a href="#date-modified">Date Modified</a>
 </li>
 <li>
-<a href="#page_github_repo">GitHub Repo</a>
+<a href="#github-repo">GitHub Repo</a>
 </li>
 <li>
-<a href="#page_inherit_index">Inherit Index</a>
+<a href="#inherit-index">Inherit Index</a>
 </li>
 <li>
-<a href="#page_jump_buttons">Jump buttons</a>
+<a href="#jump-buttons">Jump buttons</a>
 </li>
 <li>
-<a href="#page_landing_page">Landing page</a>
+<a href="#landing-page">Landing page</a>
 </li>
 <li>
-<a href="#page_links">Links</a>
+<a href="#links">Links</a>
 </li>
 <li>
-<a href="#page_search">Search</a>
+<a href="#search">Search</a>
 </li>
 <li>
-<a href="#page_themes">Themes</a>
+<a href="#themes">Themes</a>
 </li>
 <li>
-<a href="#page_toggling_code_blocks">Toggling Code Blocks</a>
+<a href="#toggling-code-blocks">Toggling Code Blocks</a>
 </li>
 <li>
-<a href="#page_twitter">Twitter</a>
+<a href="#twitter">Twitter</a>
 </li>
 </ul>    </div>
 </div>
-<h2><a id="page_analytics" href="#page_analytics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Analytics</h2>
-<h3><a id="page_google_analytics" href="#page_google_analytics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Google Analytics</h3>
+<h2><a id="analytics" href="#analytics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Analytics</h2>
+<h3><a id="google-analytics" href="#google-analytics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Google Analytics</h3>
 <p>This will embed the google analytics tracking code.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"google_analytics"</span>: <span class="hljs-string">"UA-XXXXXXXXX-XX"</span> }
 }
 </code></pre>
-<h3><a id="page_piwik_analytics" href="#page_piwik_analytics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Piwik Analytics</h3>
+<h3><a id="piwik-analytics" href="#piwik-analytics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Piwik Analytics</h3>
 <p>This will embed the piwik tracking code.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"piwik_analytics"</span>: <span class="hljs-string">"my-url-for-piwik.com"</span> }
@@ -189,15 +189,15 @@
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"piwik_analytics_id"</span>: <span class="hljs-string">"43"</span> }
 }
 </code></pre>
-<h3><a id="page_plausible_analytics" href="#page_plausible_analytics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Plausible Analytics</h3>
+<h3><a id="plausible-analytics" href="#plausible-analytics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Plausible Analytics</h3>
 <p>This will embed the <a href="https://plausible.io/" class="Link--external" rel="noopener noreferrer">https://plausible.io/</a> tracking code.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"plausible_domain"</span>: <span class="hljs-string">"daux.io"</span> }
 }
 </code></pre>
-<h2><a id="page_automatic_table_of_contents" href="#page_automatic_table_of_contents" class="Permalink" aria-hidden="true" title="Permalink">#</a>Automatic Table of Contents</h2>
+<h2><a id="automatic-table-of-contents" href="#automatic-table-of-contents" class="Permalink" aria-hidden="true" title="Permalink">#</a>Automatic Table of Contents</h2>
 <p>You can add a table of contents on each page automatically, read about it <a href="../Features/Table_of_contents.html">here</a></p>
-<h2><a id="page_buttons" href="#page_buttons" class="Permalink" aria-hidden="true" title="Permalink">#</a>Buttons</h2>
+<h2><a id="buttons" href="#buttons" class="Permalink" aria-hidden="true" title="Permalink">#</a>Buttons</h2>
 <p>You can add buttons to the landing page.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: {
@@ -207,7 +207,7 @@
     }
 }
 </code></pre>
-<h2><a id="page_breadcrumb_titles" href="#page_breadcrumb_titles" class="Permalink" aria-hidden="true" title="Permalink">#</a>Breadcrumb titles</h2>
+<h2><a id="breadcrumb-titles" href="#breadcrumb-titles" class="Permalink" aria-hidden="true" title="Permalink">#</a>Breadcrumb titles</h2>
 <p>Daux.io provides the option to present page titles as breadcrumb navigation.
 You can <em>optionally</em> specify the separator used for breadcrumbs.</p>
 <pre><code class="hljs json">{
@@ -217,35 +217,35 @@ You can <em>optionally</em> specify the separator used for breadcrumbs.</p>
     }
 }
 </code></pre>
-<h2><a id="page_date_modified" href="#page_date_modified" class="Permalink" aria-hidden="true" title="Permalink">#</a>Date Modified</h2>
+<h2><a id="date-modified" href="#date-modified" class="Permalink" aria-hidden="true" title="Permalink">#</a>Date Modified</h2>
 <p>By default, daux.io will display the last modified time as reported by the system underneath the title for each document.
 To disable this, change the option in your config.json to <code>false</code>.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"date_modified"</span>: <span class="hljs-literal">false</span> }
 }
 </code></pre>
-<h2><a id="page_github_repo" href="#page_github_repo" class="Permalink" aria-hidden="true" title="Permalink">#</a>GitHub Repo</h2>
+<h2><a id="github-repo" href="#github-repo" class="Permalink" aria-hidden="true" title="Permalink">#</a>GitHub Repo</h2>
 <p>Add a ‘Fork me on GitHub’ ribbon.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"repo"</span>: <span class="hljs-string">"dauxio/daux.io"</span> }
 }
 </code></pre>
-<h2><a id="page_inherit_index" href="#page_inherit_index" class="Permalink" aria-hidden="true" title="Permalink">#</a>Inherit Index</h2>
+<h2><a id="inherit-index" href="#inherit-index" class="Permalink" aria-hidden="true" title="Permalink">#</a>Inherit Index</h2>
 <p>This feature will instructs the navigation generator to seek the first available file to use when there is no index in a folder.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"inherit_index"</span>: <span class="hljs-literal">true</span> }
 }
 </code></pre>
-<h2><a id="page_jump_buttons" href="#page_jump_buttons" class="Permalink" aria-hidden="true" title="Permalink">#</a>Jump buttons</h2>
+<h2><a id="jump-buttons" href="#jump-buttons" class="Permalink" aria-hidden="true" title="Permalink">#</a>Jump buttons</h2>
 <p>You can have previous/next buttons on each page.
 They can be disabled by setting <code>jump_buttons</code> to <code>false</code>.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"jump_buttons"</span>: <span class="hljs-literal">false</span> }
 }
 </code></pre>
-<h2><a id="page_landing_page" href="#page_landing_page" class="Permalink" aria-hidden="true" title="Permalink">#</a>Landing page</h2>
+<h2><a id="landing-page" href="#landing-page" class="Permalink" aria-hidden="true" title="Permalink">#</a>Landing page</h2>
 <p>The automatic landing page can be disabled through the <code>auto_landing</code> option, read about it <a href="../Features/Landing_page.html">here</a></p>
-<h2><a id="page_links" href="#page_links" class="Permalink" aria-hidden="true" title="Permalink">#</a>Links</h2>
+<h2><a id="links" href="#links" class="Permalink" aria-hidden="true" title="Permalink">#</a>Links</h2>
 <p>Include custom links in the sidebar.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: {
@@ -257,9 +257,9 @@ They can be disabled by setting <code>jump_buttons</code> to <code>false</code>.
     }
 }
 </code></pre>
-<h2><a id="page_search" href="#page_search" class="Permalink" aria-hidden="true" title="Permalink">#</a>Search</h2>
+<h2><a id="search" href="#search" class="Permalink" aria-hidden="true" title="Permalink">#</a>Search</h2>
 <p>Daux has an embedded search engine read all about it <a href="../Features/Search.html">here</a></p>
-<h2><a id="page_themes" href="#page_themes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Themes</h2>
+<h2><a id="themes" href="#themes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Themes</h2>
 <p>We have 4 built-in Bootstrap themes. To use one of the themes, just set the <code>theme</code> option to one of the following:</p>
 <ul>
 <li>daux-blue</li>
@@ -276,14 +276,14 @@ They can be disabled by setting <code>jump_buttons</code> to <code>false</code>.
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"theme"</span>: <span class="hljs-string">"new-theme"</span> }
 }
 </code></pre>
-<h2><a id="page_toggling_code_blocks" href="#page_toggling_code_blocks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Toggling Code Blocks</h2>
+<h2><a id="toggling-code-blocks" href="#toggling-code-blocks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Toggling Code Blocks</h2>
 <p>Some users might wish to hide the code blocks &amp; view just the documentation.
 By setting the <code>toggle_code</code> property to <code>true</code>, you can offer a toggle button on the page.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"toggle_code"</span>: <span class="hljs-literal">true</span> }
 }
 </code></pre>
-<h2><a id="page_twitter" href="#page_twitter" class="Permalink" aria-hidden="true" title="Permalink">#</a>Twitter</h2>
+<h2><a id="twitter" href="#twitter" class="Permalink" aria-hidden="true" title="Permalink">#</a>Twitter</h2>
 <p>Include twitter follow buttons in the sidebar.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"html"</span>: { <span class="hljs-attr">"twitter"</span>: [<span class="hljs-string">"justin_walsh"</span>, <span class="hljs-string">"todaymade"</span>] }

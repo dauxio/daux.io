@@ -103,7 +103,7 @@
     <div class="Page__header">
         <h1><a href="../For_Developers/Creating_a_Processor.html">For Developers</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../For_Developers/Creating_a_Processor.html">Creating a Processor</a></h1>
                 <span class="ModifiedDate">
-            January 28, 2022 at 1:11 PM        </span>
+            January 28, 2022 at 2:26 PM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/10_For_Developers/Creating_a_Processor.md" target="_blank">
                 Edit on GitHub            </a>
@@ -113,11 +113,11 @@
     <div class="s-content">
         <p>The recommended way to extend Daux is through Processors.</p>
 <p>The main advantage, is that you can run it with the source or with <code>daux</code> independently. You don’t need to hack in the core.</p>
-<h2><a id="page_adding_classes" href="#page_adding_classes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Adding classes</h2>
+<h2><a id="adding-classes" href="#adding-classes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Adding classes</h2>
 <p>Next to your <code>docs</code> directory, you can create a <code>daux</code> directory that can contain your Processor.</p>
 <p>The classes must respect the PSR-4 Naming convention. And have <code>\Todaymade\Daux\Extension</code> as a base namespace.</p>
 <p>By default, we created a <code>daux/Processor.php</code> file to get you started.</p>
-<h2><a id="page_a_quick_test" href="#page_a_quick_test" class="Permalink" aria-hidden="true" title="Permalink">#</a>A quick test ?</h2>
+<h2><a id="a-quick-test" href="#a-quick-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>A quick test ?</h2>
 <p>For the example we’re just going to dump the tree and exit.</p>
 <pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">manipulateTree</span><span class="hljs-params">(Root $root)</span>
 </span>{
@@ -130,9 +130,9 @@
 </code></pre>
 <p>Let’s just try if it works by running <code>daux --processor=Processor</code></p>
 <p>Yes, you get a big array dump! You’re good to go.</p>
-<h2><a id="page_what_can_i_achieve" href="#page_what_can_i_achieve" class="Permalink" aria-hidden="true" title="Permalink">#</a>What can I achieve ?</h2>
+<h2><a id="what-can-i-achieve" href="#what-can-i-achieve" class="Permalink" aria-hidden="true" title="Permalink">#</a>What can I achieve ?</h2>
 <p>There are a few methods that you can override to add some</p>
-<h3><a id="page_change_the_parsed_tree" href="#page_change_the_parsed_tree" class="Permalink" aria-hidden="true" title="Permalink">#</a>Change the parsed tree.</h3>
+<h3><a id="change-the-parsed-tree" href="#change-the-parsed-tree" class="Permalink" aria-hidden="true" title="Permalink">#</a>Change the parsed tree.</h3>
 <p>By default, Daux.io parses your directory to find pages. but, for a reason or another, you might want to programmatically add some pages.</p>
 <p>This can be done with:</p>
 <pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">manipulateTree</span><span class="hljs-params">(Root $root)</span>
@@ -152,14 +152,14 @@ $page-&gt;setContent(<span class="hljs-string">'A long time ago in a galaxy far 
 <p>The page will automatically be treated as markdown and converted like a normal page.</p>
 <p>If you create a new ContentType, like let’s say LaTeX, you would set the title <code>My Page.tex</code> it will keep the title <code>My Page</code> and use your renderer.</p>
 <p>If the extension is not mapped to a Generator, it will simply create the file as-is without manipulation.</p>
-<h3><a id="page_extend_the_markdown_generator" href="#page_extend_the_markdown_generator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Extend the Markdown Generator</h3>
+<h3><a id="extend-the-markdown-generator" href="#extend-the-markdown-generator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Extend the Markdown Generator</h3>
 <p>You can extend the Markdown Parser in any way you want with this method.</p>
 <pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">extendCommonMarkEnvironment</span><span class="hljs-params">(Environment $environment)</span>
 </span>{
 }
 </code></pre>
 <p>See the details on <a href="http://commonmark.thephpleague.com/customization/overview/" class="Link--external" rel="noopener noreferrer">CommonMark’s website</a>.</p>
-<h3><a id="page_add_new_generators" href="#page_add_new_generators" class="Permalink" aria-hidden="true" title="Permalink">#</a>Add new generators</h3>
+<h3><a id="add-new-generators" href="#add-new-generators" class="Permalink" aria-hidden="true" title="Permalink">#</a>Add new generators</h3>
 <p>You can add new generators to Daux.io and use them right away, they must implement the
 <code>\Todaymade\Daux\Format\Base\Generator</code> interface and if you want to use the live mode with your generator
 you have to implement <code>\Todaymade\Daux\Format\Base\LiveGenerator</code>.</p>
