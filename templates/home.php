@@ -17,6 +17,7 @@
         <?= ($config->hasImage()) ? '<img class="homepage-image img-responsive" src="' . $config->getImage() . '" alt="' . $config->getTitle() . '">' : '' ?>
     </div>
 
+    <?php if ($config->getHTML()->hasRepository() || count($page['entry_page']) > 0) { ?>
     <div class="HomepageButtons">
         <div class="Container">
             <?php if ($config->getHTML()->hasRepository()) { ?>
@@ -36,6 +37,7 @@
             ?>
         </div>
     </div>
+    <?php } ?>
 </div>
 
 <div class="HomepageContent">
