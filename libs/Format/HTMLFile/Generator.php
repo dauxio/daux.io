@@ -57,15 +57,13 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
             }
         );
 
+        // TODO :: make it possible to customize the single page theme
+        $config['html']['theme'] = 'daux_singlepage';
+        $config['html']['theme-variant'] = null;
+
         DauxHelper::rebaseConfiguration($config, '');
 
-        $data = [
-            'author' => $config->getAuthor(),
-            'title' => $config->getTitle(),
-            'subject' => $config->getTagline(),
-        ];
-
-        $book = new Book($this->daux->tree, $data);
+        $book = new Book($this->daux->tree, $config);
 
         $current = $this->daux->tree->getIndexPage();
         while ($current) {

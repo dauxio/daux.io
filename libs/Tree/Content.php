@@ -150,6 +150,7 @@ class Content extends ContentAbstract
 
         $dump['prev'] = $this->getPrevious() ? $this->getPrevious()->getUrl() : '';
         $dump['next'] = $this->getNext() ? $this->getNext()->getUrl() : '';
+        $dump['attributes'] = $this->getAttribute();
 
         return $dump;
     }

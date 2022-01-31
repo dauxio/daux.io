@@ -1,24 +1,29 @@
 <?php namespace Todaymade\Daux\Format\HTMLFile;
 
+use Todaymade\Daux\Config;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Directory;
 
 class Book
 {
-    protected $cover;
     protected $tree;
     protected $pages = [];
 
-    public function __construct(Directory $tree, $cover)
+    public function __construct(Directory $tree, Config $config)
     {
         $this->tree = $tree;
-        $this->cover = $cover;
+        $this->config = $config;
     }
 
     protected function getStyles()
     {
-        // TODO :: un-hardcode that
-        return '<style>' . file_get_contents('themes/daux_singlepage/css/main.min.css') . '</style>';
+        $styles = '';
+        foreach ($this->config->getTheme()->getCSS() as $css) {
+            $file = $this->config->getThemesPath() . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $css;
+            $styles .= '<style>' . file_get_contents($file) . '</style>';
+        }
+
+        return $styles;
     }
 
     protected function getPageUrl($page)
@@ -89,8 +94,8 @@ class Book
     protected function generateCover()
     {
         return '<div>' .
-        "<h1 style='font-size:40pt; margin-bottom:0;'>{$this->cover['title']}</h1>" .
-        "<p><strong>{$this->cover['subject']}</strong> by {$this->cover['author']}</p>" .
+        "<h1 style='font-size:40pt; margin-bottom:0;'>{$this->config->getTitle()}</h1>" .
+        "<p><strong>{$this->config->getTagline()}</strong> by {$this->config->getAuthor()}</p>" .
         '</div><div class="PageBreak">&nbsp;</div>';
     }
 
@@ -115,9 +120,9 @@ class Book
     public function generateHead()
     {
         $head = [
-            "<title>{$this->cover['title']}</title>",
-            "<meta name='description' content='{$this->cover['subject']}' />",
-            "<meta name='author' content='{$this->cover['author']}'>",
+            "<title>{$this->config->getTitle()}</title>",
+            "<meta name='description' content='{$this->config->getTagline()}' />",
+            "<meta name='author' content='{$this->config->getAuthor()}'>",
             "<meta charset='UTF-8'>",
             $this->getStyles(),
         ];
