@@ -43,7 +43,7 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
     {
         Daux::writeln('Running conversion', OutputInterface::VERBOSITY_VERBOSE);
 
-        return $this->getConverter()->convertToHtml($raw)->getContent();
+        return $this->getConverter()->convert($raw)->getContent();
     }
 
     public function convert($raw, Content $node)

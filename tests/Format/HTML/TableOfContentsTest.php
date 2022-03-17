@@ -34,7 +34,7 @@ class TableOfContentsTest extends TestCase
     {
         $converter = new CommonMarkConverter($this->getConfig());
 
-        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">#</a>Test</h1>\n", $converter->convertToHtml('# Test')->getContent());
+        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">#</a>Test</h1>\n", $converter->convert('# Test')->getContent());
     }
 
     public function testShouldAddTOCWhenAutoTOCisOn()
@@ -54,7 +54,7 @@ class TableOfContentsTest extends TestCase
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
     public function testShouldNotAddTOCWhenAutoTOCisOnAndTOCisPresent()
@@ -75,7 +75,7 @@ EXPECTED;
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
     public function testTOCToken()
@@ -93,7 +93,7 @@ EXPECTED;
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
     public function testUnicodeTOC()
@@ -115,7 +115,7 @@ EXPECTED;
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
     public function testDuplicatedTOC()
@@ -141,7 +141,7 @@ EXPECTED;
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
     public function testEscapedTOC()
@@ -159,7 +159,7 @@ EXPECTED;
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
     public function testQuotesWorkCorrectly()
@@ -177,6 +177,6 @@ EXPECTED;
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 }

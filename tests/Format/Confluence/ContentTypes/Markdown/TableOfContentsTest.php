@@ -33,7 +33,7 @@ class TableOfContentsTest extends TestCase
     {
         $converter = new CommonMarkConverter($this->getConfig());
 
-        $this->assertEquals("<h1>Test</h1>\n", $converter->convertToHtml('# Test')->getContent());
+        $this->assertEquals("<h1>Test</h1>\n", $converter->convert('# Test')->getContent());
     }
 
     public function testTOCToken()
@@ -47,7 +47,7 @@ class TableOfContentsTest extends TestCase
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
     public function testShouldAddTOCWhenAutoTOCisOn()
@@ -63,7 +63,7 @@ EXPECTED;
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
     public function testShouldNotAddTOCWhenAutoTOCisOnAndTOCisPresent()
@@ -80,6 +80,6 @@ EXPECTED;
 
 EXPECTED;
 
-        $this->assertEquals($expected, $converter->convertToHtml($source)->getContent());
+        $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 }
