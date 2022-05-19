@@ -222,7 +222,7 @@ class Config extends BaseConfig
     public function getBasePage()
     {
         if ($this->isLive()) {
-            $value = '//' . $this->getBaseUrl();
+            $value = $this->getBaseUrl();
             if (!$this['live']['clean_urls']) {
                 $value .= 'index.php/';
             }
