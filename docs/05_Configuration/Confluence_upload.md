@@ -25,7 +25,7 @@ Now that the connection is defined, you need to tell it where you want your docu
 
 For that you need a `space_id` (name that appears at the beginning of the urls) and an `ancestor_id`; the id of the page that will be the parent of the documentation's homepage.
 
-You can obtain the `ancestor_id` id by editing the page you want to define as a parent: the ID is at the end of the URL
+You can obtain the `ancestor_id` id by checking the links of the actions on the page (page information, show source code, export, etc) : the ID corresponds to the query parameter `pageId`.
 
 ```json
 {
