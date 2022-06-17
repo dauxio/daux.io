@@ -23,22 +23,17 @@ You can create a token by [following this documentation](https://support.atlassi
 
 Now that the connection is defined, you need to tell it where you want your documentation to be uploaded.
 
-For that you need a `space_id` (name that appears at the beginning of the urls) and an `ancestor_id`; the id of the page that will be the parent of the documentation's homepage.
+For that you need an `ancestor_id` or `root_id`; the id of the page that will be the parent of the documentation's homepage or the page that will be the homepage of your documentation respectively.
 
-You can obtain the `ancestor_id` id by checking the links of the actions on the page (page information, show source code, export, etc) : the ID corresponds to the query parameter `pageId`.
+You can obtain a page's id by checking the links of the actions on the page (page information, show source code, export, etc) : the ID corresponds to the query parameter `pageId`.
 
 ```json
 {
     "confluence": {
-        "space_id": "my_space",
         "ancestor_id": 50370632
     }
 }
 ```
-
-You can also provide a `root_id` instead of an `ancestor_id` in this case, you specify the id as the homepage of your documentation.
-
-You can use that when you're uploading your documentation to the root of a Confluence Space or if your page already exists.
 
 ## Prefix
 

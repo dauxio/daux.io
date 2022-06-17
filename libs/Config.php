@@ -137,7 +137,15 @@ class Config extends BaseConfig
 
     public function getConfluenceConfiguration(): ConfluenceConfig
     {
-        return new ConfluenceConfig($this->hasValue('confluence') ? $this->getValue('confluence') : []);
+        if ($this->hasValue('confluence')) {
+            if (!($this->getValue('confluence') instanceof ConfluenceConfig)) {
+                $this->setValue('confluence', new ConfluenceConfig($this->getValue('confluence')));
+            }
+        } else {
+            $this->setValue('confluence', new ConfluenceConfig([]));
+        }
+
+        return $this->getValue('confluence');
     }
 
     public function getHTML(): HTMLConfig

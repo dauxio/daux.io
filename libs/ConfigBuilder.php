@@ -121,6 +121,13 @@ class ConfigBuilder
         return $this;
     }
 
+    public function withConfluencePrintDiff($value): ConfigBuilder
+    {
+        $this->config['confluence']['print_diff'] = $value;
+
+        return $this;
+    }
+
     public function build(): Config
     {
         $this->initializeConfiguration();

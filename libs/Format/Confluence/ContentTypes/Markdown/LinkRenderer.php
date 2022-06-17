@@ -43,9 +43,11 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
             $link_props["ac:anchor"] = $urlAndHash[1];
         }
 
+        $confluence = $this->dauxConfig->getConfluenceConfiguration();
+
         $page_props = [
-            'ri:content-title' => trim(trim($this->dauxConfig['confluence']['prefix']) . ' ' . $file->getTitle()),
-            'ri:space-key' => $this->dauxConfig['confluence']['space_id'],
+            'ri:content-title' => trim(trim($confluence->getPrefix()) . ' ' . $file->getTitle()),
+            'ri:space-key' => $confluence->getSpaceId(),
         ];
 
         $page = strval(new HtmlElement('ri:page', $page_props, '', true));

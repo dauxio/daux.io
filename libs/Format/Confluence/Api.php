@@ -66,7 +66,8 @@ class Api
 
         $body = $response->getBody();
         $json = json_decode($body, true);
-        $message .= ($json != null && array_key_exists('message', $json)) ? $json['message'] : $body;
+        $has_message = $json != null && array_key_exists('message', $json) && !empty($json['message']);
+        $message .= $has_message ? $json['message'] : $body;
 
         if ($level == '4' && strpos($message, 'page with this title already exists') !== false) {
             return new DuplicateTitleException($message, 0, $e->getPrevious());
@@ -77,7 +78,7 @@ class Api
 
     public function getPage($id)
     {
-        $url = "content/$id?expand=ancestors,version,body.storage";
+        $url = "content/$id?expand=space,ancestors,version,body.storage";
 
         try {
             $result = json_decode($this->getClient()->get($url)->getBody(), true);
@@ -93,6 +94,7 @@ class Api
 
         return [
             'id' => $result['id'],
+            'space_key' => $result['space']['key'],
             'ancestor_id' => $ancestor_id,
             'title' => $result['title'],
             'version' => $result['version']['number'],
@@ -115,7 +117,7 @@ class Api
         // We set a limit of 15 as it appears that
         // Confluence fails silently when retrieving
         // more than 20 entries with "body.storage"
-        $baseUrl = $url = "content/$rootPage/child/page?expand=version,body.storage&limit=$increment";
+        $baseUrl = $url = "content/$rootPage/child/page?expand=space,version,body.storage&limit=$increment";
         $start = 0;
 
         $pages = [];
@@ -130,6 +132,8 @@ class Api
             foreach ($hierarchy['results'] as $result) {
                 $pages[$result['title']] = [
                     'id' => $result['id'],
+                    'ancestor_id' => $rootPage,
+                    'space_key' => $result['space']['key'],
                     'title' => $result['title'],
                     'version' => $result['version']['number'],
                     'content' => $result['body']['storage']['value'],

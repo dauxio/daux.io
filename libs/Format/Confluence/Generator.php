@@ -32,7 +32,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
             throw new \RuntimeException('You must specify your Confluence configuration');
         }
 
-        $mandatory = ['space_id', 'base_url', 'user', 'pass', 'prefix'];
+        $mandatory = ['base_url', 'user', 'pass', 'prefix'];
         $errors = [];
         foreach ($mandatory as $key) {
             if (!$confluence->hasValue($key)) {

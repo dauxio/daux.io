@@ -25,6 +25,7 @@ class Generate extends DauxCommand
 
             // Confluence format only
             ->addOption('delete', null, InputOption::VALUE_NONE, 'Delete pages not linked to a documentation page (confluence)')
+            ->addOption('printDiffAndExit', null, InputOption::VALUE_NONE, 'Print the differences between local and remote and exit')
 
             ->addOption('destination', 'd', InputOption::VALUE_REQUIRED, $description, 'static');
     }
@@ -40,6 +41,10 @@ class Generate extends DauxCommand
 
         if ($input->hasOption('delete') && $input->getOption('delete')) {
             $builder->withConfluenceDelete(true);
+        }
+
+        if ($input->hasOption('printDiffAndExit') && $input->getOption('printDiffAndExit')) {
+            $builder->withConfluencePrintDiff(true);
         }
 
         return $builder;

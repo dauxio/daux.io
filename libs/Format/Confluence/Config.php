@@ -13,6 +13,15 @@ class Config extends BaseConfig
         return false;
     }
 
+    public function shouldPrintDiff()
+    {
+        if ($this->hasValue('print_diff')) {
+            return $this->getValue('print_diff');
+        }
+
+        return false;
+    }
+
     public function getUpdateThreshold()
     {
         return $this->hasValue('update_threshold') ? $this->getValue('update_threshold') : 2;
@@ -43,6 +52,11 @@ class Config extends BaseConfig
         return $this->getValue('space_id');
     }
 
+    public function setSpaceId($value)
+    {
+        $this->setValue('space_id', $value);
+    }
+
     public function hasAncestorId()
     {
         return $this->hasValue('ancestor_id');
@@ -51,11 +65,6 @@ class Config extends BaseConfig
     public function getAncestorId()
     {
         return $this->getValue('ancestor_id');
-    }
-
-    public function setAncestorId($value)
-    {
-        $this->setValue('ancestor_id', $value);
     }
 
     public function hasRootId()

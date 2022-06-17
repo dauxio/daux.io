@@ -24,7 +24,6 @@ class Publisher
         $this->confluence = $confluence;
 
         $this->client = new Api($confluence->getBaseUrl(), $confluence->getUser(), $confluence->getPassword());
-        $this->client->setSpace($confluence->getSpaceId());
     }
 
     public function run($title, $closure)
@@ -36,10 +35,46 @@ class Publisher
         }
     }
 
+    public function diff($local, $remote, $level)
+    {
+        if ($remote == null) {
+            $this->output->writeLn("$level- " . $local['title'] .' <fg=green>(create)</>');
+        } else if ($local == null) {
+            $this->output->writeLn("$level- " . $remote['title'] .' <fg=red>(delete)</>');
+        } else {
+            $this->output->writeLn("$level- " . $local['title'] .' <fg=blue>(update)</>');
+        }
+
+        if ($local && array_key_exists('children', $local)) {
+            $remoteChildren = $remote && array_key_exists('children', $remote) ? $remote['children'] : [];
+            foreach ($local['children'] as $title => $content) {
+                $this->diff($content, array_key_exists($title, $remoteChildren) ?  $remoteChildren[$title] : null, "$level  ");
+            }
+        } 
+        
+        if ($remote && array_key_exists('children', $remote)) {
+            $localChildren = $local && array_key_exists('children', $local) ? $local['children'] : [];
+            foreach ($remote['children'] as $title => $content) {
+                if (!array_key_exists($title, $localChildren) ) {
+                    $this->diff(null, $content, "$level  ");
+                }
+                
+            }
+        }
+
+    }
+
     public function publish(array $tree)
     {
         $this->output->writeLn('Finding Root Page...');
         $published = $this->getRootPage($tree);
+
+        $ancestor_id = $published['ancestor_id'];
+
+        // We infer the Space from the root page
+        $this->client->setSpace($published['space_key']);
+        $this->confluence->setSpaceId($published['space_key']);
+
 
         $this->run(
             'Getting already published pages...',
@@ -50,15 +85,21 @@ class Publisher
             }
         );
 
+        if ($this->confluence->shouldPrintDiff()) {
+            $this->output->writeLn("The following changes will be applied");
+            $this->diff($tree, $published, "");
+            return;
+        }
+
         $published = $this->run(
             'Create placeholder pages...',
             function () use ($tree, $published) {
-                return $this->createRecursive($this->confluence->getAncestorId(), $tree, $published);
+                return $this->createRecursive($ancestor_id, $tree, $published);
             }
         );
 
         $this->output->writeLn('Publishing updates...');
-        $published = $this->updateRecursive($this->confluence->getAncestorId(), $tree, $published);
+        $published = $this->updateRecursive($ancestor_id, $tree, $published);
 
         $delete = new PublisherDelete($this->output, $this->confluence->shouldAutoDeleteOrphanedPages(), $this->client);
         $delete->handle($published);
@@ -77,7 +118,6 @@ class Publisher
 
         if ($this->confluence->hasRootId()) {
             $published = $this->client->getPage($this->confluence->getRootId());
-            $this->confluence->setAncestorId($published['ancestor_id']);
 
             return $published;
         }
