@@ -77,6 +77,7 @@ class LinkRendererTest extends TestCase
         Builder::build($tree, []);
 
         $config = ConfigBuilder::withMode()->build();
+        $config->getConfluenceConfiguration()->setSpaceId('DOC');
         $config->setTree($tree);
         $config->setCurrentPage(DauxHelper::getFile($config->getTree(), $current));
 
