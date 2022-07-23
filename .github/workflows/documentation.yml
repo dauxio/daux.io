@@ -12,7 +12,7 @@ jobs:
       with:
         persist-credentials: false
     - name: Setup PHP
-      uses: shivammathur/setup-php@2.20.1
+      uses: shivammathur/setup-php@2.21.0
       with:
         php-version: 8.0
         extensions: mbstring, dom, intl, iconv
@@ -21,12 +21,12 @@ jobs:
     - name: Generate documentation
       run: bin/daux generate --value html.plausible_domain=daux.io
     - name: Deploy same repository 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.3.4
+      uses: JamesIves/github-pages-deploy-action@v4.4.0
       with:
         folder: "static"
         branch: gh-pages
     - name: Deploy daux.io 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.3.4
+      uses: JamesIves/github-pages-deploy-action@v4.4.0
       with:
         folder: "static"
         token: ${{ secrets.GH_TOKEN_DAUX }}
@@ -40,7 +40,7 @@ jobs:
       with:
         persist-credentials: false
     - name: Setup PHP
-      uses: shivammathur/setup-php@2.20.1
+      uses: shivammathur/setup-php@2.21.0
       with:
         php-version: 8.0
         extensions: mbstring, dom, intl
