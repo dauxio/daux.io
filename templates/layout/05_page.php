@@ -43,6 +43,14 @@
                 </div>
             <?php } ?>
 
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox"><?=$this->translate("DarkMode") ?>
+                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
                 <?php if ($config->getHTML()->hasTwitterHandles()) { ?>
                     <div class="Twitter">
                         <hr/>

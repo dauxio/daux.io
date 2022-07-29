@@ -75,7 +75,6 @@ Homepage
         opacity: 0.8;
         margin: 0 10px;
         text-transform: uppercase;
-        border: 5px solid var(--hero-button-border-color);
         font-family: var(--font-family-heading);
         font-weight: 700;
 
@@ -92,11 +91,13 @@ Homepage
         }
 
         &.Button--secondary {
+            border: 5px solid var(--hero-button-secondary-border-color);
             background-color: var(--hero-button-secondary-background);
             color: var(--hero-button-secondary-color);
         }
 
         &.Button--primary {
+            border: 5px solid var(--hero-button-primary-border-color);
             background-color: var(--hero-buttom-primary-background);
             color: var(--hero-button-primary-color);
         }
@@ -104,7 +105,7 @@ Homepage
 }
 
 .HomepageContent {
-    background-color: white;
+    background-color: var(--homepage-body-background);
     padding: 40px 0;
 
     ul,

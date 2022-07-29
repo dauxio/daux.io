@@ -2,7 +2,8 @@
     // Gray Scale
     --gray: #7a8288;
     --dark-gray: color(var(--gray) blend(#000 40%));
-    //--darker-gray: color(var(--gray) blend(#000 60%));
+    --darker-gray: color(var(--gray) blend(#000 60%));
+    --darkest-gray: color(var(--gray) blend(#000 80%));
     --light-gray: color(var(--gray) blend(#fff 50%));
     --lighter-gray: color(var(--gray) blend(#fff 70%));
     --lightest-gray: color(var(--gray) blend(#fff 90%));
@@ -15,71 +16,148 @@
     --type-size-5: 1rem; // ~16px
     --type-size-6: 0.75rem; // ~12px
 
-    --dark: #3f4657;
-    --light: #82becd;
-    --text: #222;
+    --color-primary: #82becd;
+    --color-secondary: #3f4657;
+    --color-text: #222;
+}
 
-    --link-color: var(--light);
-    --brand-color: var(--light);
-    --brand-background: var(--dark);
+:root {
+    --link-color: var(--color-primary);
+    --brand-color: var(--color-primary);
+    --brand-background: var(--color-secondary);
+
+    --body-background: #fff;
 
     // Sidebar
-    --sidebar-border: #e7e7e9;
+    --sidebar-border-color: #e7e7e9;
     --sidebar-background: #f7f7f7;
 
     // Sidebar links
-    --sidebar-link-color: var(--dark);
+    --sidebar-link-color: var(--color-secondary);
     --sidebar-link-active-background: #c5c5cb;
     --sidebar-link-hover-background: var(--sidebar-link-active-background);
-    --sidebar-link-arrow-color: var(--dark);
-    --sidebar-link-secondary-color: var(--text);
+    --sidebar-link-arrow-color: var(--color-secondary);
+    --sidebar-link-secondary-color: var(--color-text);
 
     // Sidebar Checkbox
-    --checkbox-background: #e6e6e6;
+    --checkbox-background: var(--lighter-gray);
     --checkbox-hover-background: #ccc;
-    --checkbox-checked-background: var(--dark);
-    --checkbox-checked-hover-background: var(--light);
+    --checkbox-checked-background: var(--color-secondary);
+    --checkbox-checked-hover-background: var(--color-primary);
     --checkbox-tick-color: #fff;
-    --checkbox-disabled-background: #e6e6e6;
-    --checkbox-disabled-tick-color: #7b7b7b;
+    --checkbox-disabled-background: var(--light-gray);
+    --checkbox-disabled-tick-color: var(--gray);
 
     // Sidebar search field
     --search-field-color: #555;
     --search-field-border-color: #ccc;
     --search-field-background: #fff;
-    --search-field-hover-border-color: var(--light);
+    --search-field-hover-border-color: var(--color-primary);
 
     // Sidebar hamburger
-    --sidebar-collapsible--hamburger-color: var(--light);
-    --sidebar-collapsible--hamburger-hover-color: var(--dark);
-    --sidebar-collapsible--hamburger-hover-background: var(--light);
+    --sidebar-collapsible--hamburger-color: var(--color-primary);
+    --sidebar-collapsible--hamburger-hover-color: var(--color-secondary);
+    --sidebar-collapsible--hamburger-hover-background: var(--color-primary);
 
     // Homepage
-    --homepage-navbar-background: var(--dark);
+    --homepage-navbar-background: var(--color-secondary);
 
-    --homepage-hero-background: var(--light);
-    --homepage-hero-color: var(--dark);
-    --homepage-bullet-color: var(--light);
+    --homepage-hero-background: var(--color-primary);
+    --homepage-hero-color: var(--color-secondary);
+    --homepage-bullet-color: var(--color-primary);
 
-    --homepage-footer-color: var(--light);
-    --homepage-footer-background: var(--dark);
+    --homepage-footer-color: var(--color-primary);
+    --homepage-footer-background: var(--color-secondary);
+    --homepage-body-background: #fff;
 
     // Homepage Hero Buttons
     --hero-button-block-background: var(--sidebar-link-active-background);
-    --hero-button-border-color: var(--dark);
+    --hero-button-primary-border-color: var(--color-secondary);
     --hero-button-primary-color: var(--sidebar-background);
-    --hero-buttom-primary-background: var(--dark);
-    --hero-button-secondary-color: var(--dark);
+    --hero-buttom-primary-background: var(--color-secondary);
+    --hero-button-secondary-border-color: var(--color-secondary);
+    --hero-button-secondary-color: var(--color-secondary);
     --hero-button-secondary-background: var(--sidebar-link-active-background);
 
-    --content-floating-blocks-background: var(--light);
-    --code-tag-color: var(--dark);
-
-    --code-tag-background-color: #fafafa;
+    --code-tag-color: var(--color-secondary);
+    --code-tag-background-color: var(--lightest-gray);
+    --code-tag-border-color: var(--light-gray);
     --code-tag-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
     --code-tag-border-radius: 4px;
 
-    --blockquote-border-color: var(--dark);
+    --blockquote-border-color: var(--color-secondary);
+
+    --hr-color: var(--lighter-gray);
+
+    --pager-background-color: var(--body-background);
+    --pager-border-color: var(--lighter-gray);
+    --pager-hover-background-color: #eee;
+
+    --toc--border-color: var(--lightest-gray);
+    --toc--inner-border-color: var(--lighter-gray);
+
+    --page-header-separator-color: #eee;
+    --page-header-details-color: var(--gray);
+
+    --table-border: var(--light-gray);
+    --table-background: #fff;
+    --table-background-odd: var(--lightest-gray);
+    --table-header-background: var(--lighter-gray);
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.dark {
+    --color-text: #fff;
+    --body-background: #222;
+
+    --sidebar-background: #000;
+    --sidebar-border-color: var(--dark-gray);
+
+    --sidebar-link-color: var(--color-primary);
+    --sidebar-link-active-background: var(--dark-gray);
+    --sidebar-link-hover-background: var(--dark-gray);
+    --sidebar-link-arrow-color: var(--color-text);
+    --sidebar-link-secondary-color: var(--color-text);
+
+    --code-tag-border-color: var(--dark-gray);
+    --code-tag-background-color: var(--darker-gray);
+
+    --pager-background-color: var(--body-background);
+    --pager-border-color: var(--dark-gray);
+    --pager-hover-background-color: var(--darker-gray);
+
+    --toc--border-color: var(--dark-gray);
+    --toc--inner-border-color: var(--darker-gray);
+
+    --page-header-separator-color: var(--dark-gray);
+    --page-header-details-color: var(--light-gray);
+
+    --hr-color: var(--dark-gray);
+
+    --table-border: var(--darker-gray);
+    --table-background: var(--body-background);
+    --table-background-odd: var(--darkest-gray);
+    --table-header-background: var(--dark-gray);
+
+    // Homepage
+    --homepage-navbar-background: var(--color-secondary);
+
+    --homepage-hero-background: #333;
+    --homepage-hero-color: var(--color-primary);
+    --homepage-bullet-color: var(--color-primary);
+
+    --homepage-footer-color: var(--color-primary);
+    --homepage-footer-background: var(--color-secondary);
+    --homepage-body-background: #333;
+
+    // Homepage Hero Buttons
+    --hero-button-block-background: var(--color-secondary);
+    --hero-button-primary-border-color: var(--color-primary);
+    --hero-button-primary-color: var(--color-primary);
+    --hero-buttom-primary-background: var(--color-secondary);
+    --hero-button-secondary-border-color: var(--color-secondary);
+    --hero-button-secondary-color: var(--color-primary);
+    --hero-button-secondary-background: var(--color-secondary);
 }
 
 /*

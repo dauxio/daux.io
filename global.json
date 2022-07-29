@@ -23,6 +23,7 @@
     "strings": {
         "en": {
             "CodeBlocks_show": "Show Code Blocks",
+            "DarkMode": "Dark Mode",
             "Search_placeholder": "Search...",
             "Search_one_result": "1 result",
             "Search_results": "!count results",
@@ -41,6 +42,7 @@
         },
         "fr": {
             "CodeBlocks_show": "Afficher le code",
+            "DarkMode": "Mode Sombre",
             "Search_placeholder": "Rechercher...",
             "Search_one_result": "1 résultat",
             "Search_results": "!count résultats",

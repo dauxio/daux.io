@@ -1,5 +1,5 @@
 module.exports = {
-    browsers: "defaults, not op_mini all",
+    browsers: "defaults, not op_mini all, not IE < 12, not and_qq 10.4, not baidu 7.12",
     presets: [
         "@swissquote/crafty-preset-babel",
         "@swissquote/crafty-runner-rollup",

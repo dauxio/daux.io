@@ -146,26 +146,26 @@ h6 {
         }
 
         tr {
-            border-top: 1px solid #eee;
-            background-color: white;
+            border-top: 1px solid var(--table-border);
+            background-color: var(--table-background);
             margin: 0;
             padding: 0;
         }
 
         tr:nth-child(2n) {
-            background-color: var(--lightest-gray);
+            background-color: var(--table-background-odd);
         }
 
         th {
             font-weight: bold;
-            border: 1px solid var(--light-gray);
-            background: var(--lighter-gray);
+            border: 1px solid var(--table-border);
+            background: var(--table-header-background);
             margin: 0;
             padding: 0.5em;
         }
 
         td {
-            border: 1px solid var(--lighter-gray);
+            border: 1px solid var(--table-border);
             margin: 0;
             padding: 0.5em;
         }
@@ -197,7 +197,7 @@ h6 {
         padding-top: 0.1rem;
         padding-bottom: 0.1rem;
         background: var(--code-tag-background-color);
-        border: 1px solid var(--light-gray);
+        border: 1px solid var(--code-tag-border-color);
         border-radius: var(--code-tag-border-radius);
         box-shadow: var(--code-tag-box-shadow);
 
@@ -240,7 +240,7 @@ h6 {
     u,
     ins {
         text-decoration: none;
-        border-bottom: 1px solid var(--text);
+        border-bottom: 1px solid var(--color-text);
 
         a {
             color: inherit;
@@ -249,5 +249,10 @@ h6 {
 
     del a {
         color: inherit;
+    }
+
+    // stylelint-disable-next-line selector-class-pattern
+    .mermaid {
+        background: #fff;
     }
 }

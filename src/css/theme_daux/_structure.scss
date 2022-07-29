@@ -24,8 +24,8 @@ html {
 html,
 body {
     height: 100%;
-    background-color: #fff;
-    color: var(--text);
+    background-color: var(--body-background);
+    color: var(--color-text);
 }
 
 .Columns {
@@ -36,7 +36,6 @@ body {
     &__right {
         &__content {
             padding: 10px;
-            background-color: #fff;
         }
     }
 }
@@ -84,11 +83,6 @@ body {
 }
 
 @media screen and (min-width: 769px) {
-    body {
-        //Needed only for floating code blocks
-        background-color: var(--content-floating-blocks-background);
-    }
-
     .Navbar {
         position: fixed;
         z-index: 1030;
@@ -129,7 +123,7 @@ body {
 
         &__left {
             width: 25%;
-            border-right: 1px solid var(--sidebar-border);
+            border-right: 1px solid var(--sidebar-border-color);
             overflow-x: hidden;
         }
 

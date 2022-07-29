@@ -24,7 +24,7 @@ hr {
     clear: both;
     margin: 1em 0;
     border: 0;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--hr-color);
 }
 
 /* ============================================================================
@@ -83,13 +83,13 @@ Components
 
 .Brand {
     display: block;
+    color: var(--brand-color);
     background-color: var(--brand-background);
     padding: 0.75em 0.6em;
     font-size: var(--type-size-4);
     text-shadow: none;
     font-family: var(--font-family-heading);
     font-weight: 700;
-    color: var(--brand-color);
 }
 
 .Navbar {
@@ -107,20 +107,26 @@ Components
 
 .CodeToggler {
     padding: 0 20px;
-
-    &__text {
-        font-size: 12px;
-        line-height: 1.5;
-        padding: 6px 10px 6px 0;
-        display: inline-block;
-        vertical-align: middle;
-    }
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
 .no-js .CodeToggler,
 .CodeToggler--hidden {
     display: none;
+}
+
+.DarkModeToggler {
+    padding: 0 20px;
+}
+
+// Hide the HR of the DarkModeToggler if the CodeToggler is present ...
+.CodeToggler ~ .DarkModeToggler hr {
+    display: none;
+}
+
+// ... except if it's hidden
+.CodeToggler--hidden ~ .DarkModeToggler hr {
+    display: block;
 }
 
 // Sidebar navigation
@@ -218,7 +224,7 @@ Components
 .Page__header {
     margin: 0 0 10px;
     padding: 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--page-header-separator-color);
 
     @include clearfix();
 
@@ -230,6 +236,7 @@ Components
 
     &--separator {
         height: 0.6em;
+        fill: currentColor;
     }
 
     a {
@@ -239,13 +246,13 @@ Components
     .ModifiedDate {
         float: left;
         font-size: 10px;
-        color: gray;
+        color: var(--page-header-details-color);
     }
 
     .EditOn {
         float: right;
         font-size: 10px;
-        color: gray;
+        color: var(--page-header-details-color);
     }
 }
 
@@ -356,12 +363,12 @@ Components
     }
 
     &__content {
-        border: 1px solid #efefef;
+        border: 1px solid var(--toc--border-color);
         border-width: 4px 2px 2px 6px;
     }
 
     &__content > .TableOfContents > li + li {
-        border-top: 1px solid #ddd;
+        border-top: 1px solid var(--toc--inner-border-color);
     }
 }
 
@@ -401,15 +408,15 @@ ul.TableOfContents {
         > a {
             display: inline-block;
             padding: 5px 14px;
-            background-color: #fff;
-            border: 1px solid #ddd;
+            background-color: var(--pager-background-color);
+            border: 1px solid var(--pager-border-color);
             border-radius: 15px;
         }
 
         > a:hover,
         > a:focus {
             text-decoration: none;
-            background-color: #eee;
+            background-color: var(--pager-hover-background-color);
         }
     }
 
