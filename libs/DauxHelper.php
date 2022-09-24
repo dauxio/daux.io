@@ -433,4 +433,9 @@ class DauxHelper
     {
         return preg_match('#^(?:[a-z]+:)?//|^mailto:#', $url);
     }
+
+    public static function isDataUrl($url)
+    {
+        return preg_match('#^data:image/#', $url);
+    }
 }

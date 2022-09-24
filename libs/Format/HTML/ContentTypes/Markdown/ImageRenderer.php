@@ -46,6 +46,11 @@ class ImageRenderer implements NodeRendererInterface, XmlNodeRendererInterface, 
             return $url;
         }
 
+        // Data URLs don't need resolution
+        if (DauxHelper::isDataUrl($url)) {
+            return $url;
+        }
+
         try {
             $file = DauxHelper::resolveInternalFile($this->dauxConfig, $url);
 

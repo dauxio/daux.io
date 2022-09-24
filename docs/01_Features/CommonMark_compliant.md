@@ -104,9 +104,13 @@ I get 10 times more traffic from [Google][1] than from
 
 ## Images
 
-Here's an image.
+Here's an image from a file.
 
 ![This is an image](sampleimage.png)
+
+It's also possible to use inline images.
+
+![This is an image](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAbFBMVEX///8AAAAHBwfz8/P39/fb29uoqKh3d3cXFxdnZ2c4ODgLCwsvLy+QkJDV1dWVlZW9vb0eHh6cnJxRUVHExMTi4uLNzc3s7OxGRkZZWVkzMzOJiYliYmJwcHATExOysrIlJSU8PDx+fn7m5uZn8t+XAAADKElEQVR4nO2b25aqMAyGIyAHURRUdDzP+P7vuGE0KThs29qW3LRXulZJPiBt85cGgFoYZ7M0mDhuQTrL4hD+tmmWu/YtWp5NX9xHifNb77cgiXq3Px/XfdvmnYdQp+P7n0zSmu6fxX9D8HwGEcPzf7T5Iw4SLv+TSfL7AkT8zxfF0Ai12sJiIZ540L6EjP4tXTvHtqR7PjVEOP8Eq7H8A6yQIA8hRpjR7r9tS/Qa0xuYj+kfAOMgg9nz12JcgMXT7QxwEirGBSieblPAcHA+/votxNAHjIZx/YPw6wE8gAfwAB7AA3gAD+ABnADUm0jWxSXAqmwkjyzNdwhQPxLtig3g8DBYcgFUaHHHAxCi1Arex6EzANpvWb/v5wqA9lsCidh0BbBGe2dJR0cAKzR3eR+CzgBo/0m63+IGgHZe5PstTgB2F7Qm3/ByAnBWHIKuAAoagq9fA0YC2KOtRKGzA4ArmkpV9pvsA0Q3NCVZiF0BHNHSQam7dYA7ffPa8ACc0NCXWn/bADXaybc8AN9o50fxAssAtOlfSvNxJwBRiWZi1UvsAvyglW/lS6wCbGkI1vLOLgC+0MhJ/RqbABsagncegAPaOGpcZBGApJDyELQLQFJIfQh+AFBU8f/ybJJCex3/egBRG+b58DKvLIVMAM5vYoykUKblXwsgwnlmINdTl0IGAFPsMzDRkBTS/fKqAxCKEwbrl5GmIYUMAMRU24R6L+PVkUImALuDIDh03zUdflCQQiYAEO4FwU3kXFpSyAgAorUgKGnAa0khM4BO1tuMuOeqryeFTAG6p33y35DTlELGAEL6NO88Bm0pZA4AVefEXaUthSwAwLVDcNSVQjYAYDVw6FFVClkBgPryB0BVCtkBgGn54l8rD7MAANtbH+D6mX+DnLC7MOjmYVYAeguDZh5mB6C7MMi2pN0AiGX4k0XACgAuDJ8sAnYAYNFOihpa1DoA3Kul0QE8YwDT5gE8gAfwAB7AA3gAD+AByC97gQN7iQd7kQt7mQ97oRN7qRd7sRt/uR97wSN/ySd70St/2S9/4TN/6Xf7EE5jFr+fhr7x8JT//wOsXyOmYFM3vQAAAABJRU5ErkJggg==)
 
 Note: to use images on a landing page (index.md), prefix the image URL with the name of the directory it appears in, omitting the numerical prefix used to order the sections. For example in this section, to display this image on the landing page (index.md), the URL for the image would be "Features/sampleimage.png" to display the same image.
 
