@@ -337,6 +337,7 @@ Components
         width: 16px;
         height: 16px;
         cursor: pointer;
+        fill: currentcolor;
     }
 }
 
@@ -411,6 +412,7 @@ ul.TableOfContents {
             background-color: var(--pager-background-color);
             border: 1px solid var(--pager-border-color);
             border-radius: 15px;
+            cursor: pointer;
         }
 
         > a:hover,

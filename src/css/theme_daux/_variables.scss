@@ -50,7 +50,7 @@
 
     // Sidebar search field
     --search-field-color: #555;
-    --search-field-border-color: #ccc;
+    --search-field-border-color: var(--lighter-gray);
     --search-field-background: #fff;
     --search-field-hover-border-color: var(--color-primary);
 
@@ -158,6 +158,11 @@
     --hero-button-secondary-border-color: var(--color-secondary);
     --hero-button-secondary-color: var(--color-primary);
     --hero-button-secondary-background: var(--color-secondary);
+
+    // Sidebar search field
+    --search-field-color: #fff;
+    --search-field-border-color: var(--dark-gray);
+    --search-field-background: #555;
 }
 
 /*
