@@ -152,6 +152,8 @@ Daux.io needs the following PHP extensions to work : `php-mbstring` and `php-xml
 
 If you encounter an error similar to `utf8_decode() not found` this means that you're missing the `php-xml` package.
 
+If you use non-english characters in your page names, it is recommended to install the `php-intl` extension as well.
+
 ## Support
 
 If you need help using Daux.io, or have found a bug, please create an issue on the <a href="https://github.com/dauxio/daux.io/issues" target="_blank">GitHub repo</a>.
