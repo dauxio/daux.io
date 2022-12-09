@@ -41,6 +41,9 @@ jobs:
       run: ./scripts/install_tools.sh
       shell: bash
 
+    - name: Check formatting
+      run: composer run-script lint
+
     - name: Run test suite
       run: composer run-script test
 
