@@ -10,7 +10,7 @@
         <?php } ?>
         <?php
         $edit_on = $config->getHTML()->getEditOn();
-        if ($edit_on) { ?>
+        if ($edit_on && $page['relative_path']) { ?>
         <span class="EditOn">
             <a href="<?= $edit_on['basepath'] ?>/<?= $page['relative_path'] ?>" target="_blank">
                 <?= str_replace(":name:", $edit_on['name'], $this->translate("Edit_on")) ?>

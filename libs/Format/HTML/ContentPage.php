@@ -82,7 +82,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             'filename' => $this->file->getName(),
             'language' => $this->language,
             'path' => $this->file->getPath(),
-            'relative_path' => $this->file->getRelativePath(),
+            'relative_path' => $this->file->getPath() ? $this->file->getRelativePath() : null,
             'modified_time' => $this->file->getPath() ? filemtime($this->file->getPath()) : null,
             'markdown' => $this->content,
             'request' => $config->getRequest(),
