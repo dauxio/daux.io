@@ -3,7 +3,7 @@
 
     <div class="Page__header">
         <h1><?= $page['breadcrumbs'] ? $this->get_breadcrumb_title($page, $base_page) : $page['title'] ?></h1>
-        <?php if ($config->getHTML()->showDateModified()) { ?>
+        <?php if ($config->getHTML()->showDateModified() && $page['modified_time']) { ?>
         <span class="ModifiedDate">
             <?= Todaymade\Daux\FormatDate::format($config, $page['modified_time']) ?>
         </span>
