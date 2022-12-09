@@ -1,4 +1,4 @@
-<?php namespace Todaymade\Daux\ContentTypes\Markdown;
+<?php namespace Todaymade\Daux\ContentTypes\Plantuml;
 
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Cache;
@@ -20,33 +20,21 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
         $this->config = $config;
     }
 
-    protected function createConverter()
-    {
-        return new CommonMarkConverter(['daux' => $this->config]);
-    }
-
-    protected function getConverter()
-    {
-        if (!isset($this->converter)) {
-            $this->converter = $this->createConverter();
-        }
-
-        return $this->converter;
-    }
-
     /**
      * @return string[]
      */
     public function getExtensions()
     {
-        return ['md', 'markdown'];
+        return ['puml'];
     }
 
     protected function doConversion($raw)
     {
         Daux::writeln('Running conversion', OutputInterface::VERBOSITY_VERBOSE);
 
-        return $this->getConverter()->convert($raw)->getContent();
+        var_dump($raw);
+
+        return "...";
     }
 
     public function convert($raw, Content $node)
@@ -56,5 +44,9 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
         return $this->wrapCache($this->config, $raw, function () use ($raw) {
             return $this->doConversion($raw);
         });
+    }
+
+    public function toContent() {
+
     }
 }

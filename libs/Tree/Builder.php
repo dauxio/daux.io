@@ -115,6 +115,8 @@ class Builder
             return $entry;
         }
 
+        // TODO :: get handlers
+
         $uri = static::removeSortingInformations($name);
         $uri = DauxHelper::urlSlug($uri);
         if ($config->isStatic()) {

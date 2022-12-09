@@ -3,6 +3,7 @@
     "tagline": "The Easiest Way To Document Your Project",
     "author": "Stéphane Goetz",
     "image": "app.png",
+    "processor": "Processor",
     "ignore": {
             "files": ["Work_In_Progress.md"],
             "folders": ["99_Not_Ready"]

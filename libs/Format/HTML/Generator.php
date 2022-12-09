@@ -8,6 +8,7 @@ use Todaymade\Daux\Daux;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Format\Base\LiveGenerator;
 use Todaymade\Daux\Format\HTML\ContentTypes\Markdown\ContentType;
+use Todaymade\Daux\Format\HTML\ContentTypes\Plantuml\ContentType as PlantumlContentType;
 use Todaymade\Daux\GeneratorHelper;
 use Todaymade\Daux\Tree\ComputedRaw;
 use Todaymade\Daux\Tree\Directory;
@@ -41,6 +42,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
     {
         return [
             'markdown' => new ContentType($this->daux->getConfig()),
+            'plantuml' => new PlantumlContentType(),
         ];
     }
 
