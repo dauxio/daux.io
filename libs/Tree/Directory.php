@@ -26,17 +26,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         ];
 
         foreach ($this->children as $key => $entry) {
-            // In case of generated pages, the name might be empty.
-            // Thus we are falling back to other solutions, otherwise the page would disappear from the tree.
-            $name = $entry->getName();
-
-            if (!$name) {
-                $name = $entry->getTitle();
-            }
-
-            if (!$name) {
-                $name = $key;
-            }
+            $name = $entry->getNameForSort();
 
             if (!$name) {
                 continue;
@@ -102,7 +92,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     private function sortBucket($bucket, $final)
     {
         uasort($bucket, function (Entry $a, Entry $b) {
-            return strcasecmp($a->getName(), $b->getName());
+            return strcasecmp($a->getNameForSort(), $b->getNameForSort());
         });
 
         foreach ($bucket as $key => $value) {

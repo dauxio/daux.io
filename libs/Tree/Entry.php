@@ -74,6 +74,28 @@ abstract class Entry
         $this->title = $title;
     }
 
+    public function getNameForSort(): ?string
+    {
+        // In case of generated pages, the name might be empty.
+        // Thus we are falling back to other solutions, otherwise the page would disappear from the tree.
+        $name = $this->getName();
+        if ($name) {
+            return $name;
+        }
+
+        $title = $this->getTitle();
+        if ($title) {
+            return $ttitle;
+        }
+
+        $uri = $this->getUri();
+        if ($uri) {
+            return $uri;
+        }
+
+        return null;
+    }
+
     public function getParent(): ?Directory
     {
         return isset($this->parent) ? $this->parent : null;
