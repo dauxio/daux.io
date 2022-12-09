@@ -104,11 +104,20 @@ class Publisher
     {
         if ($this->confluence->hasAncestorId()) {
             $pages = $this->client->getList($this->confluence->getAncestorId());
+            $rootTitle = $tree['title'];
+
             foreach ($pages as $page) {
-                if ($page['title'] == $tree['title']) {
+                if ($page['title'] == $rootTitle) {
                     return $page;
                 }
             }
+
+            $pageNames = implode(
+                "', '",
+                array_map(function ($page) { return $page['title']; }, $pages)
+            );
+
+            throw new \RuntimeException("Could not find a page named '$rootTitle' but found ['$pageNames'].");
         }
 
         if ($this->confluence->hasRootId()) {
