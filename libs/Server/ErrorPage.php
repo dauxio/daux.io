@@ -6,9 +6,9 @@ use Todaymade\Daux\Format\HTML\Template;
 
 class ErrorPage extends SimplePage
 {
-    const NORMAL_ERROR_TYPE = 'NORMAL_ERROR';
-    const MISSING_PAGE_ERROR_TYPE = 'MISSING_PAGE_ERROR';
-    const FATAL_ERROR_TYPE = 'FATAL_ERROR';
+    public const NORMAL_ERROR_TYPE = 'NORMAL_ERROR';
+    public const MISSING_PAGE_ERROR_TYPE = 'MISSING_PAGE_ERROR';
+    public const FATAL_ERROR_TYPE = 'FATAL_ERROR';
 
     private Config $config;
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace Todaymade\Daux\Format\HTML;
 
 use League\Plates\Engine;
@@ -179,7 +178,7 @@ class Template
                     $folder['href'] = $base_page . $index->getUrl();
                 }
 
-                //Child pages
+                // Child pages
                 $new_path = ($path === '') ? $url : $path . '/' . $url;
                 $folder['children'] = $this->buildNavigation($node, $new_path, $current_url, $base_page, $mode);
 

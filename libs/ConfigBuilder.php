@@ -145,7 +145,7 @@ class ConfigBuilder
         $themesPath = $this->config->getThemesPath() . DIRECTORY_SEPARATOR;
 
         // If theme directory exists, we're good with that
-        if (is_dir(($themesPath . $theme))) {
+        if (is_dir($themesPath . $theme)) {
             return [$theme, ''];
         }
 
@@ -240,7 +240,7 @@ class ConfigBuilder
             'docs_directory' => 'docs',
             'valid_content_extensions' => ['md', 'markdown'],
 
-            //Paths and tree
+            // Paths and tree
             'templates' => 'templates',
 
             'base_url' => '',
@@ -278,9 +278,9 @@ class ConfigBuilder
      *
      * @param null|string $path
      *
-     * @throws Exception
-     *
      * @return null|string the path to a file to load for configuration overrides
+     *
+     * @throws Exception
      */
     private function getConfigurationOverride($path)
     {

@@ -1,10 +1,10 @@
 <?php namespace Todaymade\Daux\ContentTypes\Markdown;
 
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\CommonMark\Renderer\Inline\LinkRenderer as OriginalLinkRenderer;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\Config\ConfigurationAwareInterface;
 use League\Config\ConfigurationInterface;
 use Todaymade\Daux\Config;

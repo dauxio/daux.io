@@ -42,7 +42,8 @@ class FencedCodeRenderer extends CodeRenderer
 
     protected Config $dauxConfig;
 
-    function __construct(Config $dauxConfig) {
+    public function __construct(Config $dauxConfig)
+    {
         $this->dauxConfig = $dauxConfig;
     }
 
@@ -59,6 +60,7 @@ class FencedCodeRenderer extends CodeRenderer
 
         if ($language === 'tex') {
             $this->dauxConfig['__confluence__tex'] = true;
+
             return new HtmlElement(
                 'pre',
                 [],

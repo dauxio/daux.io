@@ -1,8 +1,6 @@
 <?php namespace Todaymade\Daux;
 
-use ArrayObject;
-
-class BaseConfig extends ArrayObject
+class BaseConfig extends \ArrayObject
 {
     /**
      * Merge an array into the object.
@@ -50,7 +48,7 @@ class BaseConfig extends ArrayObject
 
     public function isTruthy($key)
     {
-        return $this->hasValue($key) && (bool)$this->getValue($key);
+        return $this->hasValue($key) && (bool) $this->getValue($key);
     }
 
     public function setValue($key, $value)

@@ -1,8 +1,8 @@
 <?php namespace Todaymade\Daux\Format\HTML\ContentTypes\Markdown;
 
-use League\CommonMark\Node\Node;
-use \League\CommonMark\Extension\CommonMark\Renderer\Block\ListBlockRenderer;
+use League\CommonMark\Extension\CommonMark\Renderer\Block\ListBlockRenderer;
 use League\CommonMark\Extension\TableOfContents\Node\TableOfContents;
+use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
 use Todaymade\Daux\Config;

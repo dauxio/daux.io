@@ -2,8 +2,8 @@
 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\SmartPunct\SmartPunctExtension;
 use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\Extension\Table\TableExtension;
@@ -13,7 +13,7 @@ use Todaymade\Daux\Config;
 class CommonMarkConverter extends MarkdownConverter
 {
     /**
-     * Create a new Markdown converter pre-configured for CommonMark
+     * Create a new Markdown converter pre-configured for CommonMark.
      *
      * @param array<string, mixed> $config
      */

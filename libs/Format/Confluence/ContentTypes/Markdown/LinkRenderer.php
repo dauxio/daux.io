@@ -1,9 +1,9 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use Todaymade\Daux\DauxHelper;
 
 class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
@@ -35,12 +35,12 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
         $urlAndHash = explode('#', $url);
         $url = $urlAndHash[0];
 
-        //Internal links
+        // Internal links
         $file = DauxHelper::resolveInternalFile($this->dauxConfig, $url);
 
         $link_props = [];
         if (isset($urlAndHash[1])) {
-            $link_props["ac:anchor"] = $urlAndHash[1];
+            $link_props['ac:anchor'] = $urlAndHash[1];
         }
 
         $confluence = $this->dauxConfig->getConfluenceConfiguration();

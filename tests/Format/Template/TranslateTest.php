@@ -49,8 +49,8 @@ class TranslateTest extends TestCase
     /**
      * @dataProvider translateDataProvider
      *
-     * @param $expectedTranslation
-     * @param $language
+     * @param mixed $expectedTranslation
+     * @param mixed $language
      */
     public function testTranslate($expectedTranslation, $language)
     {

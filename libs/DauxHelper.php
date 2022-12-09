@@ -61,7 +61,7 @@ class DauxHelper
             'favicon' => '<base_url>themes/daux/img/favicon.png',
             'templates' => $theme_folder . DIRECTORY_SEPARATOR . 'templates',
             'variants' => [],
-            'with_search' => $config->getHTML()->hasSearch()
+            'with_search' => $config->getHTML()->hasSearch(),
         ];
 
         if ($config->getHTML()->hasThemeVariant()) {
@@ -90,7 +90,7 @@ class DauxHelper
         }
 
         if (is_file($config->getDocumentationDirectory() . DIRECTORY_SEPARATOR . 'style.css')) {
-            $theme['css'][]= '<base_url>style.css';
+            $theme['css'][] = '<base_url>style.css';
         }
 
         $substitutions = [
@@ -248,9 +248,7 @@ class DauxHelper
         }
 
         // Remove unsupported characters
-        $slug = preg_replace('/[^\x20-\x7E]/u', '', $slug);
-
-        return $slug;
+        return preg_replace('/[^\x20-\x7E]/u', '', $slug);
     }
 
     /**
@@ -259,6 +257,7 @@ class DauxHelper
      * Taken from Stringy
      *
      * @param  string $title
+     * @param mixed $slug
      *
      * @return string
      */
@@ -388,9 +387,9 @@ class DauxHelper
      * @param Config $config
      * @param string $url
      *
-     * @throws LinkNotFoundException
-     *
      * @return Entry
+     *
+     * @throws LinkNotFoundException
      */
     public static function resolveInternalFile($config, $url)
     {

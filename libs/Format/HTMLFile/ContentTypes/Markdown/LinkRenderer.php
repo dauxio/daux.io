@@ -1,8 +1,8 @@
 <?php namespace Todaymade\Daux\Format\HTMLFile\ContentTypes\Markdown;
 
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Exception\LinkNotFoundException;
 

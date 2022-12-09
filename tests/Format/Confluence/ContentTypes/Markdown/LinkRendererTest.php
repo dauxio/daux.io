@@ -19,9 +19,9 @@ class LinkRendererTest extends TestCase
         return [
             // /Widgets/Page_with_#_hash
             // TODO :: check if we can get these to work as well
-            //['<a href="../Widgets/Page_with_hash.html">Link</a>', '[Link](../Widgets/Page_with_#_hash.md)', 'Content/Page.html'],
-            //['<a href="../Widgets/Page_with_hash.html">Link</a>', '[Link](!Widgets/Page_with_#_hash)', 'Content/Page.html'],
-            //['<a href="Page_with_hash.html">Link</a>', '[Link](Page_with_#_hash.md)', 'Widgets/Page.html'],
+            // ['<a href="../Widgets/Page_with_hash.html">Link</a>', '[Link](../Widgets/Page_with_#_hash.md)', 'Content/Page.html'],
+            // ['<a href="../Widgets/Page_with_hash.html">Link</a>', '[Link](!Widgets/Page_with_#_hash)', 'Content/Page.html'],
+            // ['<a href="Page_with_hash.html">Link</a>', '[Link](Page_with_#_hash.md)', 'Widgets/Page.html'],
 
             // /Widgets/Page
             ['<a href="http://google.ch" class="Link--external" rel="noopener noreferrer">Link</a>', '[Link](http://google.ch)', 'Widgets/Page.html'],

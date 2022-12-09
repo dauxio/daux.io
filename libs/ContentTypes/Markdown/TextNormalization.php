@@ -5,8 +5,8 @@ use League\Config\ConfigurationAwareInterface;
 use League\Config\ConfigurationInterface;
 use Todaymade\Daux\DauxHelper;
 
-class TextNormalization implements TextNormalizerInterface, ConfigurationAwareInterface {
-
+class TextNormalization implements TextNormalizerInterface, ConfigurationAwareInterface
+{
     private int $defaultMaxLength = 255;
 
     public function setConfiguration(ConfigurationInterface $configuration): void

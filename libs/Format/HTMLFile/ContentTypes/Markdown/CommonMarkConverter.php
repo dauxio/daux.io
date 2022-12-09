@@ -6,7 +6,7 @@ use Todaymade\Daux\Config;
 class CommonMarkConverter extends \Todaymade\Daux\Format\HTML\ContentTypes\Markdown\CommonMarkConverter
 {
     /**
-     * Create a new Markdown converter pre-configured for CommonMark
+     * Create a new Markdown converter pre-configured for CommonMark.
      *
      * @param array<string, mixed> $config
      */

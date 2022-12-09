@@ -1,9 +1,6 @@
 <?php namespace Todaymade\Daux\Tree;
 
-use ArrayIterator;
-use RuntimeException;
 use Todaymade\Daux\Config;
-use Traversable;
 
 class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 {
@@ -284,7 +281,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     public function offsetSet($offset, $value): void
     {
         if (!$value instanceof Entry) {
-            throw new RuntimeException('The value is not of type Entry');
+            throw new \RuntimeException('The value is not of type Entry');
         }
 
         $this->addChild($value);
@@ -300,8 +297,8 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         unset($this->children[$offset]);
     }
 
-    public function getIterator(): Traversable
+    public function getIterator(): \Traversable
     {
-        return new ArrayIterator($this->children);
+        return new \ArrayIterator($this->children);
     }
 }

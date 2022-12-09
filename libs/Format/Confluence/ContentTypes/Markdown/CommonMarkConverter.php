@@ -15,7 +15,7 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
     {
         $config['table_of_contents'] = [
             'position' => 'placeholder',
-            'placeholder' => '[TOC]'
+            'placeholder' => '[TOC]',
         ];
 
         $config['heading_permalink']['fragment_prefix'] = '';

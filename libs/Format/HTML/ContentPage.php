@@ -70,7 +70,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                 foreach ($config->getLanguages() as $key => $name) {
                     $entry_page[$name] = $config->getBasePage() . $config->getEntryPage()[$key]->getUrl();
                 }
-            } else if ($config->getEntryPage() != null) {
+            } elseif ($config->getEntryPage() != null) {
                 $entry_page['__VIEW_DOCUMENTATION__'] = $config->getBasePage() . $config->getEntryPage()->getUrl();
             }
         }

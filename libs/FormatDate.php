@@ -1,14 +1,12 @@
 <?php namespace Todaymade\Daux;
 
-use IntlDateFormatter;
-
 class FormatDate
 {
     public static function format($config, $date)
     {
         $locale = $config->getLanguage();
-        $datetype = IntlDateFormatter::LONG;
-        $timetype = IntlDateFormatter::SHORT;
+        $datetype = \IntlDateFormatter::LONG;
+        $timetype = \IntlDateFormatter::SHORT;
         $timezone = null;
 
         if (!extension_loaded('intl')) {
@@ -16,7 +14,7 @@ class FormatDate
             $timezone = 'GMT';
         }
 
-        $formatter = new IntlDateFormatter($locale, $datetype, $timetype, $timezone);
+        $formatter = new \IntlDateFormatter($locale, $datetype, $timetype, $timezone);
 
         return $formatter->format($date);
     }

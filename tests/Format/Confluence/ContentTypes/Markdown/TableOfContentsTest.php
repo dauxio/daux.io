@@ -42,10 +42,10 @@ class TableOfContentsTest extends TestCase
 
         $source = "[TOC]\n# Title";
         $expected = <<<'EXPECTED'
-<ac:structured-macro ac:name="toc"></ac:structured-macro>
-<h1>Title</h1>
+            <ac:structured-macro ac:name="toc"></ac:structured-macro>
+            <h1>Title</h1>
 
-EXPECTED;
+            EXPECTED;
 
         $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
@@ -56,12 +56,12 @@ EXPECTED;
         $config['daux']['html']['auto_toc'] = true;
         $converter = new CommonMarkConverter($config);
 
-        $source = "# Title";
+        $source = '# Title';
         $expected = <<<'EXPECTED'
-<ac:structured-macro ac:name="toc"></ac:structured-macro>
-<h1>Title</h1>
+            <ac:structured-macro ac:name="toc"></ac:structured-macro>
+            <h1>Title</h1>
 
-EXPECTED;
+            EXPECTED;
 
         $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
@@ -74,11 +74,11 @@ EXPECTED;
 
         $source = "Some Content\n[TOC]\n# Title";
         $expected = <<<'EXPECTED'
-<p>Some Content</p>
-<ac:structured-macro ac:name="toc"></ac:structured-macro>
-<h1>Title</h1>
+            <p>Some Content</p>
+            <ac:structured-macro ac:name="toc"></ac:structured-macro>
+            <h1>Title</h1>
 
-EXPECTED;
+            EXPECTED;
 
         $this->assertEquals($expected, $converter->convert($source)->getContent());
     }

@@ -314,7 +314,7 @@ class Api
     /**
      * @param int $id
      * @param array $attachment
-     * @param callback $write Write output to the console
+     * @param callable $write Write output to the console
      */
     public function uploadAttachment($id, $attachment, $write)
     {

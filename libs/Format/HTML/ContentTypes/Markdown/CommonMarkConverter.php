@@ -16,13 +16,13 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
             'html_class' => 'Permalink',
             'symbol' => '#',
             'fragment_prefix' => '',
-            'id_prefix' => ''
+            'id_prefix' => '',
         ];
 
         $config['table_of_contents'] = [
             'html_class' => 'TableOfContents',
             'position' => 'placeholder',
-            'placeholder' => '[TOC]'
+            'placeholder' => '[TOC]',
         ];
 
         parent::__construct($config);

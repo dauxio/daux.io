@@ -1,7 +1,5 @@
 <?php namespace Todaymade\Daux\Tree;
 
-use RuntimeException;
-use SplFileInfo;
 use Todaymade\Daux\DauxHelper;
 
 class Builder
@@ -14,7 +12,7 @@ class Builder
         '.DS_Store', 'Thumbs.db',
     ];
 
-    protected static function isIgnored(SplFileInfo $file, $ignore)
+    protected static function isIgnored(\SplFileInfo $file, $ignore)
     {
         $filename = $file->getFilename();
 
@@ -46,7 +44,7 @@ class Builder
         preg_match('%^(.*?)[\\\\/]*(([^/\\\\]*?)(\.([^\.\\\\/]+?)|))[\\\\/\.]*$%im', $path, $m);
 
         if (!isset($m[3])) {
-            throw new RuntimeException('Name not found');
+            throw new \RuntimeException('Name not found');
         }
 
         return $m[3];
@@ -99,7 +97,7 @@ class Builder
     /**
      * @return Content|Raw
      */
-    public static function createContent(Directory $parent, SplFileInfo $file)
+    public static function createContent(Directory $parent, \SplFileInfo $file)
     {
         $name = static::getName($file->getPathname());
 
@@ -202,7 +200,7 @@ class Builder
         }
 
         $page = $raw ? new ComputedRaw($parent, $uri) : new Content($parent, $uri);
-        $page->setContent('-'); //set an almost empty content to avoid problems
+        $page->setContent('-'); // set an almost empty content to avoid problems
         $page->setName($path);
         $page->setTitle($title);
 

@@ -14,9 +14,8 @@ use Todaymade\Daux\Exception\LinkNotFoundException;
 
 class ImageRenderer implements NodeRendererInterface, XmlNodeRendererInterface, ConfigurationAwareInterface
 {
-    private Config $dauxConfig;
-
     protected OriginalImageRenderer $parent;
+    private Config $dauxConfig;
 
     public function __construct(Config $dauxConfig)
     {

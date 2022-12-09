@@ -16,9 +16,6 @@ class Publisher
 
     protected Config $confluence;
 
-    /**
-     * @param $confluence
-     */
     public function __construct(Config $confluence)
     {
         $this->confluence = $confluence;
@@ -38,30 +35,28 @@ class Publisher
     public function diff($local, $remote, $level)
     {
         if ($remote == null) {
-            $this->output->writeLn("$level- " . $local['title'] .' <fg=green>(create)</>');
-        } else if ($local == null) {
-            $this->output->writeLn("$level- " . $remote['title'] .' <fg=red>(delete)</>');
+            $this->output->writeLn("$level- " . $local['title'] . ' <fg=green>(create)</>');
+        } elseif ($local == null) {
+            $this->output->writeLn("$level- " . $remote['title'] . ' <fg=red>(delete)</>');
         } else {
-            $this->output->writeLn("$level- " . $local['title'] .' <fg=blue>(update)</>');
+            $this->output->writeLn("$level- " . $local['title'] . ' <fg=blue>(update)</>');
         }
 
         if ($local && array_key_exists('children', $local)) {
             $remoteChildren = $remote && array_key_exists('children', $remote) ? $remote['children'] : [];
             foreach ($local['children'] as $title => $content) {
-                $this->diff($content, array_key_exists($title, $remoteChildren) ?  $remoteChildren[$title] : null, "$level  ");
-            }
-        } 
-        
-        if ($remote && array_key_exists('children', $remote)) {
-            $localChildren = $local && array_key_exists('children', $local) ? $local['children'] : [];
-            foreach ($remote['children'] as $title => $content) {
-                if (!array_key_exists($title, $localChildren) ) {
-                    $this->diff(null, $content, "$level  ");
-                }
-                
+                $this->diff($content, array_key_exists($title, $remoteChildren) ? $remoteChildren[$title] : null, "$level  ");
             }
         }
 
+        if ($remote && array_key_exists('children', $remote)) {
+            $localChildren = $local && array_key_exists('children', $local) ? $local['children'] : [];
+            foreach ($remote['children'] as $title => $content) {
+                if (!array_key_exists($title, $localChildren)) {
+                    $this->diff(null, $content, "$level  ");
+                }
+            }
+        }
     }
 
     public function publish(array $tree)
@@ -75,7 +70,6 @@ class Publisher
         $this->client->setSpace($published['space_key']);
         $this->confluence->setSpaceId($published['space_key']);
 
-
         $this->run(
             'Getting already published pages...',
             function () use (&$published) {
@@ -86,8 +80,9 @@ class Publisher
         );
 
         if ($this->confluence->shouldPrintDiff()) {
-            $this->output->writeLn("The following changes will be applied");
-            $this->diff($tree, $published, "");
+            $this->output->writeLn('The following changes will be applied');
+            $this->diff($tree, $published, '');
+
             return;
         }
 
@@ -117,9 +112,7 @@ class Publisher
         }
 
         if ($this->confluence->hasRootId()) {
-            $published = $this->client->getPage($this->confluence->getRootId());
-
-            return $published;
+            return $this->client->getPage($this->confluence->getRootId());
         }
 
         throw new \RuntimeException('You must at least specify a `root_id` or `ancestor_id` in your confluence configuration.');

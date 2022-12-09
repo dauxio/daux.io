@@ -2,8 +2,6 @@
 
 use League\CommonMark\Extension\FrontMatter\Data\SymfonyYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
-use RuntimeException;
-use SplFileInfo;
 
 class Content extends ContentAbstract
 {
@@ -17,7 +15,8 @@ class Content extends ContentAbstract
 
     protected bool $manuallySetContent = false;
 
-    public function __construct(Directory $parent, $uri, SplFileInfo $info = null) {
+    public function __construct(Directory $parent, $uri, \SplFileInfo $info = null)
+    {
         parent::__construct($parent, $uri, $info);
         $this->previous = null;
         $this->next = null;
@@ -28,7 +27,7 @@ class Content extends ContentAbstract
         if ($this->manuallySetContent) {
             $content = $this->content;
         } elseif (!$this->getPath()) {
-            throw new RuntimeException('Empty content');
+            throw new \RuntimeException('Empty content');
         } else {
             $content = file_get_contents($this->getPath());
         }
@@ -39,6 +38,7 @@ class Content extends ContentAbstract
         }
 
         $frontMatterParser = new FrontMatterParser(new SymfonyYamlFrontMatterParser());
+
         return $frontMatterParser->parse($content);
     }
 

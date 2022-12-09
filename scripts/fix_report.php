@@ -1,13 +1,14 @@
 <?php
 
-$report = file_get_contents(dirname(__DIR__) . "/test-report.xml");
+$report = file_get_contents(dirname(__DIR__) . '/test-report.xml');
 
 $doc = new DOMDocument($report);
 $doc->loadXML($report);
 
-function hasDataSetTestCase(DomNode $node) {
+function hasDataSetTestCase(DOMNode $node)
+{
     foreach ($node->childNodes as $child) {
-        if ($child->nodeName === "testcase" && strpos($child->attributes->getNamedItem("name")->textContent, "with data set #" ) !== false) {
+        if ($child->nodeName === 'testcase' && strpos($child->attributes->getNamedItem('name')->textContent, 'with data set #') !== false) {
             return $child;
         }
     }
@@ -15,10 +16,11 @@ function hasDataSetTestCase(DomNode $node) {
     return false;
 }
 
-function drillDownTestSuite(DomDocument $document, DomNode $node) {
+function drillDownTestSuite(DOMDocument $document, DOMNode $node)
+{
     if ($dataset = hasDataSetTestCase($node)) {
-        $childAttributes =  $dataset->attributes;
-        $nodeAttributes= $node->attributes;
+        $childAttributes = $dataset->attributes;
+        $nodeAttributes = $node->attributes;
 
         $case = $document->createElement('testcase');
         $case->setAttribute('name', $childAttributes->getNamedItem('name')->textContent);
@@ -30,15 +32,16 @@ function drillDownTestSuite(DomDocument $document, DomNode $node) {
         $case->setAttribute('time', $nodeAttributes->getNamedItem('time')->textContent);
 
         $node->parentNode->replaceChild($case, $node);
+
         return true;
     }
 
-    /** @var DomNode $child */
-    for ($i=0; $i< $node->childNodes->length; $i++) {
+    // @var DomNode $child
+    for ($i = 0; $i < $node->childNodes->length; ++$i) {
         $child = $node->childNodes->item($i);
-        if ($child->localName === "testsuite") {
+        if ($child->localName === 'testsuite') {
             if (drillDownTestSuite($document, $child)) {
-                $i--;
+                --$i;
             }
         }
     }
@@ -48,5 +51,5 @@ function drillDownTestSuite(DomDocument $document, DomNode $node) {
 
 drillDownTestSuite($doc, $doc->firstChild);
 
-file_put_contents(dirname(__DIR__) . "/test-report.xml", $doc->saveXML());
+file_put_contents(dirname(__DIR__) . '/test-report.xml', $doc->saveXML());
 echo "Done\n";

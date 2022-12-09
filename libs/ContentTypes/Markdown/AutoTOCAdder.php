@@ -2,15 +2,14 @@
 
 use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\TableOfContents\Node\TableOfContentsPlaceholder;
-use League\CommonMark\Extension\TableOfContents\TableOfContentsBuilder;
 use League\CommonMark\Node\Block\Document;
 use League\CommonMark\Node\NodeIterator;
 use League\Config\ConfigurationAwareInterface;
 use League\Config\ConfigurationInterface;
 use Todaymade\Daux\Config;
 
-class AutoTOCAdder implements ConfigurationAwareInterface {
-
+class AutoTOCAdder implements ConfigurationAwareInterface
+{
     /** @psalm-readonly-allow-private-mutation */
     private ConfigurationInterface $config;
 
@@ -36,6 +35,7 @@ class AutoTOCAdder implements ConfigurationAwareInterface {
     {
         /** @var Config $daux */
         $daux = $this->config->get('daux');
+
         return $daux->getHTML()->hasAutomaticTableOfContents();
     }
 

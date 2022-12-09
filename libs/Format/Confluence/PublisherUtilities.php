@@ -37,7 +37,7 @@ class PublisherUtilities
             }
         }
 
-        //DEBUG
+        // DEBUG
         if (getenv('DEBUG') && strtolower(getenv('DEBUG')) != 'false') {
             $prefix = 'static/export/';
             if (!is_dir($prefix)) {

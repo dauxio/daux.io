@@ -1,7 +1,5 @@
 <?php namespace Todaymade\Daux\Tree;
 
-use SplFileInfo;
-
 abstract class Entry
 {
     protected ?string $title;
@@ -12,15 +10,15 @@ abstract class Entry
 
     protected ?Directory $parent;
 
-    protected ?SplFileInfo $info;
+    protected ?\SplFileInfo $info;
 
     protected ?string $path;
 
     /**
      * @param string $uri
-     * @param SplFileInfo $info
+     * @param \SplFileInfo $info
      */
-    public function __construct(Directory $parent, $uri, SplFileInfo $info = null)
+    public function __construct(Directory $parent, $uri, \SplFileInfo $info = null)
     {
         $this->title = null;
         $this->name = null;
@@ -38,7 +36,7 @@ abstract class Entry
 
     public function getName(): ?string
     {
-        return isset($this->name) ? $this->name : null;
+        return $this->name ?? null;
     }
 
     public function setName($name): void
@@ -66,7 +64,7 @@ abstract class Entry
 
     public function getTitle(): ?string
     {
-        return isset($this->title) ? $this->title : null;
+        return $this->title ?? null;
     }
 
     public function setTitle(string $title): void
@@ -98,7 +96,7 @@ abstract class Entry
 
     public function getParent(): ?Directory
     {
-        return isset($this->parent) ? $this->parent : null;
+        return $this->parent ?? null;
     }
 
     /**
@@ -148,7 +146,7 @@ abstract class Entry
         return substr($this->path, strlen($root->getPath()) + 1);
     }
 
-    public function getFileinfo(): SplFileInfo
+    public function getFileinfo(): \SplFileInfo
     {
         return $this->info;
     }

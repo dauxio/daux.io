@@ -10,7 +10,7 @@ final class FakeHeadingPermalinkExtension implements ConfigurableExtensionInterf
     public function configureSchema(ConfigurationBuilderInterface $builder): void
     {
         $builder->addSchema('heading_permalink', Expect::structure([
-            'fragment_prefix' => Expect::string()->default('content')
+            'fragment_prefix' => Expect::string()->default('content'),
         ]));
     }
 

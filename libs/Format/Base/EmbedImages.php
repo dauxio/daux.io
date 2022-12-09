@@ -7,7 +7,6 @@
  */
 namespace Todaymade\Daux\Format\Base;
 
-use DOMDocument;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Root;
@@ -38,7 +37,7 @@ class EmbedImages
 
     private function getAttributes($tag)
     {
-        $dom = new DOMDocument();
+        $dom = new \DOMDocument();
         $dom->loadHTML($tag);
 
         $img = $dom->getElementsByTagName('img')->item(0);
@@ -56,15 +55,15 @@ class EmbedImages
 
     private function findImage($src, $tag, Content $file, $callback)
     {
-        //for protocol relative or http requests : keep the original one
+        // for protocol relative or http requests : keep the original one
         if (substr($src, 0, strlen('http')) === 'http' || substr($src, 0, strlen('//')) === '//') {
             return $src;
         }
 
-        //Get the path to the file, relative to the root of the documentation
+        // Get the path to the file, relative to the root of the documentation
         $url = DauxHelper::getCleanPath(dirname($file->getUrl()) . '/' . $src);
 
-        //Get any file corresponding to the right one
+        // Get any file corresponding to the right one
         $file = DauxHelper::getFile($this->tree, $url);
 
         if ($file === false) {

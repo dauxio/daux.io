@@ -13,14 +13,14 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
     {
         $content = parent::generatePage();
 
-        //Embed images
+        // Embed images
         // We do it after generation so we can catch the images that were in html already
         $content = (new EmbedImages($this->config->getTree()))
             ->embed(
                 $content,
                 $this->file,
                 function ($src, array $attributes, Entry $file) {
-                    //Add the attachment for later upload
+                    // Add the attachment for later upload
                     if ($file instanceof Raw) {
                         $filename = basename($file->getPath());
                         $this->attachments[$filename] = ['filename' => $filename, 'file' => $file];
@@ -53,7 +53,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
      */
     private function createImageTag($filename, $attributes)
     {
-        $img = "";
+        $img = '';
 
         foreach ($attributes as $name => $value) {
             if ($name == 'style') {

@@ -27,7 +27,7 @@ class Server
         $this->daux = $daux;
 
         $this->request = Request::createFromGlobals();
-        $this->base_url =  str_replace('//', '/', '/' . $this->request->getBaseUrl() . '/');
+        $this->base_url = str_replace('//', '/', '/' . $this->request->getBaseUrl() . '/');
     }
 
     /**
@@ -133,10 +133,10 @@ class Server
     /**
      * Handle an incoming request.
      *
+     * @return \Todaymade\Daux\Format\Base\Page
+     *
      * @throws Exception
      * @throws NotFoundException
-     *
-     * @return \Todaymade\Daux\Format\Base\Page
      */
     public function handle()
     {
@@ -160,9 +160,9 @@ class Server
      *
      * @param string $request
      *
-     * @throws NotFoundException
-     *
      * @return \Todaymade\Daux\Format\Base\Page
+     *
+     * @throws NotFoundException
      */
     public function serveTheme($request)
     {
@@ -178,9 +178,9 @@ class Server
     /**
      * @param string $request
      *
-     * @throws NotFoundException
-     *
      * @return \Todaymade\Daux\Format\Base\Page
+     *
+     * @throws NotFoundException
      */
     private function getPage($request)
     {

@@ -17,7 +17,8 @@ class FencedCodeRenderer implements NodeRendererInterface
         $this->hl = new Highlighter();
     }
 
-    public function pre($attrs, $content) {
+    public function pre($attrs, $content)
+    {
         return new HtmlElement(
             'pre',
             [],
@@ -42,6 +43,7 @@ class FencedCodeRenderer implements NodeRendererInterface
 
         if ($language === 'tex') {
             $attrs['class'] = 'katex';
+
             return $this->pre($attrs, Xml::escape($content));
         }
 

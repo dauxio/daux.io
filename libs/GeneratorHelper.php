@@ -1,7 +1,5 @@
 <?php namespace Todaymade\Daux;
 
-use RuntimeException;
-
 class GeneratorHelper
 {
     /**
@@ -40,7 +38,7 @@ class GeneratorHelper
         $dir = opendir($source);
 
         if ($dir === false) {
-            throw new RuntimeException("Cannot copy '$source' to '$destination'");
+            throw new \RuntimeException("Cannot copy '$source' to '$destination'");
         }
 
         while (false !== ($file = readdir($dir))) {

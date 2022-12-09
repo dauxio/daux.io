@@ -9,8 +9,8 @@ use Todaymade\Daux\Tree\Root;
 
 class Daux
 {
-    const STATIC_MODE = 'DAUX_STATIC';
-    const LIVE_MODE = 'DAUX_LIVE';
+    public const STATIC_MODE = 'DAUX_STATIC';
+    public const LIVE_MODE = 'DAUX_LIVE';
 
     public static $output;
 
@@ -132,15 +132,18 @@ class Daux
     }
 
     /**
-     * Processor class
+     * Processor class.
      *
      * You can provide absolute class name or short class name if processor locates in \Todaymade\Daux\Extension namespace.
      * Location: vendor/daux/daux.io/daux
      *
      * @see \Todaymade\Daux\Extension\Processor
+     *
      * @example -p \\Todaymade\\Daux\\Extension\\Processor
+     *
+     * @return null|string
+     *
      * @throws \RuntimeException
-     * @return NULL|string
      */
     public function getProcessorClass()
     {
@@ -150,7 +153,7 @@ class Daux
             return null;
         }
 
-        if (!strstr($processor, "\\")) {
+        if (!strstr($processor, '\\')) {
             $processor = '\\Todaymade\\Daux\\Extension\\' . $processor;
         }
 

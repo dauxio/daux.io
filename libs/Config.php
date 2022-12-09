@@ -2,7 +2,7 @@
 
 use Todaymade\Daux\Format\Confluence\Config as ConfluenceConfig;
 use Todaymade\Daux\Format\HTML\Config as HTMLConfig;
-use Todaymade\Daux\Format\HTML\Theme as Theme;
+use Todaymade\Daux\Format\HTML\Theme;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Entry;
 
@@ -138,7 +138,7 @@ class Config extends BaseConfig
     public function getConfluenceConfiguration(): ConfluenceConfig
     {
         if ($this->hasValue('confluence')) {
-            if (!($this->getValue('confluence') instanceof ConfluenceConfig)) {
+            if (!$this->getValue('confluence') instanceof ConfluenceConfig) {
                 $this->setValue('confluence', new ConfluenceConfig($this->getValue('confluence')));
             }
         } else {
