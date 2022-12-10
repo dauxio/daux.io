@@ -8,6 +8,8 @@ Next to your `docs` directory, you can create a `daux` directory that can contai
 
 The classes must respect the PSR-4 Naming convention. And have `\Todaymade\Daux\Extension` as a base namespace.
 
+You can copy our [Processor template](https://github.com/dauxio/daux.io/blob/master/daux/Processor.php) to get started. 
+
 By default, we created a `daux/Processor.php` file to get you started.
 
 ## A quick test ?
