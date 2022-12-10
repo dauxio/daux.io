@@ -43,6 +43,8 @@ jobs:
 
     - name: Check formatting
       run: composer run-script lint
+      env:
+        PHP_CS_FIXER_IGNORE_ENV: 1
 
     - name: Run test suite
       run: composer run-script test
