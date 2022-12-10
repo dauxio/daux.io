@@ -9,6 +9,8 @@
     "@swissquote/crafty-runner-gulp": "1.20.0",
     "@swissquote/crafty-runner-rollup": "1.20.0",
     "flexsearch": "^0.7.0",
+    "katex": "^0.16.4",
+    "mermaid": "^9.2.2",
     "postcss-page-break": "^2.0.0",
     "preact": "^10.0.5",
     "testcafe": "^2.0.0"

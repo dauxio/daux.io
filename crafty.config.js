@@ -73,5 +73,29 @@ module.exports = {
     postcss(crafty, config, bundle) {
         // Add postcss-page-break
         config.processor("postcss-page-break").before("autoprefixer");
-    }
+    },
+      /**
+   * Represents the extension point for rollup configuration
+   * @param {Crafty} crafty - The instance of Crafty.
+   * @param {Gulp} gulp - The instance of Gulp.
+   * @param {StreamHandler} StreamHandler - A wrapper to create your tasks.
+   */
+  gulp(crafty, gulp, StreamHandler) {
+    // Create tasks
+    gulp.task("katex", function() {
+      const stream = new StreamHandler("node_modules/katex/dist/*.min.*", "daux_libraries");
+      return stream.generate();
+    });
+
+    gulp.task("mermaid", function() {
+        const stream = new StreamHandler("node_modules/mermaid/dist/mermaid.min.{js,js.map}", "daux_libraries");
+        return stream.generate();
+      });
+
+    // Group tasks into other tasks
+    gulp.task("vendors", gulp.parallel("katex", "mermaid"));
+
+    // Register this task to run automatically
+    crafty.addDefaultTask("vendors");
+  }
 };
