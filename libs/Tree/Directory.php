@@ -38,7 +38,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
             if ($name[0] == '-') {
                 if (is_numeric($name[1])) {
                     $exploded = explode('_', $name);
-                    $buckets['down_numeric'][abs(substr($exploded[0], 1))][$key] = $entry;
+                    $buckets['down_numeric'][abs((int) substr($exploded[0], 1))][$key] = $entry;
 
                     continue;
                 }
@@ -51,7 +51,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
             if ($name[0] == '+') {
                 if (is_numeric($name[1])) {
                     $exploded = explode('_', $name);
-                    $buckets['up_numeric'][abs(substr($exploded[0], 1))][$key] = $entry;
+                    $buckets['up_numeric'][abs((int) substr($exploded[0], 1))][$key] = $entry;
 
                     continue;
                 }
@@ -63,7 +63,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
 
             if (is_numeric($name[0])) {
                 $exploded = explode('_', $name);
-                $buckets['numeric'][abs($exploded[0])][$key] = $entry;
+                $buckets['numeric'][abs((int) $exploded[0])][$key] = $entry;
 
                 continue;
             }
