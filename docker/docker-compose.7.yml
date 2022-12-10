@@ -12,7 +12,7 @@ services:
       - phpserver
 
   phpserver:
-    image: php:8.1-fpm
+    image: php:8.2-fpm
     working_dir: /var/www/
     volumes:
       - ../:/var/www/
