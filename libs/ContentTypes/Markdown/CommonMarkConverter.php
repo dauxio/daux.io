@@ -9,6 +9,9 @@ use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
 use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\MarkdownConverter;
 use Todaymade\Daux\Config;
+use Todaymade\Daux\ContentTypes\Markdown\Admonition\AdmonitionBlock;
+use Todaymade\Daux\ContentTypes\Markdown\Admonition\AdmonitionParser;
+use Todaymade\Daux\ContentTypes\Markdown\Admonition\AdmonitionRenderer;
 
 class CommonMarkConverter extends MarkdownConverter
 {
@@ -30,6 +33,9 @@ class CommonMarkConverter extends MarkdownConverter
         $environment->addExtension(new TableExtension());
 
         $environment->addExtension(new DauxExtension());
+
+        $environment->addBlockStartParser(AdmonitionParser::blockStartParser());
+        $environment->addRenderer(AdmonitionBlock::class, new AdmonitionRenderer());
 
         $this->extendEnvironment($environment, $config['daux']);
 

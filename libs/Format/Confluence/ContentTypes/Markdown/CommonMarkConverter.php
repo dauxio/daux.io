@@ -8,6 +8,7 @@ use League\CommonMark\Extension\TableOfContents\Node\TableOfContents;
 use League\CommonMark\Extension\TableOfContents\Node\TableOfContentsPlaceholder;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use Todaymade\Daux\Config;
+use Todaymade\Daux\ContentTypes\Markdown\Admonition\AdmonitionBlock;
 
 class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMarkConverter
 {
@@ -40,5 +41,6 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
         $environment->addRenderer(FencedCode::class, new FencedCodeRenderer($config));
         $environment->addRenderer(IndentedCode::class, new IndentedCodeRenderer());
         $environment->addRenderer(Image::class, new ImageRenderer());
+        $environment->addRenderer(AdmonitionBlock::class, new AdmonitionRenderer(), 200);
     }
 }
