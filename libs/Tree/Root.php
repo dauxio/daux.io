@@ -6,7 +6,7 @@ class Root extends Directory
 {
     protected Config $config;
 
-    protected Entry $activeNode;
+    protected ?Entry $activeNode;
 
     /**
      * The root doesn't have a parent.
@@ -17,6 +17,8 @@ class Root extends Directory
 
         $this->setUri($config->getDocumentationDirectory());
         $this->path = $config->getDocumentationDirectory();
+
+        $this->activeNode = null;
     }
 
     public function getConfig(): Config
