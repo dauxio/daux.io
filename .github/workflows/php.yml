@@ -13,11 +13,11 @@ jobs:
       max-parallel: 15
       matrix:
         operating-system: [ubuntu-latest, macOS-latest]
-        php-versions: ['8.0', '8.1']
+        php-versions: ['8.1', '8.2']
         # TODO : enable tests on windows
         #include:
         #  - operating-system: windows-latest
-        #    php-versions: 8.0
+        #    php-versions: 8.1
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     runs-on: ${{ matrix.operating-system }}
@@ -57,7 +57,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@2.22.0
       with:
-        php-version: '8.0'
+        php-version: '8.1'
         extensions: mbstring, dom, intl, iconv
 
     - name: Install dependencies
@@ -96,7 +96,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@2.22.0
       with:
-        php-version: 8.0
+        php-version: 8.1
         extensions: mbstring, dom, intl, iconv
 
     - name: Install dependencies
