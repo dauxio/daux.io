@@ -1,3 +1,4 @@
+[TOC]
 
 ## Syntax
 
@@ -16,6 +17,8 @@ Any value other than these will be treated as `note`
 
 ## Examples
 
+### Notes
+
 !!! note "Note"
     A `note` will render with a neutral color.
 
@@ -23,21 +26,60 @@ Any value other than these will be treated as `note`
     * Eggs
     * Flour
 
+```
+!!! note "Note"
+    A `note` will render with a neutral color.
+
+    * Sugar
+    * Eggs
+    * Flour
+```
+
+### Info
+
 !!! info "Some title"
     `info` renders like this.
+
+```
+!!! info "Some title"
+    `info` renders like this.
+```
+
+### Warning
 
 !!! warning "WARNING"
     `warning` will warn you.
 
     > With a blockquote
 
+```
+!!! warning "WARNING"
+    `warning` will warn you.
+
+    > With a blockquote
+```
+
+### Danger
+
 !!! danger "Danger"
     `danger` is Dangerous
+
+```
+!!! danger "Danger"
+    `danger` is Dangerous
+```
+
+### Notes without titles
 
 !!! note
     This note has no title !
 
-### Confluence
+```
+!!! note
+    This note has no title !
+```
+
+## Confluence
 
 Confluence upload will convert admonition into [confluence macros](https://confluence.atlassian.com/doc/info-tip-note-and-warning-macros-51872369.html).
 
