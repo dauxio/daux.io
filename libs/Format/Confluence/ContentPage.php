@@ -1,5 +1,6 @@
 <?php namespace Todaymade\Daux\Format\Confluence;
 
+use Todaymade\Daux\Exception;
 use Todaymade\Daux\Format\Base\EmbedImages;
 use Todaymade\Daux\Tree\ComputedRaw;
 use Todaymade\Daux\Tree\Entry;
@@ -28,7 +29,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                         $filename = $file->getUri();
                         $this->attachments[$filename] = ['filename' => $filename, 'content' => $file->getContent()];
                     } else {
-                        throw new \RuntimeException("Cannot embed image as we don't understand its type.");
+                        throw new Exception("Cannot embed image as we don't understand its type.");
                     }
 
                     return $this->createImageTag($filename, $attributes);

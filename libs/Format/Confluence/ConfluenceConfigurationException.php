@@ -2,6 +2,6 @@
 
 use Todaymade\Daux\Exception;
 
-class DuplicateTitleException extends Exception
+class ConfluenceConfigurationException extends Exception
 {
 }

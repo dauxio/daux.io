@@ -9,7 +9,7 @@ use League\Config\ConfigurationAwareInterface;
 use League\Config\ConfigurationInterface;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\DauxHelper;
-use Todaymade\Daux\Exception\LinkNotFoundException;
+use Todaymade\Daux\LinkNotFoundException;
 
 class LinkRenderer implements NodeRendererInterface, ConfigurationAwareInterface
 {

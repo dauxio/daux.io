@@ -1,10 +1,11 @@
 <?php namespace Todaymade\Daux\Tree;
 
 use Todaymade\Daux\DauxHelper;
+use Todaymade\Daux\Exception;
 
 class Builder
 {
-    protected static $IGNORED = [
+    protected static $ignoredPaths = [
         // Popular VCS Systems
         '.svn', '_svn', 'CVS', '_darcs', '.arch-params', '.monotone', '.bzr', '.git', '.hg',
 
@@ -16,7 +17,7 @@ class Builder
     {
         $filename = $file->getFilename();
 
-        if (in_array($filename, static::$IGNORED)) {
+        if (in_array($filename, static::$ignoredPaths)) {
             return true;
         }
 
@@ -44,7 +45,7 @@ class Builder
         preg_match('%^(.*?)[\\\\/]*(([^/\\\\]*?)(\.([^\.\\\\/]+?)|))[\\\\/\.]*$%im', $path, $m);
 
         if (!isset($m[3])) {
-            throw new \RuntimeException('Name not found');
+            throw new Exception('Name not found');
         }
 
         return $m[3];
@@ -143,7 +144,7 @@ class Builder
      */
     public static function removeSortingInformations($filename)
     {
-        preg_match('/^[-+]?[0-9]*_?(.*)/', $filename, $matches);
+        preg_match('/^[-+]?\d*_?(.*)/', $filename, $matches);
 
         // Remove the numeric part
         // of the filename, only if

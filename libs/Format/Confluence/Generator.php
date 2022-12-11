@@ -29,7 +29,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $confluence = $config->getConfluenceConfiguration();
 
         if ($confluence == null) {
-            throw new \RuntimeException('You must specify your Confluence configuration');
+            throw new ConfluenceConfigurationException('You must specify your Confluence configuration');
         }
 
         $mandatory = ['base_url', 'user', 'pass', 'prefix'];
@@ -43,11 +43,13 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         if (count($errors)) {
             $message = "The following options are mandatory for confluence : '" . implode("', '", $errors) . "'";
 
-            throw new \RuntimeException($message);
+            throw new ConfluenceConfigurationException($message);
         }
 
         if (!$confluence->hasAncestorId() && !$confluence->hasRootId()) {
-            throw new \RuntimeException("You must specify an 'ancestor_id' or a 'root_id' for confluence.");
+            throw new ConfluenceConfigurationException(
+                "You must specify an 'ancestor_id' or a 'root_id' for confluence."
+            );
         }
     }
 

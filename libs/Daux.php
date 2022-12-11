@@ -145,7 +145,7 @@ class Daux
      *
      * @return null|string
      *
-     * @throws \RuntimeException
+     * @throws ConfigurationException
      */
     public function getProcessorClass()
     {
@@ -160,11 +160,13 @@ class Daux
         }
 
         if (!class_exists($processor)) {
-            throw new \RuntimeException("Class '$processor' not found. We cannot use it as a Processor");
+            throw new ConfigurationException("Class '$processor' not found. We cannot use it as a Processor");
         }
 
         if (!array_key_exists('Todaymade\\Daux\\Processor', class_parents($processor))) {
-            throw new \RuntimeException("Class '$processor' invalid, should extend '\\Todaymade\\Daux\\Processor'");
+            throw new ConfigurationException(
+                "Class '$processor' invalid, should extend '\\Todaymade\\Daux\\Processor'"
+            );
         }
 
         return $processor;
@@ -211,17 +213,17 @@ class Daux
                 $message .= "\n\nDid you mean one of these?\n    " . implode("\n    ", $alternatives);
             }
 
-            throw new \RuntimeException($message);
+            throw new ConfigurationException($message);
         }
 
         $class = $generators[$format];
         if (!class_exists($class)) {
-            throw new \RuntimeException("Class '$class' not found. We cannot use it as a Generator");
+            throw new ConfigurationException("Class '$class' not found. We cannot use it as a Generator");
         }
 
         $interface = 'Todaymade\Daux\Format\Base\Generator';
         if (!in_array('Todaymade\Daux\Format\Base\Generator', class_implements($class))) {
-            throw new \RuntimeException("The class '$class' does not implement the '$interface' interface");
+            throw new ConfigurationException("The class '$class' does not implement the '$interface' interface");
         }
 
         return $this->generator = new $class($this);
@@ -270,7 +272,7 @@ class Daux
      *
      * @param array|string $messages The message as an array of lines or a single string
      * @param bool         $newline  Whether to add a newline
-     * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
+     * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants)
      */
     public static function write($messages, $newline = false, $options = 0)
     {
@@ -281,7 +283,7 @@ class Daux
      * Writes a message to the output and adds a newline at the end.
      *
      * @param array|string $messages The message as an array of lines of a single string
-     * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants), 0 is considered the same as self::OUTPUT_NORMAL | self::VERBOSITY_NORMAL
+     * @param int          $options  A bitmask of options (one of the OUTPUT or VERBOSITY constants)
      */
     public static function writeln($messages, $options = 0)
     {

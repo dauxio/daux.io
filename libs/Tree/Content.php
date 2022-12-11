@@ -3,6 +3,7 @@
 use League\CommonMark\Extension\FrontMatter\Data\SymfonyYamlFrontMatterParser;
 use League\CommonMark\Extension\FrontMatter\Exception\InvalidFrontMatterException;
 use League\CommonMark\Extension\FrontMatter\FrontMatterParser;
+use Todaymade\Daux\Exception;
 
 class Content extends ContentAbstract
 {
@@ -28,7 +29,7 @@ class Content extends ContentAbstract
         if ($this->manuallySetContent) {
             $content = $this->content;
         } elseif (!$this->getPath()) {
-            throw new \RuntimeException('Empty content');
+            throw new Exception('Empty content');
         } else {
             $content = file_get_contents($this->getPath());
         }
@@ -120,7 +121,7 @@ class Content extends ContentAbstract
                 $file = $this->getUrl();
             }
 
-            throw new \RuntimeException('Could not parse front matter in ' . $file, 0, $e);
+            throw new Exception('Could not parse front matter in "' . $file . '"', 0, $e);
         }
     }
 

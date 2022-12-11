@@ -4,7 +4,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use Todaymade\Daux\DauxHelper;
-use Todaymade\Daux\Exception\LinkNotFoundException;
+use Todaymade\Daux\LinkNotFoundException;
 
 class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
 {

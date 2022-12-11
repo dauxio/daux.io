@@ -79,7 +79,7 @@ class Server
     {
         $sysFileName = tempnam(sys_get_temp_dir(), 'daux');
         if ($sysFileName === false) {
-            throw new \RuntimeException('Could not create temporary file');
+            throw new Exception('Could not create temporary file');
         }
 
         $newFileName = $sysFileName . $postfix;
@@ -91,7 +91,7 @@ class Server
             return $newFileName;
         }
 
-        throw new \RuntimeException('Could not create temporary file');
+        throw new Exception('Could not create temporary file');
     }
 
     /**
@@ -194,7 +194,7 @@ class Server
         $generator = $this->daux->getGenerator();
 
         if (!$generator instanceof LiveGenerator) {
-            throw new \RuntimeException(
+            throw new Exception(
                 "The generator '" . get_class($generator) . "' does not implement the interface " .
                 "'Todaymade\\Daux\\Format\\Base\\LiveGenerator' and thus doesn't support live rendering."
             );

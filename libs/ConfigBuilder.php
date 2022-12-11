@@ -159,7 +159,7 @@ class ConfigBuilder
         }
 
         if (!is_dir($themesPath . $theme)) {
-            throw new \RuntimeException("Theme '{$theme}' not found");
+            throw new ConfigurationException("Theme '{$theme}' not found");
         }
 
         return [$theme, $variant];

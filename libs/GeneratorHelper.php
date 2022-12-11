@@ -38,7 +38,7 @@ class GeneratorHelper
         $dir = opendir($source);
 
         if ($dir === false) {
-            throw new \RuntimeException("Cannot copy '$source' to '$destination'");
+            throw new Exception("Cannot copy '$source' to '$destination'");
         }
 
         while (false !== ($file = readdir($dir))) {

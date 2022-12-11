@@ -45,7 +45,11 @@ class Publisher
         if ($local && array_key_exists('children', $local)) {
             $remoteChildren = $remote && array_key_exists('children', $remote) ? $remote['children'] : [];
             foreach ($local['children'] as $title => $content) {
-                $this->diff($content, array_key_exists($title, $remoteChildren) ? $remoteChildren[$title] : null, "$level  ");
+                $this->diff(
+                    $content,
+                    array_key_exists($title, $remoteChildren) ? $remoteChildren[$title] : null,
+                    "$level  "
+                );
             }
         }
 
@@ -117,14 +121,18 @@ class Publisher
                 array_map(function ($page) { return $page['title']; }, $pages)
             );
 
-            throw new \RuntimeException("Could not find a page named '$rootTitle' but found ['$pageNames'].");
+            throw new ConfluenceConfigurationException(
+                "Could not find a page named '$rootTitle' but found ['$pageNames']."
+            );
         }
 
         if ($this->confluence->hasRootId()) {
             return $this->client->getPage($this->confluence->getRootId());
         }
 
-        throw new \RuntimeException('You must at least specify a `root_id` or `ancestor_id` in your confluence configuration.');
+        throw new ConfluenceConfigurationException(
+            'You must at least specify a `root_id` or `ancestor_id` in your confluence configuration.'
+        );
     }
 
     protected function createPage($parentId, $entry, $published)

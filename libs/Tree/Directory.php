@@ -120,7 +120,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     public function getConfig(): Config
     {
         if (!$this->parent) {
-            throw new \RuntimeException('Could not retrieve configuration. Are you sure that your tree has a Root ?');
+            throw new TreeException('Could not retrieve configuration. Are you sure that your tree has a Root ?');
         }
 
         return $this->parent->getConfig();
@@ -224,10 +224,8 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
             if ($node instanceof Content) {
                 return true;
             }
-            if ($node instanceof self) {
-                if ($node->hasContent()) {
-                    return true;
-                }
+            if ($node instanceof self && $node->hasContent()) {
+                return true;
             }
         }
 
@@ -281,7 +279,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     public function offsetSet($offset, $value): void
     {
         if (!$value instanceof Entry) {
-            throw new \RuntimeException('The value is not of type Entry');
+            throw new TreeException('The value is not of type Entry');
         }
 
         $this->addChild($value);

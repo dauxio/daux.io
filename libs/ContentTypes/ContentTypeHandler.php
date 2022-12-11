@@ -1,5 +1,6 @@
 <?php namespace Todaymade\Daux\ContentTypes;
 
+use Todaymade\Daux\Exception;
 use Todaymade\Daux\Tree\Content;
 
 class ContentTypeHandler
@@ -48,6 +49,6 @@ class ContentTypeHandler
             }
         }
 
-        throw new \RuntimeException("no contentType found for $path");
+        throw new Exception("no contentType found for $path");
     }
 }
