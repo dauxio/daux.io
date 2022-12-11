@@ -15,7 +15,7 @@ Daux.io is extendable and comes by default with three export formats:
 | Math, Diagrams, Flowcharts |  √   |        X         |              X              |
 |                  Live Mode |  √   |        X         |              X              |
 |              Multilanguage |  √   |        X         |              X              |
-|             Pages Ordering |  √   |        √         |     X (API Limitation)      |
+|             Pages Ordering |  √   |        √         |     X (Limited by API)      |
 |   Google / Piwik analytics |  √   |        √         | √ (Configured on Conflence) |
 
 ## Confluence Example

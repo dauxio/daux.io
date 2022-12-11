@@ -1,5 +1,7 @@
 <?php namespace Todaymade\Daux\Format\HTMLFile\ContentTypes\Markdown;
 
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Normalizer\UniqueSlugNormalizerInterface;
 use Todaymade\Daux\Config;
 
@@ -18,8 +20,9 @@ class CommonMarkConverter extends \Todaymade\Daux\Format\HTML\ContentTypes\Markd
         parent::__construct($config);
     }
 
-    protected function getLinkRenderer(Config $config)
+    protected function extendEnvironment(Environment $environment, Config $config)
     {
-        return new LinkRenderer($config);
+        parent::extendEnvironment($environment, $config);
+        $environment->addRenderer(Link::class, new LinkRenderer($config), 200);
     }
 }

@@ -8,8 +8,6 @@ use League\CommonMark\Parser\Block\BlockStart;
 use League\CommonMark\Parser\Block\BlockStartParserInterface;
 use League\CommonMark\Parser\Cursor;
 use League\CommonMark\Parser\MarkdownParserStateInterface;
-use League\Config\ConfigurationAwareInterface;
-use League\Config\ConfigurationInterface;
 
 final class AdmonitionParser extends AbstractBlockContinueParser
 {
@@ -58,10 +56,7 @@ final class AdmonitionParser extends AbstractBlockContinueParser
 
     public static function blockStartParser(): BlockStartParserInterface
     {
-        return new class() implements BlockStartParserInterface, ConfigurationAwareInterface {
-            /** @psalm-readonly-allow-private-mutation */
-            private ConfigurationInterface $config;
-
+        return new class() implements BlockStartParserInterface {
             public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): ?BlockStart
             {
                 if ($cursor->isIndented()) {
@@ -88,11 +83,6 @@ final class AdmonitionParser extends AbstractBlockContinueParser
                 $title = array_key_exists(2, $matches) ? $matches[2] : null;
 
                 return BlockStart::of(new AdmonitionParser($type, $title))->at($cursor);
-            }
-
-            public function setConfiguration(ConfigurationInterface $configuration): void
-            {
-                $this->config = $configuration;
             }
         };
     }

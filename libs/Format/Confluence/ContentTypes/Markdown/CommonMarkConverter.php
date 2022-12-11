@@ -4,6 +4,7 @@ use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\TableOfContents\Node\TableOfContents;
 use League\CommonMark\Extension\TableOfContents\Node\TableOfContentsPlaceholder;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
@@ -24,11 +25,6 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
         parent::__construct($config);
     }
 
-    protected function getLinkRenderer(Config $config)
-    {
-        return new LinkRenderer($config);
-    }
-
     protected function extendEnvironment(Environment $environment, Config $config)
     {
         parent::extendEnvironment($environment, $config);
@@ -41,6 +37,7 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
         $environment->addRenderer(FencedCode::class, new FencedCodeRenderer($config));
         $environment->addRenderer(IndentedCode::class, new IndentedCodeRenderer());
         $environment->addRenderer(Image::class, new ImageRenderer());
+        $environment->addRenderer(Link::class, new LinkRenderer($config), 200);
         $environment->addRenderer(AdmonitionBlock::class, new AdmonitionRenderer(), 200);
     }
 }

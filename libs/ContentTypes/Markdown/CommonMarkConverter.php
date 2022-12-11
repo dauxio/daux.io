@@ -37,6 +37,8 @@ class CommonMarkConverter extends MarkdownConverter
         $environment->addBlockStartParser(AdmonitionParser::blockStartParser());
         $environment->addRenderer(AdmonitionBlock::class, new AdmonitionRenderer());
 
+        $environment->addRenderer(Link::class, new LinkRenderer($config['daux']));
+
         $this->extendEnvironment($environment, $config['daux']);
 
         if ($config['daux']->hasProcessorInstance()) {
@@ -46,13 +48,8 @@ class CommonMarkConverter extends MarkdownConverter
         parent::__construct($environment);
     }
 
-    protected function getLinkRenderer(Config $config)
-    {
-        return new LinkRenderer($config);
-    }
-
     protected function extendEnvironment(Environment $environment, Config $config)
     {
-        $environment->addRenderer(Link::class, $this->getLinkRenderer($config));
+        // Nothing to see here for now
     }
 }
