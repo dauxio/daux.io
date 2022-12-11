@@ -83,7 +83,7 @@ abstract class Entry
 
         $title = $this->getTitle();
         if ($title) {
-            return $ttitle;
+            return $title;
         }
 
         $uri = $this->getUri();

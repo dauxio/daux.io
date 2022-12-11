@@ -114,9 +114,6 @@ jobs:
     - name: Fix code coverage paths
       run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
 
-    #- name: Fix reports
-    #  run: ./scripts/fix_reports.sh
-
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.8
       env:
