@@ -10,7 +10,7 @@ static-single
 .phpunit.result.cache
 .php_cs.cache
 .php-cs-fixer.cache
-coverage.clover
+coverage.xml
 test-report.xml
 
 /prettier.config.js

@@ -100,6 +100,7 @@ jobs:
       with:
         php-version: 8.1
         extensions: mbstring, dom, intl, iconv
+        coverage: xdebug
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
@@ -108,10 +109,13 @@ jobs:
       run: ./scripts/install_tools.sh
 
     - name: Run test suite
-      run: composer run-script test -- --coverage-clover=coverage.clover --log-junit=test-report.xml
+      run: composer run-script test:coverage
 
-    - name: Fix reports
-      run: ./scripts/fix_reports.sh
+    - name: Fix code coverage paths
+      run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
+
+    #- name: Fix reports
+    #  run: ./scripts/fix_reports.sh
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.8

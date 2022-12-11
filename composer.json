@@ -46,6 +46,7 @@
     },
     "scripts": {
         "test": "php build/phpunit",
+        "test:coverage": "XDEBUG_MODE=coverage php build/phpunit --coverage-clover=coverage.xml --log-junit=test-report.xml",
         "test:coverage-html": "XDEBUG_MODE=coverage php build/phpunit --coverage-html=build/coverage",
         "lint": "php build/php-cs-fixer fix --config=.php-cs-fixer.php --dry-run -v",
         "lint:fix": "php build/php-cs-fixer fix --config=.php-cs-fixer.php"
