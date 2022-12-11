@@ -6,7 +6,7 @@ class ConfigBuilder
 
     private array $overrideValues = [];
 
-    private $configuration_override_file;
+    private $configurationOverrideFile;
 
     private function __construct(string $mode)
     {
@@ -102,7 +102,7 @@ class ConfigBuilder
 
     public function withConfigurationOverride($file): ConfigBuilder
     {
-        $this->configuration_override_file = $file;
+        $this->configurationOverrideFile = $file;
 
         return $this;
     }
@@ -166,23 +166,21 @@ class ConfigBuilder
     }
 
     /**
-     * @param string $override_file
-     *
      * @throws Exception
      */
     private function initializeConfiguration()
     {
         // Validate and set theme path
-        $docs_path = $this->normalizeDocumentationPath($this->config->getDocumentationDirectory());
-        $this->config['docs_directory'] = $docs_path;
+        $docsPath = $this->normalizeDocumentationPath($this->config->getDocumentationDirectory());
+        $this->config['docs_directory'] = $docsPath;
 
         // Read documentation overrides
-        $this->loadConfiguration($docs_path . DIRECTORY_SEPARATOR . 'config.json');
+        $this->loadConfiguration($docsPath . DIRECTORY_SEPARATOR . 'config.json');
 
         // Read command line overrides
-        $override_file = $this->getConfigurationOverride($this->configuration_override_file);
-        if ($override_file !== null) {
-            $this->loadConfiguration($override_file);
+        $overrideFile = $this->getConfigurationOverride($this->configurationOverrideFile);
+        if ($overrideFile !== null) {
+            $this->loadConfiguration($overrideFile);
         }
 
         // Validate and set theme path
@@ -251,24 +249,24 @@ class ConfigBuilder
     }
 
     /**
-     * @param string $config_file
+     * @param string $configFile
      * @param bool $optional
      *
      * @throws Exception
      */
-    private function loadConfiguration($config_file, $optional = true)
+    private function loadConfiguration($configFile, $optional = true)
     {
-        if (!file_exists($config_file)) {
+        if (!file_exists($configFile)) {
             if ($optional) {
                 return;
             }
 
-            throw new Exception('The configuration file is missing. Check path : ' . $config_file);
+            throw new Exception('The configuration file is missing. Check path : ' . $configFile);
         }
 
-        $config = json_decode(file_get_contents($config_file), true);
+        $config = json_decode(file_get_contents($configFile), true);
         if (!isset($config)) {
-            throw new Exception('The configuration file "' . $config_file . '" is corrupt. Is your JSON well-formed ?');
+            throw new Exception('The configuration file "' . $configFile . '" is corrupt. Is your JSON well-formed ?');
         }
         $this->config->merge($config);
     }

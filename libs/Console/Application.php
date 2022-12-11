@@ -12,7 +12,7 @@ class Application extends SymfonyApplication
         $this->add(new Serve());
         $this->add(new ClearCache());
 
-        $app_name = 'daux/daux.io';
+        $appName = 'daux/daux.io';
 
         $up = '..' . DIRECTORY_SEPARATOR;
         $composer = __DIR__ . DIRECTORY_SEPARATOR . $up . $up . $up . $up . $up . 'composer.lock';
@@ -23,7 +23,7 @@ class Application extends SymfonyApplication
             $packages = $app->packages;
 
             foreach ($packages as $package) {
-                if ($package->name == $app_name) {
+                if ($package->name == $appName) {
                     $version = $package->version;
                 }
             }
@@ -37,6 +37,6 @@ class Application extends SymfonyApplication
         }
 
         $this->setVersion($version);
-        $this->setName($app_name);
+        $this->setName($appName);
     }
 }

@@ -41,7 +41,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         }
 
         if (count($errors)) {
-            throw new \RuntimeException("The following options are mandatory for confluence : '" . implode("', '", $errors) . "'");
+            $message = "The following options are mandatory for confluence : '" . implode("', '", $errors) . "'";
+
+            throw new \RuntimeException($message);
         }
 
         if (!$confluence->hasAncestorId() && !$confluence->hasRootId()) {
@@ -91,13 +93,13 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $publisher->publish($tree);
     }
 
-    private function generateRecursive(Directory $tree, GlobalConfig $config, $base_url = '')
+    private function generateRecursive(Directory $tree, GlobalConfig $config, $baseUrl = '')
     {
         $final = ['title' => $this->prefix . $tree->getTitle()];
-        $config['base_url'] = $base_url;
+        $config['base_url'] = $baseUrl;
 
-        $config->setImage(str_replace('<base_url>', $base_url, $config->getImage()));
-        if ($base_url !== '') {
+        $config->setImage(str_replace('<base_url>', $baseUrl, $config->getImage()));
+        if ($baseUrl !== '') {
             $config->setEntryPage($tree->getFirstPage());
         }
         foreach ($tree->getEntries() as $key => $node) {
@@ -105,7 +107,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
                 $final['children'][$this->prefix . $node->getTitle()] = $this->generateRecursive(
                     $node,
                     $config,
-                    '../' . $base_url
+                    '../' . $baseUrl
                 );
             } elseif ($node instanceof Content) {
                 $config->setRequest($node->getUrl());

@@ -17,13 +17,13 @@ trait HTMLUtils
      * Copy all files from $local to $destination.
      *
      * @param string $destination
-     * @param string $local_base
+     * @param string $localBase
      */
-    public function copyThemes($destination, $local_base)
+    public function copyThemes($destination, $localBase)
     {
         mkdir($destination . DIRECTORY_SEPARATOR . 'themes');
         GeneratorHelper::copyRecursive(
-            $local_base,
+            $localBase,
             $destination . DIRECTORY_SEPARATOR . 'themes'
         );
     }

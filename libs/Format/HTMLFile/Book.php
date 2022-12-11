@@ -49,11 +49,11 @@ class Book
                     continue;
                 }
 
-                $page_index = ($index = $node->getIndexPage()) ? $index : $node->getFirstPage();
+                $pageIndex = ($index = $node->getIndexPage()) ? $index : $node->getFirstPage();
 
                 $nav[] = [
                     'title' => $node->getTitle(),
-                    'href' => '#' . $this->getPageUrl($page_index),
+                    'href' => '#' . $this->getPageUrl($pageIndex),
                     'children' => $this->buildNavigation($node),
                 ];
             }

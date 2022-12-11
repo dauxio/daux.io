@@ -10,43 +10,41 @@ class DauxHelper
     /**
      * Set a new base_url for the configuration.
      *
-     * @param string $base_url
+     * @param string $baseUrl
      */
-    public static function rebaseConfiguration(Config $config, $base_url)
+    public static function rebaseConfiguration(Config $config, $baseUrl)
     {
         // Avoid changing the url if it is already correct
-        if ($config->getBaseUrl() == $base_url && !empty($config->getTheme())) {
+        if ($config->getBaseUrl() == $baseUrl && !empty($config->getTheme())) {
             return;
         }
 
         // Change base url for all links on the pages
-        $config['base_url'] = $base_url;
-        $config['theme'] = static::getTheme($config, $base_url);
-        $config['image'] = str_replace('<base_url>', $base_url, $config->getImage());
+        $config['base_url'] = $baseUrl;
+        $config['theme'] = static::getTheme($config, $baseUrl);
+        $config['image'] = str_replace('<base_url>', $baseUrl, $config->getImage());
     }
 
     /**
-     * @param string $current_url
-     *
      * @return array
      */
-    protected static function getTheme(Config $config, $current_url)
+    protected static function getTheme(Config $config, string $currentUrl)
     {
         static $cache = [];
 
         $htmlTheme = $config->getHTML()->getTheme();
 
-        $theme_folder = $config->getThemesPath() . DIRECTORY_SEPARATOR . $htmlTheme;
-        $theme_url = $config->getBaseUrl() . 'themes/' . $htmlTheme . '/';
+        $themeFolder = $config->getThemesPath() . DIRECTORY_SEPARATOR . $htmlTheme;
+        $themeUrl = $config->getBaseUrl() . 'themes/' . $htmlTheme . '/';
 
-        $cache_key = "$current_url-$htmlTheme";
-        if (array_key_exists($cache_key, $cache)) {
-            return $cache[$cache_key];
+        $cacheKey = "$currentUrl-$htmlTheme";
+        if (array_key_exists($cacheKey, $cache)) {
+            return $cache[$cacheKey];
         }
 
         $theme = [];
-        if (is_file($theme_folder . DIRECTORY_SEPARATOR . 'config.json')) {
-            $theme = json_decode(file_get_contents($theme_folder . DIRECTORY_SEPARATOR . 'config.json'), true);
+        if (is_file($themeFolder . DIRECTORY_SEPARATOR . 'config.json')) {
+            $theme = json_decode(file_get_contents($themeFolder . DIRECTORY_SEPARATOR . 'config.json'), true);
             if (!$theme) {
                 $theme = [];
             }
@@ -59,7 +57,7 @@ class DauxHelper
             'js' => [],
             'fonts' => [],
             'favicon' => '<base_url>themes/daux/img/favicon.png',
-            'templates' => $theme_folder . DIRECTORY_SEPARATOR . 'templates',
+            'templates' => $themeFolder . DIRECTORY_SEPARATOR . 'templates',
             'variants' => [],
             'with_search' => $config->getHTML()->hasSearch(),
         ];
@@ -95,8 +93,8 @@ class DauxHelper
 
         $substitutions = [
             '<local_base>' => $config->getLocalBase(),
-            '<base_url>' => $current_url,
-            '<theme_url>' => $theme_url,
+            '<base_url>' => $currentUrl,
+            '<theme_url>' => $themeUrl,
         ];
 
         // Substitute some placeholders
@@ -109,7 +107,7 @@ class DauxHelper
             }
         }
 
-        $cache[$cache_key] = $theme;
+        $cache[$cacheKey] = $theme;
 
         return $theme;
     }

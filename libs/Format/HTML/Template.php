@@ -77,8 +77,8 @@ class Template
 
     protected function registerFunctions($engine)
     {
-        $engine->registerFunction('get_navigation', function ($tree, $path, $current_url, $base_page, $mode) {
-            $nav = $this->buildNavigation($tree, $path, $current_url, $base_page, $mode);
+        $engine->registerFunction('get_navigation', function ($tree, $path, $currentUrl, $basePage, $mode) {
+            $nav = $this->buildNavigation($tree, $path, $currentUrl, $basePage, $mode);
 
             return $this->renderNavigation($nav);
         });
@@ -104,19 +104,19 @@ class Template
             return "Unknown key $key";
         });
 
-        $engine->registerFunction('get_breadcrumb_title', function ($page, $base_page) {
+        $engine->registerFunction('get_breadcrumb_title', function ($page, $basePage) {
             $title = '';
-            $breadcrumb_trail = $page['breadcrumb_trail'];
+            $breadcrumbTrail = $page['breadcrumb_trail'];
             $separator = $this->getSeparator($page['breadcrumb_separator']);
-            foreach ($breadcrumb_trail as $value) {
-                $title .= '<a href="' . $base_page . $value['url'] . '">' . $value['title'] . '</a>' . $separator;
+            foreach ($breadcrumbTrail as $value) {
+                $title .= '<a href="' . $basePage . $value['url'] . '">' . $value['title'] . '</a>' . $separator;
             }
             if ($page['filename'] === 'index' || $page['filename'] === '_index') {
                 if ($page['title'] != '') {
                     $title = substr($title, 0, -1 * strlen($separator));
                 }
             } else {
-                $title .= '<a href="' . $base_page . $page['request'] . '">' . $page['title'] . '</a>';
+                $title .= '<a href="' . $basePage . $page['request'] . '">' . $page['title'] . '</a>';
             }
 
             return $title;
@@ -147,7 +147,7 @@ class Template
         return "<ul class='Nav'>$nav</ul>";
     }
 
-    private function buildNavigation(Directory $tree, $path, $current_url, $base_page, $mode)
+    private function buildNavigation(Directory $tree, $path, $currentUrl, $basePage, $mode)
     {
         $nav = [];
         foreach ($tree->getEntries() as $node) {
@@ -161,7 +161,7 @@ class Template
 
                 $nav[] = [
                     'title' => $node->getTitle(),
-                    'href' => $base_page . $link,
+                    'href' => $basePage . $link,
                     'class' => $node->isHotPath() ? 'Nav__item--active' : '',
                 ];
             } elseif ($node instanceof Directory) {
@@ -175,12 +175,12 @@ class Template
                 ];
 
                 if ($index = $node->getIndexPage()) {
-                    $folder['href'] = $base_page . $index->getUrl();
+                    $folder['href'] = $basePage . $index->getUrl();
                 }
 
                 // Child pages
-                $new_path = ($path === '') ? $url : $path . '/' . $url;
-                $folder['children'] = $this->buildNavigation($node, $new_path, $current_url, $base_page, $mode);
+                $newPath = ($path === '') ? $url : $path . '/' . $url;
+                $folder['children'] = $this->buildNavigation($node, $newPath, $currentUrl, $basePage, $mode);
 
                 if (!empty($folder['children'])) {
                     $folder['class'] .= ' has-children';

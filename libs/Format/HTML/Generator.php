@@ -23,7 +23,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
 
     protected Template $templateRenderer;
 
-    protected $indexed_pages = [];
+    protected $indexedPages = [];
 
     public function __construct(Daux $daux)
     {
@@ -75,7 +75,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
         if ($config->getHTML()->hasSearch()) {
             file_put_contents(
                 $destination . DIRECTORY_SEPARATOR . 'daux_search_index.js',
-                'load_search_index(' . json_encode(['pages' => $this->indexed_pages]) . ');'
+                'load_search_index(' . json_encode(['pages' => $this->indexedPages]) . ');'
             );
 
             if (json_last_error()) {
@@ -139,37 +139,37 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
     /**
      * Recursively generate the documentation.
      *
-     * @param string $output_dir
+     * @param string $outputDir
      * @param OutputInterface $output
      * @param int $width
-     * @param bool $index_pages
-     * @param string $base_url
+     * @param bool $indexPages
+     * @param string $baseUrl
      *
      * @throws \Exception
      */
-    private function generateRecursive(Directory $tree, $output_dir, GlobalConfig $config, $output, $width, $index_pages, $base_url = '')
+    private function generateRecursive(Directory $tree, $outputDir, GlobalConfig $config, $output, $width, $indexPages, $baseUrl = '')
     {
-        DauxHelper::rebaseConfiguration($config, $base_url);
+        DauxHelper::rebaseConfiguration($config, $baseUrl);
 
-        if ($base_url !== '' && !$config->hasEntryPage()) {
+        if ($baseUrl !== '' && !$config->hasEntryPage()) {
             $config->setEntryPage($tree->getFirstPage());
         }
 
         foreach ($tree->getEntries() as $key => $node) {
             if ($node instanceof Directory) {
-                $new_output_dir = $output_dir . DIRECTORY_SEPARATOR . $key;
-                mkdir($new_output_dir);
-                $this->generateRecursive($node, $new_output_dir, $config, $output, $width, $index_pages, '../' . $base_url);
+                $newOutputDir = $outputDir . DIRECTORY_SEPARATOR . $key;
+                mkdir($newOutputDir);
+                $this->generateRecursive($node, $newOutputDir, $config, $output, $width, $indexPages, '../' . $baseUrl);
 
                 // Rebase configuration again as $config is a shared object
-                DauxHelper::rebaseConfiguration($config, $base_url);
+                DauxHelper::rebaseConfiguration($config, $baseUrl);
             } else {
                 $this->runAction(
                     '- ' . $node->getUrl(),
                     $width,
-                    function () use ($node, $output_dir, $key, $config, $index_pages) {
+                    function () use ($node, $outputDir, $key, $config, $indexPages) {
                         if ($node instanceof Raw) {
-                            copy($node->getPath(), $output_dir . DIRECTORY_SEPARATOR . $key);
+                            copy($node->getPath(), $outputDir . DIRECTORY_SEPARATOR . $key);
 
                             return;
                         }
@@ -177,9 +177,9 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
                         $this->daux->tree->setActiveNode($node);
 
                         $generated = $this->generateOne($node, $config);
-                        file_put_contents($output_dir . DIRECTORY_SEPARATOR . $key, $generated->getContent());
-                        if ($index_pages) {
-                            $this->indexed_pages[] = [
+                        file_put_contents($outputDir . DIRECTORY_SEPARATOR . $key, $generated->getContent());
+                        if ($indexPages) {
+                            $this->indexedPages[] = [
                                 'title' => $node->getTitle(),
                                 'text' => $this->sanitize($generated->getPureContent()),
                                 'tags' => '',

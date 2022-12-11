@@ -17,13 +17,13 @@ class Config extends BaseConfig
     public function getEditOn()
     {
         if ($this->hasValue('edit_on')) {
-            $edit_on = $this->getValue('edit_on');
-            if (is_string($edit_on)) {
-                return $this->prepareGithubUrl($edit_on);
+            $editOn = $this->getValue('edit_on');
+            if (is_string($editOn)) {
+                return $this->prepareGithubUrl($editOn);
             }
-            $edit_on['basepath'] = rtrim($edit_on['basepath'], '/');
+            $editOn['basepath'] = rtrim($editOn['basepath'], '/');
 
-            return $edit_on;
+            return $editOn;
         }
 
         if ($this->hasValue('edit_on_github')) {

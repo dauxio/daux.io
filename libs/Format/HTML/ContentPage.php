@@ -32,8 +32,8 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
         $this->language = '';
         if ($this->config->isMultilanguage() && count($this->file->getParents())) {
-            $language_dir = $this->file->getParents()[0];
-            $this->language = $language_dir->getName();
+            $languageDir = $this->file->getParents()[0];
+            $this->language = $languageDir->getName();
         }
     }
 
@@ -48,15 +48,15 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
         if ($multilanguage && !empty($parents)) {
             $parents = array_splice($parents, 1);
         }
-        $breadcrumb_trail = [];
+        $breadcrumbTrail = [];
         if (!empty($parents)) {
             foreach ($parents as $node) {
                 $page = $node->getIndexPage() ?: $node->getFirstPage();
-                $breadcrumb_trail[] = ['title' => $node->getTitle(), 'url' => $page ? $page->getUrl() : ''];
+                $breadcrumbTrail[] = ['title' => $node->getTitle(), 'url' => $page ? $page->getUrl() : ''];
             }
         }
 
-        return $breadcrumb_trail;
+        return $breadcrumbTrail;
     }
 
     protected function generatePage()
@@ -64,19 +64,19 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
         $this->initialize();
         $config = $this->config;
 
-        $entry_page = [];
+        $entryPage = [];
         if ($this->homepage) {
             if ($config->isMultilanguage()) {
                 foreach ($config->getLanguages() as $key => $name) {
-                    $entry_page[$name] = $config->getBasePage() . $config->getEntryPage()[$key]->getUrl();
+                    $entryPage[$name] = $config->getBasePage() . $config->getEntryPage()[$key]->getUrl();
                 }
             } elseif ($config->getEntryPage() != null) {
-                $entry_page['__VIEW_DOCUMENTATION__'] = $config->getBasePage() . $config->getEntryPage()->getUrl();
+                $entryPage['__VIEW_DOCUMENTATION__'] = $config->getBasePage() . $config->getEntryPage()->getUrl();
             }
         }
 
         $page = [
-            'entry_page' => $entry_page,
+            'entry_page' => $entryPage,
             'homepage' => $this->homepage,
             'title' => $this->file->getTitle(),
             'filename' => $this->file->getName(),

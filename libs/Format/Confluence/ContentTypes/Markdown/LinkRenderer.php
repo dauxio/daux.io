@@ -38,19 +38,19 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
         // Internal links
         $file = DauxHelper::resolveInternalFile($this->dauxConfig, $url);
 
-        $link_props = [];
+        $linkProps = [];
         if (isset($urlAndHash[1])) {
-            $link_props['ac:anchor'] = $urlAndHash[1];
+            $linkProps['ac:anchor'] = $urlAndHash[1];
         }
 
         $confluence = $this->dauxConfig->getConfluenceConfiguration();
 
-        $page_props = [
+        $pageProps = [
             'ri:content-title' => trim(trim($confluence->getPrefix()) . ' ' . $file->getTitle()),
             'ri:space-key' => $confluence->getSpaceId(),
         ];
 
-        $page = strval(new HtmlElement('ri:page', $page_props, '', true));
+        $page = strval(new HtmlElement('ri:page', $pageProps, '', true));
         $children = $childRenderer->renderNodes($node->children());
         if (strpos($children, '<') !== false) {
             $children = '<ac:link-body>' . $children . '</ac:link-body>';
@@ -58,6 +58,6 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
             $children = '<ac:plain-text-link-body><![CDATA[' . $children . ']]></ac:plain-text-link-body>';
         }
 
-        return new HtmlElement('ac:link', $link_props, $page . $children);
+        return new HtmlElement('ac:link', $linkProps, $page . $children);
     }
 }

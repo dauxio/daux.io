@@ -9,7 +9,7 @@ use Todaymade\Daux\Config;
 
 class FencedCodeRenderer extends CodeRenderer
 {
-    protected $supported_languages = [
+    protected $supportedLanguages = [
         'actionscript3',
         'bash',
         'csharp',
@@ -38,7 +38,7 @@ class FencedCodeRenderer extends CodeRenderer
         'tex',
         'mermaid',
     ];
-    protected $known_conversions = ['html' => 'html/xml', 'xml' => 'html/xml', 'js' => 'javascript'];
+    protected $knownConversions = ['html' => 'html/xml', 'xml' => 'html/xml', 'js' => 'javascript'];
 
     protected Config $dauxConfig;
 
@@ -88,11 +88,11 @@ class FencedCodeRenderer extends CodeRenderer
 
         $language = Xml::escape($infoWords[0]);
 
-        if (array_key_exists($language, $this->known_conversions)) {
-            $language = $this->known_conversions[$language];
+        if (array_key_exists($language, $this->knownConversions)) {
+            $language = $this->knownConversions[$language];
         }
 
-        if (in_array($language, $this->supported_languages)) {
+        if (in_array($language, $this->supportedLanguages)) {
             return $language;
         }
 

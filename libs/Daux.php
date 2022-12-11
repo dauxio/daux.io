@@ -27,7 +27,7 @@ class Daux
 
     protected ?Processor $processor;
 
-    private bool $merged_tree = false;
+    private bool $mergedTree = false;
 
     public function __construct(Config $config, OutputInterface $output)
     {
@@ -68,19 +68,19 @@ class Daux
      */
     public function getConfig()
     {
-        if ($this->tree && !$this->merged_tree) {
+        if ($this->tree && !$this->mergedTree) {
             $this->config->setTree($this->tree);
             $this->config->setIndex($this->tree->getIndexPage() ?: $this->tree->getFirstPage());
             if ($this->config->isMultilanguage()) {
-                $entry_page = [];
+                $entryPage = [];
                 foreach ($this->config->getLanguages() as $key => $name) {
-                    $entry_page[$key] = $this->tree->getEntries()[$key]->getFirstPage();
+                    $entryPage[$key] = $this->tree->getEntries()[$key]->getFirstPage();
                 }
             } else {
-                $entry_page = $this->tree->getFirstPage();
+                $entryPage = $this->tree->getFirstPage();
             }
-            $this->config->setEntryPage($entry_page);
-            $this->merged_tree = true;
+            $this->config->setEntryPage($entryPage);
+            $this->mergedTree = true;
         }
 
         return $this->config;
@@ -134,7 +134,9 @@ class Daux
     /**
      * Processor class.
      *
-     * You can provide absolute class name or short class name if processor locates in \Todaymade\Daux\Extension namespace.
+     * The Processor's name can be an absolute class name or a
+     * short class name if processor is located in \Todaymade\Daux\Extension namespace.
+     *
      * Location: vendor/daux/daux.io/daux
      *
      * @see \Todaymade\Daux\Extension\Processor
@@ -231,11 +233,11 @@ class Daux
             return $this->typeHandler;
         }
 
-        $base_types = $this->getGenerator()->getContentTypes();
+        $baseTypes = $this->getGenerator()->getContentTypes();
 
         $extended = $this->getProcessor()->addContentType();
 
-        $types = array_merge($base_types, $extended);
+        $types = array_merge($baseTypes, $extended);
 
         return $this->typeHandler = new ContentTypeHandler($types);
     }

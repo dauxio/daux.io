@@ -11,16 +11,16 @@ class PublisherUtilities
         return rtrim(strtr($title, ['index.html' => '', '.html' => '']), '/');
     }
 
-    public static function shouldUpdate($local, $local_content, $published, $threshold)
+    public static function shouldUpdate($local, $localContent, $published, $threshold)
     {
         if (!array_key_exists('content', $published)) {
             return true;
         }
 
-        $trimmed_local = trim($local_content);
-        $trimmed_distant = trim($published['content']);
+        $trimmedLocal = trim($localContent);
+        $trimmedDistant = trim($published['content']);
 
-        if ($trimmed_local == $trimmed_distant) {
+        if ($trimmedLocal == $trimmedDistant) {
             return false;
         }
 
@@ -31,7 +31,7 @@ class PublisherUtilities
         $threshold = 100 - $threshold;
 
         if ($threshold < 100) {
-            similar_text($trimmed_local, $trimmed_distant, $percent);
+            similar_text($trimmedLocal, $trimmedDistant, $percent);
             if ($percent > $threshold) {
                 return false;
             }
@@ -44,8 +44,8 @@ class PublisherUtilities
                 mkdir($prefix, 0777, true);
             }
             $url = $local->getFile()->getUrl();
-            file_put_contents($prefix . strtr($url, ['/' => '_', '.html' => '_local.html']), $trimmed_local);
-            file_put_contents($prefix . strtr($url, ['/' => '_', '.html' => '_distant.html']), $trimmed_distant);
+            file_put_contents($prefix . strtr($url, ['/' => '_', '.html' => '_local.html']), $trimmedLocal);
+            file_put_contents($prefix . strtr($url, ['/' => '_', '.html' => '_distant.html']), $trimmedDistant);
         }
 
         return true;

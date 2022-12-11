@@ -50,23 +50,24 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
     {
         $this->config->setCurrentPage($node);
 
-        $can_cache = $this->config->canCache();
+        $canCache = $this->config->canCache();
 
         // TODO :: add daux version to cache key
         $cacheKey = $this->config->getCacheKey() . sha1($raw);
 
         $payload = Cache::get($cacheKey);
 
-        if ($can_cache && $payload) {
+        if ($canCache && $payload) {
             Daux::writeln('Using cached version', OutputInterface::VERBOSITY_VERBOSE);
         }
 
-        if (!$can_cache || !$payload) {
-            Daux::writeln($can_cache ? 'Not found in the cache, generating...' : 'Cache disabled, generating...', OutputInterface::VERBOSITY_VERBOSE);
+        if (!$canCache || !$payload) {
+            $message = $canCache ? 'Not found in the cache, generating...' : 'Cache disabled, generating...';
+            Daux::writeln($message, OutputInterface::VERBOSITY_VERBOSE);
             $payload = $this->doConversion($raw);
         }
 
-        if ($can_cache) {
+        if ($canCache) {
             Cache::put($cacheKey, $payload);
         }
 

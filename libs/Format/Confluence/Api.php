@@ -5,22 +5,22 @@ use GuzzleHttp\Exception\BadResponseException;
 
 class Api
 {
-    protected $base_url;
+    protected $baseUrl;
     protected $user;
     protected $pass;
 
     protected $space;
 
-    public function __construct($base_url, $user, $pass)
+    public function __construct($baseUrl, $user, $pass)
     {
-        $this->base_url = $base_url;
+        $this->baseUrl = $baseUrl;
         $this->user = $user;
         $this->pass = $pass;
     }
 
-    public function setSpace($space_id)
+    public function setSpace($spaceId)
     {
-        $this->space = $space_id;
+        $this->space = $spaceId;
     }
 
     /**
@@ -31,7 +31,7 @@ class Api
     public function getClient()
     {
         $options = [
-            'base_uri' => $this->base_url . 'rest/api/',
+            'base_uri' => $this->baseUrl . 'rest/api/',
             'auth' => [$this->user, $this->pass],
         ];
 
@@ -66,8 +66,8 @@ class Api
 
         $body = $response->getBody();
         $json = json_decode($body, true);
-        $has_message = $json != null && array_key_exists('message', $json) && !empty($json['message']);
-        $message .= $has_message ? $json['message'] : $body;
+        $hasMessage = $json != null && array_key_exists('message', $json) && !empty($json['message']);
+        $message .= $hasMessage ? $json['message'] : $body;
 
         if ($level == '4' && strpos($message, 'page with this title already exists') !== false) {
             return new DuplicateTitleException($message, 0, $e->getPrevious());
@@ -86,16 +86,16 @@ class Api
             throw $this->handleError($e);
         }
 
-        $ancestor_id = null;
+        $ancestorId = null;
         if (array_key_exists('ancestors', $result) && count($result['ancestors'])) {
-            $ancestor_page = end($result['ancestors']); // We need the direct parent
-            $ancestor_id = $ancestor_page['id'];
+            $ancestorPage = end($result['ancestors']); // We need the direct parent
+            $ancestorId = $ancestorPage['id'];
         }
 
         return [
             'id' => $result['id'],
             'space_key' => $result['space']['key'],
-            'ancestor_id' => $ancestor_id,
+            'ancestor_id' => $ancestorId,
             'title' => $result['title'],
             'version' => $result['version']['number'],
             'content' => $result['body']['storage']['value'],
@@ -155,13 +155,13 @@ class Api
     }
 
     /**
-     * @param int $parent_id
+     * @param int $parentId
      * @param string $title
      * @param string $content
      *
      * @return int
      */
-    public function createPage($parent_id, $title, $content)
+    public function createPage($parentId, $title, $content)
     {
         $body = [
             'type' => 'page',
@@ -170,8 +170,8 @@ class Api
             'body' => ['storage' => ['value' => $content, 'representation' => 'storage']],
         ];
 
-        if ($parent_id) {
-            $body['ancestors'] = [['type' => 'page', 'id' => $parent_id]];
+        if ($parentId) {
+            $body['ancestors'] = [['type' => 'page', 'id' => $parentId]];
         }
 
         try {
@@ -184,13 +184,13 @@ class Api
     }
 
     /**
-     * @param int $parent_id
-     * @param int $page_id
+     * @param int $parentId
+     * @param int $pageId
      * @param int $newVersion
      * @param string $title
      * @param string $content
      */
-    public function updatePage($parent_id, $page_id, $newVersion, $title, $content)
+    public function updatePage($parentId, $pageId, $newVersion, $title, $content)
     {
         $body = [
             'type' => 'page',
@@ -200,16 +200,16 @@ class Api
             'body' => ['storage' => ['value' => $content, 'representation' => 'storage']],
         ];
 
-        if ($parent_id) {
-            $body['ancestors'] = [['type' => 'page', 'id' => $parent_id]];
+        if ($parentId) {
+            $body['ancestors'] = [['type' => 'page', 'id' => $parentId]];
         }
 
         try {
-            $this->getClient()->put("content/$page_id", ['json' => $body]);
+            $this->getClient()->put("content/$pageId", ['json' => $body]);
         } catch (BadResponseException $e) {
             $error = $this->handleError($e);
 
-            $re = '/\[([0-9]*),([0-9]*)\]$/';
+            $re = '/\[(\d*),(\d*)\]$/';
             preg_match($re, $error->getMessage(), $matches, PREG_OFFSET_CAPTURE, 0);
 
             if (count($matches) == 3) {
@@ -255,14 +255,14 @@ class Api
     /**
      * Delete a page.
      *
-     * @param int $page_id
+     * @param int $pageId
      *
      * @return mixed
      */
-    public function deletePage($page_id)
+    public function deletePage($pageId)
     {
         try {
-            return json_decode($this->getClient()->delete('content/' . $page_id)->getBody(), true);
+            return json_decode($this->getClient()->delete('content/' . $pageId)->getBody(), true);
         } catch (BadResponseException $e) {
             throw $this->handleError($e);
         }
@@ -283,7 +283,9 @@ class Api
 
     private function putAttachment($url, $attachment)
     {
-        $contents = array_key_exists('file', $attachment) ? fopen($attachment['file']->getPath(), 'r') : $attachment['content'];
+        $contents = array_key_exists('file', $attachment)
+            ? fopen($attachment['file']->getPath(), 'r')
+            : $attachment['content'];
 
         try {
             $this->getClient()->post(

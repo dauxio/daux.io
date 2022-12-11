@@ -2,7 +2,6 @@
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use Todaymade\Daux\Config;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Tree\Builder;
@@ -10,20 +9,32 @@ use Todaymade\Daux\Tree\Root;
 
 class LinkRendererTest extends TestCase
 {
-    protected function getTree(Config $config)
-    {
-    }
-
     public function providerRenderLink()
     {
         return [
             // /Widgets/Page_with_#_hash
-            ['<a href="../Widgets/Page_with_hash.html">Link</a>', '[Link](../Widgets/Page_with_#_hash.md)', 'Content/Page.html'],
-            ['<a href="../Widgets/Page_with_hash.html">Link</a>', '[Link](!Widgets/Page_with_#_hash)', 'Content/Page.html'],
-            ['<a href="Page_with_hash.html">Link</a>', '[Link](Page_with_#_hash.md)', 'Widgets/Page.html'],
+            [
+                '<a href="../Widgets/Page_with_hash.html">Link</a>',
+                '[Link](../Widgets/Page_with_#_hash.md)',
+                'Content/Page.html',
+            ],
+            [
+                '<a href="../Widgets/Page_with_hash.html">Link</a>',
+                '[Link](!Widgets/Page_with_#_hash)',
+                'Content/Page.html',
+            ],
+            [
+                '<a href="Page_with_hash.html">Link</a>',
+                '[Link](Page_with_#_hash.md)',
+                'Widgets/Page.html',
+            ],
 
             // /Widgets/Page
-            ['<a href="http://google.ch" class="Link--external" rel="noopener noreferrer">Link</a>', '[Link](http://google.ch)', 'Widgets/Page.html'],
+            [
+                '<a href="http://google.ch" class="Link--external" rel="noopener noreferrer">Link</a>',
+                '[Link](http://google.ch)',
+                'Widgets/Page.html',
+            ],
             ['<a href="#features">Link</a>', '[Link](#features)', 'Widgets/Page.html'],
             ['<a href="Button.html">Link</a>', '[Link](Button.md)', 'Widgets/Page.html'],
             ['<a href="Button.html">Link</a>', '[Link](./Button.md)', 'Widgets/Page.html'],
@@ -39,7 +50,11 @@ class LinkRendererTest extends TestCase
             ['<a href="../Widgets/Button.html">Link</a>', '[Link](!Widgets/Button)', 'Content/Page.html'],
 
             // Mailto links
-            ['<a href="mailto:me@mydomain.com" class="Link--external" rel="noopener noreferrer">me@mydomain.com</a>', '[me@mydomain.com](mailto:me@mydomain.com)', 'Content/Page.html'],
+            [
+                '<a href="mailto:me@mydomain.com" class="Link--external" rel="noopener noreferrer">me@mydomain.com</a>',
+                '[me@mydomain.com](mailto:me@mydomain.com)',
+                'Content/Page.html',
+            ],
         ];
     }
 
@@ -77,7 +92,7 @@ class LinkRendererTest extends TestCase
 
         $config = ConfigBuilder::withMode()->build();
         $config->setTree($tree);
-        $config->setCurrentPage(DauxHelper::getFile($config->getTree(), $current));
+        $config->setCurrentPage(DauxHelper::getFile($tree, $current));
 
         $converter = new CommonMarkConverter(['daux' => $config]);
 

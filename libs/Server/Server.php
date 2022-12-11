@@ -18,7 +18,7 @@ class Server
 {
     private Daux $daux;
     private $config;
-    private string $base_url;
+    private string $baseUrl;
 
     private Request $request;
 
@@ -27,7 +27,7 @@ class Server
         $this->daux = $daux;
 
         $this->request = Request::createFromGlobals();
-        $this->base_url = str_replace('//', '/', '/' . $this->request->getBaseUrl() . '/');
+        $this->baseUrl = str_replace('//', '/', '/' . $this->request->getBaseUrl() . '/');
     }
 
     /**
@@ -125,7 +125,7 @@ class Server
     {
         $config = $this->daux->getConfig();
 
-        DauxHelper::rebaseConfiguration($config, $this->base_url);
+        DauxHelper::rebaseConfiguration($config, $this->baseUrl);
 
         return $config;
     }
