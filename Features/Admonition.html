@@ -110,7 +110,7 @@
     <div class="Page__header">
         <h1><a href="../Features/Admonition.html">Features</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Features/Admonition.html">Admonition</a></h1>
                 <span class="ModifiedDate">
-            December 11, 2022 at 1:58 AM        </span>
+            December 11, 2022 at 2:09 AM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/01_Features/Admonition.md" target="_blank">
                 Edit on GitHub            </a>
@@ -118,7 +118,39 @@
             </div>
 
     <div class="s-content">
-        <h2><a id="syntax" href="#syntax" class="Permalink" aria-hidden="true" title="Permalink">#</a>Syntax</h2>
+        <div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li>
+<a href="#syntax">Syntax</a>
+</li>
+<li>
+<a href="#examples">Examples</a>
+<ul>
+<li>
+<a href="#notes">Notes</a>
+</li>
+<li>
+<a href="#info">Info</a>
+</li>
+<li>
+<a href="#warning">Warning</a>
+</li>
+<li>
+<a href="#danger">Danger</a>
+</li>
+<li>
+<a href="#notes-without-titles">Notes without titles</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#confluence">Confluence</a>
+</li>
+</ul>    </div>
+</div>
+<h2><a id="syntax" href="#syntax" class="Permalink" aria-hidden="true" title="Permalink">#</a>Syntax</h2>
 <p>Admonitions are created using the following syntax:</p>
 <pre><code>!!! type &quot;optional explicit title within double quotes&quot;
     Any number of other indented markdown elements.
@@ -128,20 +160,46 @@
 <p>Valid values for <code>type</code> are: <code>note</code>, <code>info</code>, <code>warning</code>, and <code>danger</code>.</p>
 <p>Any value other than these will be treated as <code>note</code></p>
 <h2><a id="examples" href="#examples" class="Permalink" aria-hidden="true" title="Permalink">#</a>Examples</h2>
+<h3><a id="notes" href="#notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Notes</h3>
 <div class="Admonition Admonition--note"><p class="Admonition__title">Note</p><p>A <code>note</code> will render with a neutral color.</p>
 <ul>
 <li>Sugar</li>
 <li>Eggs</li>
 <li>Flour</li>
 </ul></div>
+<pre><code>!!! note &quot;Note&quot;
+    A `note` will render with a neutral color.
+
+    * Sugar
+    * Eggs
+    * Flour
+</code></pre>
+<h3><a id="info" href="#info" class="Permalink" aria-hidden="true" title="Permalink">#</a>Info</h3>
 <div class="Admonition Admonition--info"><p class="Admonition__title">Some title</p><p><code>info</code> renders like this.</p></div>
+<pre><code>!!! info &quot;Some title&quot;
+    `info` renders like this.
+</code></pre>
+<h3><a id="warning" href="#warning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Warning</h3>
 <div class="Admonition Admonition--warning"><p class="Admonition__title">WARNING</p><p><code>warning</code> will warn you.</p>
 <blockquote>
 <p>With a blockquote</p>
 </blockquote></div>
+<pre><code>!!! warning &quot;WARNING&quot;
+    `warning` will warn you.
+
+    &gt; With a blockquote
+</code></pre>
+<h3><a id="danger" href="#danger" class="Permalink" aria-hidden="true" title="Permalink">#</a>Danger</h3>
 <div class="Admonition Admonition--danger"><p class="Admonition__title">Danger</p><p><code>danger</code> is Dangerous</p></div>
+<pre><code>!!! danger &quot;Danger&quot;
+    `danger` is Dangerous
+</code></pre>
+<h3><a id="notes-without-titles" href="#notes-without-titles" class="Permalink" aria-hidden="true" title="Permalink">#</a>Notes without titles</h3>
 <div class="Admonition Admonition--note"><p>This note has no title !</p></div>
-<h3><a id="confluence" href="#confluence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Confluence</h3>
+<pre><code>!!! note
+    This note has no title !
+</code></pre>
+<h2><a id="confluence" href="#confluence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Confluence</h2>
 <p>Confluence upload will convert admonition into <a href="https://confluence.atlassian.com/doc/info-tip-note-and-warning-macros-51872369.html" class="Link--external" rel="noopener noreferrer">confluence macros</a>.</p>
 <ul>
 <li>
