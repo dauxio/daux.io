@@ -251,6 +251,22 @@ h6 {
         color: inherit;
     }
 
+    details {
+        background: var(--details-bg-color);
+        border-radius: var(--details-border-radius);
+        padding: var(--details-padding);
+        margin-bottom: 1.3em;
+    }
+
+    summary {
+        display: list-item;
+        list-style: disclosure-closed inside;
+    }
+
+    details[open] > summary {
+        list-style-type: disclosure-open;
+    }
+
     // stylelint-disable-next-line selector-class-pattern
     .mermaid {
         background: #fff;

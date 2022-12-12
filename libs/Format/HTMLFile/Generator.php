@@ -24,7 +24,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
 
         $this->daux = $daux;
         $this->templateRenderer = new Template($config);
-        $config->templateRenderer = $this->templateRenderer;
+        $config->setTemplateRenderer($this->templateRenderer);
     }
 
     /**

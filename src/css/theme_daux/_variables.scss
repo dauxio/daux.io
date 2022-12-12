@@ -137,6 +137,10 @@
     --admonition-danger-title-background: color-mod(
         var(--color-danger) lightness(85%)
     );
+
+    --details-bg-color: #efefef;
+    --details-border-radius: 0.5rem;
+    --details-padding: 0.6rem;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
@@ -226,6 +230,8 @@
     --admonition-danger-title-background: color-mod(
         var(--color-danger) lightness(10%)
     );
+
+    --details-bg-color: #1a1a1a;
 }
 
 /*
