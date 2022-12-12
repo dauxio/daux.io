@@ -2,10 +2,10 @@
 
 use Todaymade\Daux\Format\Confluence\Config as ConfluenceConfig;
 use Todaymade\Daux\Format\HTML\Config as HTMLConfig;
+use Todaymade\Daux\Format\HTML\Template;
 use Todaymade\Daux\Format\HTML\Theme;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Entry;
-use Todaymade\Daux\Format\HTML\Template;
 
 class Config extends BaseConfig
 {
