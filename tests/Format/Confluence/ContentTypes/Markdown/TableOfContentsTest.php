@@ -11,9 +11,9 @@ class Engine
     }
 }
 
-class Template
+class Template extends \Todaymade\Daux\Format\HTML\Template
 {
-    public function getEngine()
+    public function getEngine(MainConfig $config)
     {
         return new Engine();
     }
@@ -24,7 +24,7 @@ class TableOfContentsTest extends TestCase
     public function getConfig()
     {
         $config = new MainConfig();
-        $config->templateRenderer = new Template();
+        $config->setTemplateRenderer(new Template($config));
 
         return ['daux' => $config];
     }

@@ -5,9 +5,12 @@ use Todaymade\Daux\Format\HTML\Config as HTMLConfig;
 use Todaymade\Daux\Format\HTML\Theme;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Entry;
+use Todaymade\Daux\Format\HTML\Template;
 
 class Config extends BaseConfig
 {
+    protected Template $templateRenderer;
+
     public function getTitle()
     {
         return $this->getValue('title');
@@ -309,5 +312,15 @@ class Config extends BaseConfig
     public function getHost()
     {
         return $this->getValue('host');
+    }
+
+    public function getTemplateRenderer()
+    {
+        return $this->templateRenderer;
+    }
+
+    public function setTemplateRenderer(Template $template)
+    {
+        $this->templateRenderer = $template;
     }
 }

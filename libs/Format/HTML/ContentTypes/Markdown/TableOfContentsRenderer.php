@@ -25,7 +25,7 @@ class TableOfContentsRenderer implements NodeRendererInterface
 
         $content = $this->parent->render($node, $childRenderer);
 
-        return $this->dauxConfig->templateRenderer
+        return $this->dauxConfig->getTemplateRenderer()
             ->getEngine($this->dauxConfig)
             ->render('theme::partials/table_of_contents', ['content' => $content]);
     }

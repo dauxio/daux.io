@@ -150,8 +150,6 @@ Daux.io is compatible with the [officially supported](https://www.php.net/suppor
 
 Daux.io needs the following PHP extensions to work : `php-mbstring` and `php-xml`.
 
-If you encounter an error similar to `utf8_decode() not found` this means that you're missing the `php-xml` package.
-
 If you use non-english characters in your page names, it is recommended to install the `php-intl` extension as well.
 
 ## Support

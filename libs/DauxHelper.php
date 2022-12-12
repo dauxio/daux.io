@@ -98,11 +98,11 @@ class DauxHelper
 
         // Substitute some placeholders
         $theme['templates'] = strtr($theme['templates'], $substitutions);
-        $theme['favicon'] = utf8_encode(strtr($theme['favicon'], $substitutions));
+        $theme['favicon'] = strtr($theme['favicon'], $substitutions);
 
         foreach (['css', 'js', 'fonts'] as $element) {
             foreach ($theme[$element] as $key => $value) {
-                $theme[$element][$key] = utf8_encode(strtr($value, $substitutions));
+                $theme[$element][$key] = strtr($value, $substitutions);
             }
         }
 
