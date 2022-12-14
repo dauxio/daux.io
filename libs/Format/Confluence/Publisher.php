@@ -92,7 +92,7 @@ class Publisher
 
         $published = $this->run(
             'Create placeholder pages...',
-            function () use ($tree, $published) {
+            function () use ($ancestorId, $tree, $published) {
                 return $this->createRecursive($ancestorId, $tree, $published);
             }
         );
