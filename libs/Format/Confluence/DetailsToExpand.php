@@ -4,9 +4,14 @@ class DetailsToExpand
 {
     public function convert(string $content): string
     {
+        // convert <namespace:tag to <namespace__tag for DOMDocument to be happy
+        $content = preg_replace('/<(\/?)(\w+):(\w+)/', '<\1\2___\3', $content);
+
         $dom = new \DOMDocument();
+
+        // Ignore errors when parsing unknown tags, add a wrapping tag to not skew how tags are parsed
         libxml_use_internal_errors(true);
-        $dom->loadHTML($content, LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED);
+        $dom->loadHTML("<wrapper>$content</wrapper>", LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED);
         libxml_clear_errors();
 
         $detailElements = $dom->getElementsByTagName('details');
@@ -16,7 +21,15 @@ class DetailsToExpand
             $this->convertOne($detailElements->item($i));
         }
 
-        return $dom->saveHTML();
+        // Export without the wrapper
+        $validNodes = $dom->childNodes->item(0)->childNodes;
+        $finalContent = '';
+        foreach ($validNodes as $node) {
+            $finalContent .= $dom->saveHTML($node);
+        }
+
+        // restore namespace tags
+        return preg_replace('/<(\/?)(\w+)___(\w+)/', '<\1\2:\3', $finalContent);
     }
 
     protected function findSummary(\DOMElement $element): ?\DOMElement
