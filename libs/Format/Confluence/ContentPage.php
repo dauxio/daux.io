@@ -36,6 +36,11 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                 }
             );
 
+        if (str_contains($content, '<details')) {
+            $detailsToExpand = new DetailsToExpand();
+            $content = $detailsToExpand->convert($content);
+        }
+
         $intro = '';
         if ($this->config->getConfluenceConfiguration()->hasHeader()) {
             $intro = '<ac:structured-macro ac:name="info"><ac:rich-text-body>' . $this->config->getConfluenceConfiguration()->getHeader() . '</ac:rich-text-body></ac:structured-macro>';
