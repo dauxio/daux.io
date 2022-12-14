@@ -21,13 +21,16 @@ class DetailsToExpandTest extends TestCase
                     </details>
                     EOD,
                 <<<'EOD'
-                    <ac:structured-macro ac:name="expand"><ac:parameter ac:name="">Title !</ac:parameter><ac:rich-text-body>
+                    <ac:structured-macro ac:name="expand">
+                    <ac:parameter ac:name="title">Title !</ac:parameter>
+                    <ac:rich-text-body>
 
                     <ul>
                         <li>Item 1</li>
                         <li>Item 2</li>
                     </ul>
-                    </ac:rich-text-body></ac:structured-macro>
+                    </ac:rich-text-body>
+                    </ac:structured-macro>
                     EOD
             ],
             [
@@ -51,13 +54,16 @@ class DetailsToExpandTest extends TestCase
                     <ac:structured-macro ac:name="info"><ac:rich-text-body>
                         <p>Content</p>
                     </ac:rich-text-body></ac:structured-macro>
-                    <ac:structured-macro ac:name="expand"><ac:parameter ac:name="">Title !</ac:parameter><ac:rich-text-body>
+                    <ac:structured-macro ac:name="expand">
+                    <ac:parameter ac:name="title">Title !</ac:parameter>
+                    <ac:rich-text-body>
 
                     <ul>
                         <li>Item 1</li>
                         <li>Item 2</li>
                     </ul>
-                    </ac:rich-text-body></ac:structured-macro>
+                    </ac:rich-text-body>
+                    </ac:structured-macro>
                     EOD
             ],
             [
@@ -89,13 +95,16 @@ class DetailsToExpandTest extends TestCase
                     </script>
                     ]]></ac:plain-text-body>
                     </ac:structured-macro>
-                    <ac:structured-macro ac:name="expand"><ac:parameter ac:name="">Title !</ac:parameter><ac:rich-text-body>
+                    <ac:structured-macro ac:name="expand">
+                    <ac:parameter ac:name="title">Title !</ac:parameter>
+                    <ac:rich-text-body>
 
                     <ul>
                         <li>Item 1</li>
                         <li>Item 2</li>
                     </ul>
-                    </ac:rich-text-body></ac:structured-macro>
+                    </ac:rich-text-body>
+                    </ac:structured-macro>
                     EOD
             ],
             [
@@ -137,13 +146,16 @@ class DetailsToExpandTest extends TestCase
                         </details>
                         ]]></ac:plain-text-body>
                     </ac:structured-macro>
-                    <ac:structured-macro ac:name="expand"><ac:parameter ac:name="">Title !</ac:parameter><ac:rich-text-body>
+                    <ac:structured-macro ac:name="expand">
+                    <ac:parameter ac:name="title">Title !</ac:parameter>
+                    <ac:rich-text-body>
 
                     <ul>
                         <li>Item 1</li>
                         <li>Item 2</li>
                     </ul>
-                    </ac:rich-text-body></ac:structured-macro>
+                    </ac:rich-text-body>
+                    </ac:structured-macro>
                     EOD
             ],
             [
@@ -187,17 +199,23 @@ class DetailsToExpandTest extends TestCase
                     </details>
                     EOD,
                 <<<'EOD'
-                    <ac:structured-macro ac:name="expand"><ac:parameter ac:name="">Title !</ac:parameter><ac:rich-text-body>
+                    <ac:structured-macro ac:name="expand">
+                    <ac:parameter ac:name="title">Title !</ac:parameter>
+                    <ac:rich-text-body>
 
                     <ul>
                         <li>Item 1</li>
                         <li>Item 2</li>
                     </ul>
-                    <ac:structured-macro ac:name="expand"><ac:parameter ac:name="">Inner title</ac:parameter><ac:rich-text-body>
+                    <ac:structured-macro ac:name="expand">
+                    <ac:parameter ac:name="title">Inner title</ac:parameter>
+                    <ac:rich-text-body>
 
                     <p>Some Text</p>
-                    </ac:rich-text-body></ac:structured-macro>
-                    </ac:rich-text-body></ac:structured-macro>
+                    </ac:rich-text-body>
+                    </ac:structured-macro>
+                    </ac:rich-text-body>
+                    </ac:structured-macro>
                     EOD
             ],
         ];
@@ -213,6 +231,6 @@ class DetailsToExpandTest extends TestCase
     {
         $expander = new DetailsToExpand();
 
-        $this->assertEquals($expected, preg_replace("/\n\n/", "\n", trim($expander->convert($input))));
+        $this->assertEquals($expected, str_replace("\n\n", "\n", trim($expander->convert($input))));
     }
 }

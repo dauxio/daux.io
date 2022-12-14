@@ -71,7 +71,7 @@ class DetailsToExpand
     {
         /*
         <ac:structured-macro ac:name="expand">
-          <ac:parameter ac:name="">This is my message</ac:parameter>
+          <ac:parameter ac:name="title">This is my message</ac:parameter>
           <ac:rich-text-body>
             <p>This text is <em>hidden</em> until you expand it.</p>
           </ac:rich-text-body>
@@ -88,9 +88,11 @@ class DetailsToExpand
             return;
         }
 
+        $document = $element->ownerDocument;
+
         // Create new title node
-        $title = $element->ownerDocument->createElement('ac:parameter');
-        $title->setAttribute('ac:name', '');
+        $title = $document->createElement('ac:parameter');
+        $title->setAttribute('ac:name', 'title');
         $titleChildNodes = $summary->childNodes;
         while ($titleChildNodes->length > 0) {
             $title->appendChild($titleChildNodes->item(0));
@@ -98,17 +100,20 @@ class DetailsToExpand
         $element->removeChild($summary);
 
         // Create body node
-        $body = $element->ownerDocument->createElement('ac:rich-text-body');
+        $body = $document->createElement('ac:rich-text-body');
         $childNodes = $element->childNodes;
         while ($childNodes->length > 0) {
             $body->appendChild($childNodes->item(0));
         }
 
         // Assemble the macro
-        $macro = $element->ownerDocument->createElement('ac:structured-macro');
+        $macro = $document->createElement('ac:structured-macro');
         $macro->setAttribute('ac:name', 'expand');
+        $macro->appendChild($document->createTextNode("\n"));
         $macro->appendChild($title);
+        $macro->appendChild($document->createTextNode("\n"));
         $macro->appendChild($body);
+        $macro->appendChild($document->createTextNode("\n"));
 
         $element->parentNode->replaceChild($macro, $element);
     }
