@@ -6,6 +6,8 @@ class DetailsToExpand
     {
         // convert <namespace:tag to <namespace__tag for DOMDocument to be happy
         $content = preg_replace('/<(\/?)(\w+):(\w+)/', '<\1\2___\3', $content);
+        $content = str_replace('<![CDATA[', '__CDATA_START__', $content);
+        $content = str_replace(']]>', '__CDATA_END__', $content);
 
         $dom = new \DOMDocument();
 
@@ -29,6 +31,9 @@ class DetailsToExpand
         }
 
         // restore namespace tags
+        $finalContent = str_replace('__CDATA_START__', '<![CDATA[', $finalContent);
+        $finalContent = str_replace('__CDATA_END__', ']]>', $finalContent);
+
         return preg_replace('/<(\/?)(\w+)___(\w+)/', '<\1\2:\3', $finalContent);
     }
 
