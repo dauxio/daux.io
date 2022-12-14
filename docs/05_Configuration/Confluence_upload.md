@@ -35,6 +35,18 @@ You can obtain a page's id by checking the links of the actions on the page (pag
 }
 ```
 
+If using an `ancestor_id` you may wish to create the page automatically if it doesn't exist.
+To do so, set `create_root_if_missing` to true.
+
+```json
+{
+    "confluence": {
+        "ancestor_id": 50370632,
+        "create_root_if_missing": true
+    }
+}
+```
+
 ## Prefix
 
 Because confluence can't have two pages with the same name in a space, I recommend you define a prefix for your pages.

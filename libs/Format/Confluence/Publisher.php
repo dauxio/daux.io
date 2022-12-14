@@ -104,10 +104,31 @@ class Publisher
         $delete->handle($published);
     }
 
+    protected function rootNotFound(string $rootTitle, array $pages)
+    {
+        $pageNotFound = "Could not find a page named '$rootTitle'";
+        $configRecommendation = "To create the page automatically, add '\"create_root_if_missing\": true'"
+        . " in the 'confluence' section of your Daux configuration.";
+
+        if (empty($pages)) {
+            throw new ConfluenceConfigurationException(
+                "$pageNotFound as no page were found with the specified ancestor_id.$configRecommendation"
+            );
+        }
+
+        $pageNames = implode(
+            "', '",
+            array_map(function ($page) { return $page['title']; }, $pages)
+        );
+
+        throw new ConfluenceConfigurationException("$pageNotFound but found ['$pageNames'].$configRecommendation");
+    }
+
     protected function getRootPage($tree)
     {
         if ($this->confluence->hasAncestorId()) {
-            $pages = $this->client->getList($this->confluence->getAncestorId());
+            $ancestorId = $this->confluence->getAncestorId();
+            $pages = $this->client->getList($ancestorId);
             $rootTitle = $tree['title'];
 
             foreach ($pages as $page) {
@@ -116,14 +137,13 @@ class Publisher
                 }
             }
 
-            $pageNames = implode(
-                "', '",
-                array_map(function ($page) { return $page['title']; }, $pages)
-            );
+            if ($this->confluence->createRootIfMissing()) {
+                $id = $this->client->createPage($ancestorId, $rootTitle, 'The content will come very soon !');
 
-            throw new ConfluenceConfigurationException(
-                "Could not find a page named '$rootTitle' but found ['$pageNames']."
-            );
+                return $this->client->getPage($id);
+            }
+
+            $this->rootNotFound($rootTitle, $pages);
         }
 
         if ($this->confluence->hasRootId()) {

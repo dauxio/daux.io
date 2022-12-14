@@ -86,4 +86,9 @@ class Config extends BaseConfig
     {
         return $this->getValue('header');
     }
+
+    public function createRootIfMissing()
+    {
+        return $this->hasValue('create_root_if_missing') ? $this->getValue('create_root_if_missing') : false;
+    }
 }
