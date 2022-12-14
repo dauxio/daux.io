@@ -109,6 +109,9 @@ class DetailsToExpand
         // Assemble the macro
         $macro = $document->createElement('ac:structured-macro');
         $macro->setAttribute('ac:name', 'expand');
+        $macro->setAttribute('ac:schema-version', '1');
+        $macro->setAttribute('ac:macro-id', '4773c58a-1d13-43d0-8faf-423ce2071810');
+
         $macro->appendChild($document->createTextNode("\n"));
         $macro->appendChild($title);
         $macro->appendChild($document->createTextNode("\n"));
