@@ -52,6 +52,21 @@ class DetailsToExpand
         return null;
     }
 
+    protected function isWithinCodeBlock(\DOMElement $element)
+    {
+        $current = $element->parentNode;
+        while ($current != null) {
+            if ($current->nodeName == 'ac___structured-macro'
+                && $current->getAttribute('ac:name') === 'code') {
+                return true;
+            }
+
+            $current = $current->parentNode;
+        }
+
+        return false;
+    }
+
     protected function convertOne(\DOMElement $element)
     {
         /*
@@ -62,6 +77,10 @@ class DetailsToExpand
           </ac:rich-text-body>
         </ac:structured-macro>
         */
+
+        if ($this->isWithinCodeBlock($element)) {
+            return;
+        }
 
         $summary = $this->findSummary($element);
         if (!$summary) {

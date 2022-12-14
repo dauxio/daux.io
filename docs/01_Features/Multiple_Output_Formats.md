@@ -17,7 +17,7 @@ Daux.io is extendable and comes by default with three export formats:
 |              Multilanguage |  √   |        X         |             N/A             |
 |             Pages Ordering |  √   |        √         |     X (Limited by API)      |
 |                Admonitions |  √   |        √         |              √              |
-|         Collapsible Blocks |  √   |        √         |              X              |
+|         Collapsible Blocks |  √   |        √         |              √              |
 |                  Dark Mode |  √   |        X         |              X              |
 |   Google / Piwik analytics |  √   |        √         | √ (Configured on Conflence) |
 

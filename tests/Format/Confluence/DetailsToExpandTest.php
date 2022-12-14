@@ -99,6 +99,54 @@ class DetailsToExpandTest extends TestCase
                     EOD
             ],
             [
+                // Doesn't convert within confluence code blocks
+                <<<'EOD'
+                    <ac:structured-macro ac:name="code">
+                        <ac:plain-text-body><![CDATA[<b>This is my code</b>
+                        <details>
+                        <summary>Title !</summary>
+
+                        <ul>
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                        </ul>
+
+                        </details>
+                        ]]></ac:plain-text-body>
+                    </ac:structured-macro>
+
+                    <details>
+                    <summary>Title !</summary>
+
+                    <ul>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                    </ul>
+
+                    </details>
+                    EOD,
+                <<<'EOD'
+                    <ac:structured-macro ac:name="code">
+                        <ac:plain-text-body><![CDATA[<b>This is my code</b>
+                        <details>
+                        <summary>Title !</summary>
+                        <ul>
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                        </ul>
+                        </details>
+                        ]]></ac:plain-text-body>
+                    </ac:structured-macro>
+                    <ac:structured-macro ac:name="expand"><ac:parameter ac:name="">Title !</ac:parameter><ac:rich-text-body>
+
+                    <ul>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                    </ul>
+                    </ac:rich-text-body></ac:structured-macro>
+                    EOD
+            ],
+            [
                 // Don't convert without title
                 <<<'EOD'
                     <details>
