@@ -180,6 +180,15 @@ class DetailsToExpandTest extends TestCase
                     EOD
             ],
             [
+                // Don't convert empty blocks
+                <<<'EOD'
+                    <details></details>
+                    EOD,
+                <<<'EOD'
+                    <details></details>
+                    EOD
+            ],
+            [
                 // Convert nested
                 <<<'EOD'
                     <details>

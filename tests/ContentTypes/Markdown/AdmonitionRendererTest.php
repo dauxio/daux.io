@@ -11,8 +11,7 @@ class AdmonitionRendererTest extends TestCase
     public function provideAdmonitionCases()
     {
         return [
-            // Note with content before and after
-            [
+            'Content before and after' => [
                 <<<'EOD'
                     hey
 
@@ -27,7 +26,7 @@ class AdmonitionRendererTest extends TestCase
                     <p>content outside</p>
                     EOD
             ],
-            [
+            'Simple admonition' => [
                 <<<'EOD'
                     !!! note
                         Note's content
@@ -36,7 +35,7 @@ class AdmonitionRendererTest extends TestCase
                     <div class="Admonition Admonition--note"><p>Note’s content</p></div>
                     EOD
             ],
-            [
+            'warning' => [
                 <<<'EOD'
                     !!! warning "WARNING !!!"
                         * one
@@ -49,7 +48,7 @@ class AdmonitionRendererTest extends TestCase
                     </ul></div>
                     EOD
             ],
-            [
+            'danger' => [
                 <<<'EOD'
                     !!! danger "This is dangerous"
                         > one
@@ -60,6 +59,23 @@ class AdmonitionRendererTest extends TestCase
                     <p>one
                     two</p>
                     </blockquote></div>
+                    EOD
+            ],
+            'Not an admonition' => [
+                <<<'EOD'
+                    !!! This is not an admonition !!!
+                    EOD,
+                <<<'EOD'
+                    <p>!!! This is not an admonition !!!</p>
+                    EOD
+            ],
+            'Indented code blocks are ignored' => [
+                <<<'EOD'
+                        Code Block
+                    EOD,
+                <<<'EOD'
+                    <pre><code>Code Block
+                    </code></pre>
                     EOD
             ],
         ];

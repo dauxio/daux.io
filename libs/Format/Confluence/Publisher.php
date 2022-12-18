@@ -8,19 +8,17 @@ class Publisher
 {
     use RunAction;
 
-    public int $width;
-
-    public OutputInterface $output;
-
+    protected int $width;
+    protected OutputInterface $output;
     protected Api $client;
-
     protected Config $confluence;
 
-    public function __construct(Config $confluence)
+    public function __construct(Config $confluence, Api $client, OutputInterface $output, int $width)
     {
         $this->confluence = $confluence;
-
-        $this->client = new Api($confluence->getBaseUrl(), $confluence->getUser(), $confluence->getPassword());
+        $this->client = $client;
+        $this->output = $output;
+        $this->width = $width;
     }
 
     public function run($title, $closure)
@@ -70,10 +68,6 @@ class Publisher
 
         $ancestorId = $published['ancestor_id'];
 
-        // We infer the Space from the root page
-        $this->client->setSpace($published['space_key']);
-        $this->confluence->setSpaceId($published['space_key']);
-
         $this->run(
             'Getting already published pages...',
             function () use (&$published) {
@@ -112,7 +106,7 @@ class Publisher
 
         if (empty($pages)) {
             throw new ConfluenceConfigurationException(
-                "$pageNotFound as no page were found with the specified ancestor_id.$configRecommendation"
+                "$pageNotFound with the specified ancestor_id. $configRecommendation"
             );
         }
 
@@ -121,43 +115,57 @@ class Publisher
             array_map(function ($page) { return $page['title']; }, $pages)
         );
 
-        throw new ConfluenceConfigurationException("$pageNotFound but found ['$pageNames'].$configRecommendation");
+        throw new ConfluenceConfigurationException("$pageNotFound but found ['$pageNames']. $configRecommendation");
+    }
+
+    protected function configureSpace($page)
+    {
+        // We infer the Space from the root page
+        $this->client->setSpace($page['space_key']);
+        $this->confluence->setSpaceId($page['space_key']);
     }
 
     protected function getRootPage($tree)
     {
-        if ($this->confluence->hasAncestorId()) {
-            $ancestorId = $this->confluence->getAncestorId();
-            $pages = $this->client->getList($ancestorId);
-            $rootTitle = $tree['title'];
-
-            foreach ($pages as $page) {
-                if ($page['title'] == $rootTitle) {
-                    return $page;
-                }
-            }
-
-            if ($this->confluence->createRootIfMissing()) {
-                $id = $this->client->createPage($ancestorId, $rootTitle, 'The content will come very soon !');
-
-                return $this->client->getPage($id);
-            }
-
-            $this->rootNotFound($rootTitle, $pages);
-        }
-
         if ($this->confluence->hasRootId()) {
-            return $this->client->getPage($this->confluence->getRootId());
+            $root = $this->client->getPage($this->confluence->getRootId());
+            $this->configureSpace($root);
+
+            return $root;
         }
 
-        throw new ConfluenceConfigurationException(
-            'You must at least specify a `root_id` or `ancestor_id` in your confluence configuration.'
-        );
+        $ancestorId = $this->confluence->getAncestorId();
+        $pages = $this->client->getList($ancestorId);
+        $rootTitle = $tree['title'];
+
+        foreach ($pages as $page) {
+            if ($page['title'] == $rootTitle) {
+                $this->configureSpace($page);
+
+                return $page;
+            }
+        }
+
+        if ($this->confluence->createRootIfMissing()) {
+            // We need to configure the space before we're able to create a page
+            if (empty($pages)) {
+                $ancestorPage = $this->client->getPage($ancestorId);
+                $this->configureSpace($ancestorPage);
+            } else {
+                $this->configureSpace($pages[0]);
+            }
+
+            $id = $this->client->createPage($ancestorId, $rootTitle, 'The content will come very soon !');
+
+            return $this->client->getPage($id);
+        }
+
+        $this->rootNotFound($rootTitle, $pages);
     }
 
     protected function createPage($parentId, $entry, $published)
     {
-        echo '- ' . PublisherUtilities::niceTitle($entry['file']->getUrl()) . "\n";
+        $this->output->writeLn('- ' . PublisherUtilities::niceTitle($entry['file']->getUrl()));
         $published['version'] = 1;
         $published['title'] = $entry['title'];
         $published['id'] = $this->client->createPage($parentId, $entry['title'], 'The content will come very soon !');
@@ -167,7 +175,7 @@ class Publisher
 
     protected function createPlaceholderPage($parentId, $entry, $published)
     {
-        echo '- ' . $entry['title'] . "\n";
+        $this->output->writeLn('- ' . $entry['title']);
         $published['version'] = 1;
         $published['title'] = $entry['title'];
         $published['id'] = $this->client->createPage($parentId, $entry['title'], '');

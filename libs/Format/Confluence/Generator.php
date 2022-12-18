@@ -16,21 +16,25 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
 
     protected Daux $daux;
 
-    public function __construct(Daux $daux)
+    protected Api $api;
+
+    public function __construct(Daux $daux, Api $api = null)
     {
         $this->daux = $daux;
 
-        $this->checkConfiguration();
+        $confluence = $this->checkConfiguration();
+
+        if (!$api) {
+            $api = new Api($confluence->getBaseUrl(), $confluence->getUser(), $confluence->getPassword());
+        }
+
+        $this->api = $api;
     }
 
-    public function checkConfiguration()
+    protected function checkConfiguration(): Config
     {
         $config = $this->daux->getConfig();
         $confluence = $config->getConfluenceConfiguration();
-
-        if ($confluence == null) {
-            throw new ConfluenceConfigurationException('You must specify your Confluence configuration');
-        }
 
         $mandatory = ['base_url', 'user', 'pass', 'prefix'];
         $errors = [];
@@ -51,6 +55,8 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
                 "You must specify an 'ancestor_id' or a 'root_id' for confluence."
             );
         }
+
+        return $confluence;
     }
 
     /**
@@ -80,18 +86,16 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
             'Generating Tree ...',
             $width,
             function () use ($config) {
-                $tree = $this->generateRecursive($this->daux->tree, $config);
-                $tree['title'] = $this->prefix . $config->getTitle();
+                $generatedTree = $this->generateRecursive($this->daux->tree, $config);
+                $generatedTree['title'] = $this->prefix . $config->getTitle();
 
-                return $tree;
+                return $generatedTree;
             }
         );
 
         $output->writeln('Start Publishing...');
 
-        $publisher = new Publisher($confluence);
-        $publisher->output = $output;
-        $publisher->width = $width;
+        $publisher = new Publisher($confluence, $this->api, $output, $width);
         $publisher->publish($tree);
     }
 
@@ -100,7 +104,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $final = ['title' => $this->prefix . $tree->getTitle()];
         $config['base_url'] = $baseUrl;
 
-        $config->setImage(str_replace('<base_url>', $baseUrl, $config->getImage()));
         if ($baseUrl !== '') {
             $config->setEntryPage($tree->getFirstPage());
         }
