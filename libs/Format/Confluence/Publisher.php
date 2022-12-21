@@ -1,6 +1,5 @@
 <?php namespace Todaymade\Daux\Format\Confluence;
 
-use GuzzleHttp\Exception\BadResponseException;
 use Symfony\Component\Console\Output\OutputInterface;
 use Todaymade\Daux\Console\RunAction;
 
@@ -23,11 +22,7 @@ class Publisher
 
     public function run($title, $closure)
     {
-        try {
-            return $this->runAction($title, $this->width, $closure);
-        } catch (BadResponseException $e) {
-            $this->output->writeLn('<fg=red>' . $e->getMessage() . '</>');
-        }
+        return $this->runAction($title, $this->width, $closure);
     }
 
     public function diff($local, $remote, $level)

@@ -7,6 +7,7 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\Output;
 use Todaymade\Daux\Config as GlobalConfig;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
@@ -79,15 +80,33 @@ class GeneratorTest extends TestCase
 
     protected function runPublish(GlobalConfig $config, Api $api)
     {
-        $width = 80;
+        $width = 50;
         $input = new ArrayInput([]);
-        $output = new NullOutput();
+        $output = new class() extends Output {
+            protected $output = '';
+
+            protected function doWrite(string $message, bool $newline)
+            {
+                $this->output .= $message;
+
+                if ($newline) {
+                    $this->output .= "\n";
+                }
+            }
+
+            public function getOutput(): string
+            {
+                return trim($this->output);
+            }
+        };
 
         $daux = new Daux($config, $output);
         $daux->generateTree();
 
         $generator = new Generator($daux, $api);
         $generator->generateAll($input, $output, $width);
+
+        return $output->getOutput();
     }
 
     public function testPublishAllPages()
@@ -122,7 +141,7 @@ class GeneratorTest extends TestCase
             'ancestor_id' => $idBase,
             'id' => $idRoot,
             'version' => 1,
-        ]);
+        ])->shouldBeCalled();
 
         $api->setSpace('DOC')->shouldBeCalled();
 
@@ -130,10 +149,10 @@ class GeneratorTest extends TestCase
         $api->getList($idRoot, true)->willReturn([]);
 
         // Create the structure
-        $api->createPage($idRoot, 'Content', '')->willReturn($idContent);
-        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage);
-        $api->createPage($idRoot, 'Widgets', self::$contentDummy)->willReturn($idWidgets);
-        $api->createPage($idWidgets, 'Button', self::$contentDummy)->willReturn($idWidgetsButton);
+        $api->createPage($idRoot, 'Content', '')->willReturn($idContent)->shouldBeCalled();
+        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage)->shouldBeCalled();
+        $api->createPage($idRoot, 'Widgets', self::$contentDummy)->willReturn($idWidgets)->shouldBeCalled();
+        $api->createPage($idWidgets, 'Button', self::$contentDummy)->willReturn($idWidgetsButton)->shouldBeCalled();
 
         // Set the content
         $api->updatePage($idBase, $idRoot, 2, 'My Project', self::$contentHome)->shouldBeCalled();
@@ -142,6 +161,246 @@ class GeneratorTest extends TestCase
         $api->updatePage($idWidgets, $idWidgetsButton, 2, 'Button', self::$contentButton)->shouldBeCalled();
 
         $this->runPublish($config, $api->reveal());
+    }
+
+    public function testUpdatePublishedPages()
+    {
+        $config = $this->initPublish([
+            'base_url' => 'confluence.com',
+            'user' => 'admin',
+            'pass' => 'password',
+            'root_id' => 1,
+        ], [
+            'index.md' => 'Homepage, welcome!',
+            'Content' => [
+                'Page.md' => 'some text content',
+            ],
+        ]);
+
+        $api = $this->prophesize(Api::class);
+
+        $idBase = 0;
+        $idRoot = 1;
+        $idContent = 2;
+        $idPage = 3;
+
+        $api->getPage($idRoot)->willReturn([
+            'space_key' => 'DOC',
+            'ancestor_id' => $idBase,
+            'id' => $idRoot,
+            'version' => 1,
+            'content' => '<p>Homepage, welcome!</p>',
+        ])->shouldBeCalled();
+
+        $api->setSpace('DOC')->shouldBeCalled();
+
+        // Nothing's published yet, return an empty array
+        $api->getList($idRoot, true)->willReturn([
+            'Content' => [
+                'id' => $idContent,
+                'ancestor_id' => $idRoot,
+                'space_key' => 'DOC',
+                'title' => 'Content',
+                'version' => 4,
+                'content' => '',
+                'children' => [
+                    'Page' => [
+                        'id' => $idPage,
+                        'ancestor_id' => $idContent,
+                        'space_key' => 'DOC',
+                        'title' => 'Page',
+                        'version' => 5,
+                        'content' => '<p>old Content</p>',
+                    ],
+                ],
+            ],
+        ])->shouldBeCalled();
+
+        // Set the content
+        $api->updatePage($idBase, $idRoot, Argument::any(), 'My Project', Argument::any())->shouldNotBeCalled();
+        $api->updatePage($idContent, $idPage, 6, 'Page', self::$contentPage)->shouldBeCalled();
+
+        $this->runPublish($config, $api->reveal());
+    }
+
+    public function testDeletePages()
+    {
+        $config = $this->initPublish([
+            'base_url' => 'confluence.com',
+            'user' => 'admin',
+            'pass' => 'password',
+            'root_id' => 1,
+            'delete' => true,
+        ], [
+            'index.md' => 'Homepage, welcome!',
+            'Content' => [
+                'Page.md' => 'some text content',
+            ],
+        ]);
+
+        $api = $this->prophesize(Api::class);
+
+        $idBase = 0;
+        $idRoot = 1;
+        $idContent = 2;
+        $idPage = 3;
+        $idToDelete = 4;
+
+        $api->getPage($idRoot)->willReturn([
+            'space_key' => 'DOC',
+            'ancestor_id' => $idBase,
+            'id' => $idRoot,
+            'version' => 1,
+            'content' => '<p>Homepage, welcome!</p>',
+        ])->shouldBeCalled();
+
+        $api->setSpace('DOC')->shouldBeCalled();
+
+        // Nothing's published yet, return an empty array
+        $api->getList($idRoot, true)->willReturn([
+            'Content' => [
+                'id' => $idContent,
+                'ancestor_id' => $idRoot,
+                'space_key' => 'DOC',
+                'title' => 'Content',
+                'version' => 4,
+                'content' => '',
+                'children' => [
+                    'Page' => [
+                        'id' => $idPage,
+                        'ancestor_id' => $idContent,
+                        'space_key' => 'DOC',
+                        'title' => 'Page',
+                        'version' => 5,
+                        'content' => '<p>some text content</p>',
+                    ],
+                    'Other Page' => [
+                        'id' => $idToDelete,
+                        'ancestor_id' => $idContent,
+                        'space_key' => 'DOC',
+                        'title' => 'Other Page',
+                        'version' => 9,
+                        'content' => '<p>usless content</p>',
+                    ],
+                ],
+            ],
+        ])->shouldBeCalled();
+
+        // No content to set
+        $api->updatePage($idBase, $idRoot, Argument::any(), 'My Project', Argument::any())->shouldNotBeCalled();
+        $api->updatePage($idContent, $idPage, 6, 'Page', Argument::any())->shouldNotBeCalled();
+
+        // Delete the unneeded page
+        $api->deletePage($idToDelete)->shouldBeCalled();
+
+        $output = $this->runPublish($config, $api->reveal());
+
+        $this->assertEquals(
+            <<<'EOD'
+                Generating Tree ...                     [  OK  ]
+                Start Publishing...
+                Finding Root Page...
+                Getting already published pages...      [  OK  ]
+                Create placeholder pages...             [  OK  ]
+                Publishing updates...
+                - Homepage                              [  OK  ]
+                - Content/Page                          [  OK  ]
+                Deleting obsolete pages...
+                - Content/Other Page
+                EOD,
+            $output
+        );
+    }
+
+    public function testWarnAboutDelete()
+    {
+        $config = $this->initPublish([
+            'base_url' => 'confluence.com',
+            'user' => 'admin',
+            'pass' => 'password',
+            'root_id' => 1,
+            'delete' => false,
+        ], [
+            'index.md' => 'Homepage, welcome!',
+            'Content' => [
+                'Page.md' => 'some text content',
+            ],
+        ]);
+
+        $api = $this->prophesize(Api::class);
+
+        $idBase = 0;
+        $idRoot = 1;
+        $idContent = 2;
+        $idPage = 3;
+        $idToDelete = 4;
+
+        $api->getPage($idRoot)->willReturn([
+            'space_key' => 'DOC',
+            'ancestor_id' => $idBase,
+            'id' => $idRoot,
+            'version' => 1,
+            'content' => '<p>Homepage, welcome!</p>',
+        ])->shouldBeCalled();
+
+        $api->setSpace('DOC')->shouldBeCalled();
+
+        // Nothing's published yet, return an empty array
+        $api->getList($idRoot, true)->willReturn([
+            'Content' => [
+                'id' => $idContent,
+                'ancestor_id' => $idRoot,
+                'space_key' => 'DOC',
+                'title' => 'Content',
+                'version' => 4,
+                'content' => '',
+                'children' => [
+                    'Page' => [
+                        'id' => $idPage,
+                        'ancestor_id' => $idContent,
+                        'space_key' => 'DOC',
+                        'title' => 'Page',
+                        'version' => 5,
+                        'content' => '<p>some text content</p>',
+                    ],
+                    'Other Page' => [
+                        'id' => $idToDelete,
+                        'ancestor_id' => $idContent,
+                        'space_key' => 'DOC',
+                        'title' => 'Other Page',
+                        'version' => 9,
+                        'content' => '<p>usless content</p>',
+                    ],
+                ],
+            ],
+        ])->shouldBeCalled();
+
+        // No content to set
+        $api->updatePage($idBase, $idRoot, Argument::any(), 'My Project', Argument::any())->shouldNotBeCalled();
+        $api->updatePage($idContent, $idPage, 6, 'Page', Argument::any())->shouldNotBeCalled();
+
+        // Delete the unneeded page
+        $api->deletePage($idToDelete)->shouldNotBeCalled();
+
+        $output = $this->runPublish($config, $api->reveal());
+
+        $this->assertEquals(
+            <<<'EOD'
+                Generating Tree ...                     [  OK  ]
+                Start Publishing...
+                Finding Root Page...
+                Getting already published pages...      [  OK  ]
+                Create placeholder pages...             [  OK  ]
+                Publishing updates...
+                - Homepage                              [  OK  ]
+                - Content/Page                          [  OK  ]
+                Listing obsolete pages...
+                > The following pages will not be deleted, but just listed for information.
+                > If you want to delete these pages, you need to set the --delete flag on the command.
+                - Content/Other Page
+                EOD,
+            $output
+        );
     }
 
     public function testFindRootByAncestor()
@@ -180,16 +439,16 @@ class GeneratorTest extends TestCase
                 'ancestor_id' => $idBase,
                 'version' => 1,
             ],
-        ]);
+        ])->shouldBeCalled();
 
         $api->setSpace('DOC')->shouldBeCalled();
 
         // Nothing's published yet, return an empty array
-        $api->getList($idRoot, true)->willReturn([]);
+        $api->getList($idRoot, true)->willReturn([])->shouldBeCalled();
 
         // Create the structure
-        $api->createPage($idRoot, 'Content', '')->willReturn($idContent);
-        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage);
+        $api->createPage($idRoot, 'Content', '')->willReturn($idContent)->shouldBeCalled();
+        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage)->shouldBeCalled();
 
         // Set the content
         $api->updatePage($idBase, $idRoot, 2, 'My Project', self::$contentHome)->shouldBeCalled();
@@ -221,19 +480,19 @@ class GeneratorTest extends TestCase
         $idPage = 12;
 
         // Page not found in ancestor
-        $api->getList($idBase)->willReturn([]);
+        $api->getList($idBase)->willReturn([])->shouldBeCalled();
 
         // Page not found so we are getting the ancestor to get the space key
         $api->getPage($idBase)->willReturn([
             'space_key' => 'DOC',
             'id' => $idBase,
             'version' => 1,
-        ]);
+        ])->shouldBeCalled();
 
         $api->setSpace('DOC')->shouldBeCalled();
 
         // Get page
-        $api->createPage($idBase, 'My Project', self::$contentDummy)->willReturn($idRoot);
+        $api->createPage($idBase, 'My Project', self::$contentDummy)->willReturn($idRoot)->shouldBeCalled();
 
         // Get details now that we have the page
         $api->getPage($idRoot)->willReturn([
@@ -241,14 +500,14 @@ class GeneratorTest extends TestCase
             'ancestor_id' => $idBase,
             'id' => $idRoot,
             'version' => 1,
-        ]);
+        ])->shouldBeCalled();
 
         // Nothing's published yet, return an empty array
-        $api->getList($idRoot, true)->willReturn([]);
+        $api->getList($idRoot, true)->willReturn([])->shouldBeCalled();
 
         // Create the structure
-        $api->createPage($idRoot, 'Content', '')->willReturn($idContent);
-        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage);
+        $api->createPage($idRoot, 'Content', '')->willReturn($idContent)->shouldBeCalled();
+        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage)->shouldBeCalled();
 
         // Set the content
         $api->updatePage($idBase, $idRoot, 2, 'My Project', self::$contentHome)->shouldBeCalled();
@@ -288,12 +547,12 @@ class GeneratorTest extends TestCase
                 'ancestor_id' => $idBase,
                 'version' => 1,
             ],
-        ]);
+        ])->shouldBeCalled();
 
         $api->setSpace('DOC')->shouldBeCalled();
 
         // Get page
-        $api->createPage($idBase, 'My Project', self::$contentDummy)->willReturn($idRoot);
+        $api->createPage($idBase, 'My Project', self::$contentDummy)->willReturn($idRoot)->shouldBeCalled();
 
         // Get details now that we have the page
         $api->getPage($idRoot)->willReturn([
@@ -301,14 +560,14 @@ class GeneratorTest extends TestCase
             'ancestor_id' => $idBase,
             'id' => $idRoot,
             'version' => 1,
-        ]);
+        ])->shouldBeCalled();
 
         // Nothing's published yet, return an empty array
-        $api->getList($idRoot, true)->willReturn([]);
+        $api->getList($idRoot, true)->willReturn([])->shouldBeCalled();
 
         // Create the structure
-        $api->createPage($idRoot, 'Content', '')->willReturn($idContent);
-        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage);
+        $api->createPage($idRoot, 'Content', '')->willReturn($idContent)->shouldBeCalled();
+        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage)->shouldBeCalled();
 
         // Set the content
         $api->updatePage($idBase, $idRoot, 2, 'My Project', self::$contentHome)->shouldBeCalled();
@@ -336,7 +595,7 @@ class GeneratorTest extends TestCase
         $idBase = 1;
 
         // Page not found in ancestor
-        $api->getList($idBase)->willReturn([]);
+        $api->getList($idBase)->willReturn([])->shouldBeCalled();
 
         $this->expectException(ConfluenceConfigurationException::class);
         $this->expectExceptionMessage(
@@ -375,7 +634,7 @@ class GeneratorTest extends TestCase
                 'ancestor_id' => $idBase,
                 'version' => 1,
             ],
-        ]);
+        ])->shouldBeCalled();
 
         $this->expectException(ConfluenceConfigurationException::class);
         $this->expectExceptionMessage(
@@ -416,16 +675,16 @@ class GeneratorTest extends TestCase
             'ancestor_id' => $idBase,
             'id' => $idRoot,
             'version' => 1,
-        ]);
+        ])->shouldBeCalled();
 
         $api->setSpace('DOC')->shouldBeCalled();
 
         // Nothing's published yet, return an empty array
-        $api->getList($idRoot, true)->willReturn([]);
+        $api->getList($idRoot, true)->willReturn([])->shouldBeCalled();
 
         // Create the structure
-        $api->createPage($idRoot, 'Content', '')->willReturn($idContent);
-        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage);
+        $api->createPage($idRoot, 'Content', '')->willReturn($idContent)->shouldBeCalled();
+        $api->createPage($idContent, 'Page', self::$contentDummy)->willReturn($idPage)->shouldBeCalled();
 
         // Set the content
         $api->updatePage($idBase, $idRoot, 2, 'My Project', self::$contentHome)->shouldBeCalled();
@@ -442,5 +701,102 @@ class GeneratorTest extends TestCase
         )->shouldBeCalled();
 
         $this->runPublish($config, $api->reveal());
+    }
+
+    public function testMixed()
+    {
+        $config = $this->initPublish([
+            'base_url' => 'confluence.com',
+            'user' => 'admin',
+            'pass' => 'password',
+            'root_id' => 10,
+            'delete' => true,
+            'print_diff' => true,
+        ], [
+            'index.md' => 'Homepage, welcome!', // identical content, don't update
+            'Content' => [
+                'Page.md' => 'some text content ,[an image](./image.svg)', // should not be updated
+                'image.svg' => '<xml>',
+                // "Other page" is getting deleted
+            ],
+            'Widgets' => [
+                'index.md' => 'this will get created', // new page
+                'Button.md' => 'A new Button !', // new page
+            ],
+        ]);
+
+        $api = $this->prophesize(Api::class);
+
+        $idBase = 1;
+        $idRoot = 10;
+        $idContent = 11;
+        $idPage = 12;
+        $idToDelete = 13;
+
+        // Get details now that we have the page
+        $api->getPage($idRoot)->willReturn([
+            'space_key' => 'DOC',
+            'ancestor_id' => $idBase,
+            'id' => $idRoot,
+            'version' => 1,
+        ])->shouldBeCalled();
+
+        $api->setSpace('DOC')->shouldBeCalled();
+
+        // Nothing's published yet, return an empty array
+        $api->getList($idRoot, true)->willReturn([
+            'Content' => [
+                'id' => $idContent,
+                'ancestor_id' => $idRoot,
+                'space_key' => 'DOC',
+                'title' => 'Content',
+                'version' => 4,
+                'content' => '',
+                'children' => [
+                    'Page' => [
+                        'id' => $idPage,
+                        'ancestor_id' => $idContent,
+                        'space_key' => 'DOC',
+                        'title' => 'Page',
+                        'version' => 5,
+                        'content' => '<p>some text content</p>',
+                    ],
+                    'Other Page' => [
+                        'id' => $idToDelete,
+                        'ancestor_id' => $idContent,
+                        'space_key' => 'DOC',
+                        'title' => 'Other Page',
+                        'version' => 9,
+                        'content' => '<p>usless content</p>',
+                    ],
+                ],
+            ],
+        ])->shouldBeCalled();
+
+        // print_diff is a dry run, no modifications should be made
+        $api->createPage(Argument::any(), Argument::any(), Argument::any())->shouldNotBeCalled();
+        $api->updatePage(Argument::any(), Argument::any(), Argument::any(), Argument::any(), Argument::any())
+            ->shouldNotBeCalled();
+        $api->uploadAttachment(Argument::any(), Argument::any(), Argument::any())->shouldNotBeCalled();
+        $api->deletePage(Argument::any())->shouldNotBeCalled();
+
+        $output = $this->runPublish($config, $api->reveal());
+
+        $this->assertEquals(
+            <<<'EOD'
+                Generating Tree ...                     [  OK  ]
+                Start Publishing...
+                Finding Root Page...
+                Getting already published pages...      [  OK  ]
+                The following changes will be applied
+                - My Project (update)
+                  - Content (update)
+                    - Page (update)
+                    - Other Page (delete)
+                  - Widgets (create)
+                    - Button (create)
+                EOD,
+            $output
+        );
     }
 }
