@@ -11,8 +11,7 @@ class AdmonitionRendererTest extends TestCase
     public function provideAdmonitionCases()
     {
         return [
-            // Note with content before and after
-            [
+            'Note with content before and after' => [
                 <<<'EOD'
                     hey
 
@@ -71,7 +70,7 @@ class AdmonitionRendererTest extends TestCase
      * @param mixed $expected
      * @param mixed $input
      */
-    public function testRenderLink($input, $expected)
+    public function testRenderAdmonition($input, $expected)
     {
         $structure = [
             'Content' => ['Page.md' => 'some text content'],

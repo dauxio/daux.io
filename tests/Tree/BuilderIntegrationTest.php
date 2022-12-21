@@ -44,5 +44,7 @@ class BuilderIntegrationTest extends TestCase
         // TODO :: should not be Page.html, this should not depend on the mode
         $this->assertEquals('Page', $tree['Contents']['Page.html']->getTitle());
         $this->assertInstanceOf(Content::class, $tree['Contents']['Page.html']);
+
+        $this->assertEquals('Contents/Page.md', $tree['Contents']['Page.html']->getRelativePath());
     }
 }

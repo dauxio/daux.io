@@ -23,7 +23,8 @@ abstract class Entry
         $this->title = null;
         $this->name = null;
         $this->setUri($uri);
-        $this->setParent($parent);
+        $parent->addChild($this);
+        $this->parent = $parent;
 
         if ($info !== null) {
             $this->info = $info;
@@ -115,16 +116,6 @@ abstract class Entry
         return $parents;
     }
 
-    protected function setParent(Directory $parent): void
-    {
-        if (isset($this->parent)) {
-            $this->parent->removeChild($this);
-        }
-
-        $parent->addChild($this);
-        $this->parent = $parent;
-    }
-
     /**
      * @return string
      */
@@ -144,11 +135,6 @@ abstract class Entry
         }
 
         return substr($this->path, strlen($root->getPath()) + 1);
-    }
-
-    public function getFileinfo(): \SplFileInfo
-    {
-        return $this->info;
     }
 
     public function getUrl(): string

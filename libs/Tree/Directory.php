@@ -110,6 +110,9 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     public function addChild(Entry $entry): void
     {
         $this->children[$entry->getUri()] = $entry;
+
+        // TODO :: should we somehow change the child's parent when adding it ?
+        // TODO :: should we remove child from previous parent ?
     }
 
     public function removeChild(Entry $entry): void

@@ -1,7 +1,6 @@
 <?php namespace Todaymade\Daux\Tree;
 
 use Todaymade\Daux\DauxHelper;
-use Todaymade\Daux\Exception;
 
 class Builder
 {
@@ -41,14 +40,7 @@ class Builder
      */
     protected static function getName($path)
     {
-        // ['dir' => 1, 'basename' => 2, 'filename' => 3, 'extension' => 5]
-        preg_match('%^(.*?)[\\\\/]*(([^/\\\\]*?)(\.([^\.\\\\/]+?)|))[\\\\/\.]*$%im', $path, $m);
-
-        if (!isset($m[3])) {
-            throw new Exception('Name not found');
-        }
-
-        return $m[3];
+        return pathinfo($path, PATHINFO_FILENAME);
     }
 
     /**
@@ -59,11 +51,7 @@ class Builder
      */
     public static function build($node, $ignore)
     {
-        try {
-            $it = new \FilesystemIterator($node->getPath());
-        } catch (\UnexpectedValueException $e) {
-            return;
-        }
+        $it = new \FilesystemIterator($node->getPath());
 
         if ($node instanceof Root) {
             // Ignore config.json in the root directory

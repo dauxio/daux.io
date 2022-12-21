@@ -64,6 +64,13 @@ class LinkRendererTest extends TestCase
                 '[me@mydomain.com](mailto:me@mydomain.com)',
                 'Content/Page.html',
             ],
+
+            // Children nodes in links
+            [
+                '<ac:link><ri:page ri:content-title="Button" ri:space-key="DOC" /><ac:link-body><code>REST API</code></ac:link-body></ac:link>',
+                '[`REST API`](./Button)',
+                'Widgets/Page.html',
+            ],
         ];
     }
 

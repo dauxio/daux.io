@@ -111,6 +111,31 @@ class BuilderTest extends TestCase
         $this->assertInstanceOf('Todaymade\Daux\Tree\Content', $entry);
     }
 
+    public function testChangeUri()
+    {
+        $directory = new Directory($this->getStaticRoot(), 'dir');
+
+        $entry = Builder::getOrCreatePage($directory, 'A Page.md');
+
+        $this->assertSame($directory, $entry->getParent());
+
+        $this->assertEquals('dir/A_Page.html', $entry->getUrl());
+        $this->assertEquals('A_Page.html', $entry->getUri());
+        $this->assertEquals('A Page', $entry->getTitle());
+        $this->assertInstanceOf('Todaymade\Daux\Tree\Content', $entry);
+
+        $entry->setUri('New_Page.html');
+
+        $this->assertEquals('dir/New_Page.html', $entry->getUrl());
+        $this->assertEquals('New_Page.html', $entry->getUri());
+        $this->assertEquals('A Page', $entry->getTitle());
+
+        $this->assertEquals(
+            ['New_Page.html'],
+            array_keys($directory->getEntries())
+        );
+    }
+
     public function testGetOrCreatePageAutoMarkdown()
     {
         $directory = new Directory($this->getStaticRoot(), 'dir');
@@ -164,7 +189,7 @@ class BuilderTest extends TestCase
         $this->assertInstanceOf('Todaymade\Daux\Tree\ComputedRaw', $entry);
     }
 
-    public function testScanner()
+    public function testUnicodeFilenames()
     {
         $structure = [
             'Page.md' => 'another page',
@@ -184,6 +209,42 @@ class BuilderTest extends TestCase
 
         $this->assertEquals(
             ['22.png', 'Button.html', 'Page.html', 'ni_hao_shi_jie.html'],
+            array_keys($tree->getEntries())
+        );
+    }
+
+    public function testIgnoredFiles()
+    {
+        $structure = [
+            'Page.md' => 'another page',
+            'Button.md' => 'another page',
+            '22.png' => '',
+            'ignored.json' => '',
+            'dir' => [
+                'nofile.md' => 'nocontent',
+            ],
+            '.git' => [
+                'config' => '',
+            ],
+        ];
+        $root = vfsStream::setup('root', null, $structure);
+
+        $config = ConfigBuilder::withMode()
+            ->withDocumentationDirectory($root->url())
+            ->withValidContentExtensions(['md'])
+            ->with([
+                'ignore' => [
+                    'files' => ['ignored.json'],
+                    'folders' => ['dir'],
+                ],
+            ])
+            ->build();
+
+        $tree = new Root($config);
+        Builder::build($tree, $config->getIgnore());
+
+        $this->assertEquals(
+            ['22.png', 'Button.html', 'Page.html'],
             array_keys($tree->getEntries())
         );
     }

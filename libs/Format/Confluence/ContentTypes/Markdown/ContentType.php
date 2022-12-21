@@ -11,7 +11,7 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
     {
         return <<<'EOD'
             <ac:structured-macro ac:name="html">
-               <ac:plain-text-body> <![CDATA[
+              <ac:plain-text-body> <![CDATA[
             <script>
             function daux_ready(fn) {
                 if (document.readyState === "loading") {
