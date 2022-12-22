@@ -47,9 +47,9 @@
         "phpunit/phpunit": "^9.5"
     },
     "scripts": {
-        "test": "php vendor/bin/phpunit",
-        "test:coverage": "XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-clover=coverage.xml --log-junit=test-report.xml",
-        "test:coverage-html": "XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html=build/coverage",
+        "test": "APP_ENV=test php vendor/bin/phpunit",
+        "test:coverage": "APP_ENV=test XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-clover=coverage.xml --log-junit=test-report.xml",
+        "test:coverage-html": "APP_ENV=test XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-html=build/coverage",
         "lint": "php build/php-cs-fixer fix --config=.php-cs-fixer.php --dry-run -v",
         "lint:fix": "php build/php-cs-fixer fix --config=.php-cs-fixer.php"
     }

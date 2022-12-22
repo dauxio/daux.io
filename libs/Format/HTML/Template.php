@@ -141,7 +141,7 @@ class Template
                 $link = '<a href="' . $entry['href'] . '">' . $entry['title'] . '</a>';
             }
 
-            $nav .= "<li class='Nav__item $entry[class]'>$link</li>";
+            $nav .= "\n<li class='Nav__item $entry[class]'>$link</li>";
         }
 
         return "<ul class='Nav'>$nav</ul>";

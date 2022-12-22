@@ -41,9 +41,13 @@ class BaseConfig extends \ArrayObject
         return array_key_exists($key, (array) $this);
     }
 
-    public function getValue($key)
+    public function getValue($key, $default = null)
     {
-        return $this[$key];
+        if ($this->hasValue($key)) {
+            return $this[$key];
+        }
+
+        return $default;
     }
 
     public function isTruthy($key)

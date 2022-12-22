@@ -106,7 +106,9 @@ class DauxHelper
             }
         }
 
-        $cache[$cacheKey] = $theme;
+        if (!getenv('APP_ENV') || getenv('APP_ENV') != 'test') {
+            $cache[$cacheKey] = $theme;
+        }
 
         return $theme;
     }

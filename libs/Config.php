@@ -173,11 +173,7 @@ class Config extends BaseConfig
 
     public function canCache()
     {
-        if ($this->hasValue('cache')) {
-            return $this->getValue('cache');
-        }
-
-        return false;
+        return $this->getValue('cache', false);
     }
 
     public function getCacheKey()

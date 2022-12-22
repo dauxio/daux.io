@@ -6,25 +6,17 @@ class Config extends BaseConfig
 {
     public function shouldAutoDeleteOrphanedPages()
     {
-        if ($this->hasValue('delete')) {
-            return $this->getValue('delete');
-        }
-
-        return false;
+        return $this->getValue('delete', false);
     }
 
     public function shouldPrintDiff()
     {
-        if ($this->hasValue('print_diff')) {
-            return $this->getValue('print_diff');
-        }
-
-        return false;
+        return $this->getValue('print_diff', false);
     }
 
     public function getUpdateThreshold()
     {
-        return $this->hasValue('update_threshold') ? $this->getValue('update_threshold') : 2;
+        return $this->getValue('update_threshold', 2);
     }
 
     public function getPrefix()
@@ -89,6 +81,6 @@ class Config extends BaseConfig
 
     public function createRootIfMissing()
     {
-        return $this->hasValue('create_root_if_missing') ? $this->getValue('create_root_if_missing') : false;
+        return $this->getValue('create_root_if_missing', false);
     }
 }

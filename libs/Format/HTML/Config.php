@@ -45,20 +45,12 @@ class Config extends BaseConfig
 
     public function showPreviousNextLinks()
     {
-        if ($this->hasValue('jump_buttons')) {
-            return $this->getValue('jump_buttons');
-        }
-
-        return true;
+        return $this->getValue('jump_buttons', true);
     }
 
     public function showCodeToggle()
     {
-        if ($this->hasValue('toggle_code')) {
-            return $this->getValue('toggle_code');
-        }
-
-        return true;
+        return $this->getValue('toggle_code', true);
     }
 
     public function hasAutomaticTableOfContents(): bool
@@ -153,20 +145,12 @@ class Config extends BaseConfig
 
     public function hasLandingPage()
     {
-        if ($this->hasValue('auto_landing')) {
-            return $this->getValue('auto_landing');
-        }
-
-        return true;
+        return $this->getValue('auto_landing', true);
     }
 
     public function hasBreadcrumbs()
     {
-        if ($this->hasValue('breadcrumbs')) {
-            return $this->getValue('breadcrumbs');
-        }
-
-        return true;
+        return $this->getValue('breadcrumbs', true);
     }
 
     public function getBreadcrumbsSeparator()
