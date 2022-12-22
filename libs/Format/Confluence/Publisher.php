@@ -147,7 +147,7 @@ class Publisher
                 $ancestorPage = $this->client->getPage($ancestorId);
                 $this->configureSpace($ancestorPage);
             } else {
-                $this->configureSpace($pages[0]);
+                $this->configureSpace(current($pages));
             }
 
             $id = $this->client->createPage($ancestorId, $rootTitle, 'The content will come very soon !');

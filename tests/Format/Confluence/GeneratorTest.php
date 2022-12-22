@@ -425,14 +425,14 @@ class GeneratorTest extends TestCase
         $idPage = 12;
 
         $api->getList($idBase)->willReturn([
-            [
+            'My Project' => [
                 'title' => 'My Project',
                 'space_key' => 'DOC',
                 'id' => $idRoot,
                 'ancestor_id' => $idBase,
                 'version' => 1,
             ],
-            [
+            'Other page' => [
                 'title' => 'Other page',
                 'space_key' => 'DOC',
                 'id' => 4,
@@ -540,7 +540,7 @@ class GeneratorTest extends TestCase
 
         // Page not found in ancestor
         $api->getList($idBase)->willReturn([
-            [
+            'Other page' => [
                 'title' => 'Other page',
                 'space_key' => 'DOC',
                 'id' => 4,
@@ -627,7 +627,7 @@ class GeneratorTest extends TestCase
 
         // Page not found in ancestor
         $api->getList($idBase)->willReturn([
-            [
+            'Other page' => [
                 'title' => 'Other page',
                 'space_key' => 'DOC',
                 'id' => 4,
