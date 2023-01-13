@@ -7,8 +7,7 @@ class DetailsToExpandTest extends TestCase
     public function provideExpandData()
     {
         return [
-            [
-                // Convert simple case
+            "Simple conversion" => [
                 <<<'EOD'
                     <details>
                     <summary>Title !</summary>
@@ -33,8 +32,7 @@ class DetailsToExpandTest extends TestCase
                     </ac:structured-macro>
                     EOD
             ],
-            [
-                // Doesn't break existing macros
+            "Doesn't impact other macros" => [
                 <<<'EOD'
                     <ac:structured-macro ac:name="info"><ac:rich-text-body>
                         <p>Content</p>
@@ -66,8 +64,7 @@ class DetailsToExpandTest extends TestCase
                     </ac:structured-macro>
                     EOD
             ],
-            [
-                // Works with confluence code blocks
+            "Works with confluence code blocks" => [
                 <<<'EOD'
                     <ac:structured-macro ac:name="html">
                     <ac:plain-text-body> <![CDATA[
@@ -107,8 +104,7 @@ class DetailsToExpandTest extends TestCase
                     </ac:structured-macro>
                     EOD
             ],
-            [
-                // Doesn't convert within confluence code blocks
+            "Doesn't convert within confluence code blocks" => [
                 <<<'EOD'
                     <ac:structured-macro ac:name="code">
                         <ac:plain-text-body><![CDATA[<b>This is my code</b>
@@ -158,8 +154,7 @@ class DetailsToExpandTest extends TestCase
                     </ac:structured-macro>
                     EOD
             ],
-            [
-                // Don't convert without title
+            "Don't convert without title" => [
                 <<<'EOD'
                     <details>
 
@@ -179,8 +174,7 @@ class DetailsToExpandTest extends TestCase
                     </details>
                     EOD
             ],
-            [
-                // Don't convert empty blocks
+            "Don't convert empty blocks" => [
                 <<<'EOD'
                     <details></details>
                     EOD,
@@ -188,8 +182,7 @@ class DetailsToExpandTest extends TestCase
                     <details></details>
                     EOD
             ],
-            [
-                // Convert nested
+            "Convert nested" => [
                 <<<'EOD'
                     <details>
                     <summary>Title !</summary>

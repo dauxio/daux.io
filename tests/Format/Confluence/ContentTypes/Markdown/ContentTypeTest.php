@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Root;
+use Todaymade\Daux\Format\Confluence\ContentPage;
 
 class ContentTypeTest extends TestCase
 {
@@ -58,6 +59,46 @@ class ContentTypeTest extends TestCase
                     <ac:structured-macro ac:name="code"><ac:parameter ac:name="language">javascript</ac:parameter><ac:plain-text-body><![CDATA[...]]></ac:plain-text-body></ac:structured-macro>
                     EOD
             ],
+            'Render a code and expand block' => [
+                <<<'EOD'
+                    ```java
+                    public class Interceptor {
+                        private String name;
+                        private Rule primary;
+                        private List<Rule> secondary;
+                    }
+                    ```
+
+                    <details>
+                    <summary>Title !</summary>
+
+                    <ul>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                    </ul>
+
+                    </details>
+                    EOD,
+                <<<'EOD'
+                    <ac:structured-macro ac:name="code"><ac:parameter ac:name="language">java</ac:parameter><ac:plain-text-body><![CDATA[public class Interceptor {
+                        private String name;
+                        private Rule primary;
+                        private List&lt;Rule&gt; secondary;
+                    }
+                    ]]></ac:plain-text-body></ac:structured-macro>
+                    <ac:structured-macro ac:name="expand">
+                    <ac:parameter ac:name="title">Title !</ac:parameter>
+                    <ac:rich-text-body>
+
+                    <ul>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                    </ul>
+                    </ac:rich-text-body>
+                    </ac:structured-macro>
+                    EOD,
+                    true
+            ],
             'Render an unsupported language code block' => [
                 <<<'EOD'
                     ```rust
@@ -88,7 +129,7 @@ class ContentTypeTest extends TestCase
      * @param mixed $content
      * @param mixed $expected
      */
-    public function testRendering($content, $expected)
+    public function testRendering($content, $expected, $keepCdata = false)
     {
         $config = ConfigBuilder::withMode()
             ->withCache(false)
@@ -100,10 +141,14 @@ class ContentTypeTest extends TestCase
         $node->setContent($content);
         $node->setTitle('Some File');
 
-        $converter = new ContentType($config);
+        $contentType = new ContentType($config);
 
-        $result = trim($converter->convert($node->getContent(), $node));
-        $result = preg_replace('/<!\[CDATA\[(.*?)\]\]>/s', '<![CDATA[...]]>', $result);
+        $contentPage = ContentPage::fromFile($node, $config, $contentType);
+
+        $result = trim($contentPage->getContent());
+        if (!$keepCdata) {
+            $result = preg_replace('/<!\[CDATA\[(.*?)\]\]>/s', '<![CDATA[...]]>', $result);
+        }
 
         $this->assertEquals($expected, $result);
     }
