@@ -6,8 +6,19 @@ class DetailsToExpand
     {
         // convert <namespace:tag to <namespace__tag for DOMDocument to be happy
         $content = preg_replace('/<(\/?)(\w+):(\w+)/', '<\1\2___\3', $content);
-        $content = str_replace('<![CDATA[', '__CDATA_START__', $content);
-        $content = str_replace(']]>', '__CDATA_END__', $content);
+
+        // Extract CDATA to not avoid it being corrupted by the parser
+        $strtr = [];
+        $content = preg_replace_callback(
+            '/<!\[CDATA\[(.*?)]]>/ms',
+            function ($matches) use (&$strtr) {
+                $key = '%' . md5($matches[0]) . '%';
+                $strtr[$key] = $matches[0];
+
+                return $key;
+            },
+            $content
+        );
 
         $dom = new \DOMDocument();
 
@@ -30,10 +41,10 @@ class DetailsToExpand
             $finalContent .= $dom->saveHTML($node);
         }
 
-        // restore namespace tags
-        $finalContent = str_replace('__CDATA_START__', '<![CDATA[', $finalContent);
-        $finalContent = str_replace('__CDATA_END__', ']]>', $finalContent);
+        // restore CDATA content
+        $finalContent = strtr($finalContent, $strtr);
 
+        // restore namespace tags
         return preg_replace('/<(\/?)(\w+)___(\w+)/', '<\1\2:\3', $finalContent);
     }
 

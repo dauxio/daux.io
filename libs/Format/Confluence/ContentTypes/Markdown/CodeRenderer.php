@@ -2,13 +2,12 @@
 
 use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
-use League\CommonMark\Util\Xml;
 
 abstract class CodeRenderer implements NodeRendererInterface
 {
     public function escapeCDATA($content)
     {
-        return str_replace(']]>', ']]]]><![CDATA[>', Xml::escape($content));
+        return str_replace(']]>', ']]]]><![CDATA[>', $content);
     }
 
     public function getHTMLElement($body, $language)

@@ -83,7 +83,7 @@ class ContentTypeTest extends TestCase
                     <ac:structured-macro ac:name="code"><ac:parameter ac:name="language">java</ac:parameter><ac:plain-text-body><![CDATA[public class Interceptor {
                         private String name;
                         private Rule primary;
-                        private List&lt;Rule&gt; secondary;
+                        private List<Rule> secondary;
                     }
                     ]]></ac:plain-text-body></ac:structured-macro>
                     <ac:structured-macro ac:name="expand">
