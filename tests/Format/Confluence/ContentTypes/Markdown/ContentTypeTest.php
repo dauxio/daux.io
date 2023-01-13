@@ -2,9 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
+use Todaymade\Daux\Format\Confluence\ContentPage;
 use Todaymade\Daux\Tree\Content;
 use Todaymade\Daux\Tree\Root;
-use Todaymade\Daux\Format\Confluence\ContentPage;
 
 class ContentTypeTest extends TestCase
 {
@@ -97,7 +97,7 @@ class ContentTypeTest extends TestCase
                     </ac:rich-text-body>
                     </ac:structured-macro>
                     EOD,
-                    true
+                true,
             ],
             'Render an unsupported language code block' => [
                 <<<'EOD'
@@ -128,6 +128,7 @@ class ContentTypeTest extends TestCase
      *
      * @param mixed $content
      * @param mixed $expected
+     * @param mixed $keepCdata
      */
     public function testRendering($content, $expected, $keepCdata = false)
     {

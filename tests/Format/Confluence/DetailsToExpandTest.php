@@ -7,7 +7,7 @@ class DetailsToExpandTest extends TestCase
     public function provideExpandData()
     {
         return [
-            "Simple conversion" => [
+            'Simple conversion' => [
                 <<<'EOD'
                     <details>
                     <summary>Title !</summary>
@@ -64,7 +64,7 @@ class DetailsToExpandTest extends TestCase
                     </ac:structured-macro>
                     EOD
             ],
-            "Works with confluence code blocks" => [
+            'Works with confluence code blocks' => [
                 <<<'EOD'
                     <ac:structured-macro ac:name="html">
                     <ac:plain-text-body> <![CDATA[
@@ -182,7 +182,7 @@ class DetailsToExpandTest extends TestCase
                     <details></details>
                     EOD
             ],
-            "Convert nested" => [
+            'Convert nested' => [
                 <<<'EOD'
                     <details>
                     <summary>Title !</summary>
