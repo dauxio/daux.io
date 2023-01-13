@@ -20,13 +20,3 @@ Collapsible sections can be done using standard HTML
      * Sub bullets
 </details>
 ```
-
-```java
-// This is a test for #362
-public class Interceptor {
-
-   private String name;
-   private Rule primary;
-   private List<Rule> secondary;
-}
-```
