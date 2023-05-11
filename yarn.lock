@@ -1304,6 +1304,15 @@
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-preset-terser/-/crafty-preset-terser-1.22.3.tgz#b5481210bcfc1376d9b787c437d2265f08c60b55"
   integrity sha512-kuB5s0935hL1GNd1LZB1hCZAPbEh3ZYg21XCJDeLHxW5S2tJxmKONYoUS+bBewBB6AhK0CpBWKgz46xW11tUyw==
 
+"@swissquote/crafty-runner-gulp@^1.22.3":
+  version "1.22.3"
+  resolved "https://registry.yarnpkg.com/@swissquote/crafty-runner-gulp/-/crafty-runner-gulp-1.22.3.tgz#44b27f4b0b246b9bf44591d94efdec1a3bb72046"
+  integrity sha512-l1ifuODXece57gQBZh5LKrUttgK3HCJdPXcbvurzpwfApaE3u0H5XJ/XU+joLyt9FA4gR8scCDaNR57p9rvxXw==
+  dependencies:
+    "@swissquote/crafty" "1.22.3"
+    "@swissquote/crafty-commons" "1.22.3"
+    "@swissquote/crafty-commons-gulp" "1.22.3"
+
 "@swissquote/crafty-runner-rollup@1.22.3":
   version "1.22.3"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-runner-rollup/-/crafty-runner-rollup-1.22.3.tgz#08303aae9ec14d1fdced211a1094e8bd93db6d58"

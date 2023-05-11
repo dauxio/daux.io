@@ -34,7 +34,7 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
                 if (codeBlocks.length) {
                     daux_loadCSS(`https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css`);
 
-                    import(`https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.mjs`).then(katex) {
+                    import(`https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.mjs`).then(katex => {
                         [].forEach.call(codeBlocks, function(e) {
                             var content = e.innerHTML;
                             var p = document.createElement("p");
@@ -58,18 +58,7 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
                 var mermaidBlocks = document.querySelectorAll("pre.mermaid");
                 if (mermaidBlocks.length) {
                     import("https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs").then(mermaid => {
-                        [].forEach.call(mermaidBlocks, function(pre) {
-                            var content = pre.innerHTML;
-                            var div = document.createElement("div");
-                            div.className = "mermaid";
-                            div.innerHTML = content;
-
-                            var container = pre.parentElement;
-                            container.insertBefore(div, pre);
-                            container.removeChild(pre);
-                        });
-
-                        mermaid.default.initialize({ startOnLoad: true });
+                        mermaid.default.run({ nodes: mermaidBlocks });
                     })
                 }
             });

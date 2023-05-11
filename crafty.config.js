@@ -3,7 +3,8 @@ module.exports = {
     presets: [
         "@swissquote/crafty-preset-babel",
         "@swissquote/crafty-runner-rollup",
-        "@swissquote/crafty-preset-postcss"
+        "@swissquote/crafty-preset-postcss",
+        "@swissquote/crafty-runner-gulp"
     ],
     destination_css: ".",
     destination_js: ".",

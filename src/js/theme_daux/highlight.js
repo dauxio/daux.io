@@ -40,7 +40,7 @@ ready(() => {
     const mermaidBlocks = document.querySelectorAll("div.mermaid");
     if (mermaidBlocks.length) {
         import(/* webpackChunkName: "mermaid" */ `mermaid`).then(mermaid => {
-            mermaid.default.initialize({ startOnLoad: true });
+            mermaid.default.run({ nodes: mermaidBlocks });
         });
     }
 });
