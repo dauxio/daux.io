@@ -1,22 +1,35 @@
 <?php namespace Todaymade\Daux\ContentTypes\Markdown\Admonition;
 
+use League\CommonMark\Node\Block\Paragraph;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
+use League\CommonMark\Parser\InlineParserEngineInterface;
 use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Parser\Block\AbstractBlockContinueParser;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
+use League\CommonMark\Parser\Block\BlockContinueParserWithInlinesInterface;
 use League\CommonMark\Parser\Block\BlockStart;
 use League\CommonMark\Parser\Block\BlockStartParserInterface;
 use League\CommonMark\Parser\Cursor;
 use League\CommonMark\Parser\MarkdownParserStateInterface;
 
-final class AdmonitionParser extends AbstractBlockContinueParser
+final class AdmonitionParser extends AbstractBlockContinueParser implements BlockContinueParserWithInlinesInterface
 {
     /** @psalm-readonly */
     private AdmonitionBlock $block;
 
+    /** @psalm-readonly */
+    private ?string $title;
+
+    /** @psalm-readonly */
+    private Paragraph $titleBlock;
+
     public function __construct(string $type, ?string $title)
     {
-        $this->block = new AdmonitionBlock($type, $title);
+        $this->title = $title;
+        $this->titleBlock = new Paragraph();
+        $this->block = new AdmonitionBlock($type, $this->titleBlock);
+        
     }
 
     public function getBlock(): AdmonitionBlock
@@ -85,5 +98,12 @@ final class AdmonitionParser extends AbstractBlockContinueParser
                 return BlockStart::of(new AdmonitionParser($type, $title))->at($cursor);
             }
         };
+    }
+
+    public function parseInlines(InlineParserEngineInterface $inlineParser): void
+    {
+        if ($this->title) {
+            $inlineParser->parse($this->title, $this->titleBlock);
+        }
     }
 }

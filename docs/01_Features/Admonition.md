@@ -61,11 +61,11 @@ Any value other than these will be treated as `note`
 
 ### Danger
 
-!!! danger "Danger"
+!!! danger "Danger with `<code>`"
     `danger` is Dangerous
 
 ```
-!!! danger "Danger"
+!!! danger "Danger with `<code>`"
     `danger` is Dangerous
 ```
 

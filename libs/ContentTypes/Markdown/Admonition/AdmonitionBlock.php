@@ -1,13 +1,14 @@
 <?php namespace Todaymade\Daux\ContentTypes\Markdown\Admonition;
 
 use League\CommonMark\Node\Block\AbstractBlock;
+use League\CommonMark\Node\Block\Paragraph;
 
 class AdmonitionBlock extends AbstractBlock
 {
     private string $type;
-    private ?string $title;
+    private ?Paragraph $title;
 
-    public function __construct(string $type, ?string $title)
+    public function __construct(string $type, ?Paragraph $title)
     {
         $this->type = $type;
         $this->title = $title;
@@ -18,7 +19,7 @@ class AdmonitionBlock extends AbstractBlock
         return $this->type;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): ?Paragraph
     {
         return $this->title;
     }

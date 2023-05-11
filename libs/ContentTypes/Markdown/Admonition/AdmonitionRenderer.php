@@ -16,11 +16,13 @@ class AdmonitionRenderer implements NodeRendererInterface
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
-        $title = $node->getTitle() ? new HTMLElement(
-            'p',
-            ['class' => 'Admonition__title'],
-            $node->getTitle()
-        ) : '';
+
+        $title = '';
+        if ($node->getTitle()->hasChildren()) {
+            $node->getTitle()->data->set('attributes.class', 'Admonition__title');
+            
+            $title = $childRenderer->renderNodes([$node->getTitle()]);
+        }
 
         $children = $childRenderer->renderNodes($node->children());
 

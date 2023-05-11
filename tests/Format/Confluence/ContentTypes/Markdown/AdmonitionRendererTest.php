@@ -61,6 +61,16 @@ class AdmonitionRendererTest extends TestCase
                     </blockquote></ac:rich-text-body></ac:structured-macro>
                     EOD
             ],
+            "Content in title is treated as inline Markdown" => [
+                <<<'EOD'
+                    !!! danger "Use `<ViewLoader>` instead of sharing components across plugins"
+                        Sharing components across plugins is dangerous as they will be built with a version of React controlled in one plugin.
+                    EOD,
+                <<<'EOD'
+                    <ac:structured-macro ac:name="warning"><ac:parameter ac:name="title">Use <code>&lt;ViewLoader&gt;</code> instead of sharing components across plugins</ac:parameter><ac:rich-text-body><p>Sharing components across plugins is dangerous as they will be built with a version of React controlled in one plugin.</p></ac:rich-text-body></ac:structured-macro>
+                    EOD
+
+            ]
         ];
     }
 

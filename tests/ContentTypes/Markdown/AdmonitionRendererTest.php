@@ -78,6 +78,16 @@ class AdmonitionRendererTest extends TestCase
                     </code></pre>
                     EOD
             ],
+            "Content in title is treated as inline Markdown" => [
+                <<<'EOD'
+                    !!! danger "Use `<ViewLoader>` instead of sharing components across plugins"
+                        Sharing components across plugins is dangerous as they will be built with a version of React controlled in one plugin.
+                    EOD,
+                <<<'EOD'
+                    <div class="Admonition Admonition--danger"><p class="Admonition__title">Use <code>&lt;ViewLoader&gt;</code> instead of sharing components across plugins</p><p>Sharing components across plugins is dangerous as they will be built with a version of React controlled in one plugin.</p></div>
+                    EOD
+
+            ]
         ];
     }
 

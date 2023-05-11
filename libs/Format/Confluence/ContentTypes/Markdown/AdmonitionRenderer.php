@@ -29,8 +29,12 @@ class AdmonitionRenderer implements NodeRendererInterface
 
         $content = [];
 
-        if ($node->getTitle()) {
-            $content[] = new HtmlElement('ac:parameter', ['ac:name' => 'title'], $node->getTitle());
+        if ($node->getTitle()->hasChildren()) {
+            $content[] = new HtmlElement(
+                'ac:parameter',
+                ['ac:name' => 'title'],
+                $childRenderer->renderNodes($node->getTitle()->children())
+            );
         }
 
         $content[] = new HtmlElement('ac:rich-text-body', [], $childRenderer->renderNodes($node->children()));
