@@ -30,10 +30,13 @@ class AdmonitionRenderer implements NodeRendererInterface
         $content = [];
 
         if ($node->getTitle()->hasChildren()) {
+
+            $title = $childRenderer->renderNodes($node->getTitle()->children());
+
             $content[] = new HtmlElement(
                 'ac:parameter',
                 ['ac:name' => 'title'],
-                $childRenderer->renderNodes($node->getTitle()->children())
+                str_contains($title, '<') ? '<![CDATA[' . $title. ']]>' : $title
             );
         }
 
