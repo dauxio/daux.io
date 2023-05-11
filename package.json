@@ -6,17 +6,18 @@
     "@swissquote/crafty": "1.22.3",
     "@swissquote/crafty-preset-babel": "1.22.3",
     "@swissquote/crafty-preset-postcss": "1.22.3",
-    "@swissquote/crafty-runner-gulp": "1.22.3",
     "@swissquote/crafty-runner-rollup": "1.22.3",
     "flexsearch": "^0.7.0",
     "katex": "^0.16.4",
     "mermaid": "^10.0.0",
     "postcss-page-break": "^2.0.0",
     "preact": "^10.0.5",
-    "testcafe": "^2.0.0"
+    "testcafe": "^2.0.0",
+    "webpack-cli": "^5.1.1",
+    "webpack": "^5.82.1"
   },
   "scripts": {
-    "build": "crafty run",
+    "build": "./build.sh",
     "watch": "crafty watch",
     "test": "./test.sh",
     "lint:js": "crafty jsLint --fix src/js/**/*.js",

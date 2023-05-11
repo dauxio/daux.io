@@ -3,8 +3,7 @@ module.exports = {
     presets: [
         "@swissquote/crafty-preset-babel",
         "@swissquote/crafty-runner-rollup",
-        "@swissquote/crafty-preset-postcss",
-        "@swissquote/crafty-runner-gulp"
+        "@swissquote/crafty-preset-postcss"
     ],
     destination_css: ".",
     destination_js: ".",
@@ -35,12 +34,6 @@ module.exports = {
             format: "iife",
             source: "src/js/search/index.js",
             destination: "daux_libraries/search.min.js"
-        },
-        theme_daux: {
-            runner: "rollup",
-            format: "iife",
-            source: "src/js/theme_daux/index.js",
-            destination: "themes/daux/js/daux.min.js"
         }
     },
     css: {
@@ -73,29 +66,5 @@ module.exports = {
     postcss(crafty, config, bundle) {
         // Add postcss-page-break
         config.processor("postcss-page-break").before("autoprefixer");
-    },
-      /**
-   * Represents the extension point for rollup configuration
-   * @param {Crafty} crafty - The instance of Crafty.
-   * @param {Gulp} gulp - The instance of Gulp.
-   * @param {StreamHandler} StreamHandler - A wrapper to create your tasks.
-   */
-  gulp(crafty, gulp, StreamHandler) {
-    // Create tasks
-    gulp.task("katex", function() {
-      const stream = new StreamHandler("node_modules/katex/dist/*.min.*", "daux_libraries");
-      return stream.generate();
-    });
-
-    gulp.task("mermaid", function() {
-        const stream = new StreamHandler("node_modules/mermaid/dist/mermaid.min.{js,js.map}", "daux_libraries");
-        return stream.generate();
-      });
-
-    // Group tasks into other tasks
-    gulp.task("vendors", gulp.parallel("katex", "mermaid"));
-
-    // Register this task to run automatically
-    crafty.addDefaultTask("vendors");
-  }
+    }
 };

@@ -16,7 +16,7 @@ ready(() => {
     if (codeBlocks.length) {
         loadCSS(`${window.base_url}daux_libraries/katex.min.css`);
 
-        loadJS(`${window.base_url}daux_libraries/katex.min.js`, () => {
+        import(/* webpackChunkName: "katex" */ "katex").then(katex => {
             [].forEach.call(codeBlocks, (/** @type {HTMLElement} */ e) => {
                 const content = e.innerHTML;
                 const p = document.createElement("p");
@@ -28,7 +28,7 @@ ready(() => {
                 pre.parentElement.insertBefore(p, pre);
                 pre.parentElement.removeChild(pre);
 
-                window.katex.render(content, span, {
+                katex.default.render(content, span, {
                     throwOnError: false
                 });
             });
@@ -39,8 +39,8 @@ ready(() => {
 ready(() => {
     const mermaidBlocks = document.querySelectorAll("div.mermaid");
     if (mermaidBlocks.length) {
-        loadJS(`${window.base_url}daux_libraries/mermaid.min.js`, () => {
-            window.mermaid.initialize({ startOnLoad: true });
+        import(/* webpackChunkName: "mermaid" */ `mermaid`).then(mermaid => {
+            mermaid.default.initialize({ startOnLoad: true });
         });
     }
 });

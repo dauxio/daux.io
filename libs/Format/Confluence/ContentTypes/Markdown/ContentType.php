@@ -12,23 +12,13 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
         return <<<'EOD'
             <ac:structured-macro ac:name="html">
               <ac:plain-text-body> <![CDATA[
-            <script>
+            <script type="module">
             function daux_ready(fn) {
                 if (document.readyState === "loading") {
                     document.addEventListener("DOMContentLoaded", fn);
                 } else {
                     fn();
                 }
-            }
-
-            function daux_loadJS(url, callback) {
-                var head = document.getElementsByTagName("head")[0],
-                    script = document.createElement("script");
-                script.type = "text/javascript";
-                script.async = true;
-                script.src = url;
-                script.onload = callback;
-                head.appendChild(script);
             }
 
             function daux_loadCSS(url) {
@@ -42,9 +32,9 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
             daux_ready(function() {
                 var codeBlocks = document.querySelectorAll("pre > code.katex");
                 if (codeBlocks.length) {
-                    daux_loadCSS(`https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css`);
+                    daux_loadCSS(`https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css`);
 
-                    daux_loadJS(`https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js`, function() {
+                    import(`https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.mjs`).then(katex) {
                         [].forEach.call(codeBlocks, function(e) {
                             var content = e.innerHTML;
                             var p = document.createElement("p");
@@ -56,7 +46,7 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
                             pre.parentElement.insertBefore(p, pre);
                             pre.parentElement.removeChild(pre);
 
-                            window.katex.render(content, span, {
+                            katex.default.render(content, span, {
                                 throwOnError: false
                             });
                         });
@@ -67,7 +57,7 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
             daux_ready(function() {
                 var mermaidBlocks = document.querySelectorAll("pre.mermaid");
                 if (mermaidBlocks.length) {
-                    daux_loadJS(`https://cdn.jsdelivr.net/npm/mermaid@8.13.4/dist/mermaid.min.js`, function() {
+                    import("https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs").then(mermaid => {
                         [].forEach.call(mermaidBlocks, function(pre) {
                             var content = pre.innerHTML;
                             var div = document.createElement("div");
@@ -79,8 +69,8 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
                             container.removeChild(pre);
                         });
 
-                        window.mermaid.initialize({ startOnLoad: true });
-                    });
+                        mermaid.default.initialize({ startOnLoad: true });
+                    })
                 }
             });
             </script>
