@@ -16,31 +16,41 @@ ready(() => {
     if (codeBlocks.length) {
         loadCSS(`${window.base_url}daux_libraries/katex.min.css`);
 
-        import(/* webpackChunkName: "katex" */ "katex").then(katex => {
-            [].forEach.call(codeBlocks, (/** @type {HTMLElement} */ e) => {
-                const content = e.innerHTML;
-                const p = document.createElement("p");
-                const span = document.createElement("span");
-                p.className = "katex-display";
-                p.appendChild(span);
+        import(/* webpackChunkName: "katex" */ "katex").then(
+            katex => {
+                [].forEach.call(codeBlocks, (/** @type {HTMLElement} */ e) => {
+                    const content = e.innerHTML;
+                    const p = document.createElement("p");
+                    const span = document.createElement("span");
+                    p.className = "katex-display";
+                    p.appendChild(span);
 
-                const pre = e.parentElement;
-                pre.parentElement.insertBefore(p, pre);
-                pre.parentElement.removeChild(pre);
+                    const pre = e.parentElement;
+                    pre.parentElement.insertBefore(p, pre);
+                    pre.parentElement.removeChild(pre);
 
-                katex.default.render(content, span, {
-                    throwOnError: false
+                    katex.default.render(content, span, {
+                        throwOnError: false
+                    });
                 });
-            });
-        });
+            },
+            e => {
+                console.error("Could not load katex", e);
+            }
+        );
     }
 });
 
 ready(() => {
     const mermaidBlocks = document.querySelectorAll("div.mermaid");
     if (mermaidBlocks.length) {
-        import(/* webpackChunkName: "mermaid" */ `mermaid`).then(mermaid => {
-            mermaid.default.run({ nodes: mermaidBlocks });
-        });
+        import(/* webpackChunkName: "mermaid" */ `mermaid`).then(
+            mermaid => {
+                mermaid.default.run({ nodes: mermaidBlocks });
+            },
+            e => {
+                console.error("Could not load katex", e);
+            }
+        );
     }
 });
