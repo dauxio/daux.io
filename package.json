@@ -12,7 +12,7 @@
     "mermaid": "^10.0.0",
     "postcss-page-break": "^2.0.0",
     "preact": "^10.0.5",
-    "testcafe": "^2.0.0",
+    "testcafe": "^3.0.0",
     "webpack": "^5.82.1",
     "webpack-cli": "^5.1.1"
   },
