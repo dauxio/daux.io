@@ -12,7 +12,7 @@ jobs:
       with:
         persist-credentials: false
     - name: Setup PHP
-      uses: shivammathur/setup-php@2.25.4
+      uses: shivammathur/setup-php@2.25.5
       with:
         php-version: 8.1
         extensions: mbstring, dom, intl, iconv
@@ -40,7 +40,7 @@ jobs:
       with:
         persist-credentials: false
     - name: Setup PHP
-      uses: shivammathur/setup-php@2.25.4
+      uses: shivammathur/setup-php@2.25.5
       with:
         php-version: 8.1
         extensions: mbstring, dom, intl
