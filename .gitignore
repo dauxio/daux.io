@@ -11,6 +11,7 @@ static-single
 .php_cs.cache
 .php-cs-fixer.cache
 coverage.xml
+coverage.clover
 test-report.xml
 
 /prettier.config.js
