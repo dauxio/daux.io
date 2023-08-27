@@ -142,6 +142,31 @@ To export, run the `daux` command and your documentation will be generated in `s
 
 Now that you got the basics, you can also [see what you can configure](05_Configuration/_index.md)
 
+### Server Configuration
+
+We are using `.mjs` file types. Which not every web server properly understands and serves.
+
+You might see an error like `Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of "application/octet-stream". Strict MIME type checking is enforced for module scripts per HTML spec.`
+
+#### Apache
+
+If you are using a version under 2.5.1 of Apache HTTPd.
+
+Add the following line within `.htaccess`, vhost or server configuration.
+
+```
+AddType application/javascript .mjs
+```
+
+#### nginx
+
+```
+  include mime.types;
+  types {
+      application/javascript js mjs;
+  }
+```
+
 ## PHP Requirements
 
 Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions; 8.1.0 and up.
