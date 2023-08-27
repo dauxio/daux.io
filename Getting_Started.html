@@ -140,7 +140,7 @@
     <div class="Page__header">
         <h1><a href="Getting_Started.html">Getting Started</a></h1>
                 <span class="ModifiedDate">
-            August 19, 2023 at 8:11 AM        </span>
+            August 27, 2023 at 7:32 AM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/00_Getting_Started.md" target="_blank">
                 Edit on GitHub            </a>
@@ -202,6 +202,19 @@
 </li>
 <li>
 <a href="#configuration">Configuration</a>
+<ul>
+<li>
+<a href="#server-configuration">Server Configuration</a>
+<ul>
+<li>
+<a href="#apache">Apache</a>
+</li>
+<li>
+<a href="#nginx">nginx</a>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
 <a href="#php-requirements">PHP Requirements</a>
@@ -367,6 +380,20 @@ The folder structure will be converted to the nested navigation.</p>
 <p><a href="Features/Static_Site_Generation.html">See here for all options</a></p>
 <h2><a id="configuration" href="#configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuration</h2>
 <p>Now that you got the basics, you can also <a href="Configuration/index.html">see what you can configure</a></p>
+<h3><a id="server-configuration" href="#server-configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Server Configuration</h3>
+<p>We are using <code>.mjs</code> file types. Which not every web server properly understands and serves.</p>
+<p>You might see an error like <code>Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of &quot;application/octet-stream&quot;. Strict MIME type checking is enforced for module scripts per HTML spec.</code></p>
+<h4><a id="apache" href="#apache" class="Permalink" aria-hidden="true" title="Permalink">#</a>Apache</h4>
+<p>If you are using a version under 2.5.1 of Apache HTTPd.</p>
+<p>Add the following line within <code>.htaccess</code>, vhost or server configuration.</p>
+<pre><code>AddType application/javascript .mjs
+</code></pre>
+<h4><a id="nginx" href="#nginx" class="Permalink" aria-hidden="true" title="Permalink">#</a>nginx</h4>
+<pre><code>  include mime.types;
+  types {
+      application/javascript js mjs;
+  }
+</code></pre>
 <h2><a id="php-requirements" href="#php-requirements" class="Permalink" aria-hidden="true" title="Permalink">#</a>PHP Requirements</h2>
 <p>Daux.io is compatible with the <a href="https://www.php.net/supported-versions.php" class="Link--external" rel="noopener noreferrer">officially supported</a> PHP versions; 8.1.0 and up.</p>
 <h3><a id="extensions" href="#extensions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Extensions</h3>
