@@ -2,7 +2,7 @@
 
 [![Latest Version](https://img.shields.io/github/release/dauxio/daux.io.svg?style=flat-square)](https://github.com/dauxio/daux.io/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/dauxio/daux.io/blob/master/LICENSE.md)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dauxio/daux.io/CI?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dauxio/daux.io/php.yml?style=flat-square&logo=github)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=dauxio_daux.io&metric=coverage)](https://sonarcloud.io/dashboard?id=dauxio_daux.io)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dauxio_daux.io&metric=alert_status)](https://sonarcloud.io/dashboard?id=dauxio_daux.io)
 [![Total Downloads](https://img.shields.io/packagist/dt/daux/daux.io.svg?style=flat-square)](https://packagist.org/packages/daux/daux.io)
