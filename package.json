@@ -6,6 +6,7 @@
     "@swissquote/crafty": "1.23.0",
     "@swissquote/crafty-preset-babel": "1.23.0",
     "@swissquote/crafty-preset-postcss": "1.23.0",
+    "@swissquote/crafty-runner-gulp": "1.22.3",
     "@swissquote/crafty-runner-rollup": "1.22.3",
     "flexsearch": "^0.7.0",
     "katex": "^0.16.4",
@@ -22,9 +23,6 @@
     "test": "./test.sh",
     "lint:js": "crafty jsLint --fix src/js/**/*.js",
     "lint:css": "crafty cssLint --fix --preset recommended themes/daux_singlepage/scss/*.scss themes/daux/scss/*.scss"
-  },
-  "dependencies": {
-    "@swissquote/crafty-runner-gulp": "^1.22.3"
   },
   "packageManager": "yarn@4.0.0"
 }
