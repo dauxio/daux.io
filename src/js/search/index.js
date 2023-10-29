@@ -1,6 +1,5 @@
-import * as preact from "preact";
 import { Document } from "flexsearch";
-
+import * as preact from "preact";
 import Search from "./Search";
 
 /** @jsx preact.h */
@@ -9,13 +8,11 @@ const originalTitle = document.title;
 
 function getURLP(name) {
     const elements = new RegExp(`[?|&]${name}=([^&;]+?)(&|#|;|$)`).exec(
-        window.location.search
+        window.location.search,
     );
 
     return (
-        decodeURIComponent(
-            ((elements && elements[1]) || "").replace(/\+/g, "%20")
-        ) || null
+        decodeURIComponent((elements?.[1] || "").replace(/\+/g, "%20")) || null
     );
 }
 
@@ -32,11 +29,11 @@ class SearchEngine {
             highlightTerms: true,
             highlightEveryTerm: false,
             contentLocation: "daux_search_index.js",
-            ...options
+            ...options,
         };
 
         this.searchIndex = {
-            pages: []
+            pages: [],
         };
     }
 
@@ -51,16 +48,16 @@ class SearchEngine {
             const s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(po, s);
 
-            this.loadingPromise = new Promise(resolve => {
-                window.load_search_index = data => resolve(data);
-            }).then(json => {
+            this.loadingPromise = new Promise((resolve) => {
+                window.load_search_index = (data) => resolve(data);
+            }).then((json) => {
                 this.searchIndex = new Document({
                     doc: {
                         id: "url",
                         tag: "tags",
                         field: ["title", "text"],
-                        store: ["title", "text"]
-                    }
+                        store: ["title", "text"],
+                    },
                 });
 
                 let pages = json.pages;
@@ -69,11 +66,13 @@ class SearchEngine {
                 if (window.searchLanguage) {
                     const pagePrefix = `${window.searchLanguage}/`;
                     pages = pages.filter(
-                        item => item.url.indexOf(pagePrefix) === 0
+                        (item) => item.url.indexOf(pagePrefix) === 0,
                     );
                 }
 
-                pages.forEach(page => this.searchIndex.add(page));
+                for (const page of pages) {
+                    this.searchIndex.add(page);
+                }
             });
         }
 
@@ -89,7 +88,7 @@ class SearchEngine {
             });
         }
 
-        this.settings.field.addEventListener("keyup", event => {
+        this.settings.field.addEventListener("keyup", (event) => {
             // Start loading index once the user types text in the field, not before
             this.loadData();
 
@@ -100,7 +99,7 @@ class SearchEngine {
             }
         });
 
-        this.settings.form.addEventListener("submit", event => {
+        this.settings.form.addEventListener("submit", (event) => {
             event.preventDefault();
             this.loadData().then(() => {
                 this.displaySearch();
@@ -108,7 +107,7 @@ class SearchEngine {
         });
     }
 
-    keyUpHandler = e => {
+    keyUpHandler = (e) => {
         if (e.which === 27) {
             //escape
             this.handleClose();
@@ -135,16 +134,16 @@ class SearchEngine {
 
         preact.render(
             <Search
-                onSearch={term =>
+                onSearch={(term) =>
                     this.searchIndex.search(term, { enrich: true })
                 }
                 onClose={this.handleClose}
-                onTitleChange={title => {
+                onTitleChange={(title) => {
                     document.title = `${title} ${originalTitle}`;
                 }}
                 settings={this.settings}
             />,
-            this.resultContainer
+            this.resultContainer,
         );
 
         document.body.classList.add("with-search");

@@ -6,7 +6,7 @@ import { ready } from "./utils";
  * @param {Element} item
  */
 function resetHeightAfterAnimation(item) {
-    const setHeightToAuto = ev => {
+    const setHeightToAuto = (ev) => {
         if (ev.target.style.height !== "0px") {
             ev.target.style.height = "auto";
         }
@@ -19,10 +19,11 @@ function resetHeightAfterAnimation(item) {
 
 function findNavItem(start) {
     let elem = start;
-    while ((elem = elem.parentNode) && elem.nodeType !== 9) {
+    while (elem.nodeType !== 9) {
         if (elem.nodeType === 1 && elem.classList.contains("Nav__item")) {
             return elem;
         }
+        elem = elem.parentNode;
     }
 
     throw new Error("Could not find a NavItem...");
@@ -60,7 +61,7 @@ function toggleSubMenu(ev) {
 
 ready(() => {
     const navItems = document.querySelectorAll(
-        ".Nav__item.has-children i.Nav__arrow"
+        ".Nav__item.has-children i.Nav__arrow",
     );
 
     // Go in reverse here because on page load the child nav items need to be

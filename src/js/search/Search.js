@@ -8,7 +8,7 @@ import {
     textSearchOneResult,
     textSearchResults,
     textSearchShouldBeXOrMore,
-    textSearchTooShort
+    textSearchTooShort,
 } from "./translation";
 
 /** @jsx preact.h */
@@ -19,7 +19,7 @@ export default class Search extends preact.Component {
 
         this.state = {
             search: this.props.settings.field.value || "",
-            start: 0
+            start: 0,
         };
     }
 
@@ -34,11 +34,11 @@ export default class Search extends preact.Component {
         }
     };
 
-    handlePaginate = start => {
+    handlePaginate = (start) => {
         this.setState({ start }, this.scrollTop);
     };
 
-    handleChange = event => {
+    handleChange = (event) => {
         this.setState({ search: event.target.value, start: 0 }, this.scrollTop);
 
         this.props.settings.field.value = event.target.value;
@@ -59,8 +59,8 @@ export default class Search extends preact.Component {
                     ? textSearchOneCharacterOrMore
                     : textSearchShouldBeXOrMore.replace(
                           "!min",
-                          settings.minimumLength
-                      )
+                          settings.minimumLength,
+                      ),
             );
 
             return { warnings, counter, results, start };
@@ -72,18 +72,18 @@ export default class Search extends preact.Component {
                 .reduce((acc, fieldResult) => {
                     // FlexSearch returns results per field
                     // We de-duplicate them here and have a single array of results
-                    fieldResult.result.forEach(result => {
+                    for (const result of fieldResult.result) {
                         if (!acc.hasOwnProperty(result.id)) {
                             acc[result.id] = {
                                 url: result.id,
                                 title: result.doc.title,
-                                text: result.doc.text
+                                text: result.doc.text,
                             };
                         }
-                    });
+                    }
 
                     return acc;
-                }, {})
+                }, {}),
         );
 
         counter = found.length;
@@ -99,7 +99,7 @@ export default class Search extends preact.Component {
 
         results = found.filter(
             (item, itemNumber) =>
-                itemNumber >= start && itemNumber < settings.show + start
+                itemNumber >= start && itemNumber < settings.show + start,
         );
 
         return { warnings, counter, results, start };
@@ -114,7 +114,9 @@ export default class Search extends preact.Component {
                 <div className="SearchResultsBackdrop" />
                 <div
                     className="SearchResults"
-                    ref={el => (this.resultRef = el)}
+                    ref={(el) => {
+                        this.resultRef = el;
+                    }}
                 >
                     <input
                         className="Search__field"
@@ -126,6 +128,7 @@ export default class Search extends preact.Component {
                         onInput={this.handleChange}
                     />
                     <button
+                        type="button"
                         className="SearchResults__close"
                         onClick={this.handleClose}
                     >
@@ -136,12 +139,12 @@ export default class Search extends preact.Component {
                             ? textSearchOneResult
                             : textSearchResults.replace("!count", counter)}
                     </div>
-                    {warnings.map(warning => (
+                    {warnings.map((warning) => (
                         <div key={warning} className="SearchResults__warning">
                             {warning}
                         </div>
                     ))}
-                    {results.map(result => (
+                    {results.map((result) => (
                         <Result
                             key={result.title}
                             item={result}

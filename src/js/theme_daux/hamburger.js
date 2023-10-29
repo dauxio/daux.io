@@ -6,7 +6,7 @@ ready(() => {
     if (trigger) {
         const content = document.querySelector(".Collapsible__content");
 
-        trigger.addEventListener("click", ev => {
+        trigger.addEventListener("click", (ev) => {
             if (content.classList.contains("Collapsible__content--open")) {
                 content.style.height = 0;
                 content.classList.remove("Collapsible__content--open");

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 echo "= Cleaning previous builds"
 rm -rf themes/daux/js
 rm -rf daux_libraries/fonts/*

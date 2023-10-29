@@ -1,5 +1,5 @@
 import * as preact from "preact";
-import { textLinkPrevious, textLinkNext } from "./translation";
+import { textLinkNext, textLinkPrevious } from "./translation";
 /** @jsx preact.h */
 
 export default function Pagination({ counter, start, settings, onPageSelect }) {
@@ -23,13 +23,14 @@ export default function Pagination({ counter, start, settings, onPageSelect }) {
         } else {
             items.push(
                 <li>
-                    <a
+                    <button
+                        type="button"
                         className="SearchResults__footer__link"
                         onClick={() => onPageSelect(f * settings.show)}
                     >
                         {f + 1}
-                    </a>
-                </li>
+                    </button>
+                </li>,
             );
         }
     }
@@ -39,23 +40,25 @@ export default function Pagination({ counter, start, settings, onPageSelect }) {
             <ul className="SearchResults__footer__links Pager">
                 {start > 0 && (
                     <li className="Pager--prev">
-                        <a
+                        <button
+                            type="button"
                             className="SearchResults__footer__link"
                             onClick={() => onPageSelect(start - settings.show)}
                         >
                             {textLinkPrevious}
-                        </a>
+                        </button>
                     </li>
                 )}
                 {items}
                 {page + 1 !== pages && (
                     <li className="Pager--next">
-                        <a
+                        <button
+                            type="button"
                             className="SearchResults__footer__link"
                             onClick={() => onPageSelect(start + settings.show)}
                         >
                             {textLinkNext}
-                        </a>
+                        </button>
                     </li>
                 )}
             </ul>

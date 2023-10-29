@@ -5,9 +5,8 @@ const CLASS_DARK = "dark";
 const BUTTON = ".ColorMode__button";
 
 function getInitialColorMode() {
-    const persistedColorPreference = window.localStorage.getItem(
-        COLOR_MODE_KEY
-    );
+    const persistedColorPreference =
+        window.localStorage.getItem(COLOR_MODE_KEY);
     const hasPersistedPreference = typeof persistedColorPreference === "string";
 
     // If the user has explicitly chosen light or dark,
@@ -42,16 +41,16 @@ if (toggleCodeBlockBtnSet) {
 
     toggleCodeBlockBtnSet.addEventListener(
         "change",
-        ev => {
+        (ev) => {
             const checked = ev.target.checked;
 
             document.body.classList.toggle(CLASS_DARK, checked);
 
             window.localStorage.setItem(
                 COLOR_MODE_KEY,
-                checked ? VALUE_DARK : VALUE_LIGHT
+                checked ? VALUE_DARK : VALUE_LIGHT,
             );
         },
-        false
+        false,
     );
 }

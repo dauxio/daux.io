@@ -1,8 +1,8 @@
-import { ready, loadJS, loadCSS } from "./utils";
+import { loadCSS, loadJS, ready } from "./utils";
 
 ready(() => {
     const codeBlocks = document.querySelectorAll(
-        "pre > code:not(.hljs, .katex)"
+        "pre > code:not(.hljs, .katex)",
     );
     if (codeBlocks.length) {
         loadJS(`${window.base_url}daux_libraries/highlight.pack.js`, () => {
@@ -17,7 +17,7 @@ ready(() => {
         loadCSS(`${window.base_url}daux_libraries/katex.min.css`);
 
         import(/* webpackChunkName: "katex" */ "katex").then(
-            katex => {
+            (katex) => {
                 [].forEach.call(codeBlocks, (/** @type {HTMLElement} */ e) => {
                     const content = e.innerHTML;
                     const p = document.createElement("p");
@@ -30,13 +30,13 @@ ready(() => {
                     pre.parentElement.removeChild(pre);
 
                     katex.default.render(content, span, {
-                        throwOnError: false
+                        throwOnError: false,
                     });
                 });
             },
-            e => {
+            (e) => {
                 console.error("Could not load katex", e);
-            }
+            },
         );
     }
 });
@@ -44,13 +44,13 @@ ready(() => {
 ready(() => {
     const mermaidBlocks = document.querySelectorAll("div.mermaid");
     if (mermaidBlocks.length) {
-        import(/* webpackChunkName: "mermaid" */ `mermaid`).then(
-            mermaid => {
+        import(/* webpackChunkName: "mermaid" */ "mermaid").then(
+            (mermaid) => {
                 mermaid.default.run({ nodes: mermaidBlocks });
             },
-            e => {
+            (e) => {
                 console.error("Could not load katex", e);
-            }
+            },
         );
     }
 });

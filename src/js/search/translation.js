@@ -7,7 +7,7 @@ const {
     Search_one_result,
     Search_results,
     Search_should_be_x_or_more,
-    Search_too_short
+    Search_too_short,
 } = window.searchTranslation;
 
 const textLinkPrevious = Link_previous;
@@ -28,5 +28,5 @@ export {
     textSearchOneResult,
     textSearchResults,
     textSearchShouldBeXOrMore,
-    textSearchTooShort
+    textSearchTooShort,
 };

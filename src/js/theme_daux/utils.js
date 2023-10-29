@@ -9,8 +9,8 @@ export function ready(fn) {
 }
 
 export function loadJS(url, callback) {
-    const head = document.getElementsByTagName("head")[0],
-        script = document.createElement("script");
+    const head = document.getElementsByTagName("head")[0];
+    const script = document.createElement("script");
     script.type = "text/javascript";
     script.async = true;
     script.src = url;
@@ -19,8 +19,8 @@ export function loadJS(url, callback) {
 }
 
 export function loadCSS(url) {
-    const head = document.getElementsByTagName("head")[0],
-        link = document.createElement("link");
+    const head = document.getElementsByTagName("head")[0];
+    const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = url;
     head.appendChild(link);

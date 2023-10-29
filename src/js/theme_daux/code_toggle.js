@@ -15,15 +15,15 @@ function setCodeBlockStyle(codeBlocks, hidden) {
 
 function enableToggler(toggleCodeSection, codeBlocks) {
     const toggleCodeBlockBtnSet = toggleCodeSection.querySelector(
-        ".CodeToggler__button--main"
+        ".CodeToggler__button--main",
     ); // available when floating is disabled
 
     toggleCodeBlockBtnSet.addEventListener(
         "change",
-        ev => {
+        (ev) => {
             setCodeBlockStyle(codeBlocks, !ev.target.checked);
         },
-        false
+        false,
     );
 
     let hidden = false;
