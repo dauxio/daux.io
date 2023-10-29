@@ -44,7 +44,7 @@
     "require-dev": {
         "mikey179/vfsstream": "^1.6",
         "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^10.0"
     },
     "scripts": {
         "test": "APP_ENV=test php vendor/bin/phpunit",
