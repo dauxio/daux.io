@@ -72,7 +72,7 @@ jobs:
       run: bin/daux generate --format=html-file --destination=static-single
 
     - name: Setup Node.js
-      uses: actions/setup-node@v3.8.2
+      uses: actions/setup-node@v4.0.0
       with:
         node-version: '20.x'
         cache: 'yarn'
