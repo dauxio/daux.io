@@ -11,7 +11,7 @@
     "flexsearch": "^0.7.0",
     "katex": "^0.16.4",
     "mermaid": "^10.0.0",
-    "postcss-page-break": "^2.0.0",
+    "postcss-page-break": "^3.0.4",
     "preact": "^10.0.5",
     "swc-loader": "0.2.3",
     "testcafe": "^3.0.0",
