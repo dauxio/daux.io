@@ -2062,9 +2062,9 @@ __metadata:
   linkType: hard
 
 "@types/estree@npm:*, @types/estree@npm:^1.0.0":
-  version: 1.0.3
-  resolution: "@types/estree@npm:1.0.3"
-  checksum: 5171f467fdd77852e28d7eec575222bc6c900e117a44e916a5ff65807ae8e1ed15f57d21e8954d6bd532e37c49a8ecfee730fcb152b7b44234d38681978b2caa
+  version: 1.0.4
+  resolution: "@types/estree@npm:1.0.4"
+  checksum: de2abd990fb9b36583ab25d6a5898938eac076cf3e47f11ffc8cf9e3fdca1245807e0f166b6bf0924c7dab0676cc314ca8f749679ee5ea8a45771466ded25dd1
   languageName: node
   linkType: hard
 
@@ -2123,11 +2123,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 20.8.9
-  resolution: "@types/node@npm:20.8.9"
+  version: 20.8.10
+  resolution: "@types/node@npm:20.8.10"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 6fb5604ac087c8be9aeb9ee1413fae2e691c603c9a691bd722e113597b883f21e8380a44d114ab894b435a491bfc939c8478cd57bcf890c585b961343b124964
+  checksum: caaa3ae9294f1bfdacb029a916c64af63cbcea613a52f53ea86f93c91779859af177b2b68113ef835194519f5e76cadda08559929b68297f1a8a568c207f9f66
   languageName: node
   linkType: hard
 
@@ -2714,9 +2714,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001541, caniuse-lite@npm:^1.0.30001542":
-  version: 1.0.30001557
-  resolution: "caniuse-lite@npm:1.0.30001557"
-  checksum: 27c5aa8de4c0f6dc2500492600d817f46633127db61adddfad75e53e9bf0270379f9086afac6964b5dcde72938078f1fb7bad7e8b6904da0976b31353b03cdac
+  version: 1.0.30001559
+  resolution: "caniuse-lite@npm:1.0.30001559"
+  checksum: 32377e386580dcb977f552b488e7b56fb489aa0a83f4f43087af6e8fe1fe7fda529bc29e76ef38c0f9c56c964389d322059a0dd7a544859a7b88063f7fc761d7
   languageName: node
   linkType: hard
 
@@ -2918,11 +2918,11 @@ __metadata:
   linkType: hard
 
 "core-js-compat@npm:^3.31.0, core-js-compat@npm:^3.33.1":
-  version: 3.33.1
-  resolution: "core-js-compat@npm:3.33.1"
+  version: 3.33.2
+  resolution: "core-js-compat@npm:3.33.2"
   dependencies:
     browserslist: "npm:^4.22.1"
-  checksum: 9c7361b370eac30756e6ec52469988d62c6110759efa1c85edd15e6b30f05ace8319a9cc0671bf596a98e7e81c67ad693ceaab2691b85cb62c636da1afe8feb9
+  checksum: bcf6f0badffbbf4a127449f64720c33e9c960f204f072d9644954b30d7742e18de733e9f446c7093f1ccf5d9e101205a7c64747a5aeec7d3925f336322f85a03
   languageName: node
   linkType: hard
 
@@ -2992,12 +2992,12 @@ __metadata:
   linkType: hard
 
 "cytoscape@npm:^3.23.0":
-  version: 3.26.0
-  resolution: "cytoscape@npm:3.26.0"
+  version: 3.27.0
+  resolution: "cytoscape@npm:3.27.0"
   dependencies:
     heap: "npm:^0.2.6"
     lodash: "npm:^4.17.21"
-  checksum: d63ec3674396bc3f4444e4fc9692277577c4407ac3d4e6f3cea08149b88d4d692667b0273f1789bb007fae8cda2e9079c106d0595ba48f7c9fb9a3703fbb776b
+  checksum: 89cf57de58fe9742a31466198f32d527d7aead8537bb72538712fc3cf029aeacb90a4721f9a42f5f19fed72d71929f04676711d6c37634c0c156782b7377d858
   languageName: node
   linkType: hard
 
@@ -3565,9 +3565,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.535":
-  version: 1.4.569
-  resolution: "electron-to-chromium@npm:1.4.569"
-  checksum: d096c7adeb1e0df06ea6cb783c8d9bbd340f343185f8b16acfbe87f54ae2bc94173382383acdfe52ad83b21c9593ee41c27ef3fb49d667a4358f48bf6500b49c
+  version: 1.4.572
+  resolution: "electron-to-chromium@npm:1.4.572"
+  checksum: 12bcd1ec9bfe6947186951decac2c5bb32188d99ddf1d2a26739a84fb8e1bfa0d6bb439e16a4bdddcf0dddad4e6defcdea1f4bd02964962c198998c6b63f35d3
   languageName: node
   linkType: hard
 
@@ -6073,9 +6073,9 @@ __metadata:
   linkType: hard
 
 "punycode@npm:^2.1.0, punycode@npm:^2.1.1":
-  version: 2.3.0
-  resolution: "punycode@npm:2.3.0"
-  checksum: 8e6f7abdd3a6635820049e3731c623bbef3fedbf63bbc696b0d7237fdba4cefa069bc1fa62f2938b0fbae057550df7b5318f4a6bcece27f1907fc75c54160bee
+  version: 2.3.1
+  resolution: "punycode@npm:2.3.1"
+  checksum: 14f76a8206bc3464f794fb2e3d3cc665ae416c01893ad7a02b23766eb07159144ee612ad67af5e84fa4479ccfe67678c4feb126b0485651b302babf66f04f9e9
   languageName: node
   linkType: hard
 
@@ -6745,8 +6745,8 @@ __metadata:
   linkType: hard
 
 "terser@npm:^5.16.8":
-  version: 5.22.0
-  resolution: "terser@npm:5.22.0"
+  version: 5.24.0
+  resolution: "terser@npm:5.24.0"
   dependencies:
     "@jridgewell/source-map": "npm:^0.3.3"
     acorn: "npm:^8.8.2"
@@ -6754,7 +6754,7 @@ __metadata:
     source-map-support: "npm:~0.5.20"
   bin:
     terser: bin/terser
-  checksum: 76471196c7b86d65ea169c5a5cd66d470511064cf8592fd427cede1f36b842fdb196cb1e3df8eea12327ef9da847b01637b5776f637d34d1204484a492b6da8e
+  checksum: 9a73ae528210242593d8bbc46af8a235fb0a7607707910a7c5cb85a7d2692d0780019dcbf34734b3cb2591111cc41628f1dce1608dccd3201b6843458ebe9e00
   languageName: node
   linkType: hard
 
@@ -6817,8 +6817,8 @@ __metadata:
   linkType: hard
 
 "testcafe-hammerhead@npm:>=19.4.0":
-  version: 31.6.2
-  resolution: "testcafe-hammerhead@npm:31.6.2"
+  version: 31.6.3
+  resolution: "testcafe-hammerhead@npm:31.6.3"
   dependencies:
     "@adobe/css-tools": "npm:^4.3.0-rc.1"
     "@electron/asar": "npm:^3.2.3"
@@ -6845,7 +6845,7 @@ __metadata:
     tough-cookie: "npm:4.1.3"
     tunnel-agent: "npm:0.6.0"
     ws: "npm:^7.4.6"
-  checksum: 8cb589c9828053c436913028ac309820811bc74fb73f3ff1a5ea1a05f157a13c0183d677b3618aae59c3b5ee022f673ea142be328a7d1b1c8af2101516da1453
+  checksum: 13b2d81585fd49a8efb49f3912d1ff98374b76eb0adfb341434e8c625438bbc3c020cd86a29bfd400619475056d9f40aba546862f0ab6c16cb0bdad405ee5b61
   languageName: node
   linkType: hard
 
