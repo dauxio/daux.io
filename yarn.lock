@@ -1521,16 +1521,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@biomejs/biome@npm:1.3.1"
+"@biomejs/biome@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@biomejs/biome@npm:1.3.3"
   dependencies:
-    "@biomejs/cli-darwin-arm64": "npm:1.3.1"
-    "@biomejs/cli-darwin-x64": "npm:1.3.1"
-    "@biomejs/cli-linux-arm64": "npm:1.3.1"
-    "@biomejs/cli-linux-x64": "npm:1.3.1"
-    "@biomejs/cli-win32-arm64": "npm:1.3.1"
-    "@biomejs/cli-win32-x64": "npm:1.3.1"
+    "@biomejs/cli-darwin-arm64": "npm:1.3.3"
+    "@biomejs/cli-darwin-x64": "npm:1.3.3"
+    "@biomejs/cli-linux-arm64": "npm:1.3.3"
+    "@biomejs/cli-linux-x64": "npm:1.3.3"
+    "@biomejs/cli-win32-arm64": "npm:1.3.3"
+    "@biomejs/cli-win32-x64": "npm:1.3.3"
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -1546,48 +1546,48 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 775b6dff8675c73e2b36a3b5d6d1b3d45747d9b8e6cc5bd24d98beb91aeb8e17455f1271febe94c9e1748ef186cfd4f718ecbed1d277f09f633534fde67ebc42
+  checksum: 6e9b9dfbf710898a855d149565f4f1536fb558134ede0934d3d5b06456fa4a91a77a97392f2c8f8bc7f17b7f13e7af464515a3ff858a53d759ca24a38e9e551b
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@biomejs/cli-darwin-arm64@npm:1.3.1"
+"@biomejs/cli-darwin-arm64@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@biomejs/cli-darwin-arm64@npm:1.3.3"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@biomejs/cli-darwin-x64@npm:1.3.1"
+"@biomejs/cli-darwin-x64@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@biomejs/cli-darwin-x64@npm:1.3.3"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@biomejs/cli-linux-arm64@npm:1.3.1"
+"@biomejs/cli-linux-arm64@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@biomejs/cli-linux-arm64@npm:1.3.3"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@biomejs/cli-linux-x64@npm:1.3.1"
+"@biomejs/cli-linux-x64@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@biomejs/cli-linux-x64@npm:1.3.3"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@biomejs/cli-win32-arm64@npm:1.3.1"
+"@biomejs/cli-win32-arm64@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@biomejs/cli-win32-arm64@npm:1.3.3"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@biomejs/cli-win32-x64@npm:1.3.1"
+"@biomejs/cli-win32-x64@npm:1.3.3":
+  version: 1.3.3
+  resolution: "@biomejs/cli-win32-x64@npm:1.3.3"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -3368,7 +3368,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "daux.io@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:1.3.1"
+    "@biomejs/biome": "npm:1.3.3"
     "@swc/core": "npm:1.3.95"
     "@swissquote/crafty": "npm:1.23.0"
     "@swissquote/crafty-preset-postcss": "npm:1.23.0"
