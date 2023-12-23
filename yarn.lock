@@ -22,7 +22,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/code-frame@npm:7.22.13, @babel/code-frame@npm:^7.22.13":
+"@babel/code-frame@npm:7.23.5":
+  version: 7.23.5
+  resolution: "@babel/code-frame@npm:7.23.5"
+  dependencies:
+    "@babel/highlight": "npm:^7.23.4"
+    chalk: "npm:^2.4.2"
+  checksum: a10e843595ddd9f97faa99917414813c06214f4d9205294013e20c70fbdf4f943760da37dec1d998bf3e6fc20fa2918a47c0e987a7e458663feb7698063ad7c6
+  languageName: node
+  linkType: hard
+
+"@babel/code-frame@npm:^7.22.13":
   version: 7.22.13
   resolution: "@babel/code-frame@npm:7.22.13"
   dependencies:
@@ -331,6 +341,17 @@ __metadata:
     chalk: "npm:^2.4.2"
     js-tokens: "npm:^4.0.0"
   checksum: f3c3a193afad23434297d88e81d1d6c0c2cf02423de2139ada7ce0a7fc62d8559abf4cc996533c1a9beca7fc990010eb8d544097f75e818ac113bf39ed810aa2
+  languageName: node
+  linkType: hard
+
+"@babel/highlight@npm:^7.23.4":
+  version: 7.23.4
+  resolution: "@babel/highlight@npm:7.23.4"
+  dependencies:
+    "@babel/helper-validator-identifier": "npm:^7.22.20"
+    chalk: "npm:^2.4.2"
+    js-tokens: "npm:^4.0.0"
+  checksum: fbff9fcb2f5539289c3c097d130e852afd10d89a3a08ac0b5ebebbc055cc84a4bcc3dcfed463d488cde12dd0902ef1858279e31d7349b2e8cee43913744bda33
   languageName: node
   linkType: hard
 
@@ -1763,82 +1784,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-darwin-arm64@npm:1.3.100"
+"@swc/core-darwin-arm64@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-darwin-arm64@npm:1.3.101"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-darwin-x64@npm:1.3.100"
+"@swc/core-darwin-x64@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-darwin-x64@npm:1.3.101"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.100"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.101"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@swc/core-linux-arm64-gnu@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.101"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.100"
+"@swc/core-linux-arm64-musl@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.101"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.100"
+"@swc/core-linux-x64-gnu@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.101"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.100"
+"@swc/core-linux-x64-musl@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.101"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.100"
+"@swc/core-win32-arm64-msvc@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.101"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.100"
+"@swc/core-win32-ia32-msvc@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.101"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.100"
+"@swc/core-win32-x64-msvc@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.101"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:1.3.100":
-  version: 1.3.100
-  resolution: "@swc/core@npm:1.3.100"
+"@swc/core@npm:1.3.101":
+  version: 1.3.101
+  resolution: "@swc/core@npm:1.3.101"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.3.100"
-    "@swc/core-darwin-x64": "npm:1.3.100"
-    "@swc/core-linux-arm64-gnu": "npm:1.3.100"
-    "@swc/core-linux-arm64-musl": "npm:1.3.100"
-    "@swc/core-linux-x64-gnu": "npm:1.3.100"
-    "@swc/core-linux-x64-musl": "npm:1.3.100"
-    "@swc/core-win32-arm64-msvc": "npm:1.3.100"
-    "@swc/core-win32-ia32-msvc": "npm:1.3.100"
-    "@swc/core-win32-x64-msvc": "npm:1.3.100"
+    "@swc/core-darwin-arm64": "npm:1.3.101"
+    "@swc/core-darwin-x64": "npm:1.3.101"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.3.101"
+    "@swc/core-linux-arm64-gnu": "npm:1.3.101"
+    "@swc/core-linux-arm64-musl": "npm:1.3.101"
+    "@swc/core-linux-x64-gnu": "npm:1.3.101"
+    "@swc/core-linux-x64-musl": "npm:1.3.101"
+    "@swc/core-win32-arm64-msvc": "npm:1.3.101"
+    "@swc/core-win32-ia32-msvc": "npm:1.3.101"
+    "@swc/core-win32-x64-msvc": "npm:1.3.101"
     "@swc/counter": "npm:^0.1.1"
     "@swc/types": "npm:^0.1.5"
   peerDependencies:
@@ -1847,6 +1876,8 @@ __metadata:
     "@swc/core-darwin-arm64":
       optional: true
     "@swc/core-darwin-x64":
+      optional: true
+    "@swc/core-linux-arm-gnueabihf":
       optional: true
     "@swc/core-linux-arm64-gnu":
       optional: true
@@ -1865,7 +1896,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: d6e873a7c627765991b18bd8d1b0ce1f1d9cf08c451fe78dbbf28dda14d4301cec2689f6bd85e604847d4a20226fd79c272796fef4f28feaca81a20c0f62e8e9
+  checksum: 167e9decb494fbd66b57115eab8fa1ae23c7dae009597812db04df2c8434283ae028adfd4bfe5a6ac15ffbba8f2651c0460da8025d532efc1212ef94d70e271f
   languageName: node
   linkType: hard
 
@@ -1883,119 +1914,119 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons-gulp@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty-commons-gulp@npm:1.23.0"
+"@swissquote/crafty-commons-gulp@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty-commons-gulp@npm:1.24.0"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.23.0"
+    "@swissquote/crafty-commons": "npm:1.24.0"
   peerDependencies:
-    "@swissquote/crafty": 1.23.0
-  checksum: f9f330832c2a38e6ef10f5cee01bc78fd7f6cc28ee8fdeb545f21571e222e4a7b30da0e9ed453b04ac6e099ad0563349c1a7ff480f3b62bdf381a9a58c730844
+    "@swissquote/crafty": 1.24.0
+  checksum: 505ed1e5fb2606017bec65aaa9f56f72e15edc8cdd2c80073276c905df8bd3a4afb28729001513c2ab2f0f74ccb8cbc1dee462fb07199c378be7c71706237414
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty-commons@npm:1.23.0"
+"@swissquote/crafty-commons@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty-commons@npm:1.24.0"
   dependencies:
-    caniuse-lite: "npm:^1.0.30001542"
-  checksum: d2f702efc493035bebeb8a1ade7a46af93499eb576e1cd342d00418a8e33658fa11c4029efc3a1dfea59895116324d864730ce14ecbd0bd7a59093c1ad4022f1
+    caniuse-lite: "npm:^1.0.30001570"
+  checksum: fcc2ab7428edbc53e39480c7742cd3d166b8c3a40c4ae34e50691c7fee4a941c7323bdd94230c53731dba577b1c007a7c247b65ae1e1ad83964a994d5df2def0
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-postcss@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty-preset-postcss@npm:1.23.0"
+"@swissquote/crafty-preset-postcss@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty-preset-postcss@npm:1.24.0"
   dependencies:
-    "@babel/code-frame": "npm:7.22.13"
-    "@swissquote/crafty": "npm:1.23.0"
-    "@swissquote/crafty-commons": "npm:1.23.0"
-    "@swissquote/crafty-commons-gulp": "npm:1.23.0"
-    "@swissquote/crafty-preset-stylelint": "npm:1.23.0"
-    "@swissquote/postcss-swissquote-preset": "npm:1.23.0"
+    "@babel/code-frame": "npm:7.23.5"
+    "@swissquote/crafty": "npm:1.24.0"
+    "@swissquote/crafty-commons": "npm:1.24.0"
+    "@swissquote/crafty-commons-gulp": "npm:1.24.0"
+    "@swissquote/crafty-preset-stylelint": "npm:1.24.0"
+    "@swissquote/postcss-swissquote-preset": "npm:1.24.0"
     mini-css-extract-plugin: "npm:2.7.6"
-    postcss: "npm:8.4.31"
+    postcss: "npm:8.4.32"
     postcss-scss: "npm:4.0.9"
     schema-utils: "npm:4.2.0"
   peerDependencies:
-    "@swissquote/stylelint-config-swissquote": 1.23.0
-  checksum: 04ee7efda69e4d7148c94536c27ce2b0103c52d44168b4b80153cd8570c59c9bba9b4cd8db8b1eece966dfb1a89b3fee939d16f1677be002449fe3a10d4c7281
+    "@swissquote/stylelint-config-swissquote": 1.24.0
+  checksum: bac1a49c48e9d15dd584e80a3364a467fc9c50fc220e79895660c01e7332e064379d6c51938e112b76683f1054cffcbec0858d8a48111f7fe9dc71145a2f42ba
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-prettier@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty-preset-prettier@npm:1.23.0"
-  checksum: 58e222f9e04d1306ddba14556d246eba1f7b922d764c4eb605b9cbf94a43add5dc680a70c9def5342b2761da79ebc1fc3e9921f839e775562f71b0e8d9872d22
+"@swissquote/crafty-preset-prettier@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty-preset-prettier@npm:1.24.0"
+  checksum: 8a1fd91f0403cbc6968526a69bf7d8e8b2eb4ddd4a22053e1a1767c26bad18a295fbab388d4931f6f63c15901e51f5ea6fe2cfe614402ea359b7dcabcd5e70ae
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-stylelint@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty-preset-stylelint@npm:1.23.0"
+"@swissquote/crafty-preset-stylelint@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty-preset-stylelint@npm:1.24.0"
   dependencies:
-    "@babel/code-frame": "npm:7.22.13"
-    "@swissquote/crafty": "npm:1.23.0"
-    "@swissquote/crafty-commons": "npm:1.23.0"
-    "@swissquote/crafty-commons-gulp": "npm:1.23.0"
-    "@swissquote/crafty-preset-prettier": "npm:1.23.0"
-    "@swissquote/stylelint-config-swissquote": "npm:1.23.0"
-    postcss: "npm:8.4.31"
+    "@babel/code-frame": "npm:7.23.5"
+    "@swissquote/crafty": "npm:1.24.0"
+    "@swissquote/crafty-commons": "npm:1.24.0"
+    "@swissquote/crafty-commons-gulp": "npm:1.24.0"
+    "@swissquote/crafty-preset-prettier": "npm:1.24.0"
+    "@swissquote/stylelint-config-swissquote": "npm:1.24.0"
+    postcss: "npm:8.4.32"
     postcss-scss: "npm:4.0.9"
-  checksum: 23f828ab5b33f7c6682e86feab1b103531cfde41ff88298fc40da8d991cae930a091561e1fa3760d745f5f4bf808041da46171a91201b121196f3b2e472257fd
+  checksum: a9d9373f7e0d90eeeff9e924d12ae7f23e1e9fe13d52f0f8754cc5db53c51bf5386b73946669ee8991846cd7d1a3bf0eac4c77734952ae827e15abc6dec43a37
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-runner-gulp@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty-runner-gulp@npm:1.23.0"
+"@swissquote/crafty-runner-gulp@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty-runner-gulp@npm:1.24.0"
   dependencies:
-    "@swissquote/crafty": "npm:1.23.0"
-    "@swissquote/crafty-commons": "npm:1.23.0"
-    "@swissquote/crafty-commons-gulp": "npm:1.23.0"
-  checksum: eb49030285bf32a4fe762aec0ee6781c51bb91fc91538e3bf4bec8044e244d79fde95772a69ca9b7c6032b257b100e5ad4225078a8a1219452563806b2ebdc6e
+    "@swissquote/crafty": "npm:1.24.0"
+    "@swissquote/crafty-commons": "npm:1.24.0"
+    "@swissquote/crafty-commons-gulp": "npm:1.24.0"
+  checksum: 8df062363ca9ce17db86b94e57b2d3d2f4938bdeea593e9f31f16011dae2e8aee55fed26d6f852d6ed5503947276910d58f84a571350959d2bd3744da9f82e77
   languageName: node
   linkType: hard
 
-"@swissquote/crafty@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/crafty@npm:1.23.0"
+"@swissquote/crafty@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/crafty@npm:1.24.0"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.23.0"
+    "@swissquote/crafty-commons": "npm:1.24.0"
     fsevents: "npm:~2.3.3"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     crafty: src/bin.cjs
-  checksum: 79892aae76003a6444b4a837dbef5cef6e0ec450598efbef2e2c4fe0cc7a93b862493c05421aef29deaa04e54b49bb945ed62916dd130d29d3a1c36f87bad35c
+  checksum: 6ec97e3c06dc470461fd5c5940853b26933744c80ae95fda4e4c5267ab5a4f75a0d89262a259e8bbf6af2bb2d4d75a33be5d9d40dc311af128de7022dc9166d2
   languageName: node
   linkType: hard
 
-"@swissquote/postcss-swissquote-preset@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/postcss-swissquote-preset@npm:1.23.0"
+"@swissquote/postcss-swissquote-preset@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/postcss-swissquote-preset@npm:1.24.0"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.23.0"
-    caniuse-lite: "npm:^1.0.30001542"
-    lightningcss: "npm:1.22.0"
-    postcss: "npm:8.4.31"
-  checksum: fe57c36b193dd91c36632114079b1eb3fd69c349ba387b5b5f07a6c1f88377609ffcd99c5f05ca77252ba2ecfffec1d74f616fb7e0692bb2d9c9dd1199e7c47f
+    "@swissquote/crafty-commons": "npm:1.24.0"
+    caniuse-lite: "npm:^1.0.30001570"
+    lightningcss: "npm:1.22.1"
+    postcss: "npm:8.4.32"
+  checksum: dd8da19c39f580b513f03f5a4d17e819c7fe05332e87077edb5342332f3f7c3b0112d5df3ab3037573294e47308aeaceff8257dfe93f804e28064abf8fa9b0e4
   languageName: node
   linkType: hard
 
-"@swissquote/stylelint-config-swissquote@npm:1.23.0":
-  version: 1.23.0
-  resolution: "@swissquote/stylelint-config-swissquote@npm:1.23.0"
+"@swissquote/stylelint-config-swissquote@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@swissquote/stylelint-config-swissquote@npm:1.24.0"
   dependencies:
-    "@swissquote/crafty": "npm:1.23.0"
-    caniuse-lite: "npm:^1.0.30001542"
+    "@swissquote/crafty": "npm:1.24.0"
+    caniuse-lite: "npm:^1.0.30001570"
     postcss-scss: "npm:4.0.9"
   peerDependencies:
-    "@swissquote/crafty-commons": 1.23.0
+    "@swissquote/crafty-commons": 1.24.0
     postcss: ^8.0.0
     stylelint: ^15.0.0
-  checksum: aa997ad25993dfec630663420be92fe0d34a50164c05681ab90175c7e4afaa6936698ac5e9ccae1234ca5b6863e56fe8351e24876e9731114cfafd40d30430e4
+  checksum: 03292d10193661d822f112a04c97fafe51f6419183d4a3d8ca7d73023614a7de31ea7e1d3dd22e77b250946f7a052bdbe60ad3f313fb8acdc17ae8f8d9616af1
   languageName: node
   linkType: hard
 
@@ -2703,10 +2734,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001541, caniuse-lite@npm:^1.0.30001542":
+"caniuse-lite@npm:^1.0.30001541":
   version: 1.0.30001559
   resolution: "caniuse-lite@npm:1.0.30001559"
   checksum: 32377e386580dcb977f552b488e7b56fb489aa0a83f4f43087af6e8fe1fe7fda529bc29e76ef38c0f9c56c964389d322059a0dd7a544859a7b88063f7fc761d7
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001570":
+  version: 1.0.30001571
+  resolution: "caniuse-lite@npm:1.0.30001571"
+  checksum: 632f476e39febbfb5dc91c236981f3d518dc0cf55c42cc2bba431a6b6f4cceae3f9cd74d26312f30e9de65a3cc92ccf80d964ba8de061e25f37b7f0518303dad
   languageName: node
   linkType: hard
 
@@ -3359,10 +3397,10 @@ __metadata:
   resolution: "daux.io@workspace:."
   dependencies:
     "@biomejs/biome": "npm:1.4.1"
-    "@swc/core": "npm:1.3.100"
-    "@swissquote/crafty": "npm:1.23.0"
-    "@swissquote/crafty-preset-postcss": "npm:1.23.0"
-    "@swissquote/crafty-runner-gulp": "npm:1.23.0"
+    "@swc/core": "npm:1.3.101"
+    "@swissquote/crafty": "npm:1.24.0"
+    "@swissquote/crafty-preset-postcss": "npm:1.24.0"
+    "@swissquote/crafty-runner-gulp": "npm:1.24.0"
     flexsearch: "npm:^0.7.0"
     katex: "npm:^0.16.4"
     mermaid: "npm:^10.0.0"
@@ -4775,83 +4813,83 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lightningcss-darwin-arm64@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-darwin-arm64@npm:1.22.0"
+"lightningcss-darwin-arm64@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-darwin-arm64@npm:1.22.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"lightningcss-darwin-x64@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-darwin-x64@npm:1.22.0"
+"lightningcss-darwin-x64@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-darwin-x64@npm:1.22.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"lightningcss-freebsd-x64@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-freebsd-x64@npm:1.22.0"
+"lightningcss-freebsd-x64@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-freebsd-x64@npm:1.22.1"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"lightningcss-linux-arm-gnueabihf@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-linux-arm-gnueabihf@npm:1.22.0"
+"lightningcss-linux-arm-gnueabihf@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-linux-arm-gnueabihf@npm:1.22.1"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"lightningcss-linux-arm64-gnu@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-linux-arm64-gnu@npm:1.22.0"
+"lightningcss-linux-arm64-gnu@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-linux-arm64-gnu@npm:1.22.1"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"lightningcss-linux-arm64-musl@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-linux-arm64-musl@npm:1.22.0"
+"lightningcss-linux-arm64-musl@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-linux-arm64-musl@npm:1.22.1"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"lightningcss-linux-x64-gnu@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-linux-x64-gnu@npm:1.22.0"
+"lightningcss-linux-x64-gnu@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-linux-x64-gnu@npm:1.22.1"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"lightningcss-linux-x64-musl@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-linux-x64-musl@npm:1.22.0"
+"lightningcss-linux-x64-musl@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-linux-x64-musl@npm:1.22.1"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"lightningcss-win32-x64-msvc@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss-win32-x64-msvc@npm:1.22.0"
+"lightningcss-win32-x64-msvc@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss-win32-x64-msvc@npm:1.22.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"lightningcss@npm:1.22.0":
-  version: 1.22.0
-  resolution: "lightningcss@npm:1.22.0"
+"lightningcss@npm:1.22.1":
+  version: 1.22.1
+  resolution: "lightningcss@npm:1.22.1"
   dependencies:
     detect-libc: "npm:^1.0.3"
-    lightningcss-darwin-arm64: "npm:1.22.0"
-    lightningcss-darwin-x64: "npm:1.22.0"
-    lightningcss-freebsd-x64: "npm:1.22.0"
-    lightningcss-linux-arm-gnueabihf: "npm:1.22.0"
-    lightningcss-linux-arm64-gnu: "npm:1.22.0"
-    lightningcss-linux-arm64-musl: "npm:1.22.0"
-    lightningcss-linux-x64-gnu: "npm:1.22.0"
-    lightningcss-linux-x64-musl: "npm:1.22.0"
-    lightningcss-win32-x64-msvc: "npm:1.22.0"
+    lightningcss-darwin-arm64: "npm:1.22.1"
+    lightningcss-darwin-x64: "npm:1.22.1"
+    lightningcss-freebsd-x64: "npm:1.22.1"
+    lightningcss-linux-arm-gnueabihf: "npm:1.22.1"
+    lightningcss-linux-arm64-gnu: "npm:1.22.1"
+    lightningcss-linux-arm64-musl: "npm:1.22.1"
+    lightningcss-linux-x64-gnu: "npm:1.22.1"
+    lightningcss-linux-x64-musl: "npm:1.22.1"
+    lightningcss-win32-x64-msvc: "npm:1.22.1"
   dependenciesMeta:
     lightningcss-darwin-arm64:
       optional: true
@@ -4871,7 +4909,7 @@ __metadata:
       optional: true
     lightningcss-win32-x64-msvc:
       optional: true
-  checksum: 0054146513f960a2afee382dff23efbfb0c88ae4b667a45ad3c424598e67093efbdc081073a84ba728d00d4d298b10fbad480bac0cd6282af54fc1ede0ac3764
+  checksum: b1e5f740b729bb786222b2bed1e87ef059c30bf31998aea284a51de6328d0ff51345713574a721f2b6e7fbb5893721fae9754d029fc0642150adc3548862c8e5
   languageName: node
   linkType: hard
 
@@ -5577,12 +5615,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.1.12, nanoid@npm:^3.1.31, nanoid@npm:^3.3.6":
+"nanoid@npm:^3.1.12, nanoid@npm:^3.1.31":
   version: 3.3.6
   resolution: "nanoid@npm:3.3.6"
   bin:
     nanoid: bin/nanoid.cjs
   checksum: 606b355960d0fcbe3d27924c4c52ef7d47d3b57208808ece73279420d91469b01ec1dce10fae512b6d4a8c5a5432b352b228336a8b2202a6ea68e67fa348e2ee
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^3.3.7":
+  version: 3.3.7
+  resolution: "nanoid@npm:3.3.7"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: e3fb661aa083454f40500473bb69eedb85dc160e763150b9a2c567c7e9ff560ce028a9f833123b618a6ea742e311138b591910e795614a629029e86e180660f3
   languageName: node
   linkType: hard
 
@@ -5960,14 +6007,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.31":
-  version: 8.4.31
-  resolution: "postcss@npm:8.4.31"
+"postcss@npm:8.4.32":
+  version: 8.4.32
+  resolution: "postcss@npm:8.4.32"
   dependencies:
-    nanoid: "npm:^3.3.6"
+    nanoid: "npm:^3.3.7"
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
-  checksum: 748b82e6e5fc34034dcf2ae88ea3d11fd09f69b6c50ecdd3b4a875cfc7cdca435c958b211e2cb52355422ab6fccb7d8f2f2923161d7a1b281029e4a913d59acf
+  checksum: 39308a9195fa34d4dbdd7b58a896cff0c7809f84f7a4ac1b95b68ca86c9138a395addff33075668ed3983d41b90aac05754c445237a9365eb1c3a5602ebd03ad
   languageName: node
   linkType: hard
 
