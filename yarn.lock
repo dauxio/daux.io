@@ -1542,16 +1542,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@biomejs/biome@npm:1.4.1"
+"@biomejs/biome@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/biome@npm:1.5.1"
   dependencies:
-    "@biomejs/cli-darwin-arm64": "npm:1.4.1"
-    "@biomejs/cli-darwin-x64": "npm:1.4.1"
-    "@biomejs/cli-linux-arm64": "npm:1.4.1"
-    "@biomejs/cli-linux-x64": "npm:1.4.1"
-    "@biomejs/cli-win32-arm64": "npm:1.4.1"
-    "@biomejs/cli-win32-x64": "npm:1.4.1"
+    "@biomejs/cli-darwin-arm64": "npm:1.5.1"
+    "@biomejs/cli-darwin-x64": "npm:1.5.1"
+    "@biomejs/cli-linux-arm64": "npm:1.5.1"
+    "@biomejs/cli-linux-arm64-musl": "npm:1.5.1"
+    "@biomejs/cli-linux-x64": "npm:1.5.1"
+    "@biomejs/cli-linux-x64-musl": "npm:1.5.1"
+    "@biomejs/cli-win32-arm64": "npm:1.5.1"
+    "@biomejs/cli-win32-x64": "npm:1.5.1"
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -1559,7 +1561,11 @@ __metadata:
       optional: true
     "@biomejs/cli-linux-arm64":
       optional: true
+    "@biomejs/cli-linux-arm64-musl":
+      optional: true
     "@biomejs/cli-linux-x64":
+      optional: true
+    "@biomejs/cli-linux-x64-musl":
       optional: true
     "@biomejs/cli-win32-arm64":
       optional: true
@@ -1567,48 +1573,62 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 11d3a6d0ac0e31c6f5e5e33a46a77b4e1f0846a1d6c023b597a472266e911ce5ad0513b1946eedc37d31547785909c87110e803c69f564a36d4ff045d01ed243
+  checksum: 7f1758576746e6c532a041f16dc891825461e85424861df41c72f9ad5a1ec429dda2ed10ee0659ead34aa10bdd92a9f4a87408def6dc9443b92479c01d624a83
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@biomejs/cli-darwin-arm64@npm:1.4.1"
+"@biomejs/cli-darwin-arm64@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/cli-darwin-arm64@npm:1.5.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@biomejs/cli-darwin-x64@npm:1.4.1"
+"@biomejs/cli-darwin-x64@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/cli-darwin-x64@npm:1.5.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@biomejs/cli-linux-arm64@npm:1.4.1"
-  conditions: os=linux & cpu=arm64
+"@biomejs/cli-linux-arm64-musl@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:1.5.1"
+  conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@biomejs/cli-linux-x64@npm:1.4.1"
-  conditions: os=linux & cpu=x64
+"@biomejs/cli-linux-arm64@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/cli-linux-arm64@npm:1.5.1"
+  conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@biomejs/cli-win32-arm64@npm:1.4.1"
+"@biomejs/cli-linux-x64-musl@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/cli-linux-x64-musl@npm:1.5.1"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-linux-x64@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/cli-linux-x64@npm:1.5.1"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@biomejs/cli-win32-arm64@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/cli-win32-arm64@npm:1.5.1"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@biomejs/cli-win32-x64@npm:1.4.1"
+"@biomejs/cli-win32-x64@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@biomejs/cli-win32-x64@npm:1.5.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -3396,7 +3416,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "daux.io@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:1.4.1"
+    "@biomejs/biome": "npm:1.5.1"
     "@swc/core": "npm:1.3.102"
     "@swissquote/crafty": "npm:1.24.0"
     "@swissquote/crafty-preset-postcss": "npm:1.24.0"
