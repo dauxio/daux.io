@@ -8,7 +8,7 @@ use Todaymade\Daux\Tree\Root;
 
 class AdmonitionRendererTest extends TestCase
 {
-    public function provideAdmonitionCases()
+    public static function provideAdmonitionCases()
     {
         return [
             'Note with content before and after' => [

@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 class DauxHelperTest extends TestCase
 {
-    public function providerGetFilenames()
+    public static function providerGetFilenames()
     {
         return [
             [['Page.html', 'Page'], 'Page.html'],

@@ -14,7 +14,7 @@ class ConfigTest extends TestCase
         $this->assertEquals('test', $config->getHTML()['edit_on']);
     }
 
-    public function providerEditOn()
+    public static function providerEditOn()
     {
         $github_result = ['name' => 'GitHub', 'basepath' => 'https://github.com/dauxio/daux.io/blob/master/docs'];
 

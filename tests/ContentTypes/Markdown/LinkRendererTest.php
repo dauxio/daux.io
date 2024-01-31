@@ -9,7 +9,7 @@ use Todaymade\Daux\Tree\Root;
 
 class LinkRendererTest extends TestCase
 {
-    public function providerRenderLink()
+    public static function providerRenderLink()
     {
         return [
             // /Widgets/Page_with_#_hash

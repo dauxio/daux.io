@@ -38,7 +38,7 @@ class TranslateTest extends TestCase
         return $tree;
     }
 
-    public function translateDataProvider()
+    public static function translateDataProvider()
     {
         return [
             ['Previous', 'en'],

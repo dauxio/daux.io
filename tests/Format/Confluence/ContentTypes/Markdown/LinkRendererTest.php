@@ -9,7 +9,7 @@ use Todaymade\Daux\Tree\Root;
 
 class LinkRendererTest extends TestCase
 {
-    public function providerRenderLink()
+    public static function providerRenderLink()
     {
         $body = '<ac:plain-text-link-body><![CDATA[Link]]></ac:plain-text-link-body></ac:link>';
 

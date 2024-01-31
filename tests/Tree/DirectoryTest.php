@@ -6,7 +6,7 @@ use Todaymade\Daux\ConfigBuilder;
 
 class DirectoryTest extends TestCase
 {
-    public function providerSort()
+    public static function providerSort()
     {
         return [
             [['005_Fifth', '01_First'], ['01_First', '005_Fifth']],

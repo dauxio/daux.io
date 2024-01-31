@@ -20,7 +20,7 @@ class ContentTest extends TestCase
         return $obj;
     }
 
-    public function providerTestAttributes()
+    public static function providerTestAttributes()
     {
         return [
             ['This is content', [], 'This is content'],

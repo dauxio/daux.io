@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 class DetailsToExpandTest extends TestCase
 {
-    public function provideExpandData()
+    public static function provideExpandData()
     {
         return [
             'Simple conversion' => [

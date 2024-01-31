@@ -8,7 +8,7 @@ use Todaymade\Daux\Tree\Root;
 
 class ContentTypeTest extends TestCase
 {
-    public function providerContent()
+    public static function providerContent()
     {
         return [
             'Render Mermaid and LaTex' => [

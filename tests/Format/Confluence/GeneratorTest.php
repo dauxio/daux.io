@@ -23,7 +23,7 @@ class GeneratorTest extends TestCase
 
     public static $contentDummy = 'The content will come very soon !';
 
-    public function configurationTestProvider()
+    public static function configurationTestProvider()
     {
         return [
             [
@@ -85,7 +85,7 @@ class GeneratorTest extends TestCase
         $output = new class() extends Output {
             protected $output = '';
 
-            protected function doWrite(string $message, bool $newline)
+            protected function doWrite(string $message, bool $newline): void
             {
                 $this->output .= $message;
 

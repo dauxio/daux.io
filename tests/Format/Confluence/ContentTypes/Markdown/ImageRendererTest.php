@@ -8,7 +8,7 @@ use Todaymade\Daux\Tree\Root;
 
 class ImageRendererTest extends TestCase
 {
-    public function provideImageCases()
+    public static function provideImageCases()
     {
         return [
             'External image' => [

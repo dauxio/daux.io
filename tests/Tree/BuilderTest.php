@@ -7,7 +7,7 @@ use Todaymade\Daux\ConfigBuilder;
 
 class BuilderTest extends TestCase
 {
-    public function providerRemoveSorting()
+    public static function providerRemoveSorting()
     {
         return [
             ['01_before', 'before'],
@@ -80,7 +80,7 @@ class BuilderTest extends TestCase
         return new Root($config);
     }
 
-    public function providerCreatePage()
+    public static function providerCreatePage()
     {
         return [
             // File, Url, Uri, Title
