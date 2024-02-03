@@ -13,7 +13,7 @@
     "mermaid": "^10.0.0",
     "postcss-page-break": "^3.0.4",
     "preact": "^10.0.5",
-    "swc-loader": "0.2.3",
+    "swc-loader": "0.2.4",
     "testcafe": "^3.0.0",
     "webpack": "^5.82.1",
     "webpack-cli": "^5.1.1"
@@ -27,5 +27,5 @@
     "lint:js": "yarn lint:js:format && yarn lint:js:check",
     "lint:css": "crafty cssLint --fix --preset recommended themes/daux_singlepage/scss/*.scss themes/daux/scss/*.scss"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.1.0"
 }
