@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "@biomejs/biome": "1.5.3",
-    "@swc/core": "1.3.107",
+    "@swc/core": "1.4.0",
     "@swissquote/crafty": "1.24.0",
     "@swissquote/crafty-preset-postcss": "1.24.0",
     "@swissquote/crafty-runner-gulp": "1.24.0",
@@ -13,7 +13,7 @@
     "mermaid": "^10.0.0",
     "postcss-page-break": "^3.0.4",
     "preact": "^10.0.5",
-    "swc-loader": "0.2.4",
+    "swc-loader": "0.2.6",
     "testcafe": "^3.0.0",
     "webpack": "^5.82.1",
     "webpack-cli": "^5.1.1"
