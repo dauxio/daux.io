@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "@biomejs/biome": "1.5.3",
-    "@swc/core": "1.4.0",
+    "@swc/core": "1.4.1",
     "@swissquote/crafty": "1.24.0",
     "@swissquote/crafty-preset-postcss": "1.24.0",
     "@swissquote/crafty-runner-gulp": "1.24.0",
