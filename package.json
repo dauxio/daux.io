@@ -9,7 +9,7 @@
     "@swissquote/crafty-preset-postcss": "1.25.0",
     "@swissquote/crafty-runner-gulp": "1.25.0",
     "flexsearch": "^0.7.0",
-    "katex": "^0.16.4",
+    "katex": "^0.16.10",
     "mermaid": "^10.0.0",
     "postcss-page-break": "^3.0.4",
     "preact": "^10.0.5",
