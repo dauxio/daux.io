@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  frontend:
+    name: Frontend tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@2.31.1
+      with:
+        php-version: '8.1'
+        extensions: mbstring, dom, intl, iconv
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Generate documentation
+      run: bin/daux generate
+
+    - name: Generate documentation in single file
+      run: bin/daux generate --format=html-file --destination=static-single
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4.0.3
+      with:
+        node-version: '20.x'
+        cache: 'yarn'
+
+    - name: yarn install
+      run: yarn install
+
+    - name: yarn build
+      run: yarn build
+
+    - name: yarn test
+      run: yarn test

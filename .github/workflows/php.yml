@@ -1,11 +1,8 @@
-name: CI
+name: PHP
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-      types: [opened, synchronize, reopened]
+  - push
+  - pull_request
 
 jobs:
   build:
@@ -48,81 +45,3 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
-
-  frontend:
-    name: Frontend tests
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Setup PHP
-      uses: shivammathur/setup-php@2.31.1
-      with:
-        php-version: '8.1'
-        extensions: mbstring, dom, intl, iconv
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-
-    - name: Generate documentation
-      run: bin/daux generate
-
-    - name: Generate documentation in single file
-      run: bin/daux generate --format=html-file --destination=static-single
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4.0.3
-      with:
-        node-version: '20.x'
-        cache: 'yarn'
-
-    - name: yarn install
-      run: yarn install
-
-    - name: yarn build
-      run: yarn build
-
-    - name: yarn test
-      run: yarn test
-
-  sonarcloud:
-    name: "SonarCloud"
-    runs-on: ubuntu-latest
-    steps:
-
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: Setup PHP
-      uses: shivammathur/setup-php@2.31.1
-      with:
-        php-version: 8.1
-        extensions: mbstring, dom, intl, iconv
-        coverage: xdebug
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-
-    - name: Install tools
-      run: ./scripts/install_tools.sh
-
-    - name: Run test suite
-      run: composer run-script test:coverage
-
-    - name: Fix code coverage paths
-      run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
-
-    ## Set the latest tag to use to detect "new code" periods
-    - id: project_version
-      run: echo "project_version=$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n1)" >> $GITHUB_OUTPUT
-
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@v2.3
-      with:
-        args: >
-          -Dsonar.projectVersion=`${{ steps.project_version.outputs.project_version  }}`
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
