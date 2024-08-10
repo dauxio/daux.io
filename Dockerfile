@@ -1,6 +1,6 @@
-FROM composer:2.7.1 AS composer
+FROM composer:2.7.7 AS composer
 
-FROM php:8.3.3
+FROM php:8.3.10
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libicu-dev git unzip \

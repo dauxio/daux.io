@@ -3,11 +3,11 @@
   "version": "0.3.0",
   "private": true,
   "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@swc/core": "1.4.2",
-    "@swissquote/crafty": "1.25.0",
-    "@swissquote/crafty-preset-postcss": "1.25.0",
-    "@swissquote/crafty-runner-gulp": "1.25.0",
+    "@biomejs/biome": "1.8.3",
+    "@swc/core": "1.7.10",
+    "@swissquote/crafty": "1.26.0",
+    "@swissquote/crafty-preset-postcss": "1.26.0",
+    "@swissquote/crafty-runner-gulp": "1.26.0",
     "flexsearch": "^0.7.0",
     "katex": "^0.16.4",
     "mermaid": "^10.0.0",
@@ -27,5 +27,5 @@
     "lint:js": "yarn lint:js:format && yarn lint:js:check",
     "lint:css": "crafty cssLint --fix --preset recommended themes/daux_singlepage/scss/*.scss themes/daux/scss/*.scss"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.4.0"
 }
