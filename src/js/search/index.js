@@ -1,4 +1,4 @@
-import { Document } from "flexsearch";
+import Document from "flexsearch/dist/module/document";
 import * as preact from "preact";
 import Search from "./Search";
 
