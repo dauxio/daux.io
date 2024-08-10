@@ -92,7 +92,7 @@ class SearchEngine {
             // Start loading index once the user types text in the field, not before
             this.loadData();
 
-            if (parseInt(event.keyCode, 10) === 13) {
+            if (Number.parseInt(event.keyCode, 10) === 13) {
                 this.loadData().then(() => {
                     this.displaySearch();
                 });
