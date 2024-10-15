@@ -14,7 +14,7 @@ class ClearCache extends SymfonyCommand
             ->setDescription('Clears the cache');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln("Clearing cache at '" . Cache::getDirectory() . "'");
         Cache::clear();

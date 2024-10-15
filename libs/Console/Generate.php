@@ -50,7 +50,7 @@ class Generate extends DauxCommand
         return $builder;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         // When used as a default command,
         // Symfony doesn't read the default parameters.
