@@ -21,7 +21,7 @@ class Serve extends DauxCommand
             ->addOption('port', null, InputOption::VALUE_REQUIRED, 'The port to serve on', 8085);
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $host = $input->getOption('host');
         $port = $input->getOption('port');
