@@ -16,7 +16,7 @@
     "swc-loader": "0.2.6",
     "testcafe": "^3.0.0",
     "webpack": "^5.82.1",
-    "webpack-cli": "^5.1.1"
+    "webpack-cli": "^6.0.0"
   },
   "scripts": {
     "build": "./build.sh",
