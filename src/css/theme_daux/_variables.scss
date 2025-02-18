@@ -78,7 +78,7 @@
     --hero-button-block-background: var(--sidebar-link-active-background);
     --hero-button-primary-border-color: var(--color-secondary);
     --hero-button-primary-color: var(--sidebar-background);
-    --hero-buttom-primary-background: var(--color-secondary);
+    --hero-button-primary-background: var(--color-secondary);
     --hero-button-secondary-border-color: var(--color-secondary);
     --hero-button-secondary-color: var(--color-secondary);
     --hero-button-secondary-background: var(--sidebar-link-active-background);
@@ -192,7 +192,7 @@
     --hero-button-block-background: var(--color-secondary);
     --hero-button-primary-border-color: var(--color-primary);
     --hero-button-primary-color: var(--color-primary);
-    --hero-buttom-primary-background: var(--color-secondary);
+    --hero-button-primary-background: var(--color-secondary);
     --hero-button-secondary-border-color: var(--color-secondary);
     --hero-button-secondary-color: var(--color-primary);
     --hero-button-secondary-background: var(--color-secondary);
@@ -233,9 +233,3 @@
 
     --details-bg-color: #1a1a1a;
 }
-
-/*
- * Breakpoints
- * ===================================================================== */
-@custom-media --viewport-small (width < 850px);
-@custom-media --viewport-large (width >= 850px);
