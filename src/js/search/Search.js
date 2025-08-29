@@ -98,7 +98,7 @@ export default class Search extends preact.Component {
         }
 
         results = found.filter(
-            (item, itemNumber) =>
+            (_item, itemNumber) =>
                 itemNumber >= start && itemNumber < settings.show + start,
         );
 

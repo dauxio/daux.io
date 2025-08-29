@@ -55,7 +55,7 @@ module.exports = {
             watch: ["src/css/**/*.scss"],
         },
     },
-    postcss(crafty, config, bundle) {
+    postcss(_crafty, config, _bundle) {
         // Add postcss-page-break
         config.processor("postcss-page-break").before("autoprefixer");
     },
