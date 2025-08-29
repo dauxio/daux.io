@@ -22,12 +22,6 @@ module.exports = {
             "@swissquote/swissquote/react/no-deprecated": 0,
         },
     },
-    stylelint: {
-        rules: {
-            "swissquote/no-type-outside-scope": null,
-            "plugin/no-unsupported-browser-features": null,
-        },
-    },
     css: {
         theme_blue: {
             source: "src/css/theme_daux/theme-blue.scss",

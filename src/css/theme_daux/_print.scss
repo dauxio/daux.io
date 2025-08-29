@@ -1,3 +1,4 @@
+/* stylelint-disable swissquote/no-type-outside-scope */
 * {
     text-shadow: none !important;
     color: #000 !important; // Black prints faster: h5bp.com/s
@@ -11,19 +12,19 @@ h3,
 h4,
 h5,
 h6 {
-    break-after: avoid; // stylelint-disable-line plugin/no-unsupported-browser-features
-    break-before: auto; // stylelint-disable-line plugin/no-unsupported-browser-features
+    break-after: avoid;
+    break-before: auto;
 }
 
 pre,
 blockquote {
     border: 1px solid #999;
     font-style: italic;
-    break-inside: avoid; // stylelint-disable-line plugin/no-unsupported-browser-features
+    break-inside: avoid;
 }
 
 img {
-    break-inside: avoid; // stylelint-disable-line plugin/no-unsupported-browser-features
+    break-inside: avoid;
     border: 0; /* Some browsers like to show a border around images. Switch it off */
 }
 
@@ -50,7 +51,7 @@ q {
 
 .PageBreak {
     display: block;
-    break-before: always; // stylelint-disable-line plugin/no-unsupported-browser-features
+    break-before: always;
 }
 
 .NoPrint {

@@ -5,9 +5,9 @@
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@swc/core": "1.7.22",
-    "@swissquote/crafty": "1.26.0",
-    "@swissquote/crafty-preset-postcss": "1.26.0",
-    "@swissquote/crafty-runner-gulp": "1.26.0",
+    "@swissquote/crafty": "1.28.1",
+    "@swissquote/crafty-preset-postcss": "1.28.1",
+    "@swissquote/crafty-runner-gulp": "1.28.1",
     "flexsearch": "^0.7.0",
     "katex": "^0.16.4",
     "mermaid": "^11.0.0",
@@ -25,7 +25,7 @@
     "lint:js:format": "biome format src *.js",
     "lint:js:check": "biome check src *.js",
     "lint:js": "yarn lint:js:format && yarn lint:js:check",
-    "lint:css": "crafty cssLint --fix --preset recommended themes/daux_singlepage/scss/*.scss themes/daux/scss/*.scss"
+    "lint:css": "crafty cssLint --fix --preset recommended src/css/theme_daux_singlepage/*.scss src/css/theme_daux/*.scss"
   },
   "packageManager": "yarn@4.4.1"
 }

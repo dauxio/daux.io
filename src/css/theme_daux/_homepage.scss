@@ -1,3 +1,4 @@
+/* stylelint-disable swissquote/no-type-outside-scope */
 /* ============================================================================
 Homepage
 ============================================================================ */
@@ -5,11 +6,10 @@ Homepage
 .Container {
     margin-right: auto;
     margin-left: auto;
-
-    &--inner {
-        width: 80%;
-        margin: 0 auto;
-    }
+}
+.Container--inner {
+    width: 80%;
+    margin: 0 auto;
 }
 
 @media (min-width: 1200px) {
@@ -200,27 +200,27 @@ Homepage
             float: right;
         }
     }
+}
 
-    &__links {
-        margin: 40px 0;
+.HomepageFooter__links {
+    margin: 40px 0;
 
-        li a {
-            line-height: 32px;
-            font-size: 16px;
-            font-family: var(--font-family-heading);
-            font-weight: 700;
-        }
-
-        li a:hover {
-            text-decoration: underline;
-        }
+    li a {
+        line-height: 32px;
+        font-size: 16px;
+        font-family: var(--font-family-heading);
+        font-weight: 700;
     }
 
-    &__twitter {
-        margin: 40px 0;
+    li a:hover {
+        text-decoration: underline;
     }
+}
 
-    .Twitter__button {
-        margin-bottom: 20px;
-    }
+.HomepageFooter__twitter {
+    margin: 40px 0;
+}
+
+.HomepageFooter .Twitter__button {
+    margin-bottom: 20px;
 }

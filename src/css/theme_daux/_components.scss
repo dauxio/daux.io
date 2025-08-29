@@ -1,3 +1,4 @@
+/* stylelint-disable swissquote/no-type-outside-scope */
 /* ============================================================================
 Base tags
 ============================================================================ */
@@ -5,15 +6,15 @@ Base tags
 a {
     text-decoration: none;
     color: var(--link-color);
+}
 
-    &.Link--external:after {
-        content: " "
-            url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
-    }
+a.Link--external:after {
+    content: " "
+        url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
+}
 
-    &.Link--broken {
-        color: red;
-    }
+a.Link--broken {
+    color: red;
 }
 
 p {
@@ -35,30 +36,30 @@ Components
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    touch-action: manipulation; // stylelint-disable-line plugin/no-unsupported-browser-features
+    touch-action: manipulation;
     cursor: pointer;
     background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
     border: 1px solid transparent;
     white-space: nowrap;
     border-radius: 4px;
     margin-bottom: 0;
+}
 
-    &--small {
-        font-size: 12px;
-        line-height: 1.5;
-        border-radius: 3px;
-    }
+.Button--small {
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
 
-    &--default {
+.Button--default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+
+    &.Button--active {
         color: #333;
-        background-color: #fff;
-        border-color: #ccc;
-
-        &.Button--active {
-            color: #333;
-            background-color: #e6e6e6;
-            border-color: #adadad;
-        }
+        background-color: #e6e6e6;
+        border-color: #adadad;
     }
 }
 
@@ -133,47 +134,47 @@ Components
 .Nav {
     margin: 0;
     padding: 0;
+}
 
-    &__arrow {
-        display: inline-block;
-        position: relative;
-        width: 16px;
-        margin-left: -16px;
+.Nav__arrow {
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    margin-left: -16px;
 
-        &:before {
-            position: absolute;
-            display: block;
-            content: "";
-            margin: -0.25em 0 0 -0.4em;
-            left: 50%;
-            top: 50%;
-            width: 0.5em;
-            height: 0.5em;
-            border-right: 0.15em solid var(--sidebar-link-arrow-color);
-            border-top: 0.15em solid var(--sidebar-link-arrow-color);
-            transform: rotate(45deg);
-            transition-duration: 0.3s;
-        }
+    &:before {
+        position: absolute;
+        display: block;
+        content: "";
+        margin: -0.25em 0 0 -0.4em;
+        left: 50%;
+        top: 50%;
+        width: 0.5em;
+        height: 0.5em;
+        border-right: 0.15em solid var(--sidebar-link-arrow-color);
+        border-top: 0.15em solid var(--sidebar-link-arrow-color);
+        transform: rotate(45deg);
+        transition-duration: 0.3s;
+    }
+}
+
+.Nav__item {
+    display: block;
+
+    a {
+        display: block;
+        margin: 0;
+        padding: 6px 15px 6px 20px;
+        font-family: var(--font-family-heading);
+        font-weight: 400;
+        color: var(--sidebar-link-color);
+        text-shadow: none;
     }
 
-    &__item {
-        display: block;
-
-        a {
-            display: block;
-            margin: 0;
-            padding: 6px 15px 6px 20px;
-            font-family: var(--font-family-heading);
-            font-weight: 400;
-            color: var(--sidebar-link-color);
-            text-shadow: none;
-        }
-
-        a:hover {
-            color: var(--sidebar-link-color);
-            text-shadow: none;
-            background-color: var(--sidebar-link-hover-background);
-        }
+    a:hover {
+        color: var(--sidebar-link-color);
+        text-shadow: none;
+        background-color: var(--sidebar-link-hover-background);
     }
 }
 
@@ -205,19 +206,17 @@ Components
     }
 }
 
-.Nav__item {
-    &--open,
-    &--active {
-        > a {
-            background-color: var(--sidebar-link-active-background);
-        }
+.Nav__item--open,
+.Nav__item--active {
+    > a {
+        background-color: var(--sidebar-link-active-background);
     }
+}
 
-    &--open {
-        > a > .Nav__arrow:before {
-            margin-left: -0.25em;
-            transform: rotate(135deg);
-        }
+.Nav__item--open {
+    > a > .Nav__arrow:before {
+        margin-left: -0.25em;
+        transform: rotate(135deg);
     }
 }
 
@@ -232,11 +231,6 @@ Components
         margin: 0;
         padding: 0;
         line-height: 57px;
-    }
-
-    &--separator {
-        height: 0.6em;
-        fill: currentColor;
     }
 
     a {
@@ -256,6 +250,11 @@ Components
     }
 }
 
+.Page__header--separator {
+    height: 0.6em;
+    fill: currentColor;
+}
+
 .Links {
     padding: 0 20px;
 
@@ -269,39 +268,42 @@ Components
 
 .Twitter {
     padding: 0 20px;
-    font: normal normal normal 11px/18px "Helvetica Neue", Arial, sans-serif;
+    font:
+        normal normal normal 11px/18px "Helvetica Neue",
+        Arial,
+        sans-serif;
+}
 
-    &__button {
-        text-decoration: none;
+.Twitter__button {
+    text-decoration: none;
 
+    display: inline-block;
+    vertical-align: top;
+
+    position: relative;
+    height: 20px;
+    box-sizing: border-box;
+    padding: 1px 8px 1px 6px;
+    background-color: #1b95e0;
+    color: #fff;
+    border-radius: 3px;
+    font-weight: 500;
+    cursor: pointer;
+
+    .Twitter__button__label {
         display: inline-block;
         vertical-align: top;
 
+        margin-left: 3px;
+        white-space: nowrap;
+    }
+
+    svg {
         position: relative;
-        height: 20px;
-        box-sizing: border-box;
-        padding: 1px 8px 1px 6px;
-        background-color: #1b95e0;
-        color: #fff;
-        border-radius: 3px;
-        font-weight: 500;
-        cursor: pointer;
-
-        .Twitter__button__label {
-            display: inline-block;
-            vertical-align: top;
-
-            margin-left: 3px;
-            white-space: nowrap;
-        }
-
-        svg {
-            position: relative;
-            top: 2px;
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-        }
+        top: 2px;
+        display: inline-block;
+        width: 14px;
+        height: 14px;
     }
 }
 
@@ -312,45 +314,45 @@ Components
 
 .Search {
     position: relative;
+}
 
-    &__field {
-        display: block;
-        width: 100%;
-        height: 34px;
-        padding: 6px 30px 6px 20px;
-        color: var(--search-field-color);
-        border-width: 0 0 1px;
-        border-bottom: 1px solid var(--search-field-border-color);
-        background: var(--search-field-background);
-        transition: border-color ease-in-out 0.15s;
+.Search__field {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 30px 6px 20px;
+    color: var(--search-field-color);
+    border-width: 0 0 1px;
+    border-bottom: 1px solid var(--search-field-border-color);
+    background: var(--search-field-background);
+    transition: border-color ease-in-out 0.15s;
 
-        &:focus {
-            border-color: var(--search-field-hover-border-color);
-            outline: 0; // stylelint-disable-line plugin/no-unsupported-browser-features
-        }
+    &:focus {
+        border-color: var(--search-field-hover-border-color);
+        outline: 0;
     }
+}
 
-    &__icon {
-        position: absolute;
-        right: 9px;
-        top: 9px;
-        width: 16px;
-        height: 16px;
-        cursor: pointer;
-        fill: currentcolor;
-    }
+.Search__icon {
+    position: absolute;
+    right: 9px;
+    top: 9px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    fill: currentcolor;
 }
 
 .Navbar .Search {
     float: right;
     margin: 8px 20px;
+}
 
-    &__field {
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-        border-width: 0;
-        border-radius: 4px;
-        padding-left: 10px;
-    }
+.Navbar .Search__field {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    border-width: 0;
+    border-radius: 4px;
+    padding-left: 10px;
 }
 
 .TableOfContentsContainer {
@@ -358,19 +360,19 @@ Components
     min-width: 300px;
     max-width: 25%;
     padding-left: 1em;
+}
 
-    &__title {
-        margin-bottom: 0 !important;
-    }
+.TableOfContentsContainer__title {
+    margin-bottom: 0 !important;
+}
 
-    &__content {
-        border: 1px solid var(--toc--border-color);
-        border-width: 4px 2px 2px 6px;
-    }
+.TableOfContentsContainer__content {
+    border: 1px solid var(--toc--border-color);
+    border-width: 4px 2px 2px 6px;
+}
 
-    &__content > .TableOfContents > li + li {
-        border-top: 1px solid var(--toc--inner-border-color);
-    }
+.TableOfContentsContainer__content > .TableOfContents > li + li {
+    border-top: 1px solid var(--toc--inner-border-color);
 }
 
 ul.TableOfContents {
@@ -421,14 +423,13 @@ ul.TableOfContents {
             background-color: var(--pager-hover-background-color);
         }
     }
+}
+.Pager--next > a {
+    float: right;
+}
 
-    &--next > a {
-        float: right;
-    }
-
-    &--prev > a {
-        float: left;
-    }
+.Pager--prev > a {
+    float: left;
 }
 
 .Checkbox {

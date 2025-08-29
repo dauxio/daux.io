@@ -1,9 +1,9 @@
 :root {
-    --font-family-text: -apple-system, ".SFNSText-Regular", "San Francisco",
-        "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial,
-        sans-serif;
-    --font-family-monospace: Monaco, Menlo, Consolas, "Lucida Console",
-        "Courier New", monospace;
+    --font-family-text:
+        -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto",
+        "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+    --font-family-monospace:
+        Monaco, Menlo, Consolas, "Lucida Console", "Courier New", monospace;
     --font-family-heading: var(--font-family-text);
 
     --color-info: #00b8d4;

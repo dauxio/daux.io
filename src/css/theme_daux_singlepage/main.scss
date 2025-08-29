@@ -1,3 +1,4 @@
+/* stylelint-disable swissquote/no-type-outside-scope */
 // Core variables and mixins
 @import "vendor/highlight.scss";
 @import "_variables.scss";
@@ -15,7 +16,7 @@ body {
 }
 
 body {
-    text-rendering: optimizeLegibility; // stylelint-disable-line plugin/no-unsupported-browser-features
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: var(--font-family-text);

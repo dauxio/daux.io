@@ -2,16 +2,18 @@
 Base CSS
 ============================================================================ */
 
+/* stylelint-disable-next-line swissquote/no-type-outside-scope */
 body {
     line-height: 1.5;
 
     font-family: var(--font-family-text);
-    font-feature-settings: "kern" 1; // stylelint-disable-line plugin/no-unsupported-browser-features
-    font-kerning: normal; // stylelint-disable-line plugin/no-unsupported-browser-features
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* stylelint-disable-next-line swissquote/no-type-outside-scope */
 h1,
 h2,
 h3,
