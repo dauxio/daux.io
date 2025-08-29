@@ -8,7 +8,7 @@ function setCodeBlockStyle(codeBlocks, hidden) {
     }
     try {
         localStorage.setItem(LOCAL_STORAGE_KEY, hidden);
-    } catch (e) {
+    } catch (_e) {
         // local storage operations can fail with the file:// protocol
     }
 }
@@ -40,7 +40,7 @@ function enableToggler(toggleCodeSection, codeBlocks) {
             setCodeBlockStyle(codeBlocks, true);
             toggleCodeBlockBtnSet.checked = false;
         }
-    } catch (e) {
+    } catch (_e) {
         // local storage operations can fail with the file:// protocol
     }
 }

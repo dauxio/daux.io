@@ -1,3 +1,4 @@
+// biome-ignore lint/correctness/noUnusedImports: incorrect detection of preact
 import * as preact from "preact";
 import { textLinkNext, textLinkPrevious } from "./translation";
 /** @jsx preact.h */
