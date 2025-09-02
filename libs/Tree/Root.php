@@ -31,7 +31,7 @@ class Root extends Directory
         $this->config = $config;
     }
 
-    public function isHotPath(Entry $node = null): bool
+    public function isHotPath(?Entry $node = null): bool
     {
         if ($node == null) {
             return true;

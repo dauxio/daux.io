@@ -17,7 +17,7 @@ class Content extends ContentAbstract
 
     protected bool $manuallySetContent = false;
 
-    public function __construct(Directory $parent, $uri, \SplFileInfo $info = null)
+    public function __construct(Directory $parent, $uri, ?\SplFileInfo $info = null)
     {
         parent::__construct($parent, $uri, $info);
         $this->previous = null;

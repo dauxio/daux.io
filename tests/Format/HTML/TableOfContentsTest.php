@@ -144,9 +144,6 @@ class TableOfContentsTest extends TestCase
         $this->assertEquals($expected, $converter->convert($source)->getContent());
     }
 
-    /**
-     * @requires PHP < 8.1
-     */
     public function testQuotesWorkCorrectly()
     {
         $converter = new CommonMarkConverter($this->getConfig());
@@ -154,9 +151,7 @@ class TableOfContentsTest extends TestCase
         $source = "[TOC]\n# Daux's bug";
         $expected = <<<'EXPECTED'
             <ul class="TableOfContents">
-            <li>
-            <a href="#daux-s-bug">Daux’s bug</a>
-            </li>
+            <li><a href="#daux-s-bug">Daux’s bug</a></li>
             </ul>
             <h1><a id="daux-s-bug" href="#daux-s-bug" class="Permalink" aria-hidden="true" title="Permalink">#</a>Daux’s bug</h1>
 
