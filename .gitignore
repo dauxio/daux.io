@@ -22,3 +22,9 @@ test-report.xml
 /prettier.config.js
 /.eslintrc.js
 /stylelint.config.js
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
