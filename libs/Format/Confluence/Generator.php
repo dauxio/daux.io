@@ -18,7 +18,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
 
     protected Api $api;
 
-    public function __construct(Daux $daux, Api $api = null)
+    public function __construct(Daux $daux, ?Api $api = null)
     {
         $this->daux = $daux;
 
