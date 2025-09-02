@@ -1,8 +1,13 @@
 name: Node
 
+# Avoid double builds
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
 
 jobs:
   frontend:
