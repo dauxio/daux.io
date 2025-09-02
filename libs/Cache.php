@@ -35,7 +35,7 @@ class Cache
         $parent = dirname($path);
 
         if (!file_exists($parent)) {
-            mkdir($parent, 0777, true);
+            mkdir($parent, 0o777, true);
         }
     }
 

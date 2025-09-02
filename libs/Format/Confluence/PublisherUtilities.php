@@ -41,7 +41,7 @@ class PublisherUtilities
         if (getenv('DEBUG') && strtolower(getenv('DEBUG')) != 'false') {
             $prefix = 'static/export/';
             if (!is_dir($prefix)) {
-                mkdir($prefix, 0777, true);
+                mkdir($prefix, 0o777, true);
             }
             $url = $local->getFile()->getUrl();
             file_put_contents($prefix . strtr($url, ['/' => '_', '.html' => '_local.html']), $trimmedLocal);

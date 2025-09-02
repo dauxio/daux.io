@@ -9,7 +9,7 @@ trait HTMLUtils
         if (is_dir($destination)) {
             GeneratorHelper::rmdir($destination);
         } else {
-            mkdir($destination, 0777, true);
+            mkdir($destination, 0o777, true);
         }
     }
 

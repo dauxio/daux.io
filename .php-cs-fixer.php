@@ -11,6 +11,7 @@ $config->setRules([
         // Presets
         '@PSR2' => true,
         '@PHP80Migration' => true,
+        '@PHP81Migration' => true,
         '@PhpCsFixer' => true,
 
         // Disable rules
