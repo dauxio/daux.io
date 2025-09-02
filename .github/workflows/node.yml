@@ -1,8 +1,7 @@
 name: Node
 
-# Avoid double builds
 on:
-  push:
+  push: 
   pull_request:
     types: [opened, reopened]
 
