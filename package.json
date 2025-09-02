@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "@biomejs/biome": "2.2.2",
-    "@swc/core": "1.7.22",
+    "@swc/core": "1.13.5",
     "@swissquote/crafty": "1.28.1",
     "@swissquote/crafty-preset-postcss": "1.28.1",
     "@swissquote/crafty-runner-gulp": "1.28.1",
@@ -27,5 +27,5 @@
     "lint:js": "yarn lint:js:format && yarn lint:js:check",
     "lint:css": "crafty cssLint --fix --preset recommended src/css/theme_daux_singlepage/*.scss src/css/theme_daux/*.scss"
   },
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.9.4"
 }
