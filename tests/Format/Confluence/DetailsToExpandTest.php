@@ -1,6 +1,7 @@
 <?php namespace Todaymade\Daux\Format\Confluence;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class DetailsToExpandTest extends TestCase
 {
@@ -224,11 +225,10 @@ class DetailsToExpandTest extends TestCase
     }
 
     /**
-     * @dataProvider provideExpandData
-     *
      * @param mixed $input
      * @param mixed $expected
      */
+    #[DataProvider('provideExpandData')]
     public function testDetailsToExpand($input, $expected)
     {
         $expander = new DetailsToExpand();

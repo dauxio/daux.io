@@ -3,6 +3,7 @@ namespace Todaymade\Daux\Format\Template;
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\DauxHelper;
@@ -47,11 +48,10 @@ class TranslateTest extends TestCase
     }
 
     /**
-     * @dataProvider translateDataProvider
-     *
      * @param mixed $expectedTranslation
      * @param mixed $language
      */
+    #[DataProvider('translateDataProvider')]
     public function testTranslate($expectedTranslation, $language)
     {
         $current = $language . '/Page.html';

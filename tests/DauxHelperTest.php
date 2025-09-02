@@ -1,6 +1,7 @@
 <?php namespace Todaymade\Daux;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class DauxHelperTest extends TestCase
 {
@@ -15,11 +16,10 @@ class DauxHelperTest extends TestCase
     }
 
     /**
-     * @dataProvider providerGetFilenames
-     *
      * @param mixed $expected
      * @param mixed $node
      */
+    #[DataProvider('providerGetFilenames')]
     public function testGetFilenames($expected, $node)
     {
         $config = ConfigBuilder::withMode()

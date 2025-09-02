@@ -3,6 +3,7 @@ namespace Todaymade\Daux\Tree;
 
 use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\Exception;
 
 class ContentTest extends TestCase
@@ -34,12 +35,11 @@ class ContentTest extends TestCase
     }
 
     /**
-     * @dataProvider providerTestAttributes
-     *
      * @param mixed $content
      * @param mixed $attributes
      * @param mixed $finalContent
      */
+    #[DataProvider('providerTestAttributes')]
     public function testAttributes($content, $attributes, $finalContent)
     {
         $obj = $this->createContent($content);

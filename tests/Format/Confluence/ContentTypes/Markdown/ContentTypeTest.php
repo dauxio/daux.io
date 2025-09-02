@@ -1,6 +1,7 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Format\Confluence\ContentPage;
 use Todaymade\Daux\Tree\Content;
@@ -124,12 +125,11 @@ class ContentTypeTest extends TestCase
     }
 
     /**
-     * @dataProvider providerContent
-     *
      * @param mixed $content
      * @param mixed $expected
      * @param mixed $keepCdata
      */
+    #[DataProvider('providerContent')]
     public function testRendering($content, $expected, $keepCdata = false)
     {
         $config = ConfigBuilder::withMode()

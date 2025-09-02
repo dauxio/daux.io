@@ -1,6 +1,7 @@
 <?php namespace Todaymade\Daux\ContentTypes\Markdown;
 
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Tree\Builder;
@@ -91,11 +92,10 @@ class AdmonitionRendererTest extends TestCase
     }
 
     /**
-     * @dataProvider provideAdmonitionCases
-     *
      * @param mixed $expected
      * @param mixed $input
      */
+    #[DataProvider('provideAdmonitionCases')]
     public function testRenderLink($input, $expected)
     {
         $structure = [

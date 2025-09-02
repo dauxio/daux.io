@@ -3,6 +3,7 @@ namespace Todaymade\Daux\Tree;
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\ConfigBuilder;
 
 class BuilderTest extends TestCase
@@ -34,11 +35,10 @@ class BuilderTest extends TestCase
     }
 
     /**
-     * @dataProvider providerRemoveSorting
-     *
      * @param mixed $value
      * @param mixed $expected
      */
+    #[DataProvider('providerRemoveSorting')]
     public function testRemoveSorting($value, $expected)
     {
         $this->assertEquals($expected, Builder::removeSortingInformations($value));
@@ -91,13 +91,12 @@ class BuilderTest extends TestCase
     }
 
     /**
-     * @dataProvider providerCreatePage
-     *
      * @param mixed $file
      * @param mixed $url
      * @param mixed $uri
      * @param mixed $title
      */
+    #[DataProvider('providerCreatePage')]
     public function testGetOrCreatePage($file, $url, $uri, $title)
     {
         $directory = new Directory($this->getStaticRoot(), 'dir');

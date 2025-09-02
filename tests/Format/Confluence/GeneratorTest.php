@@ -3,6 +3,7 @@ namespace Todaymade\Daux\Format\Confluence;
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -41,9 +42,7 @@ class GeneratorTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider configurationTestProvider
-     */
+    #[DataProvider('configurationTestProvider')]
     public function testConfiguration(array $confluenceConfig, string $expectedMessage)
     {
         $root = vfsStream::setup('root', null, []);

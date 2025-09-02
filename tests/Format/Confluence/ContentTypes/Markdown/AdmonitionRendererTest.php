@@ -2,6 +2,7 @@
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Root;
@@ -74,11 +75,10 @@ class AdmonitionRendererTest extends TestCase
     }
 
     /**
-     * @dataProvider provideAdmonitionCases
-     *
      * @param mixed $expected
      * @param mixed $input
      */
+    #[DataProvider('provideAdmonitionCases')]
     public function testRenderAdmonition($input, $expected)
     {
         $structure = [

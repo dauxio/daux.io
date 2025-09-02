@@ -2,6 +2,7 @@
 namespace Todaymade\Daux\Format\HTML;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\Config as MainConfig;
 
 class ConfigTest extends TestCase
@@ -40,11 +41,10 @@ class ConfigTest extends TestCase
     }
 
     /**
-     * @dataProvider providerEditOn
-     *
      * @param mixed $value
      * @param mixed $expected
      */
+    #[DataProvider('providerEditOn')]
     public function testEditOn($value, $expected)
     {
         $config = new Config($value);

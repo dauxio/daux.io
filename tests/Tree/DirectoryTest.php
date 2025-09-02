@@ -2,6 +2,7 @@
 namespace Todaymade\Daux\Tree;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\ConfigBuilder;
 
 class DirectoryTest extends TestCase
@@ -26,11 +27,10 @@ class DirectoryTest extends TestCase
     }
 
     /**
-     * @dataProvider providerSort
-     *
      * @param mixed $list
      * @param mixed $expected
      */
+    #[DataProvider('providerSort')]
     public function testSort($list, $expected)
     {
         shuffle($list);

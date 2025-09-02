@@ -2,6 +2,7 @@
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Tree\Builder;
@@ -59,12 +60,11 @@ class LinkRendererTest extends TestCase
     }
 
     /**
-     * @dataProvider providerRenderLink
-     *
      * @param mixed $expected
      * @param mixed $string
      * @param mixed $current
      */
+    #[DataProvider('providerRenderLink')]
     public function testRenderLink($expected, $string, $current)
     {
         $structure = [

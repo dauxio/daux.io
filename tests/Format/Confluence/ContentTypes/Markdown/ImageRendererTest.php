@@ -2,6 +2,7 @@
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Root;
@@ -37,11 +38,10 @@ class ImageRendererTest extends TestCase
     }
 
     /**
-     * @dataProvider provideImageCases
-     *
      * @param mixed $expected
      * @param mixed $input
      */
+    #[DataProvider('provideImageCases')]
     public function testRenderImage($input, $expected)
     {
         $structure = [
