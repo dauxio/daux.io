@@ -8,7 +8,9 @@ jobs:
   frontend:
     name: Frontend tests
     runs-on: ubuntu-latest
-
+    container:
+      image: mcr.microsoft.com/playwright:v1.55.0-noble
+      options: --user 1001
     steps:
     - uses: actions/checkout@v5
 
@@ -35,9 +37,6 @@ jobs:
 
     - name: yarn install
       run: yarn install
-
-    - name: Install Playwright Browsers
-      run: yarn playwright install --with-deps
 
     - name: yarn build
       run: yarn build
