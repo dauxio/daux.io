@@ -3,11 +3,8 @@ name: Node
 # Avoid double builds
 on:
   push:
-    branches:
-    - master
   pull_request:
-    branches:
-    - master
+    types: [opened, reopened]
 
 jobs:
   frontend:
