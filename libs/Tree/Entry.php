@@ -18,7 +18,7 @@ abstract class Entry
      * @param string $uri
      * @param \SplFileInfo $info
      */
-    public function __construct(Directory $parent, $uri, \SplFileInfo $info = null)
+    public function __construct(Directory $parent, $uri, ?\SplFileInfo $info = null)
     {
         $this->title = null;
         $this->name = null;
@@ -162,7 +162,7 @@ abstract class Entry
         ];
     }
 
-    public function isHotPath(Entry $node = null)
+    public function isHotPath(?Entry $node = null)
     {
         return $this->parent->isHotPath($node ?: $this);
     }
