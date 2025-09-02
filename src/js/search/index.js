@@ -1,4 +1,4 @@
-import Document from "flexsearch/dist/module/document";
+import { Charset, Document } from "flexsearch";
 import * as preact from "preact";
 import Search from "./Search";
 
@@ -52,11 +52,22 @@ class SearchEngine {
                 window.load_search_index = (data) => resolve(data);
             }).then((json) => {
                 this.searchIndex = new Document({
-                    doc: {
+                    document: {
                         id: "url",
-                        tag: "tags",
-                        field: ["title", "text"],
-                        store: ["title", "text"],
+                        store: true,
+                        index: [
+                            {
+                                field: "title",
+                                tokenize: "forward",
+                                encoder: Charset.LatinBalance,
+                            },
+                            {
+                                field: "text",
+                                tokenize: "forward",
+                                encoder: Charset.LatinBalance,
+                            },
+                        ],
+                        tag: [{ field: "tags" }],
                     },
                 });
 

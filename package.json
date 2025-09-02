@@ -8,7 +8,7 @@
     "@swissquote/crafty": "1.28.1",
     "@swissquote/crafty-preset-postcss": "1.28.1",
     "@swissquote/crafty-runner-gulp": "1.28.1",
-    "flexsearch": "^0.7.0",
+    "flexsearch": "^0.8.0",
     "katex": "^0.16.4",
     "mermaid": "^11.0.0",
     "postcss-page-break": "^3.0.4",
