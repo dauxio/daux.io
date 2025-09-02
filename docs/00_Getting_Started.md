@@ -169,7 +169,7 @@ AddType application/javascript .mjs
 
 ## PHP Requirements
 
-Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions; 8.1.0 and up.
+Daux.io is compatible with the [officially supported](https://www.php.net/supported-versions.php) PHP versions; 8.3.0 and up.
 
 ### Extensions
 
