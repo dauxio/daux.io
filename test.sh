@@ -18,5 +18,4 @@ trap cleanup EXIT
 
 cd $DIR
 
-yarn playwright install
 yarn playwright test
