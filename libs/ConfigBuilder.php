@@ -35,22 +35,6 @@ class ConfigBuilder
         return $this;
     }
 
-    private function setValue(Config $array, $key, $value)
-    {
-        if (is_null($key)) {
-            return $array = $value;
-        }
-        $keys = explode('.', $key);
-        while (count($keys) > 1) {
-            $key = array_shift($keys);
-            if (!isset($array[$key]) || !is_array($array[$key])) {
-                $array[$key] = [];
-            }
-            $array = &$array[$key];
-        }
-        $array[array_shift($keys)] = $value;
-    }
-
     public function withValues(array $values): ConfigBuilder
     {
         $this->overrideValues = $values;
@@ -137,6 +121,22 @@ class ConfigBuilder
         }
 
         return $this->config;
+    }
+
+    private function setValue(Config $array, $key, $value)
+    {
+        if (is_null($key)) {
+            return $array = $value;
+        }
+        $keys = explode('.', $key);
+        while (count($keys) > 1) {
+            $key = array_shift($keys);
+            if (!isset($array[$key]) || !is_array($array[$key])) {
+                $array[$key] = [];
+            }
+            $array = &$array[$key];
+        }
+        $array[array_shift($keys)] = $value;
     }
 
     private function resolveThemeVariant()
@@ -250,7 +250,7 @@ class ConfigBuilder
 
     /**
      * @param string $configFile
-     * @param bool $optional
+     * @param bool   $optional
      *
      * @throws Exception
      */
@@ -297,8 +297,8 @@ class ConfigBuilder
 
     /**
      * @param null|string $path
-     * @param string $basedir
-     * @param string $type
+     * @param string      $basedir
+     * @param string      $type
      *
      * @return null|false|string
      */

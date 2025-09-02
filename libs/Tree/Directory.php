@@ -86,19 +86,6 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
         $this->children = $final;
     }
 
-    private function sortBucket($bucket, $final)
-    {
-        uasort($bucket, function (Entry $a, Entry $b) {
-            return strcasecmp($a->getNameForSort(), $b->getNameForSort());
-        });
-
-        foreach ($bucket as $key => $value) {
-            $final[$key] = $value;
-        }
-
-        return $final;
-    }
-
     /**
      * @return Entry[]
      */
@@ -277,7 +264,7 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
      * Offset to set.
      *
      * @param mixed $offset the offset to assign the value to
-     * @param Entry $value the value to set
+     * @param Entry $value  the value to set
      */
     public function offsetSet($offset, $value): void
     {
@@ -301,5 +288,18 @@ class Directory extends Entry implements \ArrayAccess, \IteratorAggregate
     public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->children);
+    }
+
+    private function sortBucket($bucket, $final)
+    {
+        uasort($bucket, function (Entry $a, Entry $b) {
+            return strcasecmp($a->getNameForSort(), $b->getNameForSort());
+        });
+
+        foreach ($bucket as $key => $value) {
+            $final[$key] = $value;
+        }
+
+        return $final;
     }
 }

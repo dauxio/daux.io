@@ -24,26 +24,6 @@ class Content extends ContentAbstract
         $this->next = null;
     }
 
-    protected function getFrontMatter()
-    {
-        if ($this->manuallySetContent) {
-            $content = $this->content;
-        } elseif (!$this->getPath()) {
-            throw new Exception('Empty content');
-        } else {
-            $content = file_get_contents($this->getPath());
-        }
-
-        // Remove BOM if it's present
-        if (substr($content, 0, 3) == "\xef\xbb\xbf") {
-            $content = substr($content, 3);
-        }
-
-        $frontMatterParser = new FrontMatterParser(new SymfonyYamlFrontMatterParser());
-
-        return $frontMatterParser->parse($content);
-    }
-
     public function getContent(): string
     {
         if (!isset($this->attributes)) {
@@ -95,28 +75,6 @@ class Content extends ContentAbstract
         return parent::getTitle();
     }
 
-    protected function parseAttributes()
-    {
-        // We set an empty array first to
-        // avoid a loop when "parseAttributes"
-        // is called in "getContent"
-        $this->attributes = [];
-
-        try {
-            $document = $this->getFrontMatter();
-            $frontMatter = $document->getFrontMatter();
-            $this->attributes = array_replace_recursive($this->attributes, $frontMatter ?: []);
-            $this->content = $document->getContent();
-        } catch (InvalidFrontMatterException $e) {
-            $file = $this->getPath();
-            if (!$file) {
-                $file = $this->getUrl();
-            }
-
-            throw new Exception('Could not parse front matter in "' . $file . '"', 0, $e);
-        }
-    }
-
     public function setAttributes(array $attributes)
     {
         $this->attributes = $attributes;
@@ -155,5 +113,47 @@ class Content extends ContentAbstract
         $dump['attributes'] = $this->getAttribute();
 
         return $dump;
+    }
+
+    protected function getFrontMatter()
+    {
+        if ($this->manuallySetContent) {
+            $content = $this->content;
+        } elseif (!$this->getPath()) {
+            throw new Exception('Empty content');
+        } else {
+            $content = file_get_contents($this->getPath());
+        }
+
+        // Remove BOM if it's present
+        if (substr($content, 0, 3) == "\xef\xbb\xbf") {
+            $content = substr($content, 3);
+        }
+
+        $frontMatterParser = new FrontMatterParser(new SymfonyYamlFrontMatterParser());
+
+        return $frontMatterParser->parse($content);
+    }
+
+    protected function parseAttributes()
+    {
+        // We set an empty array first to
+        // avoid a loop when "parseAttributes"
+        // is called in "getContent"
+        $this->attributes = [];
+
+        try {
+            $document = $this->getFrontMatter();
+            $frontMatter = $document->getFrontMatter();
+            $this->attributes = array_replace_recursive($this->attributes, $frontMatter ?: []);
+            $this->content = $document->getContent();
+        } catch (InvalidFrontMatterException $e) {
+            $file = $this->getPath();
+            if (!$file) {
+                $file = $this->getUrl();
+            }
+
+            throw new Exception('Could not parse front matter in "' . $file . '"', 0, $e);
+        }
     }
 }

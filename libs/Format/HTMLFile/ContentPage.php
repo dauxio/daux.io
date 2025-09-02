@@ -26,7 +26,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
                     }
 
                     // TODO :: handle other formats than PNG as well
-                    return "<img $attr src=\"data:image/png;base64,$content\"/>";
+                    return "<img {$attr} src=\"data:image/png;base64,{$content}\"/>";
                 }
             );
     }

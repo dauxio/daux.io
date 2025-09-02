@@ -53,7 +53,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
      * Create an image tag for the specified filename.
      *
      * @param string $filename
-     * @param array $attributes
+     * @param array  $attributes
      *
      * @return string
      */
@@ -73,6 +73,6 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
             $img .= ' ac:' . $name . '="' . htmlentities($value, ENT_QUOTES, 'UTF-8', false) . '"';
         }
 
-        return '<ac:image' . $img . "><ri:attachment ri:filename=\"$filename\" /></ac:image>";
+        return '<ac:image' . $img . "><ri:attachment ri:filename=\"{$filename}\" /></ac:image>";
     }
 }

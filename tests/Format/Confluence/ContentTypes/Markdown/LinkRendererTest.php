@@ -48,7 +48,7 @@ class LinkRendererTest extends TestCase
 
         $converter = new CommonMarkConverter(['daux' => $config]);
 
-        $this->assertEquals("<p>$expected</p>", trim($converter->convert($string)->getContent()));
+        $this->assertEquals("<p>{$expected}</p>", trim($converter->convert($string)->getContent()));
     }
 
     public static function providerRenderLink()

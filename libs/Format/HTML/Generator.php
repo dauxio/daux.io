@@ -86,6 +86,27 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
     }
 
     /**
+     * @return Page
+     */
+    public function generateOne(Entry $node, GlobalConfig $config)
+    {
+        if ($node instanceof Raw) {
+            return new RawPage($node->getPath());
+        }
+
+        if ($node instanceof ComputedRaw) {
+            return new ComputedRawPage($node);
+        }
+
+        $config->setRequest($node->getUrl());
+
+        $contentPage = ContentPage::fromFile($node, $config, $this->daux->getContentTypeHandler()->getType($node));
+        $contentPage->templateRenderer = $this->templateRenderer;
+
+        return $contentPage;
+    }
+
+    /**
      * Remove HTML tags, including invisible text such as style and
      * script code, and embedded objects.  Add line breaks around
      * block-level tags to prevent word joining after tag removal.
@@ -140,11 +161,11 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
     /**
      * Recursively generate the documentation.
      *
-     * @param string $outputDir
+     * @param string          $outputDir
      * @param OutputInterface $output
-     * @param int $width
-     * @param bool $indexPages
-     * @param string $baseUrl
+     * @param int             $width
+     * @param bool            $indexPages
+     * @param string          $baseUrl
      *
      * @throws \Exception
      */
@@ -191,26 +212,5 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
                 );
             }
         }
-    }
-
-    /**
-     * @return Page
-     */
-    public function generateOne(Entry $node, GlobalConfig $config)
-    {
-        if ($node instanceof Raw) {
-            return new RawPage($node->getPath());
-        }
-
-        if ($node instanceof ComputedRaw) {
-            return new ComputedRawPage($node);
-        }
-
-        $config->setRequest($node->getUrl());
-
-        $contentPage = ContentPage::fromFile($node, $config, $this->daux->getContentTypeHandler()->getType($node));
-        $contentPage->templateRenderer = $this->templateRenderer;
-
-        return $contentPage;
     }
 }

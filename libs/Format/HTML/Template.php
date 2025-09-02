@@ -41,7 +41,7 @@ class Template
         }
         $this->engine->addFolder('theme', $theme, true);
 
-        Daux::writeln("Starting Template engine with basedir '$base' and theme folder '$theme'.", OutputInterface::VERBOSITY_VERBOSE);
+        Daux::writeln("Starting Template engine with basedir '{$base}' and theme folder '{$theme}'.", OutputInterface::VERBOSITY_VERBOSE);
 
         $this->registerFunctions($this->engine);
 
@@ -66,7 +66,7 @@ class Template
             'tree' => $data['config']['tree'],
         ]);
 
-        Daux::writeln("Rendering template '$name'", OutputInterface::VERBOSITY_VERBOSE);
+        Daux::writeln("Rendering template '{$name}'", OutputInterface::VERBOSITY_VERBOSE);
 
         return $engineInstance->render($name, $data);
     }
@@ -97,7 +97,7 @@ class Template
                 return $this->config->getTranslationKey('en', $key);
             }
 
-            return "Unknown key $key";
+            return "Unknown key {$key}";
         });
 
         $engine->registerFunction('get_breadcrumb_title', function ($page, $basePage) {
@@ -137,10 +137,10 @@ class Template
                 $link = '<a href="' . $entry['href'] . '">' . $entry['title'] . '</a>';
             }
 
-            $nav .= "\n<li class='Nav__item $entry[class]'>$link</li>";
+            $nav .= "\n<li class='Nav__item {$entry['class']}'>{$link}</li>";
         }
 
-        return "<ul class='Nav'>$nav</ul>";
+        return "<ul class='Nav'>{$nav}</ul>";
     }
 
     private function buildNavigation(Directory $tree, $path, $currentUrl, $basePage, $mode)

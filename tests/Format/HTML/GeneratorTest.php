@@ -11,33 +11,6 @@ use Todaymade\Daux\Format\Base\Page;
 
 class GeneratorTest extends TestCase
 {
-    protected function getDaux($moreConfig = [])
-    {
-        $root = vfsStream::setup('root', null, [
-            'index.md' => 'Homepage, welcome!',
-            'Content' => [
-                'Page.md' => 'some text content',
-            ],
-            'Widgets' => [
-                'index.md' => 'Widget Folder',
-                'Button.md' => 'Button',
-                'image.svg' => '<xml...>',
-            ],
-        ]);
-
-        $config = ConfigBuilder::withMode()
-            ->withDocumentationDirectory($root->url())
-            ->withValidContentExtensions(['md'])
-            ->with($moreConfig)
-            ->build();
-
-        $output = new NullOutput();
-        $daux = new Daux($config, $output);
-        $daux->generateTree();
-
-        return $daux;
-    }
-
     public function testGenerateSinglePage()
     {
         $daux = $this->getDaux();
@@ -232,5 +205,32 @@ class GeneratorTest extends TestCase
         $this->assertInstanceOf(RawPage::class, $generated);
 
         $this->assertEquals('<xml...>', file_get_contents($generated->getFile()));
+    }
+
+    protected function getDaux($moreConfig = [])
+    {
+        $root = vfsStream::setup('root', null, [
+            'index.md' => 'Homepage, welcome!',
+            'Content' => [
+                'Page.md' => 'some text content',
+            ],
+            'Widgets' => [
+                'index.md' => 'Widget Folder',
+                'Button.md' => 'Button',
+                'image.svg' => '<xml...>',
+            ],
+        ]);
+
+        $config = ConfigBuilder::withMode()
+            ->withDocumentationDirectory($root->url())
+            ->withValidContentExtensions(['md'])
+            ->with($moreConfig)
+            ->build();
+
+        $output = new NullOutput();
+        $daux = new Daux($config, $output);
+        $daux->generateTree();
+
+        return $daux;
     }
 }

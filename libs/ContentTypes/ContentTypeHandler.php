@@ -49,6 +49,6 @@ class ContentTypeHandler
             }
         }
 
-        throw new Exception("no contentType found for $path");
+        throw new Exception("no contentType found for {$path}");
     }
 }

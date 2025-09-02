@@ -54,7 +54,7 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
         }
 
         $url = str_replace('/', '_', $url);
-        $element->setAttribute('href', "#file_$url");
+        $element->setAttribute('href', "#file_{$url}");
 
         return $element;
     }

@@ -27,19 +27,6 @@ class PublisherDelete
         $this->deletable = [];
     }
 
-    protected function listDeletable($published, $prefix = '')
-    {
-        foreach ($published['children'] as $child) {
-            if (array_key_exists('children', $child) && count($child['children'])) {
-                $this->listDeletable($child, $child['title'] . '/');
-            }
-
-            if (!array_key_exists('needed', $child)) {
-                $this->deletable[$child['id']] = $prefix . $child['title'];
-            }
-        }
-    }
-
     public function handle($published)
     {
         $this->listDeletable($published);
@@ -55,11 +42,24 @@ class PublisherDelete
         }
     }
 
+    protected function listDeletable($published, $prefix = '')
+    {
+        foreach ($published['children'] as $child) {
+            if (array_key_exists('children', $child) && count($child['children'])) {
+                $this->listDeletable($child, $child['title'] . '/');
+            }
+
+            if (!array_key_exists('needed', $child)) {
+                $this->deletable[$child['id']] = $prefix . $child['title'];
+            }
+        }
+    }
+
     protected function doDelete()
     {
         $this->output->writeLn('Deleting obsolete pages...');
         foreach ($this->deletable as $id => $title) {
-            $this->output->writeLn("- $title");
+            $this->output->writeLn("- {$title}");
             $this->client->deletePage($id);
         }
     }
@@ -70,7 +70,7 @@ class PublisherDelete
         $this->output->writeLn('> The following pages will not be deleted, but just listed for information.');
         $this->output->writeLn('> If you want to delete these pages, you need to set the --delete flag on the command.');
         foreach ($this->deletable as $title) {
-            $this->output->writeLn("- $title");
+            $this->output->writeLn("- {$title}");
         }
     }
 }

@@ -12,7 +12,7 @@ class Cache
 
         if (!Cache::$printed) {
             Cache::$printed = true;
-            Daux::writeln("Using cache dir '$dir'", OutputInterface::VERBOSITY_VERBOSE);
+            Daux::writeln("Using cache dir '{$dir}'", OutputInterface::VERBOSITY_VERBOSE);
         }
 
         return $dir;
@@ -25,18 +25,6 @@ class Cache
     {
         Cache::ensureCacheDirectoryExists($path = Cache::path($key));
         file_put_contents($path, $value);
-    }
-
-    /**
-     * Create the file cache directory if necessary.
-     */
-    protected static function ensureCacheDirectoryExists(string $path): void
-    {
-        $parent = dirname($path);
-
-        if (!file_exists($parent)) {
-            mkdir($parent, 0o777, true);
-        }
     }
 
     /**
@@ -69,6 +57,23 @@ class Cache
         return null;
     }
 
+    public static function clear(): void
+    {
+        Cache::rrmdir(Cache::getDirectory());
+    }
+
+    /**
+     * Create the file cache directory if necessary.
+     */
+    protected static function ensureCacheDirectoryExists(string $path): void
+    {
+        $parent = dirname($path);
+
+        if (!file_exists($parent)) {
+            mkdir($parent, 0o777, true);
+        }
+    }
+
     /**
      * Get the full path for the given cache key.
      */
@@ -77,11 +82,6 @@ class Cache
         $parts = array_slice(str_split($hash = sha1($key), 2), 0, 2);
 
         return Cache::getDirectory() . '/' . implode('/', $parts) . '/' . $hash;
-    }
-
-    public static function clear(): void
-    {
-        Cache::rrmdir(Cache::getDirectory());
     }
 
     protected static function rrmdir(string $dir): void

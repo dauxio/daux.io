@@ -31,34 +31,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         $this->api = $api;
     }
 
-    protected function checkConfiguration(): Config
-    {
-        $config = $this->daux->getConfig();
-        $confluence = $config->getConfluenceConfiguration();
-
-        $mandatory = ['base_url', 'user', 'pass', 'prefix'];
-        $errors = [];
-        foreach ($mandatory as $key) {
-            if (!$confluence->hasValue($key)) {
-                $errors[] = $key;
-            }
-        }
-
-        if (count($errors)) {
-            $message = "The following options are mandatory for confluence : '" . implode("', '", $errors) . "'";
-
-            throw new ConfluenceConfigurationException($message);
-        }
-
-        if (!$confluence->hasAncestorId() && !$confluence->hasRootId()) {
-            throw new ConfluenceConfigurationException(
-                "You must specify an 'ancestor_id' or a 'root_id' for confluence."
-            );
-        }
-
-        return $confluence;
-    }
-
     /**
      * @return array
      */
@@ -94,6 +66,34 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
 
         $publisher = new Publisher($confluence, $this->api, $output, $width);
         $publisher->publish($tree);
+    }
+
+    protected function checkConfiguration(): Config
+    {
+        $config = $this->daux->getConfig();
+        $confluence = $config->getConfluenceConfiguration();
+
+        $mandatory = ['base_url', 'user', 'pass', 'prefix'];
+        $errors = [];
+        foreach ($mandatory as $key) {
+            if (!$confluence->hasValue($key)) {
+                $errors[] = $key;
+            }
+        }
+
+        if (count($errors)) {
+            $message = "The following options are mandatory for confluence : '" . implode("', '", $errors) . "'";
+
+            throw new ConfluenceConfigurationException($message);
+        }
+
+        if (!$confluence->hasAncestorId() && !$confluence->hasRootId()) {
+            throw new ConfluenceConfigurationException(
+                "You must specify an 'ancestor_id' or a 'root_id' for confluence."
+            );
+        }
+
+        return $confluence;
     }
 
     private function generateRecursive(Directory $tree, GlobalConfig $config, $baseUrl = '')

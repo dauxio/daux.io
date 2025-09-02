@@ -12,42 +12,11 @@ class Builder
         '.DS_Store', 'Thumbs.db',
     ];
 
-    protected static function isIgnored(\SplFileInfo $file, $ignore)
-    {
-        $filename = $file->getFilename();
-
-        if (in_array($filename, static::$ignoredPaths)) {
-            return true;
-        }
-
-        if (array_key_exists('folders', $ignore) && $file->isDir() && in_array($filename, $ignore['folders'])) {
-            return true;
-        }
-
-        if (array_key_exists('files', $ignore) && !$file->isDir() && in_array($filename, $ignore['files'])) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Get name for a file.
-     *
-     * @param string $path
-     *
-     * @return string
-     */
-    protected static function getName($path)
-    {
-        return pathinfo($path, PATHINFO_FILENAME);
-    }
-
     /**
      * Build the initial tree.
      *
      * @param Directory $node
-     * @param array $ignore
+     * @param array     $ignore
      */
     public static function build($node, $ignore)
     {
@@ -236,5 +205,36 @@ class Builder
         }
 
         return $prev;
+    }
+
+    protected static function isIgnored(\SplFileInfo $file, $ignore)
+    {
+        $filename = $file->getFilename();
+
+        if (in_array($filename, static::$ignoredPaths)) {
+            return true;
+        }
+
+        if (array_key_exists('folders', $ignore) && $file->isDir() && in_array($filename, $ignore['folders'])) {
+            return true;
+        }
+
+        if (array_key_exists('files', $ignore) && !$file->isDir() && in_array($filename, $ignore['files'])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get name for a file.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    protected static function getName($path)
+    {
+        return pathinfo($path, PATHINFO_FILENAME);
     }
 }

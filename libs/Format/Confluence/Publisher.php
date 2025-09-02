@@ -28,11 +28,11 @@ class Publisher
     public function diff($local, $remote, $level)
     {
         if ($remote == null) {
-            $this->output->writeLn("$level- " . $local['title'] . ' <fg=green>(create)</>');
+            $this->output->writeLn("{$level}- " . $local['title'] . ' <fg=green>(create)</>');
         } elseif ($local == null) {
-            $this->output->writeLn("$level- " . $remote['title'] . ' <fg=red>(delete)</>');
+            $this->output->writeLn("{$level}- " . $remote['title'] . ' <fg=red>(delete)</>');
         } else {
-            $this->output->writeLn("$level- " . $local['title'] . ' <fg=blue>(update)</>');
+            $this->output->writeLn("{$level}- " . $local['title'] . ' <fg=blue>(update)</>');
         }
 
         if ($local && array_key_exists('children', $local)) {
@@ -41,7 +41,7 @@ class Publisher
                 $this->diff(
                     $content,
                     array_key_exists($title, $remoteChildren) ? $remoteChildren[$title] : null,
-                    "$level  "
+                    "{$level}  "
                 );
             }
         }
@@ -50,7 +50,7 @@ class Publisher
             $localChildren = $local && array_key_exists('children', $local) ? $local['children'] : [];
             foreach ($remote['children'] as $title => $content) {
                 if (!array_key_exists($title, $localChildren)) {
-                    $this->diff(null, $content, "$level  ");
+                    $this->diff(null, $content, "{$level}  ");
                 }
             }
         }
@@ -95,13 +95,13 @@ class Publisher
 
     protected function rootNotFound(string $rootTitle, array $pages)
     {
-        $pageNotFound = "Could not find a page named '$rootTitle'";
+        $pageNotFound = "Could not find a page named '{$rootTitle}'";
         $configRecommendation = "To create the page automatically, add '\"create_root_if_missing\": true'"
         . " in the 'confluence' section of your Daux configuration.";
 
         if (empty($pages)) {
             throw new ConfluenceConfigurationException(
-                "$pageNotFound with the specified ancestor_id. $configRecommendation"
+                "{$pageNotFound} with the specified ancestor_id. {$configRecommendation}"
             );
         }
 
@@ -110,7 +110,7 @@ class Publisher
             array_map(function ($page) { return $page['title']; }, $pages)
         );
 
-        throw new ConfluenceConfigurationException("$pageNotFound but found ['$pageNames']. $configRecommendation");
+        throw new ConfluenceConfigurationException("{$pageNotFound} but found ['{$pageNames}']. {$configRecommendation}");
     }
 
     protected function configureSpace($page)
@@ -261,7 +261,7 @@ class Publisher
         if (count($entry['page']->attachments)) {
             foreach ($entry['page']->attachments as $attachment) {
                 $this->run(
-                    "  With attachment: $attachment[filename]",
+                    "  With attachment: {$attachment['filename']}",
                     function ($write) use ($published, $attachment) {
                         $this->client->uploadAttachment($published['id'], $attachment, $write);
                     }

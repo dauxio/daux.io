@@ -4,16 +4,6 @@ use Todaymade\Daux\BaseConfig;
 
 class Config extends BaseConfig
 {
-    private function prepareGithubUrl($url)
-    {
-        $url = str_replace('http://', 'https://', $url);
-
-        return [
-            'name' => 'GitHub',
-            'basepath' => (strpos($url, 'https://github.com/') === 0 ? '' : 'https://github.com/') . trim($url, '/'),
-        ];
-    }
-
     public function getEditOn()
     {
         if ($this->hasValue('edit_on')) {
@@ -171,5 +161,15 @@ class Config extends BaseConfig
     public function getThemeVariant()
     {
         return $this->getValue('theme-variant');
+    }
+
+    private function prepareGithubUrl($url)
+    {
+        $url = str_replace('http://', 'https://', $url);
+
+        return [
+            'name' => 'GitHub',
+            'basepath' => (strpos($url, 'https://github.com/') === 0 ? '' : 'https://github.com/') . trim($url, '/'),
+        ];
     }
 }

@@ -16,29 +16,6 @@ use Todaymade\Daux\Tree\Root;
  */
 class TranslateTest extends TestCase
 {
-    protected function getTree(Config $config)
-    {
-        $structure = [
-            'en' => [
-                'Page.md' => 'some text content',
-            ],
-            'it' => [
-                'Page.md' => 'another page',
-            ],
-        ];
-        $root = vfsStream::setup('root', null, $structure);
-
-        $config = ConfigBuilder::withMode()
-            ->withDocumentationDirectory($root->url())
-            ->withValidContentExtensions(['md'])
-            ->build();
-
-        $tree = new Root($config);
-        Builder::build($tree, []);
-
-        return $tree;
-    }
-
     /**
      * @param mixed $expectedTranslation
      * @param mixed $language
@@ -98,5 +75,28 @@ class TranslateTest extends TestCase
             ['Previous', 'en'],
             ['Pagina precedente', 'it'],
         ];
+    }
+
+    protected function getTree(Config $config)
+    {
+        $structure = [
+            'en' => [
+                'Page.md' => 'some text content',
+            ],
+            'it' => [
+                'Page.md' => 'another page',
+            ],
+        ];
+        $root = vfsStream::setup('root', null, $structure);
+
+        $config = ConfigBuilder::withMode()
+            ->withDocumentationDirectory($root->url())
+            ->withValidContentExtensions(['md'])
+            ->build();
+
+        $tree = new Root($config);
+        Builder::build($tree, []);
+
+        return $tree;
     }
 }

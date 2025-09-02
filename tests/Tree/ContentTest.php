@@ -8,19 +8,6 @@ use Todaymade\Daux\Exception;
 
 class ContentTest extends TestCase
 {
-    protected function createContent($content = null)
-    {
-        $config = ConfigBuilder::withMode()->build();
-
-        $dir = new Directory(new Root($config), '');
-        $obj = new Content($dir, 'file.html');
-        if ($content) {
-            $obj->setContent($content);
-        }
-
-        return $obj;
-    }
-
     /**
      * @param mixed $content
      * @param mixed $attributes
@@ -92,11 +79,24 @@ class ContentTest extends TestCase
     public function testContentPreserved()
     {
         $content = "this was an attribute, but also a separator\n---\nand it works";
-        $with_attribute = "---\ntitle: a title\n---\n$content";
+        $with_attribute = "---\ntitle: a title\n---\n{$content}";
 
         $obj = $this->createContent($with_attribute);
 
         $this->assertEquals($content, $obj->getContent());
         $this->assertEquals('a title', $obj->getAttribute('title'));
+    }
+
+    protected function createContent($content = null)
+    {
+        $config = ConfigBuilder::withMode()->build();
+
+        $dir = new Directory(new Root($config), '');
+        $obj = new Content($dir, 'file.html');
+        if ($content) {
+            $obj->setContent($content);
+        }
+
+        return $obj;
     }
 }

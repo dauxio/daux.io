@@ -17,33 +17,12 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
         $this->config = $config;
     }
 
-    protected function createConverter()
-    {
-        return new CommonMarkConverter(['daux' => $this->config]);
-    }
-
-    protected function getConverter()
-    {
-        if (!isset($this->converter)) {
-            $this->converter = $this->createConverter();
-        }
-
-        return $this->converter;
-    }
-
     /**
      * @return string[]
      */
     public function getExtensions()
     {
         return ['md', 'markdown'];
-    }
-
-    protected function doConversion($raw)
-    {
-        Daux::writeln('Running conversion', OutputInterface::VERBOSITY_VERBOSE);
-
-        return $this->getConverter()->convert($raw)->getContent();
     }
 
     public function convert($raw, Content $node)
@@ -72,5 +51,26 @@ class ContentType implements \Todaymade\Daux\ContentTypes\ContentType
         }
 
         return $payload;
+    }
+
+    protected function createConverter()
+    {
+        return new CommonMarkConverter(['daux' => $this->config]);
+    }
+
+    protected function getConverter()
+    {
+        if (!isset($this->converter)) {
+            $this->converter = $this->createConverter();
+        }
+
+        return $this->converter;
+    }
+
+    protected function doConversion($raw)
+    {
+        Daux::writeln('Running conversion', OutputInterface::VERBOSITY_VERBOSE);
+
+        return $this->getConverter()->convert($raw)->getContent();
     }
 }

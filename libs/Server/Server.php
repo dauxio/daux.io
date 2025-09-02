@@ -70,32 +70,6 @@ class Server
     }
 
     /**
-     * Create a temporary file with the file suffix, for mime type detection.
-     *
-     * @param string $postfix
-     *
-     * @return string
-     */
-    private function getTemporaryFile($postfix)
-    {
-        $sysFileName = tempnam(sys_get_temp_dir(), 'daux');
-        if ($sysFileName === false) {
-            throw new Exception('Could not create temporary file');
-        }
-
-        $newFileName = $sysFileName . $postfix;
-        if ($sysFileName == $newFileName) {
-            return $sysFileName;
-        }
-
-        if (DIRECTORY_SEPARATOR == '\\' ? rename($sysFileName, $newFileName) : link($sysFileName, $newFileName)) {
-            return $newFileName;
-        }
-
-        throw new Exception('Could not create temporary file');
-    }
-
-    /**
      * @return Response
      */
     public function createResponse(Page $page)
@@ -174,6 +148,32 @@ class Server
         }
 
         throw new NotFoundException();
+    }
+
+    /**
+     * Create a temporary file with the file suffix, for mime type detection.
+     *
+     * @param string $postfix
+     *
+     * @return string
+     */
+    private function getTemporaryFile($postfix)
+    {
+        $sysFileName = tempnam(sys_get_temp_dir(), 'daux');
+        if ($sysFileName === false) {
+            throw new Exception('Could not create temporary file');
+        }
+
+        $newFileName = $sysFileName . $postfix;
+        if ($sysFileName == $newFileName) {
+            return $sysFileName;
+        }
+
+        if (DIRECTORY_SEPARATOR == '\\' ? rename($sysFileName, $newFileName) : link($sysFileName, $newFileName)) {
+            return $newFileName;
+        }
+
+        throw new Exception('Could not create temporary file');
     }
 
     /**

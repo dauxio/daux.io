@@ -24,7 +24,7 @@ class DetailsToExpand
 
         // Ignore errors when parsing unknown tags, add a wrapping tag to not skew how tags are parsed
         libxml_use_internal_errors(true);
-        $dom->loadHTML("<wrapper>$content</wrapper>", LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED);
+        $dom->loadHTML("<wrapper>{$content}</wrapper>", LIBXML_HTML_NODEFDTD | LIBXML_HTML_NOIMPLIED);
         libxml_clear_errors();
 
         $detailElements = $dom->getElementsByTagName('details');

@@ -64,51 +64,6 @@ class GeneratorTest extends TestCase
         ];
     }
 
-    protected function initPublish($config, $tree): GlobalConfig
-    {
-        $root = vfsStream::setup('root', null, $tree);
-
-        return ConfigBuilder::withMode()
-            ->withDocumentationDirectory($root->url())
-            ->withValidContentExtensions(['md'])
-            ->with([
-                'base_url' => '',
-                'confluence' => $config,
-            ])
-            ->build();
-    }
-
-    protected function runPublish(GlobalConfig $config, Api $api)
-    {
-        $width = 50;
-        $input = new ArrayInput([]);
-        $output = new class extends Output {
-            protected $output = '';
-
-            protected function doWrite(string $message, bool $newline): void
-            {
-                $this->output .= $message;
-
-                if ($newline) {
-                    $this->output .= "\n";
-                }
-            }
-
-            public function getOutput(): string
-            {
-                return trim($this->output);
-            }
-        };
-
-        $daux = new Daux($config, $output);
-        $daux->generateTree();
-
-        $generator = new Generator($daux, $api);
-        $generator->generateAll($input, $output, $width);
-
-        return $output->getOutput();
-    }
-
     public function testPublishAllPages()
     {
         $config = $this->initPublish([
@@ -798,5 +753,50 @@ class GeneratorTest extends TestCase
                 EOD,
             $output
         );
+    }
+
+    protected function initPublish($config, $tree): GlobalConfig
+    {
+        $root = vfsStream::setup('root', null, $tree);
+
+        return ConfigBuilder::withMode()
+            ->withDocumentationDirectory($root->url())
+            ->withValidContentExtensions(['md'])
+            ->with([
+                'base_url' => '',
+                'confluence' => $config,
+            ])
+            ->build();
+    }
+
+    protected function runPublish(GlobalConfig $config, Api $api)
+    {
+        $width = 50;
+        $input = new ArrayInput([]);
+        $output = new class extends Output {
+            protected $output = '';
+
+            protected function doWrite(string $message, bool $newline): void
+            {
+                $this->output .= $message;
+
+                if ($newline) {
+                    $this->output .= "\n";
+                }
+            }
+
+            public function getOutput(): string
+            {
+                return trim($this->output);
+            }
+        };
+
+        $daux = new Daux($config, $output);
+        $daux->generateTree();
+
+        $generator = new Generator($daux, $api);
+        $generator->generateAll($input, $output, $width);
+
+        return $output->getOutput();
     }
 }

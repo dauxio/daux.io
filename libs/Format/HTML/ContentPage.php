@@ -11,55 +11,6 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
     private bool $homepage;
 
-    private function isHomepage(): bool
-    {
-        // If the current page isn't the index, no chance it is the landing page
-        if ($this->file->getParent()->getIndexPage() != $this->file) {
-            return false;
-        }
-
-        // If the direct parent is root, this is the homepage
-        return $this->file->getParent() instanceof Root;
-    }
-
-    private function isLanding(): bool
-    {
-        return $this->config->getHTML()->hasLandingPage() && $this->homepage;
-    }
-
-    private function initialize()
-    {
-        $this->homepage = $this->isHomepage();
-
-        $this->language = '';
-        if ($this->config->isMultilanguage() && count($this->file->getParents())) {
-            $languageDir = $this->file->getParents()[0];
-            $this->language = $languageDir->getName();
-        }
-    }
-
-    /**
-     * @param Directory[] $parents
-     * @param bool $multilanguage
-     *
-     * @return array
-     */
-    private function getBreadcrumbTrail($parents, $multilanguage)
-    {
-        if ($multilanguage && !empty($parents)) {
-            $parents = array_splice($parents, 1);
-        }
-        $breadcrumbTrail = [];
-        if (!empty($parents)) {
-            foreach ($parents as $node) {
-                $page = $node->getIndexPage() ?: $node->getFirstPage();
-                $breadcrumbTrail[] = ['title' => $node->getTitle(), 'url' => $page ? $page->getUrl() : ''];
-            }
-        }
-
-        return $breadcrumbTrail;
-    }
-
     protected function generatePage()
     {
         $this->initialize();
@@ -115,5 +66,54 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
         }
 
         return $this->templateRenderer->render($template, $context);
+    }
+
+    private function isHomepage(): bool
+    {
+        // If the current page isn't the index, no chance it is the landing page
+        if ($this->file->getParent()->getIndexPage() != $this->file) {
+            return false;
+        }
+
+        // If the direct parent is root, this is the homepage
+        return $this->file->getParent() instanceof Root;
+    }
+
+    private function isLanding(): bool
+    {
+        return $this->config->getHTML()->hasLandingPage() && $this->homepage;
+    }
+
+    private function initialize()
+    {
+        $this->homepage = $this->isHomepage();
+
+        $this->language = '';
+        if ($this->config->isMultilanguage() && count($this->file->getParents())) {
+            $languageDir = $this->file->getParents()[0];
+            $this->language = $languageDir->getName();
+        }
+    }
+
+    /**
+     * @param Directory[] $parents
+     * @param bool        $multilanguage
+     *
+     * @return array
+     */
+    private function getBreadcrumbTrail($parents, $multilanguage)
+    {
+        if ($multilanguage && !empty($parents)) {
+            $parents = array_splice($parents, 1);
+        }
+        $breadcrumbTrail = [];
+        if (!empty($parents)) {
+            foreach ($parents as $node) {
+                $page = $node->getIndexPage() ?: $node->getFirstPage();
+                $breadcrumbTrail[] = ['title' => $node->getTitle(), 'url' => $page ? $page->getUrl() : ''];
+            }
+        }
+
+        return $breadcrumbTrail;
     }
 }

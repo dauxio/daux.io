@@ -24,6 +24,35 @@ class ImageRenderer implements NodeRendererInterface, XmlNodeRendererInterface, 
     }
 
     /**
+     * @param Image $node
+     *
+     * @psalm-suppress MoreSpecificImplementedParamType
+     */
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
+    {
+        Image::assertInstanceOf($node);
+
+        $node->setUrl($this->getCleanUrl($node->getUrl()));
+
+        return $this->parent->render($node, $childRenderer);
+    }
+
+    public function setConfiguration(ConfigurationInterface $configuration): void
+    {
+        $this->parent->setConfiguration($configuration);
+    }
+
+    public function getXmlTagName(Node $node): string
+    {
+        return $this->parent->getXmlTagName($node);
+    }
+
+    public function getXmlAttributes(Node $node): array
+    {
+        return $this->parent->getXmlAttributes($node);
+    }
+
+    /**
      * Relative URLs can be done using either the folder with
      * number prefix or the final name (with prefix stripped).
      * This ensures that we always use the final name when generating.
@@ -61,34 +90,5 @@ class ImageRenderer implements NodeRendererInterface, XmlNodeRendererInterface, 
         }
 
         return $url;
-    }
-
-    /**
-     * @param Image $node
-     *
-     * @psalm-suppress MoreSpecificImplementedParamType
-     */
-    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
-    {
-        Image::assertInstanceOf($node);
-
-        $node->setUrl($this->getCleanUrl($node->getUrl()));
-
-        return $this->parent->render($node, $childRenderer);
-    }
-
-    public function setConfiguration(ConfigurationInterface $configuration): void
-    {
-        $this->parent->setConfiguration($configuration);
-    }
-
-    public function getXmlTagName(Node $node): string
-    {
-        return $this->parent->getXmlTagName($node);
-    }
-
-    public function getXmlAttributes(Node $node): array
-    {
-        return $this->parent->getXmlAttributes($node);
     }
 }

@@ -25,95 +25,6 @@ class DauxHelper
     }
 
     /**
-     * @return array
-     */
-    protected static function getTheme(Config $config, string $currentUrl)
-    {
-        static $cache = [];
-
-        $htmlTheme = $config->getHTML()->getTheme();
-
-        $themeFolder = $config->getThemesPath() . DIRECTORY_SEPARATOR . $htmlTheme;
-        $themeUrl = $config->getBaseUrl() . 'themes/' . $htmlTheme . '/';
-
-        $cacheKey = "$currentUrl-$htmlTheme";
-        if (array_key_exists($cacheKey, $cache)) {
-            return $cache[$cacheKey];
-        }
-
-        $theme = [];
-        if (is_file($themeFolder . DIRECTORY_SEPARATOR . 'config.json')) {
-            $theme = json_decode(file_get_contents($themeFolder . DIRECTORY_SEPARATOR . 'config.json'), true);
-            if (!$theme) {
-                $theme = [];
-            }
-        }
-
-        // Default parameters for theme
-        $theme += [
-            'name' => $htmlTheme,
-            'css' => [],
-            'js' => [],
-            'fonts' => [],
-            'favicon' => '<base_url>themes/daux/img/favicon.png',
-            'templates' => $themeFolder . DIRECTORY_SEPARATOR . 'templates',
-            'variants' => [],
-            'with_search' => $config->getHTML()->hasSearch(),
-        ];
-
-        if ($config->getHTML()->hasThemeVariant()) {
-            $variant = $config->getHTML()->getThemeVariant();
-            if (!array_key_exists($variant, $theme['variants'])) {
-                throw new Exception("Variant '$variant' not found for theme '$theme[name]'");
-            }
-
-            // These will be replaced
-            foreach (['templates', 'favicon'] as $element) {
-                if (array_key_exists($element, $theme['variants'][$variant])) {
-                    $theme[$element] = $theme['variants'][$variant][$element];
-                }
-            }
-
-            // These will be merged
-            foreach (['css', 'js', 'fonts'] as $element) {
-                if (array_key_exists($element, $theme['variants'][$variant])) {
-                    $theme[$element] = array_merge($theme[$element], $theme['variants'][$variant][$element]);
-                }
-            }
-        }
-
-        if ($theme['with_search']) {
-            $theme['css'][] = '<base_url>daux_libraries/search.css';
-        }
-
-        if (is_file($config->getDocumentationDirectory() . DIRECTORY_SEPARATOR . 'style.css')) {
-            $theme['css'][] = '<base_url>style.css';
-        }
-
-        $substitutions = [
-            '<local_base>' => $config->getLocalBase(),
-            '<base_url>' => $currentUrl,
-            '<theme_url>' => $themeUrl,
-        ];
-
-        // Substitute some placeholders
-        $theme['templates'] = strtr($theme['templates'], $substitutions);
-        $theme['favicon'] = strtr($theme['favicon'], $substitutions);
-
-        foreach (['css', 'js', 'fonts'] as $element) {
-            foreach ($theme[$element] as $key => $value) {
-                $theme[$element][$key] = strtr($value, $substitutions);
-            }
-        }
-
-        if (!getenv('APP_ENV') || getenv('APP_ENV') != 'test') {
-            $cache[$cacheKey] = $theme;
-        }
-
-        return $theme;
-    }
-
-    /**
      * Remove all '/./' and '/../' in a path, without actually checking the path.
      *
      * @param string $path
@@ -153,14 +64,14 @@ class DauxHelper
         $raw = preg_replace('/(.*)?\.(' . $extensions . ')$/', '$1', $part);
         $raw = Builder::removeSortingInformations($raw);
 
-        return ["$raw.html", $raw];
+        return ["{$raw}.html", $raw];
     }
 
     /**
      * Locate a file in the tree. Returns the file if found or false.
      *
      * @param Directory $tree
-     * @param string $request
+     * @param string    $request
      *
      * @return false|Tree\Content|Tree\Raw
      */
@@ -233,21 +144,6 @@ class DauxHelper
         }
 
         return false;
-    }
-
-    private static function slugBase($slug)
-    {
-        // Convert to ASCII
-        if (function_exists('transliterator_transliterate')) {
-            $slug = transliterator_transliterate('Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC;', $slug);
-        }
-
-        if (function_exists('iconv')) {
-            $slug = iconv('utf-8', 'ASCII//TRANSLIT//IGNORE', $slug);
-        }
-
-        // Remove unsupported characters
-        return preg_replace('/[^\x20-\x7E]/u', '', $slug);
     }
 
     /**
@@ -418,7 +314,7 @@ class DauxHelper
             return $file;
         }
 
-        throw new LinkNotFoundException("Could not locate file '$url'");
+        throw new LinkNotFoundException("Could not locate file '{$url}'");
     }
 
     public static function isValidUrl($url)
@@ -434,5 +330,109 @@ class DauxHelper
     public static function isDataUrl($url)
     {
         return preg_match('#^data:image/#', $url);
+    }
+
+    /**
+     * @return array
+     */
+    protected static function getTheme(Config $config, string $currentUrl)
+    {
+        static $cache = [];
+
+        $htmlTheme = $config->getHTML()->getTheme();
+
+        $themeFolder = $config->getThemesPath() . DIRECTORY_SEPARATOR . $htmlTheme;
+        $themeUrl = $config->getBaseUrl() . 'themes/' . $htmlTheme . '/';
+
+        $cacheKey = "{$currentUrl}-{$htmlTheme}";
+        if (array_key_exists($cacheKey, $cache)) {
+            return $cache[$cacheKey];
+        }
+
+        $theme = [];
+        if (is_file($themeFolder . DIRECTORY_SEPARATOR . 'config.json')) {
+            $theme = json_decode(file_get_contents($themeFolder . DIRECTORY_SEPARATOR . 'config.json'), true);
+            if (!$theme) {
+                $theme = [];
+            }
+        }
+
+        // Default parameters for theme
+        $theme += [
+            'name' => $htmlTheme,
+            'css' => [],
+            'js' => [],
+            'fonts' => [],
+            'favicon' => '<base_url>themes/daux/img/favicon.png',
+            'templates' => $themeFolder . DIRECTORY_SEPARATOR . 'templates',
+            'variants' => [],
+            'with_search' => $config->getHTML()->hasSearch(),
+        ];
+
+        if ($config->getHTML()->hasThemeVariant()) {
+            $variant = $config->getHTML()->getThemeVariant();
+            if (!array_key_exists($variant, $theme['variants'])) {
+                throw new Exception("Variant '{$variant}' not found for theme '{$theme['name']}'");
+            }
+
+            // These will be replaced
+            foreach (['templates', 'favicon'] as $element) {
+                if (array_key_exists($element, $theme['variants'][$variant])) {
+                    $theme[$element] = $theme['variants'][$variant][$element];
+                }
+            }
+
+            // These will be merged
+            foreach (['css', 'js', 'fonts'] as $element) {
+                if (array_key_exists($element, $theme['variants'][$variant])) {
+                    $theme[$element] = array_merge($theme[$element], $theme['variants'][$variant][$element]);
+                }
+            }
+        }
+
+        if ($theme['with_search']) {
+            $theme['css'][] = '<base_url>daux_libraries/search.css';
+        }
+
+        if (is_file($config->getDocumentationDirectory() . DIRECTORY_SEPARATOR . 'style.css')) {
+            $theme['css'][] = '<base_url>style.css';
+        }
+
+        $substitutions = [
+            '<local_base>' => $config->getLocalBase(),
+            '<base_url>' => $currentUrl,
+            '<theme_url>' => $themeUrl,
+        ];
+
+        // Substitute some placeholders
+        $theme['templates'] = strtr($theme['templates'], $substitutions);
+        $theme['favicon'] = strtr($theme['favicon'], $substitutions);
+
+        foreach (['css', 'js', 'fonts'] as $element) {
+            foreach ($theme[$element] as $key => $value) {
+                $theme[$element][$key] = strtr($value, $substitutions);
+            }
+        }
+
+        if (!getenv('APP_ENV') || getenv('APP_ENV') != 'test') {
+            $cache[$cacheKey] = $theme;
+        }
+
+        return $theme;
+    }
+
+    private static function slugBase($slug)
+    {
+        // Convert to ASCII
+        if (function_exists('transliterator_transliterate')) {
+            $slug = transliterator_transliterate('Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC;', $slug);
+        }
+
+        if (function_exists('iconv')) {
+            $slug = iconv('utf-8', 'ASCII//TRANSLIT//IGNORE', $slug);
+        }
+
+        // Remove unsupported characters
+        return preg_replace('/[^\x20-\x7E]/u', '', $slug);
     }
 }

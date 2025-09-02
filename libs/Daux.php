@@ -160,31 +160,16 @@ class Daux
         }
 
         if (!class_exists($processor)) {
-            throw new ConfigurationException("Class '$processor' not found. We cannot use it as a Processor");
+            throw new ConfigurationException("Class '{$processor}' not found. We cannot use it as a Processor");
         }
 
         if (!array_key_exists('Todaymade\Daux\Processor', class_parents($processor))) {
             throw new ConfigurationException(
-                "Class '$processor' invalid, should extend '\\Todaymade\\Daux\\Processor'"
+                "Class '{$processor}' invalid, should extend '\\Todaymade\\Daux\\Processor'"
             );
         }
 
         return $processor;
-    }
-
-    protected function findAlternatives($input, $words)
-    {
-        $alternatives = [];
-
-        foreach ($words as $word) {
-            $lev = levenshtein($input, $word);
-
-            if ($lev <= \strlen($word) / 3) {
-                $alternatives[] = $word;
-            }
-        }
-
-        return $alternatives;
     }
 
     /**
@@ -201,7 +186,7 @@ class Daux
         $format = $this->getConfig()->getFormat();
 
         if (!array_key_exists($format, $generators)) {
-            $message = "The format '$format' doesn't exist, did you forget to set your processor ?";
+            $message = "The format '{$format}' doesn't exist, did you forget to set your processor ?";
 
             $alternatives = $this->findAlternatives($format, array_keys($generators));
 
@@ -218,12 +203,12 @@ class Daux
 
         $class = $generators[$format];
         if (!class_exists($class)) {
-            throw new ConfigurationException("Class '$class' not found. We cannot use it as a Generator");
+            throw new ConfigurationException("Class '{$class}' not found. We cannot use it as a Generator");
         }
 
         $interface = 'Todaymade\Daux\Format\Base\Generator';
         if (!in_array('Todaymade\Daux\Format\Base\Generator', class_implements($class))) {
-            throw new ConfigurationException("The class '$class' does not implement the '$interface' interface");
+            throw new ConfigurationException("The class '{$class}' does not implement the '{$interface}' interface");
         }
 
         return $this->generator = new $class($this);
@@ -293,5 +278,20 @@ class Daux
     public static function getVerbosity()
     {
         return Daux::getOutput()->getVerbosity();
+    }
+
+    protected function findAlternatives($input, $words)
+    {
+        $alternatives = [];
+
+        foreach ($words as $word) {
+            $lev = levenshtein($input, $word);
+
+            if ($lev <= \strlen($word) / 3) {
+                $alternatives[] = $word;
+            }
+        }
+
+        return $alternatives;
     }
 }

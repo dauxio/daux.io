@@ -15,6 +15,34 @@ class Book
         $this->config = $config;
     }
 
+    public function addPage($page, $content)
+    {
+        $this->pages[] = ['page' => $page, 'content' => $content];
+    }
+
+    public function generateHead()
+    {
+        $head = [
+            "<title>{$this->config->getTitle()}</title>",
+            "<meta name='description' content='{$this->config->getTagline()}' />",
+            "<meta name='author' content='{$this->config->getAuthor()}'>",
+            "<meta charset='UTF-8'>",
+            $this->getStyles(),
+        ];
+
+        return '<head>' . implode('', $head) . '</head>';
+    }
+
+    public function generateBody()
+    {
+        return '<body>' . $this->generateCover() . $this->generateTOC() . $this->generatePages() . '</body>';
+    }
+
+    public function generate()
+    {
+        return '<!DOCTYPE html><html>' . $this->generateHead() . $this->generateBody() . '</html>';
+    }
+
     protected function getStyles()
     {
         $styles = '';
@@ -62,28 +90,6 @@ class Book
         return $nav;
     }
 
-    private function renderNavigation($entries)
-    {
-        $nav = '';
-        foreach ($entries as $entry) {
-            if (array_key_exists('children', $entry)) {
-                if (array_key_exists('href', $entry)) {
-                    $link = '<a href="' . $entry['href'] . '" class="Nav__item__link--nopage">' . $entry['title'] . '</a>';
-                } else {
-                    $link = '<a href="#" class="Nav__item__link Nav__item__link--nopage">' . $entry['title'] . '</a>';
-                }
-
-                $link .= $this->renderNavigation($entry['children']);
-            } else {
-                $link = '<a href="' . $entry['href'] . '">' . $entry['title'] . '</a>';
-            }
-
-            $nav .= "<li>$link</li>";
-        }
-
-        return "<ul>$nav</ul>";
-    }
-
     protected function generateTOC()
     {
         return '<h1>Table of Contents</h1>'
@@ -112,31 +118,25 @@ class Book
         return $content;
     }
 
-    public function addPage($page, $content)
+    private function renderNavigation($entries)
     {
-        $this->pages[] = ['page' => $page, 'content' => $content];
-    }
+        $nav = '';
+        foreach ($entries as $entry) {
+            if (array_key_exists('children', $entry)) {
+                if (array_key_exists('href', $entry)) {
+                    $link = '<a href="' . $entry['href'] . '" class="Nav__item__link--nopage">' . $entry['title'] . '</a>';
+                } else {
+                    $link = '<a href="#" class="Nav__item__link Nav__item__link--nopage">' . $entry['title'] . '</a>';
+                }
 
-    public function generateHead()
-    {
-        $head = [
-            "<title>{$this->config->getTitle()}</title>",
-            "<meta name='description' content='{$this->config->getTagline()}' />",
-            "<meta name='author' content='{$this->config->getAuthor()}'>",
-            "<meta charset='UTF-8'>",
-            $this->getStyles(),
-        ];
+                $link .= $this->renderNavigation($entry['children']);
+            } else {
+                $link = '<a href="' . $entry['href'] . '">' . $entry['title'] . '</a>';
+            }
 
-        return '<head>' . implode('', $head) . '</head>';
-    }
+            $nav .= "<li>{$link}</li>";
+        }
 
-    public function generateBody()
-    {
-        return '<body>' . $this->generateCover() . $this->generateTOC() . $this->generatePages() . '</body>';
-    }
-
-    public function generate()
-    {
-        return '<!DOCTYPE html><html>' . $this->generateHead() . $this->generateBody() . '</html>';
+        return "<ul>{$nav}</ul>";
     }
 }

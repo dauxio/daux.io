@@ -6,7 +6,7 @@ class BaseConfig extends \ArrayObject
      * Merge an array into the object.
      *
      * @param array $newValues
-     * @param bool $override
+     * @param bool  $override
      */
     public function merge($newValues, $override = true)
     {

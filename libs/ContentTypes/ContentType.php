@@ -15,7 +15,7 @@ interface ContentType
     public function getExtensions();
 
     /**
-     * @param string $raw The raw text to render
+     * @param string  $raw  The raw text to render
      * @param Content $node The original node we are converting
      *
      * @return string The generated output
