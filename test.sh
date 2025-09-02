@@ -18,4 +18,4 @@ trap cleanup EXIT
 
 cd $DIR
 
-yarn testcafe firefox:headless e2e/
+yarn playwright test

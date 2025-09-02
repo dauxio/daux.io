@@ -1,14 +1,14 @@
 name: Node
 
 on:
-  - push
-  - pull_request
+  push: 
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   frontend:
     name: Frontend tests
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v5
 
@@ -36,8 +36,18 @@ jobs:
     - name: yarn install
       run: yarn install
 
+    - name: Install Playwright Browsers
+      run: yarn playwright install --with-deps
+
     - name: yarn build
       run: yarn build
 
     - name: yarn test
       run: yarn test
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
