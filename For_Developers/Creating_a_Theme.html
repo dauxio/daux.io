@@ -140,7 +140,7 @@
     <div class="Page__header">
         <h1><a href="../For_Developers/Creating_a_Processor.html">For Developers</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../For_Developers/Creating_a_Theme.html">Creating a Theme</a></h1>
                 <span class="ModifiedDate">
-            September 2, 2025 at 4:15 AM        </span>
+            September 2, 2025 at 4:34 AM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/10_For_Developers/Creating_a_Theme.md" target="_blank">
                 Edit on GitHub            </a>
@@ -178,25 +178,18 @@ directory and it will be included automatically. By doing this, you don’t need
 </code></pre>
 <p>There are five options :</p>
 <ul>
-<li>
-<strong><code>favicon</code></strong>: The URL to your favicon</li>
-<li>
-<strong><code>css</code></strong>: An array of CSS Stylesheets to add to the page</li>
-<li>
-<strong><code>js</code></strong>: An array of JavaScript files to load</li>
-<li>
-<strong><code>fonts</code></strong>: An array of Font sources, these are added as stylesheets</li>
-<li>
-<strong><code>variants</code></strong>: An object containing sub-themes. Each sub theme, can provide the same configurations as the main theme (<code>favicon</code>, <code>css</code>, <code>js</code>, <code>fonts</code>)</li>
+<li><strong><code>favicon</code></strong>: The URL to your favicon</li>
+<li><strong><code>css</code></strong>: An array of CSS Stylesheets to add to the page</li>
+<li><strong><code>js</code></strong>: An array of JavaScript files to load</li>
+<li><strong><code>fonts</code></strong>: An array of Font sources, these are added as stylesheets</li>
+<li><strong><code>variants</code></strong>: An object containing sub-themes. Each sub theme, can provide the same configurations as the main theme (<code>favicon</code>, <code>css</code>, <code>js</code>, <code>fonts</code>)</li>
 </ul>
 <p>You will also notice this <code>&lt;theme_url&gt;</code> in the url.
 This is automatically substituted with the final url to the theme when generating the final page.</p>
 <p>There are two possible substitutions :</p>
 <ul>
-<li>
-<strong><code>&lt;theme_url&gt;</code></strong>: The url to the current theme</li>
-<li>
-<strong><code>&lt;base_url&gt;</code></strong>: The url to the documentation root</li>
+<li><strong><code>&lt;theme_url&gt;</code></strong>: The url to the current theme</li>
+<li><strong><code>&lt;base_url&gt;</code></strong>: The url to the documentation root</li>
 </ul>
 <h2><a id="theme-variants" href="#theme-variants" class="Permalink" aria-hidden="true" title="Permalink">#</a>Theme variants</h2>
 <p>Like the default Daux.io theme, you might want to provide variants of your theme.</p>
@@ -224,22 +217,14 @@ This is automatically substituted with the final url to the theme when generatin
 <p>You can even do it one template at a time if you wish to do only small changes.</p>
 <p>By default, we have the following templates :</p>
 <ul>
-<li>
-<code>content.php</code>: The content page.</li>
-<li>
-<code>home.php</code>: The landing page.</li>
-<li>
-<code>error.php</code>: The page to show when a page is not found or some other error happened.</li>
-<li>
-<code>partials/navbar_content.php</code>: The content of the top navigation bar.</li>
-<li>
-<code>partials/google_analytics.php</code>: The script to load Google Analytics.</li>
-<li>
-<code>partials/piwik_analytics.php</code>: The script to load Piwik Analytics.</li>
-<li>
-<code>layout/00_layout.php</code>: The master template, containing the <code>&lt;html&gt;</code> tag.</li>
-<li>
-<code>layout/05_page.php</code>: The page layout, with left navigation.</li>
+<li><code>content.php</code>: The content page.</li>
+<li><code>home.php</code>: The landing page.</li>
+<li><code>error.php</code>: The page to show when a page is not found or some other error happened.</li>
+<li><code>partials/navbar_content.php</code>: The content of the top navigation bar.</li>
+<li><code>partials/google_analytics.php</code>: The script to load Google Analytics.</li>
+<li><code>partials/piwik_analytics.php</code>: The script to load Piwik Analytics.</li>
+<li><code>layout/00_layout.php</code>: The master template, containing the <code>&lt;html&gt;</code> tag.</li>
+<li><code>layout/05_page.php</code>: The page layout, with left navigation.</li>
 </ul>
     </div>
 
