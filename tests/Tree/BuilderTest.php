@@ -2,12 +2,22 @@
 namespace Todaymade\Daux\Tree;
 
 use org\bovigo\vfs\vfsStream;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
 
 class BuilderTest extends TestCase
 {
+    /**
+     * @param mixed $value
+     * @param mixed $expected
+     */
+    #[DataProvider('providerRemoveSorting')]
+    public function testRemoveSorting($value, $expected)
+    {
+        $this->assertEquals($expected, Builder::removeSortingInformations($value));
+    }
+
     public static function providerRemoveSorting()
     {
         return [
@@ -32,16 +42,6 @@ class BuilderTest extends TestCase
             ['05_Code_Highlighting', 'Code_Highlighting'],
             ['1', '1'],
         ];
-    }
-
-    /**
-     * @param mixed $value
-     * @param mixed $expected
-     */
-    #[DataProvider('providerRemoveSorting')]
-    public function testRemoveSorting($value, $expected)
-    {
-        $this->assertEquals($expected, Builder::removeSortingInformations($value));
     }
 
     public function testGetOrCreateDirNew()
@@ -80,16 +80,6 @@ class BuilderTest extends TestCase
         return new Root($config);
     }
 
-    public static function providerCreatePage()
-    {
-        return [
-            // File, Url, Uri, Title
-            ['A Page.md', 'dir/A_Page.html', 'A_Page.html', 'A Page'],
-            ['Page#1.md', 'dir/Page1.html', 'Page1.html', 'Page#1'],
-            ['你好世界.md', 'dir/ni_hao_shi_jie.html', 'ni_hao_shi_jie.html', '你好世界'],
-        ];
-    }
-
     /**
      * @param mixed $file
      * @param mixed $url
@@ -108,6 +98,16 @@ class BuilderTest extends TestCase
         $this->assertEquals($uri, $entry->getUri());
         $this->assertEquals($title, $entry->getTitle());
         $this->assertInstanceOf('Todaymade\Daux\Tree\Content', $entry);
+    }
+
+    public static function providerCreatePage()
+    {
+        return [
+            // File, Url, Uri, Title
+            ['A Page.md', 'dir/A_Page.html', 'A_Page.html', 'A Page'],
+            ['Page#1.md', 'dir/Page1.html', 'Page1.html', 'Page#1'],
+            ['你好世界.md', 'dir/ni_hao_shi_jie.html', 'ni_hao_shi_jie.html', '你好世界'],
+        ];
     }
 
     public function testChangeUri()

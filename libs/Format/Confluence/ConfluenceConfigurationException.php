@@ -2,6 +2,4 @@
 
 use Todaymade\Daux\Exception;
 
-class ConfluenceConfigurationException extends Exception
-{
-}
+class ConfluenceConfigurationException extends Exception {}

@@ -14,10 +14,6 @@ class Template
 
     protected $config;
 
-    /**
-     * @param string $base
-     * @param string $theme
-     */
     public function __construct(GlobalConfig $config)
     {
         $this->config = $config;

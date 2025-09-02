@@ -5,12 +5,13 @@ use League\CommonMark\Event\DocumentParsedEvent;
 use League\CommonMark\Extension\ConfigurableExtensionInterface;
 use League\Config\ConfigurationBuilderInterface;
 use Nette\Schema\Expect;
+use Todaymade\Daux\Config;
 
 final class DauxExtension implements ConfigurableExtensionInterface
 {
     public function configureSchema(ConfigurationBuilderInterface $builder): void
     {
-        $builder->addSchema('daux', Expect::type(\Todaymade\Daux\Config::class));
+        $builder->addSchema('daux', Expect::type(Config::class));
     }
 
     public function register(EnvironmentBuilderInterface $environment): void

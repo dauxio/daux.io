@@ -15,7 +15,7 @@ class ErrorPage extends SimplePage
     /**
      * @param string $title
      * @param string $content
-     * @param \Todaymade\Daux\Config $config
+     * @param Config $config
      */
     public function __construct($title, $content, $config)
     {

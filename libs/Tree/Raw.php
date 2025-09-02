@@ -1,5 +1,3 @@
 <?php namespace Todaymade\Daux\Tree;
 
-class Raw extends Entry
-{
-}
+class Raw extends Entry {}

@@ -69,9 +69,6 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function generateAll(InputInterface $input, OutputInterface $output, $width)
     {
         $config = $this->daux->getConfig();

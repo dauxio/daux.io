@@ -2,8 +2,8 @@
 namespace Todaymade\Daux\Format\Confluence;
 
 use org\bovigo\vfs\vfsStream;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\Output;
 use Todaymade\Daux\Config as GlobalConfig;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
+use Todaymade\Daux\Tree\Raw;
 
 class GeneratorTest extends TestCase
 {
@@ -23,24 +24,6 @@ class GeneratorTest extends TestCase
     public static $contentButton = "<p>Button</p>\n";
 
     public static $contentDummy = 'The content will come very soon !';
-
-    public static function configurationTestProvider()
-    {
-        return [
-            [
-                [],
-                "The following options are mandatory for confluence : 'base_url', 'user', 'pass'",
-            ],
-            [
-                [
-                    'base_url' => 'confluence.com',
-                    'user' => 'admin',
-                    'pass' => 'password',
-                ],
-                "You must specify an 'ancestor_id' or a 'root_id' for confluence.",
-            ],
-        ];
-    }
 
     #[DataProvider('configurationTestProvider')]
     public function testConfiguration(array $confluenceConfig, string $expectedMessage)
@@ -63,6 +46,24 @@ class GeneratorTest extends TestCase
         $generator = new Generator($daux);
     }
 
+    public static function configurationTestProvider()
+    {
+        return [
+            [
+                [],
+                "The following options are mandatory for confluence : 'base_url', 'user', 'pass'",
+            ],
+            [
+                [
+                    'base_url' => 'confluence.com',
+                    'user' => 'admin',
+                    'pass' => 'password',
+                ],
+                "You must specify an 'ancestor_id' or a 'root_id' for confluence.",
+            ],
+        ];
+    }
+
     protected function initPublish($config, $tree): GlobalConfig
     {
         $root = vfsStream::setup('root', null, $tree);
@@ -81,7 +82,7 @@ class GeneratorTest extends TestCase
     {
         $width = 50;
         $input = new ArrayInput([]);
-        $output = new class() extends Output {
+        $output = new class extends Output {
             protected $output = '';
 
             protected function doWrite(string $message, bool $newline): void
@@ -694,7 +695,7 @@ class GeneratorTest extends TestCase
             $idPage,
             Argument::allOf(
                 Argument::withEntry('filename', 'image.svg'),
-                Argument::withEntry('file', Argument::type(\Todaymade\Daux\Tree\Raw::class))
+                Argument::withEntry('file', Argument::type(Raw::class))
             ),
             Argument::type('callable')
         )->shouldBeCalled();

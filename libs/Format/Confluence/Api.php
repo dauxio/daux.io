@@ -59,10 +59,10 @@ class Api
             $label = 'Unsuccessful response';
         }
 
-        $message = $label .
-            "\n [url] " . $request->getUri() .
-            "\n [status code] " . $response->getStatusCode() .
-            "\n [message] ";
+        $message = $label
+            . "\n [url] " . $request->getUri()
+            . "\n [status code] " . $response->getStatusCode()
+            . "\n [message] ";
 
         $body = $response->getBody();
         $json = json_decode($body, true);

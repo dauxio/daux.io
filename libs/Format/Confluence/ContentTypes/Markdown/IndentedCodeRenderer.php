@@ -9,8 +9,6 @@ class IndentedCodeRenderer extends CodeRenderer
     /**
      * @param IndentedCode $node
      *
-     * {@inheritDoc}
-     *
      * @psalm-suppress MoreSpecificImplementedParamType
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable

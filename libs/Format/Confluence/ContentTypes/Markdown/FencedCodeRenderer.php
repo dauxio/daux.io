@@ -48,8 +48,6 @@ class FencedCodeRenderer extends CodeRenderer
     }
 
     /**
-     * @param bool $inTightList
-     *
      * @return HtmlElement|string
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
@@ -70,6 +68,7 @@ class FencedCodeRenderer extends CodeRenderer
 
         if ($language === 'mermaid') {
             $this->dauxConfig['__confluence__mermaid'] = true;
+
             // We render this as <pre> so confluence will leave the content as-is, otherwise it will remove
             // newlines and other formatting.
             // There is a script to transform it back to a <div>

@@ -11,8 +11,6 @@ class LinkRenderer extends \Todaymade\Daux\ContentTypes\Markdown\LinkRenderer
     /**
      * @param Link $node
      *
-     * {@inheritDoc}
-     *
      * @psalm-suppress MoreSpecificImplementedParamType
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable

@@ -59,9 +59,6 @@ class Content extends ContentAbstract
         $this->content = $content;
     }
 
-    /**
-     * @return Content
-     */
     public function getPrevious(): ?Content
     {
         return $this->previous;
@@ -72,9 +69,6 @@ class Content extends ContentAbstract
         $this->previous = $previous;
     }
 
-    /**
-     * @return Content
-     */
     public function getNext(): ?Content
     {
         return $this->next;

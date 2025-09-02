@@ -32,5 +32,5 @@ if ($loader) {
 
     define('DAUX_EXTENSION', $ext);
 
-    $loader->setPsr4('Todaymade\\Daux\\Extension\\', $ext);
+    $loader->setPsr4('Todaymade\Daux\Extension\\', $ext);
 }

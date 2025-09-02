@@ -1,5 +1,3 @@
 <?php namespace Todaymade\Daux\Tree;
 
-class ComputedRaw extends ContentAbstract
-{
-}
+class ComputedRaw extends ContentAbstract {}

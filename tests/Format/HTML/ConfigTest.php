@@ -1,8 +1,8 @@
 <?php
 namespace Todaymade\Daux\Format\HTML;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\Config as MainConfig;
 
 class ConfigTest extends TestCase
@@ -13,6 +13,18 @@ class ConfigTest extends TestCase
 
         $this->assertInstanceOf(Config::class, $config->getHTML());
         $this->assertEquals('test', $config->getHTML()['edit_on']);
+    }
+
+    /**
+     * @param mixed $value
+     * @param mixed $expected
+     */
+    #[DataProvider('providerEditOn')]
+    public function testEditOn($value, $expected)
+    {
+        $config = new Config($value);
+
+        $this->assertEquals($expected, $config->getEditOn());
     }
 
     public static function providerEditOn()
@@ -38,17 +50,5 @@ class ConfigTest extends TestCase
                 ['name' => 'Bitbucket', 'basepath' => 'https://bitbucket.org/dauxio/daux.io/src/master/docs'],
             ],
         ];
-    }
-
-    /**
-     * @param mixed $value
-     * @param mixed $expected
-     */
-    #[DataProvider('providerEditOn')]
-    public function testEditOn($value, $expected)
-    {
-        $config = new Config($value);
-
-        $this->assertEquals($expected, $config->getEditOn());
     }
 }

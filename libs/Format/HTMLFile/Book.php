@@ -86,17 +86,17 @@ class Book
 
     protected function generateTOC()
     {
-        return '<h1>Table of Contents</h1>' .
-        $this->renderNavigation($this->buildNavigation($this->tree)) .
-        '</div><div class="PageBreak">&nbsp;</div>';
+        return '<h1>Table of Contents</h1>'
+        . $this->renderNavigation($this->buildNavigation($this->tree))
+        . '</div><div class="PageBreak">&nbsp;</div>';
     }
 
     protected function generateCover()
     {
-        return '<div>' .
-        "<h1 style='font-size:40pt; margin-bottom:0;'>{$this->config->getTitle()}</h1>" .
-        "<p><strong>{$this->config->getTagline()}</strong> by {$this->config->getAuthor()}</p>" .
-        '</div><div class="PageBreak">&nbsp;</div>';
+        return '<div>'
+        . "<h1 style='font-size:40pt; margin-bottom:0;'>{$this->config->getTitle()}</h1>"
+        . "<p><strong>{$this->config->getTagline()}</strong> by {$this->config->getAuthor()}</p>"
+        . '</div><div class="PageBreak">&nbsp;</div>';
     }
 
     protected function generatePages()

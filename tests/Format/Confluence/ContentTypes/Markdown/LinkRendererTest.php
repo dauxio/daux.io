@@ -1,8 +1,8 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
 use org\bovigo\vfs\vfsStream;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Tree\Builder;
@@ -10,6 +10,47 @@ use Todaymade\Daux\Tree\Root;
 
 class LinkRendererTest extends TestCase
 {
+    /**
+     * @param mixed $expected
+     * @param mixed $string
+     * @param mixed $current
+     */
+    #[DataProvider('providerRenderLink')]
+    public function testRenderLink($expected, $string, $current)
+    {
+        $structure = [
+            'Content' => [
+                'Page.md' => 'some text content',
+            ],
+            'Widgets' => [
+                'Page.md' => 'another page',
+                'Button.md' => 'another page',
+                'Page_with_#_hash.md' => 'page with hash',
+            ],
+        ];
+        $root = vfsStream::setup('root', null, $structure);
+
+        $config = ConfigBuilder::withMode()
+            ->withDocumentationDirectory($root->url())
+            ->withValidContentExtensions(['md'])
+            ->with([
+                'base_url' => '',
+            ])
+            ->build();
+
+        $tree = new Root($config);
+        Builder::build($tree, []);
+
+        $config = ConfigBuilder::withMode()->build();
+        $config->getConfluenceConfiguration()->setSpaceId('DOC');
+        $config->setTree($tree);
+        $config->setCurrentPage(DauxHelper::getFile($tree, $current));
+
+        $converter = new CommonMarkConverter(['daux' => $config]);
+
+        $this->assertEquals("<p>$expected</p>", trim($converter->convert($string)->getContent()));
+    }
+
     public static function providerRenderLink()
     {
         $body = '<ac:plain-text-link-body><![CDATA[Link]]></ac:plain-text-link-body></ac:link>';
@@ -73,46 +114,5 @@ class LinkRendererTest extends TestCase
                 'Widgets/Page.html',
             ],
         ];
-    }
-
-    /**
-     * @param mixed $expected
-     * @param mixed $string
-     * @param mixed $current
-     */
-    #[DataProvider('providerRenderLink')]
-    public function testRenderLink($expected, $string, $current)
-    {
-        $structure = [
-            'Content' => [
-                'Page.md' => 'some text content',
-            ],
-            'Widgets' => [
-                'Page.md' => 'another page',
-                'Button.md' => 'another page',
-                'Page_with_#_hash.md' => 'page with hash',
-            ],
-        ];
-        $root = vfsStream::setup('root', null, $structure);
-
-        $config = ConfigBuilder::withMode()
-            ->withDocumentationDirectory($root->url())
-            ->withValidContentExtensions(['md'])
-            ->with([
-                'base_url' => '',
-            ])
-            ->build();
-
-        $tree = new Root($config);
-        Builder::build($tree, []);
-
-        $config = ConfigBuilder::withMode()->build();
-        $config->getConfluenceConfiguration()->setSpaceId('DOC');
-        $config->setTree($tree);
-        $config->setCurrentPage(DauxHelper::getFile($tree, $current));
-
-        $converter = new CommonMarkConverter(['daux' => $config]);
-
-        $this->assertEquals("<p>$expected</p>", trim($converter->convert($string)->getContent()));
     }
 }

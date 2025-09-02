@@ -27,8 +27,6 @@ class FencedCodeRenderer implements NodeRendererInterface
     }
 
     /**
-     * @param bool $inTightList
-     *
      * @return HtmlElement|string
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable

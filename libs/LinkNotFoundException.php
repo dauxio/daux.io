@@ -1,5 +1,3 @@
 <?php namespace Todaymade\Daux;
 
-class LinkNotFoundException extends Exception
-{
-}
+class LinkNotFoundException extends Exception {}

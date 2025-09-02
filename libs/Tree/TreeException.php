@@ -2,6 +2,4 @@
 
 use Todaymade\Daux\Exception;
 
-class TreeException extends Exception
-{
-}
+class TreeException extends Exception {}

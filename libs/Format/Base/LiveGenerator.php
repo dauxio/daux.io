@@ -6,7 +6,7 @@ use Todaymade\Daux\Tree\Entry;
 interface LiveGenerator extends Generator
 {
     /**
-     * @return \Todaymade\Daux\Format\Base\Page
+     * @return Page
      */
     public function generateOne(Entry $node, Config $config);
 }

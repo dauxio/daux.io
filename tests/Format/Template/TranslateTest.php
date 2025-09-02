@@ -2,8 +2,8 @@
 namespace Todaymade\Daux\Format\Template;
 
 use org\bovigo\vfs\vfsStream;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\Config;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\DauxHelper;
@@ -37,14 +37,6 @@ class TranslateTest extends TestCase
         Builder::build($tree, []);
 
         return $tree;
-    }
-
-    public static function translateDataProvider()
-    {
-        return [
-            ['Previous', 'en'],
-            ['Pagina precedente', 'it'],
-        ];
     }
 
     /**
@@ -98,5 +90,13 @@ class TranslateTest extends TestCase
         $value = $template->getEngine($config)->getFunction('translate')->call(null, ['Link_previous']);
 
         $this->assertEquals($expectedTranslation, $value);
+    }
+
+    public static function translateDataProvider()
+    {
+        return [
+            ['Previous', 'en'],
+            ['Pagina precedente', 'it'],
+        ];
     }
 }

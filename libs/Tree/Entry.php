@@ -16,7 +16,6 @@ abstract class Entry
 
     /**
      * @param string $uri
-     * @param \SplFileInfo $info
      */
     public function __construct(Directory $parent, $uri, ?\SplFileInfo $info = null)
     {
@@ -116,9 +115,6 @@ abstract class Entry
         return $parents;
     }
 
-    /**
-     * @return string
-     */
     public function getPath(): ?string
     {
         return $this->path;

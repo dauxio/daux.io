@@ -11,8 +11,6 @@ class AdmonitionRenderer implements NodeRendererInterface
     /**
      * @param AdmonitionBlock $node
      *
-     * {@inheritDoc}
-     *
      * @psalm-suppress MoreSpecificImplementedParamType
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable

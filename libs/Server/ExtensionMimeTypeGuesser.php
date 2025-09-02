@@ -7,17 +7,11 @@ use Symfony\Component\Mime\MimeTypeGuesserInterface;
  */
 class ExtensionMimeTypeGuesser implements MimeTypeGuesserInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function isGuesserSupported(): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function guessMimeType(string $path): ?string
     {
         $extension = pathinfo($path, PATHINFO_EXTENSION);

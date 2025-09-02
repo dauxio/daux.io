@@ -1,4 +1,7 @@
 <?php
+
+use Todaymade\Daux\Server\Server;
+
 /*
 
 Daux.io
@@ -77,4 +80,4 @@ if (php_sapi_name() === 'cli-server') {
 
 require_once __DIR__ . '/libs/bootstrap.php';
 
-\Todaymade\Daux\Server\Server::serve();
+Server::serve();

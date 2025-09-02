@@ -1,5 +1,6 @@
 <?php namespace Todaymade\Daux\Format\HTML;
 
+use Todaymade\Daux\Tree\Directory;
 use Todaymade\Daux\Tree\Root;
 
 class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
@@ -38,7 +39,7 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
     }
 
     /**
-     * @param \Todaymade\Daux\Tree\Directory[] $parents
+     * @param Directory[] $parents
      * @param bool $multilanguage
      *
      * @return array

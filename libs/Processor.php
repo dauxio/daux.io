@@ -2,6 +2,7 @@
 
 use League\CommonMark\Environment\Environment;
 use Symfony\Component\Console\Output\OutputInterface;
+use Todaymade\Daux\ContentTypes\ContentType;
 use Todaymade\Daux\Tree\Root;
 
 class Processor
@@ -24,18 +25,14 @@ class Processor
      * the tree as you want, move pages, modify
      * pages and even add new ones.
      */
-    public function manipulateTree(Root $root)
-    {
-    }
+    public function manipulateTree(Root $root) {}
 
     /**
      * This connection point provides
      * a way to extend the Markdown
      * parser and renderer.
      */
-    public function extendCommonMarkEnvironment(Environment $environment)
-    {
-    }
+    public function extendCommonMarkEnvironment(Environment $environment) {}
 
     /**
      * Provide new generators with this extension point. You
@@ -56,7 +53,7 @@ class Processor
      * phase, with this you can change the markdown parser or add
      * a completely different file type.
      *
-     * @return \Todaymade\Daux\ContentTypes\ContentType[]
+     * @return ContentType[]
      */
     public function addContentType()
     {

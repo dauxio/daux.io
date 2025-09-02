@@ -1,10 +1,22 @@
 <?php namespace Todaymade\Daux\Format\Confluence;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
 class DetailsToExpandTest extends TestCase
 {
+    /**
+     * @param mixed $input
+     * @param mixed $expected
+     */
+    #[DataProvider('provideExpandData')]
+    public function testDetailsToExpand($input, $expected)
+    {
+        $expander = new DetailsToExpand();
+
+        $this->assertEquals($expected, str_replace("\n\n", "\n", trim($expander->convert($input))));
+    }
+
     public static function provideExpandData()
     {
         return [
@@ -31,7 +43,7 @@ class DetailsToExpandTest extends TestCase
                     </ul>
                     </ac:rich-text-body>
                     </ac:structured-macro>
-                    EOD
+                    EOD,
             ],
             "Doesn't impact other macros" => [
                 <<<'EOD'
@@ -63,7 +75,7 @@ class DetailsToExpandTest extends TestCase
                     </ul>
                     </ac:rich-text-body>
                     </ac:structured-macro>
-                    EOD
+                    EOD,
             ],
             'Works with confluence code blocks' => [
                 <<<'EOD'
@@ -103,7 +115,7 @@ class DetailsToExpandTest extends TestCase
                     </ul>
                     </ac:rich-text-body>
                     </ac:structured-macro>
-                    EOD
+                    EOD,
             ],
             "Doesn't convert within confluence code blocks" => [
                 <<<'EOD'
@@ -153,7 +165,7 @@ class DetailsToExpandTest extends TestCase
                     </ul>
                     </ac:rich-text-body>
                     </ac:structured-macro>
-                    EOD
+                    EOD,
             ],
             "Don't convert without title" => [
                 <<<'EOD'
@@ -173,7 +185,7 @@ class DetailsToExpandTest extends TestCase
                         <li>Item 2</li>
                     </ul>
                     </details>
-                    EOD
+                    EOD,
             ],
             "Don't convert empty blocks" => [
                 <<<'EOD'
@@ -181,7 +193,7 @@ class DetailsToExpandTest extends TestCase
                     EOD,
                 <<<'EOD'
                     <details></details>
-                    EOD
+                    EOD,
             ],
             'Convert nested' => [
                 <<<'EOD'
@@ -219,20 +231,8 @@ class DetailsToExpandTest extends TestCase
                     </ac:structured-macro>
                     </ac:rich-text-body>
                     </ac:structured-macro>
-                    EOD
+                    EOD,
             ],
         ];
-    }
-
-    /**
-     * @param mixed $input
-     * @param mixed $expected
-     */
-    #[DataProvider('provideExpandData')]
-    public function testDetailsToExpand($input, $expected)
-    {
-        $expander = new DetailsToExpand();
-
-        $this->assertEquals($expected, str_replace("\n\n", "\n", trim($expander->convert($input))));
     }
 }

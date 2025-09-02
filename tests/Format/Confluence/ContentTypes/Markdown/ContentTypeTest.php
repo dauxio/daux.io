@@ -1,7 +1,7 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Format\Confluence\ContentPage;
 use Todaymade\Daux\Tree\Content;
@@ -9,6 +9,36 @@ use Todaymade\Daux\Tree\Root;
 
 class ContentTypeTest extends TestCase
 {
+    /**
+     * @param mixed $content
+     * @param mixed $expected
+     * @param mixed $keepCdata
+     */
+    #[DataProvider('providerContent')]
+    public function testRendering($content, $expected, $keepCdata = false)
+    {
+        $config = ConfigBuilder::withMode()
+            ->withCache(false)
+            ->build();
+        $tree = new Root($config);
+        $config->setTree($tree);
+
+        $node = new Content($tree, null, null);
+        $node->setContent($content);
+        $node->setTitle('Some File');
+
+        $contentType = new ContentType($config);
+
+        $contentPage = ContentPage::fromFile($node, $config, $contentType);
+
+        $result = trim($contentPage->getContent());
+        if (!$keepCdata) {
+            $result = preg_replace('/<!\[CDATA\[(.*?)\]\]>/s', '<![CDATA[...]]>', $result);
+        }
+
+        $this->assertEquals($expected, $result);
+    }
+
     public static function providerContent()
     {
         return [
@@ -38,7 +68,7 @@ class ContentTypeTest extends TestCase
                     <ac:structured-macro ac:name="html">
                       <ac:plain-text-body> <![CDATA[...]]></ac:plain-text-body>
                     </ac:structured-macro>
-                    EOD
+                    EOD,
             ],
             'Render a neutral code block' => [
                 <<<'EOD'
@@ -48,7 +78,7 @@ class ContentTypeTest extends TestCase
                     EOD,
                 <<<'EOD'
                     <ac:structured-macro ac:name="code"><ac:plain-text-body><![CDATA[...]]></ac:plain-text-body></ac:structured-macro>
-                    EOD
+                    EOD,
             ],
             'Render a js code block' => [
                 <<<'EOD'
@@ -58,7 +88,7 @@ class ContentTypeTest extends TestCase
                     EOD,
                 <<<'EOD'
                     <ac:structured-macro ac:name="code"><ac:parameter ac:name="language">javascript</ac:parameter><ac:plain-text-body><![CDATA[...]]></ac:plain-text-body></ac:structured-macro>
-                    EOD
+                    EOD,
             ],
             'Render a code and expand block' => [
                 <<<'EOD'
@@ -108,7 +138,7 @@ class ContentTypeTest extends TestCase
                     EOD,
                 <<<'EOD'
                     <ac:structured-macro ac:name="code"><ac:plain-text-body><![CDATA[...]]></ac:plain-text-body></ac:structured-macro>
-                    EOD
+                    EOD,
             ],
             'Render an indented code block' => [
                 <<<'EOD'
@@ -119,38 +149,8 @@ class ContentTypeTest extends TestCase
                 <<<'EOD'
                     <p>Some text before</p>
                     <ac:structured-macro ac:name="code"><ac:plain-text-body><![CDATA[...]]></ac:plain-text-body></ac:structured-macro>
-                    EOD
+                    EOD,
             ],
         ];
-    }
-
-    /**
-     * @param mixed $content
-     * @param mixed $expected
-     * @param mixed $keepCdata
-     */
-    #[DataProvider('providerContent')]
-    public function testRendering($content, $expected, $keepCdata = false)
-    {
-        $config = ConfigBuilder::withMode()
-            ->withCache(false)
-            ->build();
-        $tree = new Root($config);
-        $config->setTree($tree);
-
-        $node = new Content($tree, null, null);
-        $node->setContent($content);
-        $node->setTitle('Some File');
-
-        $contentType = new ContentType($config);
-
-        $contentPage = ContentPage::fromFile($node, $config, $contentType);
-
-        $result = trim($contentPage->getContent());
-        if (!$keepCdata) {
-            $result = preg_replace('/<!\[CDATA\[(.*?)\]\]>/s', '<![CDATA[...]]>', $result);
-        }
-
-        $this->assertEquals($expected, $result);
     }
 }

@@ -67,7 +67,7 @@ final class AdmonitionParser extends AbstractBlockContinueParser implements Bloc
 
     public static function blockStartParser(): BlockStartParserInterface
     {
-        return new class() implements BlockStartParserInterface {
+        return new class implements BlockStartParserInterface {
             public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): ?BlockStart
             {
                 if ($cursor->isIndented()) {

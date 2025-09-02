@@ -1,9 +1,9 @@
 <?php
 namespace Todaymade\Daux\Tree;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
-use PHPUnit\Framework\Attributes\DataProvider;
 use Todaymade\Daux\Exception;
 
 class ContentTest extends TestCase
@@ -21,19 +21,6 @@ class ContentTest extends TestCase
         return $obj;
     }
 
-    public static function providerTestAttributes()
-    {
-        return [
-            ['This is content', [], 'This is content'],
-            ["---\ntitle: This is a simple title\n---\nThis is content\n", ['title' => 'This is a simple title'], 'This is content'],
-            ["---\ntitle: This is a simple title\ntags:\n  - One\n  - Second Tag\n---\nThis is content\n", ['title' => 'This is a simple title', 'tags' => ['One', 'Second Tag']], 'This is content'],
-            ['title: This is only metatada, no content', [], 'title: This is only metatada, no content'],
-            ["---\ntitle: This is almost only metadata\n---\n", ['title' => 'This is almost only metadata'], ''],
-            ["\xef\xbb\xbf---\ntitle: This is almost only metadata\n---\n", ['title' => 'This is almost only metadata'], ''],
-            ["# Some content\n\nhi\n```yml\nvalue: true\n```\n----\n Follow up", [], "# Some content\n\nhi\n```yml\nvalue: true\n```\n----\n Follow up"],
-        ];
-    }
-
     /**
      * @param mixed $content
      * @param mixed $attributes
@@ -46,6 +33,19 @@ class ContentTest extends TestCase
 
         $this->assertEquals($attributes, $obj->getAttribute());
         $this->assertEquals($finalContent, trim($obj->getContent()));
+    }
+
+    public static function providerTestAttributes()
+    {
+        return [
+            ['This is content', [], 'This is content'],
+            ["---\ntitle: This is a simple title\n---\nThis is content\n", ['title' => 'This is a simple title'], 'This is content'],
+            ["---\ntitle: This is a simple title\ntags:\n  - One\n  - Second Tag\n---\nThis is content\n", ['title' => 'This is a simple title', 'tags' => ['One', 'Second Tag']], 'This is content'],
+            ['title: This is only metatada, no content', [], 'title: This is only metatada, no content'],
+            ["---\ntitle: This is almost only metadata\n---\n", ['title' => 'This is almost only metadata'], ''],
+            ["\xef\xbb\xbf---\ntitle: This is almost only metadata\n---\n", ['title' => 'This is almost only metadata'], ''],
+            ["# Some content\n\nhi\n```yml\nvalue: true\n```\n----\n Follow up", [], "# Some content\n\nhi\n```yml\nvalue: true\n```\n----\n Follow up"],
+        ];
     }
 
     public function testAttributeIncorrect()

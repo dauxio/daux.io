@@ -7,6 +7,7 @@ use Todaymade\Daux\Console\RunAction;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\DauxHelper;
 use Todaymade\Daux\Format\Base\LiveGenerator;
+use Todaymade\Daux\Format\Base\Page;
 use Todaymade\Daux\Format\HTML\ContentTypes\Markdown\ContentType;
 use Todaymade\Daux\GeneratorHelper;
 use Todaymade\Daux\Tree\ComputedRaw;
@@ -193,7 +194,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
     }
 
     /**
-     * @return \Todaymade\Daux\Format\Base\Page
+     * @return Page
      */
     public function generateOne(Entry $node, GlobalConfig $config)
     {

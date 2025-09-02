@@ -139,7 +139,7 @@ class Daux
      *
      * Location: vendor/daux/daux.io/daux
      *
-     * @see \Todaymade\Daux\Extension\Processor
+     * @see Extension\Processor
      *
      * @example -p \\Todaymade\\Daux\\Extension\\Processor
      *
@@ -156,14 +156,14 @@ class Daux
         }
 
         if (!strstr($processor, '\\')) {
-            $processor = '\\Todaymade\\Daux\\Extension\\' . $processor;
+            $processor = '\Todaymade\Daux\Extension\\' . $processor;
         }
 
         if (!class_exists($processor)) {
             throw new ConfigurationException("Class '$processor' not found. We cannot use it as a Processor");
         }
 
-        if (!array_key_exists('Todaymade\\Daux\\Processor', class_parents($processor))) {
+        if (!array_key_exists('Todaymade\Daux\Processor', class_parents($processor))) {
             throw new ConfigurationException(
                 "Class '$processor' invalid, should extend '\\Todaymade\\Daux\\Processor'"
             );
@@ -188,7 +188,7 @@ class Daux
     }
 
     /**
-     * @return \Todaymade\Daux\Format\Base\Generator
+     * @return Generator
      */
     public function getGenerator()
     {

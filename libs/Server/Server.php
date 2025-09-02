@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\MimeTypes;
+use Todaymade\Daux\Config;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Daux;
 use Todaymade\Daux\DauxHelper;
@@ -119,7 +120,7 @@ class Server
     }
 
     /**
-     * @return \Todaymade\Daux\Config
+     * @return Config
      */
     public function getConfig()
     {
@@ -133,7 +134,7 @@ class Server
     /**
      * Handle an incoming request.
      *
-     * @return \Todaymade\Daux\Format\Base\Page
+     * @return Page
      *
      * @throws Exception
      * @throws NotFoundException
@@ -160,7 +161,7 @@ class Server
      *
      * @param string $request
      *
-     * @return \Todaymade\Daux\Format\Base\Page
+     * @return Page
      *
      * @throws NotFoundException
      */
@@ -178,7 +179,7 @@ class Server
     /**
      * @param string $request
      *
-     * @return \Todaymade\Daux\Format\Base\Page
+     * @return Page
      *
      * @throws NotFoundException
      */
@@ -195,8 +196,8 @@ class Server
 
         if (!$generator instanceof LiveGenerator) {
             throw new Exception(
-                "The generator '" . get_class($generator) . "' does not implement the interface " .
-                "'Todaymade\\Daux\\Format\\Base\\LiveGenerator' and thus doesn't support live rendering."
+                "The generator '" . get_class($generator) . "' does not implement the interface "
+                . "'Todaymade\\Daux\\Format\\Base\\LiveGenerator' and thus doesn't support live rendering."
             );
         }
 

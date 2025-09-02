@@ -150,7 +150,7 @@ class DauxHelper
     {
         $extensions = implode('|', array_map('preg_quote', $config->getValidContentExtensions())) . '|html';
 
-        $raw = preg_replace('/(.*)?\\.(' . $extensions . ')$/', '$1', $part);
+        $raw = preg_replace('/(.*)?\.(' . $extensions . ')$/', '$1', $part);
         $raw = Builder::removeSortingInformations($raw);
 
         return ["$raw.html", $raw];
@@ -255,7 +255,6 @@ class DauxHelper
      *
      * Taken from Stringy
      *
-     * @param  string $title
      * @param mixed $slug
      *
      * @return string

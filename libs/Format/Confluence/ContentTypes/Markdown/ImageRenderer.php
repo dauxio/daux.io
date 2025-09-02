@@ -23,8 +23,6 @@ class ImageRenderer implements NodeRendererInterface, ConfigurationAwareInterfac
     /**
      * @param Image $node
      *
-     * {@inheritDoc}
-     *
      * @psalm-suppress MoreSpecificImplementedParamType
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable

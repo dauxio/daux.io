@@ -1,42 +1,14 @@
 <?php namespace Todaymade\Daux\Format\Confluence\ContentTypes\Markdown;
 
 use org\bovigo\vfs\vfsStream;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 use Todaymade\Daux\ConfigBuilder;
 use Todaymade\Daux\Tree\Builder;
 use Todaymade\Daux\Tree\Root;
 
 class ImageRendererTest extends TestCase
 {
-    public static function provideImageCases()
-    {
-        return [
-            'External image' => [
-                <<<'EOD'
-                    hey
-
-                    ![Alt Text](https://google.com/image.png)
-
-                    content outside
-                    EOD,
-                <<<'EOD'
-                    <p>hey</p>
-                    <p><ac:image><ri:url ri:value="https://google.com/image.png"></ri:url></ac:image></p>
-                    <p>content outside</p>
-                    EOD
-            ],
-            'Image attachment' => [
-                <<<'EOD'
-                    ![Alt Text](./image.png)
-                    EOD,
-                <<<'EOD'
-                    <p><img src="./image.png" alt="Alt Text" /></p>
-                    EOD
-            ],
-        ];
-    }
-
     /**
      * @param mixed $expected
      * @param mixed $input
@@ -66,5 +38,33 @@ class ImageRendererTest extends TestCase
         $converter = new CommonMarkConverter(['daux' => $config]);
 
         $this->assertEquals($expected, trim($converter->convert($input)->getContent()));
+    }
+
+    public static function provideImageCases()
+    {
+        return [
+            'External image' => [
+                <<<'EOD'
+                    hey
+
+                    ![Alt Text](https://google.com/image.png)
+
+                    content outside
+                    EOD,
+                <<<'EOD'
+                    <p>hey</p>
+                    <p><ac:image><ri:url ri:value="https://google.com/image.png"></ri:url></ac:image></p>
+                    <p>content outside</p>
+                    EOD,
+            ],
+            'Image attachment' => [
+                <<<'EOD'
+                    ![Alt Text](./image.png)
+                    EOD,
+                <<<'EOD'
+                    <p><img src="./image.png" alt="Alt Text" /></p>
+                    EOD,
+            ],
+        ];
     }
 }

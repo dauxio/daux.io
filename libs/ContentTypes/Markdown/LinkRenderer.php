@@ -26,8 +26,6 @@ class LinkRenderer implements NodeRendererInterface, ConfigurationAwareInterface
     /**
      * @param Link $node
      *
-     * {@inheritDoc}
-     *
      * @psalm-suppress MoreSpecificImplementedParamType
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable

@@ -2,6 +2,4 @@
 
 use Todaymade\Daux\Exception;
 
-class DuplicateTitleException extends Exception
-{
-}
+class DuplicateTitleException extends Exception {}

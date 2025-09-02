@@ -22,7 +22,7 @@ $config->setRules([
         'multiline_whitespace_before_semicolons' => false,
 
         // Namespace configuration
-        'no_blank_lines_before_namespace' => true,
+        'blank_lines_before_namespace' => false,
         'single_blank_line_before_namespace' => false,
         'blank_line_after_opening_tag' => false,
         'linebreak_after_opening_tag' => false,
