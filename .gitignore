@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
 .idea
+.vscode
 /sftp-config.json
 static
 static-single
