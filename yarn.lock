@@ -4485,7 +4485,7 @@ __metadata:
     "@swissquote/crafty": "npm:1.28.1"
     "@swissquote/crafty-preset-postcss": "npm:1.28.1"
     "@swissquote/crafty-runner-gulp": "npm:1.28.1"
-    flexsearch: "npm:^0.7.0"
+    flexsearch: "npm:^0.8.0"
     katex: "npm:^0.16.4"
     mermaid: "npm:^11.0.0"
     postcss-page-break: "npm:^3.0.4"
@@ -5180,10 +5180,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flexsearch@npm:^0.7.0":
-  version: 0.7.43
-  resolution: "flexsearch@npm:0.7.43"
-  checksum: 10c0/797dc474ed97750b8e85c118b1af63eb2709da5fc05defcb13e96515774f28743ccb2448b63f3b703cf1ca571928c006069503dacf7d177bc07b9ee15e1f85d0
+"flexsearch@npm:^0.8.0":
+  version: 0.8.205
+  resolution: "flexsearch@npm:0.8.205"
+  checksum: 10c0/5ac0122d118e9a55d17336ca5cda0e10681951ff96d32792d6366bfc1e373cc51698ba8a5182f46799903d1467c76cca7847cd4463c4e265587e3bb229a25324
   languageName: node
   linkType: hard
 
