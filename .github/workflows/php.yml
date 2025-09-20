@@ -24,7 +24,7 @@ jobs:
     - uses: actions/checkout@v5
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@2.35.4
+      uses: shivammathur/setup-php@2.35.5
       with:
         php-version: ${{ matrix.php-versions }}
         extensions: mbstring, dom, intl, iconv
