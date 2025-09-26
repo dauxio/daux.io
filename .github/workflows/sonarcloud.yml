@@ -41,7 +41,7 @@ jobs:
       run: echo "project_version=$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n1)" >> $GITHUB_OUTPUT
 
     - name: SonarCloud Scan
-      uses: SonarSource/sonarqube-scan-action@v5
+      uses: SonarSource/sonarqube-scan-action@v6
       with:
         args: >
           -Dsonar.projectVersion=`${{ steps.project_version.outputs.project_version  }}`
