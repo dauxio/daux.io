@@ -202,3 +202,32 @@ pie
           Sit down: 3: Me
     ```
 
+### Advanced Configuration
+
+Mermaid offers many [advanced configuration features](https://mermaid.js.org/config/configuration.html) that you can use with yaml FrontMatter.
+
+```mermaid
+---
+title: Hello Title
+config:
+  theme: base
+  themeVariables:
+    primaryColor: "#00ff00"
+---
+flowchart TD
+    A --> B
+    B --> A
+```
+
+    ```mermaid
+    ---
+    title: Hello Title
+    config:
+      theme: base
+      themeVariables:
+        primaryColor: "#00ff00"
+    ---
+    flowchart TD
+        A --> B
+        B --> A
+    ```
