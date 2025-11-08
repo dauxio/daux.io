@@ -11,13 +11,13 @@
     "@swissquote/crafty-runner-gulp": "1.28.1",
     "@types/node": "^24.3.0",
     "flexsearch": "^0.8.0",
-    "katex": "^0.16.4",
-    "mermaid": "^11.0.0",
+    "katex": "^0.16.25",
+    "mermaid": "^11.12.1",
     "playwright": "^1.55.0",
     "postcss-page-break": "^3.0.4",
     "preact": "^10.0.5",
     "swc-loader": "0.2.6",
-    "webpack": "^5.82.1",
+    "webpack": "^5.102.1",
     "webpack-cli": "^6.0.0"
   },
   "scripts": {

@@ -8,13 +8,11 @@ module.exports = [
         },
         output: {
             path: path.resolve(__dirname, "themes/daux/js"),
-            chunkFilename: "[name].mjs",
-            chunkLoading: "import",
-            chunkFormat: "module",
-        },
-        experiments: {
-            outputModule: true,
-        },
+            chunkFilename: "[name].js",
+            // Using "import" doesn't work when loading as file://
+            chunkLoading: "jsonp",
+            chunkFormat: "array-push",
+        }
     },
     {
         mode: "production",

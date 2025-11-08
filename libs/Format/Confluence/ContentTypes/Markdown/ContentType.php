@@ -32,9 +32,9 @@ class ContentType extends \Todaymade\Daux\ContentTypes\Markdown\ContentType
             daux_ready(function() {
                 var codeBlocks = document.querySelectorAll("pre > code.katex");
                 if (codeBlocks.length) {
-                    daux_loadCSS(`https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css`);
+                    daux_loadCSS(`https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css`);
 
-                    import(`https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.mjs`).then(katex => {
+                    import(`https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.mjs`).then(katex => {
                         [].forEach.call(codeBlocks, function(e) {
                             var content = e.innerHTML;
                             var p = document.createElement("p");
