@@ -13,7 +13,7 @@
     "flexsearch": "^0.8.0",
     "katex": "^0.16.25",
     "mermaid": "^11.12.1",
-    "playwright": "^1.55.0",
+    "playwright": "^1.55.1",
     "postcss-page-break": "^3.0.4",
     "preact": "^10.0.5",
     "swc-loader": "0.2.6",
