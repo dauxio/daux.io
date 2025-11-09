@@ -315,7 +315,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.55.0":
+"@playwright/test@npm:1.55.0":
   version: 1.55.0
   resolution: "@playwright/test@npm:1.55.0"
   dependencies:
@@ -1815,7 +1815,7 @@ __metadata:
   resolution: "daux.io@workspace:."
   dependencies:
     "@biomejs/biome": "npm:2.3.4"
-    "@playwright/test": "npm:^1.55.0"
+    "@playwright/test": "npm:1.55.0"
     "@swc/core": "npm:1.15.0"
     "@swissquote/crafty": "npm:1.28.1"
     "@swissquote/crafty-preset-postcss": "npm:1.28.1"
@@ -1824,7 +1824,6 @@ __metadata:
     flexsearch: "npm:^0.8.0"
     katex: "npm:^0.16.25"
     mermaid: "npm:^11.12.1"
-    playwright: "npm:^1.55.0"
     postcss-page-break: "npm:^3.0.4"
     preact: "npm:^10.0.5"
     swc-loader: "npm:0.2.6"
@@ -2995,7 +2994,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright@npm:1.55.0, playwright@npm:^1.55.0":
+"playwright@npm:1.55.0":
   version: 1.55.0
   resolution: "playwright@npm:1.55.0"
   dependencies:
