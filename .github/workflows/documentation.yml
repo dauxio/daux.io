@@ -21,12 +21,12 @@ jobs:
     - name: Generate documentation
       run: bin/daux generate --value html.plausible_domain=daux.io
     - name: Deploy same repository 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.7.3
+      uses: JamesIves/github-pages-deploy-action@v4.7.4
       with:
         folder: "static"
         branch: gh-pages
     - name: Deploy daux.io 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.7.3
+      uses: JamesIves/github-pages-deploy-action@v4.7.4
       with:
         folder: "static"
         token: ${{ secrets.GH_TOKEN_DAUX }}
