@@ -12,7 +12,7 @@ module.exports = [
             // Using "import" doesn't work when loading as file://
             chunkLoading: "jsonp",
             chunkFormat: "array-push",
-        }
+        },
     },
     {
         mode: "production",
