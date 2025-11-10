@@ -28,5 +28,5 @@
     "lint:js": "yarn lint:js:format && yarn lint:js:check",
     "lint:css": "crafty cssLint --fix --preset recommended src/css/theme_daux_singlepage/*.scss src/css/theme_daux/*.scss"
   },
-  "packageManager": "yarn@4.10.3"
+  "packageManager": "yarn@4.11.0"
 }
