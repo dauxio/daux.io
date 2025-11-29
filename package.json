@@ -3,9 +3,9 @@
   "version": "0.3.0",
   "private": true,
   "devDependencies": {
-    "@biomejs/biome": "2.3.6",
-    "@playwright/test": "1.56.1",
-    "@swc/core": "1.15.2",
+    "@biomejs/biome": "2.3.7",
+    "@playwright/test": "1.57.0",
+    "@swc/core": "1.15.3",
     "@swissquote/crafty": "1.28.1",
     "@swissquote/crafty-preset-postcss": "1.28.1",
     "@swissquote/crafty-runner-gulp": "1.28.1",
@@ -28,5 +28,5 @@
     "lint:js": "yarn lint:js:format && yarn lint:js:check",
     "lint:css": "crafty cssLint --fix --preset recommended src/css/theme_daux_singlepage/*.scss src/css/theme_daux/*.scss"
   },
-  "packageManager": "yarn@4.11.0"
+  "packageManager": "yarn@4.12.0"
 }
