@@ -14,7 +14,7 @@
     "katex": "^0.16.25",
     "mermaid": "^11.12.1",
     "postcss-page-break": "^3.0.4",
-    "preact": "^10.0.5",
+    "preact": "^10.27.3",
     "swc-loader": "0.2.6",
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.0"
