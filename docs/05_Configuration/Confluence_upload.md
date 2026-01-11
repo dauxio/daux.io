@@ -106,3 +106,79 @@ You can add a text in a "information" macro on top of the document by setting th
 It will look like this :
 
 ![Info macro](info_macro.png)
+
+## Pre-rendering Mermaid Diagrams
+
+By default, daux uses client-side JavaScript to render Mermaid diagrams in Confluence. However, this approach may fail due to Content Security Policy restrictions in Confluence Cloud.
+
+To ensure reliable diagram rendering, you can enable pre-rendering, which converts Mermaid diagrams to images before publishing:
+
+```json
+{
+    "confluence": {
+        "pre_render_mermaid": true,
+        "mermaid_cli_path": "mmdc",
+        "mermaid_image_format": "svg"
+    }
+}
+```
+
+### Options
+
+- **pre_render_mermaid** (boolean, default: `false`): Enable pre-rendering of Mermaid diagrams
+- **mermaid_cli_path** (string, default: `mmdc`): Path to mermaid-cli executable. Can be `mmdc`, `npx @mermaid-js/mermaid-cli`, or full path
+- **mermaid_image_format** (string, default: `svg`): Output format. Options: `svg` (recommended) or `png`
+- **mermaid_image_width** (integer, optional): Width in pixels for rendered Mermaid diagrams in Confluence. If not set, Confluence will use the image's natural width
+- **mermaid_image_height** (integer, optional): Height in pixels for rendered Mermaid diagrams in Confluence. If not set, Confluence will use the image's natural height
+
+### Image Sizing
+
+To control the size of Mermaid diagrams in Confluence, you can specify width and/or height:
+
+```json
+{
+    "confluence": {
+        "pre_render_mermaid": true,
+        "mermaid_cli_path": "mmdc",
+        "mermaid_image_format": "svg",
+        "mermaid_image_width": 800,
+        "mermaid_image_height": 600
+    }
+}
+```
+
+**Note**: 
+- If only width is specified, height will scale proportionally
+- If only height is specified, width will scale proportionally
+- If both are specified, the image may be stretched or compressed
+- For SVG format, it's recommended to set only width and let height scale automatically
+
+### Prerequisites
+
+You must have `@mermaid-js/mermaid-cli` installed:
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+```
+
+Or use npx (no installation required):
+
+```json
+{
+    "confluence": {
+        "pre_render_mermaid": true,
+        "mermaid_cli_path": "npx @mermaid-js/mermaid-cli"
+    }
+}
+```
+
+### Troubleshooting
+
+If diagrams fail to render:
+
+1. Verify mermaid-cli is installed: `mmdc --version`
+2. Check the path in `mermaid_cli_path` configuration
+3. Ensure Node.js is available in your PATH: `node --version`
+4. Check file permissions for temporary directory
+5. Review error messages in console output
+6. Try using npx: Set `mermaid_cli_path` to `npx @mermaid-js/mermaid-cli`
