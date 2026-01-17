@@ -15,7 +15,7 @@
     "mermaid": "^11.12.1",
     "postcss-page-break": "^3.0.4",
     "preact": "^10.0.5",
-    "swc-loader": "0.2.6",
+    "swc-loader": "0.2.7",
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.0"
   },
