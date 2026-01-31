@@ -67,6 +67,25 @@ class FencedCodeRenderer extends CodeRenderer
         }
 
         if ($language === 'mermaid') {
+            $confluenceConfig = $this->dauxConfig->getConfluenceConfiguration();
+
+            if ($confluenceConfig->getPreRenderMermaid()) {
+                // Pre-rendering mode: extract and process later
+                if (!isset($this->dauxConfig['__confluence__mermaid_prerender'])) {
+                    $this->dauxConfig['__confluence__mermaid_prerender'] = [];
+                }
+
+                $diagramId = 'mermaid-' . uniqid('', true);
+                $this->dauxConfig['__confluence__mermaid_prerender'][] = [
+                    'id' => $diagramId,
+                    'code' => $node->getLiteral(),
+                ];
+
+                // Return placeholder that will be replaced during page generation
+                // We still use <pre class="mermaid"> so the extractor can find it
+                return new HtmlElement('pre', ['class' => 'mermaid'], Xml::escape($node->getLiteral()));
+            }
+            // Original client-side rendering mode
             $this->dauxConfig['__confluence__mermaid'] = true;
 
             // We render this as <pre> so confluence will leave the content as-is, otherwise it will remove

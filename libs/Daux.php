@@ -50,7 +50,9 @@ class Daux
         // Apply the language name as Section title
         if ($this->config->isMultilanguage()) {
             foreach ($this->config->getLanguages() as $key => $node) {
-                $this->tree->getEntries()[$key]->setTitle($node);
+                if (isset($this->tree->getEntries()[$key])) {
+                    $this->tree->getEntries()[$key]->setTitle($node);
+                }
             }
         }
 

@@ -12,7 +12,77 @@ class ContentPage extends \Todaymade\Daux\Format\Base\ContentPage
 
     protected function generatePage()
     {
+        // Reset Mermaid data for this page before rendering
+        $this->config['__confluence__mermaid_prerender'] = [];
+
         $content = parent::generatePage();
+
+        $confluenceConfig = $this->config->getConfluenceConfiguration();
+
+        // Handle Mermaid pre-rendering if enabled
+        if ($confluenceConfig->getPreRenderMermaid()) {
+            $extractor = new MermaidExtractor();
+
+            try {
+                // Use factory to get appropriate renderer
+                $renderer = MermaidRendererFactory::create($this->config);
+            } catch (Exception $e) {
+                // Fallback to original client-side rendering
+                $this->config['__confluence__mermaid'] = true;
+                $renderer = null;
+            }
+
+            if ($renderer !== null) {
+                // Extract Mermaid blocks from HTML content
+                $diagrams = $extractor->extractFromContent($content);
+
+                if (!empty($diagrams)) {
+                    foreach ($diagrams as $diagramIndex => $diagram) {
+                        try {
+                            // Render diagram to image
+                            // Get parent directory from the current file
+                            $parent = $this->file->getParent();
+                            if ($parent === null) {
+                                // Fallback: get root directory from config
+                                $parent = $this->config->getTree();
+                            }
+
+                            $attachment = $renderer->render(
+                                $diagram['code'],
+                                $diagram['id'],
+                                $this->config,
+                                $parent
+                            );
+
+                            // Add as attachment
+                            $this->attachments[$attachment->getUri()] = [
+                                'filename' => $attachment->getUri(),
+                                'content' => $attachment->getContent(),
+                            ];
+
+                            // Replace original <pre class="mermaid"> block with image tag
+                            // Apply Mermaid-specific size settings
+                            $imageAttributes = [];
+                            $mermaidWidth = $confluenceConfig->getMermaidImageWidth();
+                            $mermaidHeight = $confluenceConfig->getMermaidImageHeight();
+                            if ($mermaidWidth !== null) {
+                                $imageAttributes['width'] = (string) $mermaidWidth;
+                            }
+                            if ($mermaidHeight !== null) {
+                                $imageAttributes['height'] = (string) $mermaidHeight;
+                            }
+                            $imageTag = $this->createImageTag($attachment->getUri(), $imageAttributes);
+                            $content = str_replace($diagram['original'], $imageTag, $content);
+                        } catch (Exception $e) {
+                            // Log error and keep original code block
+                            // Fallback to original rendering for this diagram
+                            error_log("Mermaid rendering failed for diagram {$diagram['id']}: " . $e->getMessage());
+                            $this->config['__confluence__mermaid'] = true;
+                        }
+                    }
+                }
+            }
+        }
 
         // Embed images
         // We do it after generation so we can catch the images that were in html already
