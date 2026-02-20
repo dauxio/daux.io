@@ -9,7 +9,7 @@ use Todaymade\Daux\Daux;
 
 class DauxCommand extends SymfonyCommand
 {
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->addOption('configuration', 'c', InputOption::VALUE_REQUIRED, 'Configuration file')

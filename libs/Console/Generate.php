@@ -11,7 +11,7 @@ use Todaymade\Daux\Daux;
 
 class Generate extends DauxCommand
 {
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

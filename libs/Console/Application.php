@@ -8,9 +8,9 @@ class Application extends SymfonyApplication
     {
         parent::__construct($name, $version);
 
-        $this->add(new Generate());
-        $this->add(new Serve());
-        $this->add(new ClearCache());
+        $this->addCommand(new Generate());
+        $this->addCommand(new Serve());
+        $this->addCommand(new ClearCache());
 
         $appName = 'daux/daux.io';
 

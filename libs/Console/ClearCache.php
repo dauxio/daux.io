@@ -7,7 +7,7 @@ use Todaymade\Daux\Cache;
 
 class ClearCache extends SymfonyCommand
 {
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('clear-cache')

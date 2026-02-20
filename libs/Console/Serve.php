@@ -9,7 +9,7 @@ use Todaymade\Daux\Daux;
 
 class Serve extends DauxCommand
 {
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
