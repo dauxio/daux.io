@@ -49,7 +49,7 @@ class MermaidRendererFactoryTest extends TestCase
 
     private function createConfigWithMermaidCli(): Config
     {
-        $config = ConfigBuilder::withMode()
+        return ConfigBuilder::withMode()
             ->withCache(false)
             ->with([
                 'confluence' => [
@@ -61,13 +61,11 @@ class MermaidRendererFactoryTest extends TestCase
                 ],
             ])
             ->build();
-
-        return $config;
     }
 
     private function createConfigWithInvalidCliPath(): Config
     {
-        $config = ConfigBuilder::withMode()
+        return ConfigBuilder::withMode()
             ->withCache(false)
             ->with([
                 'confluence' => [
@@ -79,7 +77,5 @@ class MermaidRendererFactoryTest extends TestCase
                 ],
             ])
             ->build();
-
-        return $config;
     }
 }
