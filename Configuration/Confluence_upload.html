@@ -140,7 +140,7 @@
     <div class="Page__header">
         <h1><a href="../Configuration/index.html">Configuration</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Configuration/Confluence_upload.html">Confluence upload</a></h1>
                 <span class="ModifiedDate">
-            February 20, 2026 at 12:08 PM        </span>
+            February 20, 2026 at 1:00 PM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/05_Configuration/Confluence_upload.md" target="_blank">
                 Edit on GitHub            </a>
@@ -159,6 +159,14 @@
 <li><a href="#update-threshold">Update threshold</a></li>
 <li><a href="#delete-old-pages">Delete old pages</a></li>
 <li><a href="#information-message">Information message</a></li>
+<li><a href="#pre-rendering-mermaid-diagrams">Pre-rendering Mermaid Diagrams</a>
+<ul>
+<li><a href="#options">Options</a></li>
+<li><a href="#image-sizing">Image Sizing</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
 </ul>    </div>
 </div>
 <h2><a id="configuring-the-connection" href="#configuring-the-connection" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuring the connection</h2>
@@ -227,6 +235,66 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
 </code></pre>
 <p>It will look like this :</p>
 <p><img src="info_macro.png" alt="Info macro" /></p>
+<h2><a id="pre-rendering-mermaid-diagrams" href="#pre-rendering-mermaid-diagrams" class="Permalink" aria-hidden="true" title="Permalink">#</a>Pre-rendering Mermaid Diagrams</h2>
+<p>By default, daux uses client-side JavaScript to render Mermaid diagrams in Confluence. However, this approach may fail due to Content Security Policy restrictions in Confluence Cloud.</p>
+<p>To ensure reliable diagram rendering, you can enable pre-rendering, which converts Mermaid diagrams to images before publishing:</p>
+<pre><code class="hljs json">{
+    <span class="hljs-attr">"confluence"</span>: {
+        <span class="hljs-attr">"pre_render_mermaid"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"mermaid_cli_path"</span>: <span class="hljs-string">"mmdc"</span>,
+        <span class="hljs-attr">"mermaid_image_format"</span>: <span class="hljs-string">"svg"</span>
+    }
+}
+</code></pre>
+<h3><a id="options" href="#options" class="Permalink" aria-hidden="true" title="Permalink">#</a>Options</h3>
+<ul>
+<li><strong>pre_render_mermaid</strong> (boolean, default: <code>false</code>): Enable pre-rendering of Mermaid diagrams</li>
+<li><strong>mermaid_cli_path</strong> (string, default: <code>mmdc</code>): Path to mermaid-cli executable. Can be <code>mmdc</code>, <code>npx @mermaid-js/mermaid-cli</code>, or full path</li>
+<li><strong>mermaid_image_format</strong> (string, default: <code>svg</code>): Output format. Options: <code>svg</code> (recommended) or <code>png</code></li>
+<li><strong>mermaid_image_width</strong> (integer, optional): Width in pixels for rendered Mermaid diagrams in Confluence. If not set, Confluence will use the image’s natural width</li>
+<li><strong>mermaid_image_height</strong> (integer, optional): Height in pixels for rendered Mermaid diagrams in Confluence. If not set, Confluence will use the image’s natural height</li>
+</ul>
+<h3><a id="image-sizing" href="#image-sizing" class="Permalink" aria-hidden="true" title="Permalink">#</a>Image Sizing</h3>
+<p>To control the size of Mermaid diagrams in Confluence, you can specify width and/or height:</p>
+<pre><code class="hljs json">{
+    <span class="hljs-attr">"confluence"</span>: {
+        <span class="hljs-attr">"pre_render_mermaid"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"mermaid_cli_path"</span>: <span class="hljs-string">"mmdc"</span>,
+        <span class="hljs-attr">"mermaid_image_format"</span>: <span class="hljs-string">"svg"</span>,
+        <span class="hljs-attr">"mermaid_image_width"</span>: <span class="hljs-number">800</span>,
+        <span class="hljs-attr">"mermaid_image_height"</span>: <span class="hljs-number">600</span>
+    }
+}
+</code></pre>
+<p><strong>Note</strong>:</p>
+<ul>
+<li>If only width is specified, height will scale proportionally</li>
+<li>If only height is specified, width will scale proportionally</li>
+<li>If both are specified, the image may be stretched or compressed</li>
+<li>For SVG format, it’s recommended to set only width and let height scale automatically</li>
+</ul>
+<h3><a id="prerequisites" href="#prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prerequisites</h3>
+<p>You must have <code>@mermaid-js/mermaid-cli</code> installed:</p>
+<pre><code class="hljs bash">npm install -g @mermaid-js/mermaid-cli
+</code></pre>
+<p>Or use npx (no installation required):</p>
+<pre><code class="hljs json">{
+    <span class="hljs-attr">"confluence"</span>: {
+        <span class="hljs-attr">"pre_render_mermaid"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"mermaid_cli_path"</span>: <span class="hljs-string">"npx @mermaid-js/mermaid-cli"</span>
+    }
+}
+</code></pre>
+<h3><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting</h3>
+<p>If diagrams fail to render:</p>
+<ol>
+<li>Verify mermaid-cli is installed: <code>mmdc --version</code></li>
+<li>Check the path in <code>mermaid_cli_path</code> configuration</li>
+<li>Ensure Node.js is available in your PATH: <code>node --version</code></li>
+<li>Check file permissions for temporary directory</li>
+<li>Review error messages in console output</li>
+<li>Try using npx: Set <code>mermaid_cli_path</code> to <code>npx @mermaid-js/mermaid-cli</code></li>
+</ol>
     </div>
 
         <nav>
