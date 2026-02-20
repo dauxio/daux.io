@@ -33,6 +33,6 @@ class ServerTest extends TestCase
         $server = new Server($daux);
         $response = $server->createResponse($page)->prepare(Request::createFromGlobals());
 
-        $this->assertEquals('text/css; charset=UTF-8', $response->headers->get('Content-Type'));
+        $this->assertEquals('text/css; charset=utf-8', $response->headers->get('Content-Type'));
     }
 }

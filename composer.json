@@ -18,17 +18,17 @@
     "bin": ["bin/daux"],
     "require": {
         "ext-json": "*",
-        "php": ">=8.3",
+        "php": ">=8.4",
         "guzzlehttp/guzzle": "~6.0 || ~7.0",
         "league/commonmark": "^2.4.0",
         "league/plates": "~3.1",
         "scrivo/highlight.php": "^9.15",
-        "symfony/console": "^5.0|^6.0|^7.0",
-        "symfony/http-foundation": "^5.0|^6.0|^7.0",
-        "symfony/mime": "^5.0|^6.0|^7.0",
+        "symfony/console": "^7.0|^8.0",
+        "symfony/http-foundation": "^7.0|^8.0",
+        "symfony/mime": "^7.0|^8.0",
         "symfony/polyfill-intl-icu": "^1.10",
-        "symfony/process": "^5.0|^6.0|^7.0",
-        "symfony/yaml": "^5.0|^6.0|^7.0"
+        "symfony/process": "^7.0|^8.0",
+        "symfony/yaml": "^7.0|^8.0"
     },
     "suggest":{
         "ext-intl": "Allows to translate the modified at date"
@@ -44,7 +44,7 @@
     "require-dev": {
         "mikey179/vfsstream": "^1.6",
         "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^12.0"
+        "phpunit/phpunit": "^13.0"
     },
     "scripts": {
         "test": "APP_ENV=test php vendor/bin/phpunit",
