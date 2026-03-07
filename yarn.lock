@@ -40,18 +40,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/biome@npm:2.4.4"
+"@biomejs/biome@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/biome@npm:2.4.5"
   dependencies:
-    "@biomejs/cli-darwin-arm64": "npm:2.4.4"
-    "@biomejs/cli-darwin-x64": "npm:2.4.4"
-    "@biomejs/cli-linux-arm64": "npm:2.4.4"
-    "@biomejs/cli-linux-arm64-musl": "npm:2.4.4"
-    "@biomejs/cli-linux-x64": "npm:2.4.4"
-    "@biomejs/cli-linux-x64-musl": "npm:2.4.4"
-    "@biomejs/cli-win32-arm64": "npm:2.4.4"
-    "@biomejs/cli-win32-x64": "npm:2.4.4"
+    "@biomejs/cli-darwin-arm64": "npm:2.4.5"
+    "@biomejs/cli-darwin-x64": "npm:2.4.5"
+    "@biomejs/cli-linux-arm64": "npm:2.4.5"
+    "@biomejs/cli-linux-arm64-musl": "npm:2.4.5"
+    "@biomejs/cli-linux-x64": "npm:2.4.5"
+    "@biomejs/cli-linux-x64-musl": "npm:2.4.5"
+    "@biomejs/cli-win32-arm64": "npm:2.4.5"
+    "@biomejs/cli-win32-x64": "npm:2.4.5"
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -71,62 +71,62 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 10c0/f2b7620d39caeeb9e0ed070dd1065cc2378626c7fa6ecda3db84b64df4c94fb4909407726044e28c83e8a95121ad389498cc3f0e5be600a421d906ca705b821c
+  checksum: 10c0/5466d0f69c30bbe1912f3f5f307dd31293e054c8b307c21f1df22edad415de34cf46842b0bd57e150cfc6dc6d698e848f6cd26fc7155d685aa8323e4ead7538e
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/cli-darwin-arm64@npm:2.4.4"
+"@biomejs/cli-darwin-arm64@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/cli-darwin-arm64@npm:2.4.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/cli-darwin-x64@npm:2.4.4"
+"@biomejs/cli-darwin-x64@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/cli-darwin-x64@npm:2.4.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64-musl@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.4.4"
+"@biomejs/cli-linux-arm64-musl@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.4.5"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/cli-linux-arm64@npm:2.4.4"
+"@biomejs/cli-linux-arm64@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/cli-linux-arm64@npm:2.4.5"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64-musl@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/cli-linux-x64-musl@npm:2.4.4"
+"@biomejs/cli-linux-x64-musl@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/cli-linux-x64-musl@npm:2.4.5"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/cli-linux-x64@npm:2.4.4"
+"@biomejs/cli-linux-x64@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/cli-linux-x64@npm:2.4.5"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/cli-win32-arm64@npm:2.4.4"
+"@biomejs/cli-win32-arm64@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/cli-win32-arm64@npm:2.4.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@biomejs/cli-win32-x64@npm:2.4.4"
+"@biomejs/cli-win32-x64@npm:2.4.5":
+  version: 2.4.5
+  resolution: "@biomejs/cli-win32-x64@npm:2.4.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -326,90 +326,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-darwin-arm64@npm:1.15.13"
+"@swc/core-darwin-arm64@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-darwin-arm64@npm:1.15.18"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-darwin-x64@npm:1.15.13"
+"@swc/core-darwin-x64@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-darwin-x64@npm:1.15.18"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.15.13"
+"@swc/core-linux-arm-gnueabihf@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.15.18"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.15.13"
+"@swc/core-linux-arm64-gnu@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.15.18"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-linux-arm64-musl@npm:1.15.13"
+"@swc/core-linux-arm64-musl@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-linux-arm64-musl@npm:1.15.18"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-linux-x64-gnu@npm:1.15.13"
+"@swc/core-linux-x64-gnu@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-linux-x64-gnu@npm:1.15.18"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-linux-x64-musl@npm:1.15.13"
+"@swc/core-linux-x64-musl@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-linux-x64-musl@npm:1.15.18"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.15.13"
+"@swc/core-win32-arm64-msvc@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.15.18"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.15.13"
+"@swc/core-win32-ia32-msvc@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.15.18"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core-win32-x64-msvc@npm:1.15.13"
+"@swc/core-win32-x64-msvc@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core-win32-x64-msvc@npm:1.15.18"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:1.15.13":
-  version: 1.15.13
-  resolution: "@swc/core@npm:1.15.13"
+"@swc/core@npm:1.15.18":
+  version: 1.15.18
+  resolution: "@swc/core@npm:1.15.18"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.15.13"
-    "@swc/core-darwin-x64": "npm:1.15.13"
-    "@swc/core-linux-arm-gnueabihf": "npm:1.15.13"
-    "@swc/core-linux-arm64-gnu": "npm:1.15.13"
-    "@swc/core-linux-arm64-musl": "npm:1.15.13"
-    "@swc/core-linux-x64-gnu": "npm:1.15.13"
-    "@swc/core-linux-x64-musl": "npm:1.15.13"
-    "@swc/core-win32-arm64-msvc": "npm:1.15.13"
-    "@swc/core-win32-ia32-msvc": "npm:1.15.13"
-    "@swc/core-win32-x64-msvc": "npm:1.15.13"
+    "@swc/core-darwin-arm64": "npm:1.15.18"
+    "@swc/core-darwin-x64": "npm:1.15.18"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.15.18"
+    "@swc/core-linux-arm64-gnu": "npm:1.15.18"
+    "@swc/core-linux-arm64-musl": "npm:1.15.18"
+    "@swc/core-linux-x64-gnu": "npm:1.15.18"
+    "@swc/core-linux-x64-musl": "npm:1.15.18"
+    "@swc/core-win32-arm64-msvc": "npm:1.15.18"
+    "@swc/core-win32-ia32-msvc": "npm:1.15.18"
+    "@swc/core-win32-x64-msvc": "npm:1.15.18"
     "@swc/counter": "npm:^0.1.3"
     "@swc/types": "npm:^0.1.25"
   peerDependencies:
@@ -438,7 +438,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 10c0/739b8f01bc905ce776455b92ab1288b3783b99e3fe5b413dc68fce753584b5601b4b445723ee367ce762905b85ca63c87a6bb26c3b4ca1871f78ec2bd5bf2740
+  checksum: 10c0/b52381eefaf88ba1b8ff603c58418fcc7ca661cd0fc8b68bfc17e523b356d027dfcc3bfd459ddc107a67021a943979a79cd0589338d20c6564bbb5cf8f35afb5
   languageName: node
   linkType: hard
 
@@ -1814,9 +1814,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "daux.io@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:2.4.4"
+    "@biomejs/biome": "npm:2.4.5"
     "@playwright/test": "npm:1.58.2"
-    "@swc/core": "npm:1.15.13"
+    "@swc/core": "npm:1.15.18"
     "@swissquote/crafty": "npm:1.28.1"
     "@swissquote/crafty-preset-postcss": "npm:1.28.1"
     "@swissquote/crafty-runner-gulp": "npm:1.28.1"
