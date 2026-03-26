@@ -52,8 +52,8 @@ jobs:
     - name: Run test suite
       run: composer run-script test:coverage
 
-    - name: Fix code coverage paths
-      run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
+    #- name: Fix code coverage paths
+    #  run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
 
     - uses: actions/upload-artifact@v6
       if: matrix.php-version == '8.4'
