@@ -1,9 +1,10 @@
 name: PHP
 
 on:
-  push: 
-  pull_request:
-    types: [opened, reopened]
+  push:
+    branches: [ master ]
+  pull_request_target:
+    branches: [ master ]
 
 jobs:
   build:
@@ -11,23 +12,28 @@ jobs:
       max-parallel: 15
       matrix:
         operating-system: [ubuntu-latest, macOS-latest]
-        php-versions: ['8.4', '8.5']
+        php-version: ['8.4', '8.5']
         # TODO : enable tests on windows
         #include:
         #  - operating-system: windows-latest
         #    php-versions: 8.1
 
-    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
+    name: PHP ${{ matrix.php-version }} Test on ${{ matrix.operating-system }}
     runs-on: ${{ matrix.operating-system }}
+    permissions:
+      contents: read
 
     steps:
     - uses: actions/checkout@v6
+      with:
+        ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
 
     - name: Setup PHP
       uses: shivammathur/setup-php@2.37.0
       with:
-        php-version: ${{ matrix.php-versions }}
+        php-version: ${{ matrix.php-version }}
         extensions: mbstring, dom, intl, iconv
+        coverage: xdebug
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -37,7 +43,6 @@ jobs:
 
     - name: Install tools
       run: ./scripts/install_tools.sh
-      shell: bash
 
     - name: Check formatting
       run: composer run-script lint
@@ -45,4 +50,53 @@ jobs:
         PHP_CS_FIXER_IGNORE_ENV: 1
 
     - name: Run test suite
-      run: composer run-script test
+      run: composer run-script test:coverage
+
+    - name: Fix code coverage paths
+      run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
+
+    - uses: actions/upload-artifact@v6
+      if: matrix.php-version == '8.4'
+      with:
+        name: reports-${{ matrix.os }}-${{ matrix.php-version }}
+        retention-days: 1
+        path: |
+          **/coverage/lcov.info
+          **/coverage/sonar-report.xml
+          !node_modules/**
+
+  # ─── Job 2: uploads coverage using secrets, does NOT run PR code ─────────
+  static_analysis:
+    name: "🔬 Static Analysis"
+    needs: build
+    runs-on: ubuntu-latest
+    if: success()
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    # Commit is needed to check coverage files against content
+    - uses: actions/checkout@v6
+      with:
+        ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
+        # Disabling shallow clone is needed by SonarQube
+        fetch-depth: 0
+    - uses: actions/download-artifact@v8
+      with:
+        pattern: reports-*
+        path: __reports
+    - run: find . -name "lcov.info"
+    - name: Collect Sonar report paths
+      id: sonar_reports
+      run: |
+        paths=$(find . -name "sonar-report.xml" | tr '\n' ',' | sed 's/,$//')
+        echo "paths=$paths" >> $GITHUB_OUTPUT
+        echo "project_version=$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n1)" >> $GITHUB_OUTPUT
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarqube-scan-action@v7
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        args: >
+          -Dsonar.testExecutionReportPaths=${{ steps.sonar_reports.outputs.paths }}
+          -Dsonar.projectVersion=`${{ steps.sonar_reports.outputs.project_version  }}`
