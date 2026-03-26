@@ -11,15 +11,15 @@ jobs:
     strategy:
       max-parallel: 15
       matrix:
-        operating-system: [ubuntu-latest, macOS-latest]
+        os: [ubuntu-latest, macOS-latest]
         php-version: ['8.4', '8.5']
         # TODO : enable tests on windows
         #include:
-        #  - operating-system: windows-latest
-        #    php-versions: 8.1
+        #  - os: windows-latest
+        #    php-version: 8.1
 
-    name: PHP ${{ matrix.php-version }} Test on ${{ matrix.operating-system }}
-    runs-on: ${{ matrix.operating-system }}
+    name: PHP ${{ matrix.php-version }} Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: read
 
