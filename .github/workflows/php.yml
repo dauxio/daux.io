@@ -61,8 +61,8 @@ jobs:
         name: reports-${{ matrix.os }}-${{ matrix.php-version }}
         retention-days: 1
         path: |
-          **/coverage/lcov.info
-          **/coverage/sonar-report.xml
+          **/coverage.xml
+          **/test-report.xml
           !node_modules/**
 
   # ─── Job 2: uploads coverage using secrets, does NOT run PR code ─────────
@@ -85,12 +85,11 @@ jobs:
       with:
         pattern: reports-*
         path: __reports
-    - run: find . -name "lcov.info"
+    - run: find . -name "coverage.xml"
     - name: Collect Sonar report paths
       id: sonar_reports
       run: |
-        paths=$(find . -name "sonar-report.xml" | tr '\n' ',' | sed 's/,$//')
-        echo "paths=$paths" >> $GITHUB_OUTPUT
+        echo "test_reports=$(find . -name "test-report.xml" | tr '\n' ',' | sed 's/,$//')" >> $GITHUB_OUTPUT
         echo "project_version=$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n1)" >> $GITHUB_OUTPUT
     - name: SonarCloud Scan
       uses: SonarSource/sonarqube-scan-action@v7
@@ -98,5 +97,5 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
-          -Dsonar.testExecutionReportPaths=${{ steps.sonar_reports.outputs.paths }}
+          -Dsonar.php.tests.reportPath=${{ steps.sonar_reports.outputs.test_reports }}
           -Dsonar.projectVersion=`${{ steps.sonar_reports.outputs.project_version  }}`
