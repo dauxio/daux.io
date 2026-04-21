@@ -12,18 +12,18 @@ class CommonMarkConverter extends \Todaymade\Daux\ContentTypes\Markdown\CommonMa
 {
     public function __construct($config)
     {
-        $config['heading_permalink'] = [
+        $config['heading_permalink'] = array_merge([
             'html_class' => 'Permalink',
             'symbol' => '#',
             'fragment_prefix' => '',
             'id_prefix' => '',
-        ];
+        ], $config['daux']['heading_permalink'] ?? []);
 
-        $config['table_of_contents'] = [
+        $config['table_of_contents'] = array_merge([
             'html_class' => 'TableOfContents',
             'position' => 'placeholder',
             'placeholder' => '[TOC]',
-        ];
+        ], $config['daux']['table_of_contents'] ?? []);
 
         parent::__construct($config);
     }
