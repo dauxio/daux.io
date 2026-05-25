@@ -3,15 +3,15 @@
   "version": "0.3.0",
   "private": true,
   "devDependencies": {
-    "@biomejs/biome": "2.4.12",
-    "@playwright/test": "1.59.1",
-    "@swc/core": "1.15.26",
-    "@swissquote/crafty": "1.28.1",
-    "@swissquote/crafty-preset-postcss": "1.28.1",
-    "@swissquote/crafty-runner-gulp": "1.28.1",
+    "@biomejs/biome": "2.4.15",
+    "@playwright/test": "1.60.0",
+    "@swc/core": "1.15.33",
+    "@swissquote/crafty": "1.29.0",
+    "@swissquote/crafty-preset-postcss": "1.29.0",
+    "@swissquote/crafty-runner-gulp": "1.29.0",
     "@types/node": "^24.3.0",
     "flexsearch": "^0.8.0",
-    "katex": "^0.16.25",
+    "katex": "^0.17.0",
     "mermaid": "^11.15.0",
     "postcss-page-break": "^3.0.4",
     "preact": "^10.0.5",
@@ -28,5 +28,5 @@
     "lint:js": "yarn lint:js:format && yarn lint:js:check",
     "lint:css": "crafty cssLint --fix --preset recommended src/css/theme_daux_singlepage/*.scss src/css/theme_daux/*.scss"
   },
-  "packageManager": "yarn@4.14.0"
+  "packageManager": "yarn@4.15.0"
 }
