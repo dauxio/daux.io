@@ -37,6 +37,24 @@ class TableOfContentsTest extends TestCase
         $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">#</a>Test</h1>\n", $converter->convert('# Test')->getContent());
     }
 
+    public function testHeadingPermalinkSymbolOverride()
+    {
+        $config = $this->getConfig();
+        $config['daux']['heading_permalink'] = ['symbol' => ''];
+        $converter = new CommonMarkConverter($config);
+
+        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\"></a>Test</h1>\n", $converter->convert('# Test')->getContent());
+    }
+
+    public function testHeadingPermalinkCustomSymbol()
+    {
+        $config = $this->getConfig();
+        $config['daux']['heading_permalink'] = ['symbol' => '¶'];
+        $converter = new CommonMarkConverter($config);
+
+        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">¶</a>Test</h1>\n", $converter->convert('# Test')->getContent());
+    }
+
     public function testShouldAddTOCWhenAutoTOCisOn()
     {
         $config = $this->getConfig();
