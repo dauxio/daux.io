@@ -21,8 +21,8 @@ const textSearchTooShort = Search_too_short;
 /* eslint-enable camelcase */
 
 export {
-    textLinkPrevious,
     textLinkNext,
+    textLinkPrevious,
     textSearchNoResults,
     textSearchOneCharacterOrMore,
     textSearchOneResult,
