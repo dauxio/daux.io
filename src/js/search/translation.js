@@ -18,6 +18,7 @@ const textSearchOneResult = Search_one_result;
 const textSearchResults = Search_results;
 const textSearchShouldBeXOrMore = Search_should_be_x_or_more;
 const textSearchTooShort = Search_too_short;
+
 /* eslint-enable camelcase */
 
 export {
