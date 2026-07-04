@@ -33,18 +33,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/biome@npm:2.4.16"
+"@biomejs/biome@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/biome@npm:2.5.2"
   dependencies:
-    "@biomejs/cli-darwin-arm64": "npm:2.4.16"
-    "@biomejs/cli-darwin-x64": "npm:2.4.16"
-    "@biomejs/cli-linux-arm64": "npm:2.4.16"
-    "@biomejs/cli-linux-arm64-musl": "npm:2.4.16"
-    "@biomejs/cli-linux-x64": "npm:2.4.16"
-    "@biomejs/cli-linux-x64-musl": "npm:2.4.16"
-    "@biomejs/cli-win32-arm64": "npm:2.4.16"
-    "@biomejs/cli-win32-x64": "npm:2.4.16"
+    "@biomejs/cli-darwin-arm64": "npm:2.5.2"
+    "@biomejs/cli-darwin-x64": "npm:2.5.2"
+    "@biomejs/cli-linux-arm64": "npm:2.5.2"
+    "@biomejs/cli-linux-arm64-musl": "npm:2.5.2"
+    "@biomejs/cli-linux-x64": "npm:2.5.2"
+    "@biomejs/cli-linux-x64-musl": "npm:2.5.2"
+    "@biomejs/cli-win32-arm64": "npm:2.5.2"
+    "@biomejs/cli-win32-x64": "npm:2.5.2"
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -64,62 +64,62 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 10c0/c52c4309daf241888b43912a43d1ba8bae7c2160751c33900088517da3e47d1428bb1c1f64f657efa5f42f5866e6400325b39fc41c3adf7cc7aa3f237f6fa286
+  checksum: 10c0/1362fd44f64a43a72c098f2b14b0b1c435a79174c9eb89bd81b0e47433e8c7325ae7426d471bef7d37ac37c0778d25bf75544621cd6b58477ff084de5f48768e
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/cli-darwin-arm64@npm:2.4.16"
+"@biomejs/cli-darwin-arm64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/cli-darwin-arm64@npm:2.5.2"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/cli-darwin-x64@npm:2.4.16"
+"@biomejs/cli-darwin-x64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/cli-darwin-x64@npm:2.5.2"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64-musl@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.4.16"
+"@biomejs/cli-linux-arm64-musl@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.5.2"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/cli-linux-arm64@npm:2.4.16"
+"@biomejs/cli-linux-arm64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/cli-linux-arm64@npm:2.5.2"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64-musl@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/cli-linux-x64-musl@npm:2.4.16"
+"@biomejs/cli-linux-x64-musl@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/cli-linux-x64-musl@npm:2.5.2"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/cli-linux-x64@npm:2.4.16"
+"@biomejs/cli-linux-x64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/cli-linux-x64@npm:2.5.2"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/cli-win32-arm64@npm:2.4.16"
+"@biomejs/cli-win32-arm64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/cli-win32-arm64@npm:2.5.2"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:2.4.16":
-  version: 2.4.16
-  resolution: "@biomejs/cli-win32-x64@npm:2.4.16"
+"@biomejs/cli-win32-x64@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@biomejs/cli-win32-x64@npm:2.5.2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -268,119 +268,119 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:1.60.0":
-  version: 1.60.0
-  resolution: "@playwright/test@npm:1.60.0"
+"@playwright/test@npm:1.61.1":
+  version: 1.61.1
+  resolution: "@playwright/test@npm:1.61.1"
   dependencies:
-    playwright: "npm:1.60.0"
+    playwright: "npm:1.61.1"
   bin:
     playwright: cli.js
-  checksum: 10c0/86b06e6437933e741c7cd43f362024e857e7bc28a55fcbb0553ef55e01a2a403c64f4786868de8af86a6e303fe99e98a18a42ba19489f43ae122e457f9e2d189
+  checksum: 10c0/45004139eaa7c7ec8129e4ed77a9d734aa09ed40b69162b871e4123f1d70217b7b73651431a9343ed5090d5fed11c6df1bff2a56ff4b87dc7b0371b5da87cf9c
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-darwin-arm64@npm:1.15.40"
+"@swc/core-darwin-arm64@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-darwin-arm64@npm:1.15.43"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-darwin-x64@npm:1.15.40"
+"@swc/core-darwin-x64@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-darwin-x64@npm:1.15.43"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.15.40"
+"@swc/core-linux-arm-gnueabihf@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.15.43"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.15.40"
+"@swc/core-linux-arm64-gnu@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.15.43"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-linux-arm64-musl@npm:1.15.40"
+"@swc/core-linux-arm64-musl@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-linux-arm64-musl@npm:1.15.43"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-ppc64-gnu@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-linux-ppc64-gnu@npm:1.15.40"
+"@swc/core-linux-ppc64-gnu@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-linux-ppc64-gnu@npm:1.15.43"
   conditions: os=linux & cpu=ppc64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-s390x-gnu@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-linux-s390x-gnu@npm:1.15.40"
+"@swc/core-linux-s390x-gnu@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-linux-s390x-gnu@npm:1.15.43"
   conditions: os=linux & cpu=s390x & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-linux-x64-gnu@npm:1.15.40"
+"@swc/core-linux-x64-gnu@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-linux-x64-gnu@npm:1.15.43"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-linux-x64-musl@npm:1.15.40"
+"@swc/core-linux-x64-musl@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-linux-x64-musl@npm:1.15.43"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.15.40"
+"@swc/core-win32-arm64-msvc@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.15.43"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.15.40"
+"@swc/core-win32-ia32-msvc@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.15.43"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core-win32-x64-msvc@npm:1.15.40"
+"@swc/core-win32-x64-msvc@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core-win32-x64-msvc@npm:1.15.43"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:1.15.40":
-  version: 1.15.40
-  resolution: "@swc/core@npm:1.15.40"
+"@swc/core@npm:1.15.43":
+  version: 1.15.43
+  resolution: "@swc/core@npm:1.15.43"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.15.40"
-    "@swc/core-darwin-x64": "npm:1.15.40"
-    "@swc/core-linux-arm-gnueabihf": "npm:1.15.40"
-    "@swc/core-linux-arm64-gnu": "npm:1.15.40"
-    "@swc/core-linux-arm64-musl": "npm:1.15.40"
-    "@swc/core-linux-ppc64-gnu": "npm:1.15.40"
-    "@swc/core-linux-s390x-gnu": "npm:1.15.40"
-    "@swc/core-linux-x64-gnu": "npm:1.15.40"
-    "@swc/core-linux-x64-musl": "npm:1.15.40"
-    "@swc/core-win32-arm64-msvc": "npm:1.15.40"
-    "@swc/core-win32-ia32-msvc": "npm:1.15.40"
-    "@swc/core-win32-x64-msvc": "npm:1.15.40"
+    "@swc/core-darwin-arm64": "npm:1.15.43"
+    "@swc/core-darwin-x64": "npm:1.15.43"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.15.43"
+    "@swc/core-linux-arm64-gnu": "npm:1.15.43"
+    "@swc/core-linux-arm64-musl": "npm:1.15.43"
+    "@swc/core-linux-ppc64-gnu": "npm:1.15.43"
+    "@swc/core-linux-s390x-gnu": "npm:1.15.43"
+    "@swc/core-linux-x64-gnu": "npm:1.15.43"
+    "@swc/core-linux-x64-musl": "npm:1.15.43"
+    "@swc/core-win32-arm64-msvc": "npm:1.15.43"
+    "@swc/core-win32-ia32-msvc": "npm:1.15.43"
+    "@swc/core-win32-x64-msvc": "npm:1.15.43"
     "@swc/counter": "npm:^0.1.3"
-    "@swc/types": "npm:^0.1.26"
+    "@swc/types": "npm:^0.1.27"
   peerDependencies:
     "@swc/helpers": ">=0.5.17"
   dependenciesMeta:
@@ -411,7 +411,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 10c0/852a8940b307b08ea6d628e01bb0855fba6c60e59c8c1d4fa0bca9700e61106bb05939a721bf864f2f6d91c502d43cd938cb7f12e56f78eb56bc4f26c49fd8b7
+  checksum: 10c0/ed586746b5a3ce104bf8137a01dace430c9ed7a4f8741cbc1e6b69e6bd15db94d2b90fc35270e95f6eb73c0fd18e0bbd6a6b08987edef27d88da6105998a8c34
   languageName: node
   linkType: hard
 
@@ -422,128 +422,128 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/types@npm:^0.1.26":
-  version: 0.1.26
-  resolution: "@swc/types@npm:0.1.26"
+"@swc/types@npm:^0.1.27":
+  version: 0.1.27
+  resolution: "@swc/types@npm:0.1.27"
   dependencies:
     "@swc/counter": "npm:^0.1.3"
-  checksum: 10c0/8449341e8bbff81c14e9918c25421143cf605dff20f70f048847e1f7cede396f8dd73903cbef331a809b4a8e15d0db374a5f6809003e7b440f93df1dd4934d28
+  checksum: 10c0/25f1bfa0ac34e9ac60aa7de91778f70906cd77a7abb3eb68c5da8d38d5202286b293300d4bb2792b3bb8840a7f5d5c4627c4ec34d2fae6533bfb3e14a70fd8fb
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons-gulp@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/crafty-commons-gulp@npm:1.30.0"
+"@swissquote/crafty-commons-gulp@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/crafty-commons-gulp@npm:1.30.1"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.0"
+    "@swissquote/crafty-commons": "npm:1.30.1"
   peerDependencies:
-    "@swissquote/crafty": 1.30.0
-  checksum: 10c0/5e5c7d928b7189e288bacc76ac9f8987ce2fab21b14425afdcf164fc5d42fd8bbae49814a08c76cd80c78dc3269623e106fb1ed72159b563d1d0aa339081976e
+    "@swissquote/crafty": 1.30.1
+  checksum: 10c0/35d2d732a557b6c9b6d8f27016931058ee8d0176f8cd99e079c8d3d348bedfd3738f104939bce32033f0c9531333bb38a8634776982305c86aaccb321f675d30
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/crafty-commons@npm:1.30.0"
+"@swissquote/crafty-commons@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/crafty-commons@npm:1.30.1"
   dependencies:
     caniuse-lite: "npm:^1.0.30001702"
-  checksum: 10c0/7aec63f862c62f9ba4bd5d55f23d81d606db784e3d370fe4e73602af15838f188f8304e2f009f56d56f8ed912125b9cfe2f682b377ffea7ba8b7487337136a19
+  checksum: 10c0/c5cad364ec2d19c2a2c372b16be512a0e1f761634393d11fbdcb073dc2103857a78e337808bd256ee9541a912c5c27b3ee1b2821b82bc066cd47865c897827e4
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-postcss@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/crafty-preset-postcss@npm:1.30.0"
+"@swissquote/crafty-preset-postcss@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/crafty-preset-postcss@npm:1.30.1"
   dependencies:
     "@babel/code-frame": "npm:7.29.7"
-    "@swissquote/crafty": "npm:1.30.0"
-    "@swissquote/crafty-commons": "npm:1.30.0"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.0"
-    "@swissquote/crafty-preset-stylelint": "npm:1.30.0"
-    "@swissquote/postcss-swissquote-preset": "npm:1.30.0"
+    "@swissquote/crafty": "npm:1.30.1"
+    "@swissquote/crafty-commons": "npm:1.30.1"
+    "@swissquote/crafty-commons-gulp": "npm:1.30.1"
+    "@swissquote/crafty-preset-stylelint": "npm:1.30.1"
+    "@swissquote/postcss-swissquote-preset": "npm:1.30.1"
     mini-css-extract-plugin: "npm:2.10.2"
     postcss: "npm:8.5.15"
     postcss-scss: "npm:4.0.9"
     schema-utils: "npm:4.3.3"
   peerDependencies:
-    "@swissquote/stylelint-config-swissquote": 1.30.0
-  checksum: 10c0/b203296c1ce5d1047329cb2c906a1b79d04b38f455a13ca7e780b9816ff662da2fcba6708bc4cec9d5fce09584edaec4dbd3651ba8be8527e7c6622765132546
+    "@swissquote/stylelint-config-swissquote": 1.30.1
+  checksum: 10c0/f8ead09afb2bd1ac483c6e1bd93d93e742a254e7277928ee26df239edfe7e4783f7e1bb2824ddcc9e5e3e77d119d6da1ca010f542bf686d38d75990395838503
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-prettier@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/crafty-preset-prettier@npm:1.30.0"
-  checksum: 10c0/fef84aa05b83e915bb02bf6bf6bc0f7e547399cbb37baff0fa9b766432fa4816c4418287f08bb237cd80a304c6538783b0c75610d6301b7661b527d93cbb23ce
+"@swissquote/crafty-preset-prettier@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/crafty-preset-prettier@npm:1.30.1"
+  checksum: 10c0/54660eacf53faede7daa161fa2ebbd9ec47776bd0d3d4ff2317d248557ac27b4f5d98af090f12d549ffa5edd3a68907fdf703f2a987ac3ea111b07170987f36a
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-stylelint@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/crafty-preset-stylelint@npm:1.30.0"
+"@swissquote/crafty-preset-stylelint@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/crafty-preset-stylelint@npm:1.30.1"
   dependencies:
-    "@swissquote/crafty": "npm:1.30.0"
-    "@swissquote/crafty-commons": "npm:1.30.0"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.0"
-    "@swissquote/crafty-preset-prettier": "npm:1.30.0"
-    "@swissquote/stylelint-config-swissquote": "npm:1.30.0"
+    "@swissquote/crafty": "npm:1.30.1"
+    "@swissquote/crafty-commons": "npm:1.30.1"
+    "@swissquote/crafty-commons-gulp": "npm:1.30.1"
+    "@swissquote/crafty-preset-prettier": "npm:1.30.1"
+    "@swissquote/stylelint-config-swissquote": "npm:1.30.1"
     postcss: "npm:8.5.15"
     postcss-scss: "npm:4.0.9"
-  checksum: 10c0/c8992b9de10ac09cae9f3ed87ecc7ec89612475b4c33635acfc0ca168da5148674f8473a3091a0f70f55d103cf7dee33cb1d3152eb3a3608f5406e7416e86e7a
+  checksum: 10c0/7aad4aa07364ec96bfb6aabee3fa5d45d08e68b17d48c847fa06aeda4f8553fc6905b2dfa597be08278e2852d23b5ea1da1e770b9ae6ef948c974e0e6d775985
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-runner-gulp@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/crafty-runner-gulp@npm:1.30.0"
+"@swissquote/crafty-runner-gulp@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/crafty-runner-gulp@npm:1.30.1"
   dependencies:
-    "@swissquote/crafty": "npm:1.30.0"
-    "@swissquote/crafty-commons": "npm:1.30.0"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.0"
-  checksum: 10c0/0bc0595f83b2af2e08156c3be9efb33d4210795fca0c96b5085fc0177cd61a6283c53b3820d3a02ee3bb03d818bca4cfa8018085abd82bef0fb03e53a4214f14
+    "@swissquote/crafty": "npm:1.30.1"
+    "@swissquote/crafty-commons": "npm:1.30.1"
+    "@swissquote/crafty-commons-gulp": "npm:1.30.1"
+  checksum: 10c0/939a58426ade99326b26811789cec6d9b468e880ec40185e8390e541ba571ef4012f5b066bfeb929d46591dcf24b352dc9a0c6a525d8c83e94e7a07f9e71def1
   languageName: node
   linkType: hard
 
-"@swissquote/crafty@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/crafty@npm:1.30.0"
+"@swissquote/crafty@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/crafty@npm:1.30.1"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.0"
+    "@swissquote/crafty-commons": "npm:1.30.1"
     fsevents: "npm:~2.3.3"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     crafty: src/bin.cjs
-  checksum: 10c0/4ad9c9be71e5277f2773ec0468e03e9475568bde4382c1c53f8206d06d92e099283cd983f08b21194122f03d43f887f8303796d4df8c05df14265bb7e33f5f73
+  checksum: 10c0/8d7747ab786dd62b9092197e5e41ea2e8944daf6e6f9d67b0cd35b89166b146d39379add9bb1ccf1f47928ae36ad16b39d46f5a0e632f7399950023b319f3a7b
   languageName: node
   linkType: hard
 
-"@swissquote/postcss-swissquote-preset@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/postcss-swissquote-preset@npm:1.30.0"
+"@swissquote/postcss-swissquote-preset@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/postcss-swissquote-preset@npm:1.30.1"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.0"
+    "@swissquote/crafty-commons": "npm:1.30.1"
     caniuse-lite: "npm:^1.0.30001702"
     lightningcss: "npm:1.32.0"
     postcss: "npm:8.5.15"
-  checksum: 10c0/925f00fb466dbfbfd694c4ca6b3af044b22bbb8a28d35b454f7ed5dbb1d20b8c8bf933c075f60480605a2198ed6fbbb2bdedc37ff66c935948b9839164fcff19
+  checksum: 10c0/d45bab05ce75bea44a4166c0d63c74478e5424c0a3b3f326fb07987cb673c1c4422f8d83b7cdc7d091ecc70a5ccf7bd71e4bb49c9f8d9b77c080535de87378d9
   languageName: node
   linkType: hard
 
-"@swissquote/stylelint-config-swissquote@npm:1.30.0":
-  version: 1.30.0
-  resolution: "@swissquote/stylelint-config-swissquote@npm:1.30.0"
+"@swissquote/stylelint-config-swissquote@npm:1.30.1":
+  version: 1.30.1
+  resolution: "@swissquote/stylelint-config-swissquote@npm:1.30.1"
   dependencies:
     "@babel/code-frame": "npm:7.29.7"
-    "@swissquote/crafty": "npm:1.30.0"
+    "@swissquote/crafty": "npm:1.30.1"
     caniuse-lite: "npm:^1.0.30001702"
     postcss-scss: "npm:4.0.9"
   peerDependencies:
-    "@swissquote/crafty-commons": 1.30.0
+    "@swissquote/crafty-commons": 1.30.1
     postcss: ^8.0.0
     stylelint: ^16.0.0
-  checksum: 10c0/64752d7b07ca8af5a1423e7f3c10cd264b4069e9730f579bbea72f9a6ebbff34f179254c41b8aabdeff9c6142bc23713fecfc533e9c5414cf895827568dd94e4
+  checksum: 10c0/05058aa8d8a10c337541269ffb93822665ef0c665eef5da02c2f767197f9acf30d2f10d13c182038e71cf2fdc3fd2e1d5d0b54e65d923ed0c1730e7c04e71b4e
   languageName: node
   linkType: hard
 
@@ -1763,12 +1763,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "daux.io@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:2.4.16"
-    "@playwright/test": "npm:1.60.0"
-    "@swc/core": "npm:1.15.40"
-    "@swissquote/crafty": "npm:1.30.0"
-    "@swissquote/crafty-preset-postcss": "npm:1.30.0"
-    "@swissquote/crafty-runner-gulp": "npm:1.30.0"
+    "@biomejs/biome": "npm:2.5.2"
+    "@playwright/test": "npm:1.61.1"
+    "@swc/core": "npm:1.15.43"
+    "@swissquote/crafty": "npm:1.30.1"
+    "@swissquote/crafty-preset-postcss": "npm:1.30.1"
+    "@swissquote/crafty-runner-gulp": "npm:1.30.1"
     "@types/node": "npm:^24.3.0"
     flexsearch: "npm:^0.8.0"
     katex: "npm:^0.17.0"
@@ -2880,27 +2880,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.60.0":
-  version: 1.60.0
-  resolution: "playwright-core@npm:1.60.0"
+"playwright-core@npm:1.61.1":
+  version: 1.61.1
+  resolution: "playwright-core@npm:1.61.1"
   bin:
     playwright-core: cli.js
-  checksum: 10c0/99ccd43923b6e9355e0723b7fe221e6326efd4687f8dafff951313662aea11db51f542a9c2122c704c445fb9baae1c9ec9fa6f895126bbddd9fe92313f6942c9
+  checksum: 10c0/c28896ba82a602182e240ed4f9c467fb0dd9cb57d510f8aba9f25183fe1cde3a0105725a29baffa4157fe885bbb11e228032a2aad0424111584fde45303f07bd
   languageName: node
   linkType: hard
 
-"playwright@npm:1.60.0":
-  version: 1.60.0
-  resolution: "playwright@npm:1.60.0"
+"playwright@npm:1.61.1":
+  version: 1.61.1
+  resolution: "playwright@npm:1.61.1"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.60.0"
+    playwright-core: "npm:1.61.1"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10c0/714ad76d85b4865d7e43c0012f9039800c1485373388973ed39d79339cee5ad467052d1e2f1eaeca107a1cb6e65342186a8578a4c3504853d84c3a691250d5db
+  checksum: 10c0/cea1bc4d2a64ec3ef683891606774029da7b8a8036ed98332565cec2f8e89549ca1fab9a89fbfba4e08e27e0d7e7d148031e965af66d5ff97bb3c34058cfcad0
   languageName: node
   linkType: hard
 
