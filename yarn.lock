@@ -431,119 +431,119 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons-gulp@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/crafty-commons-gulp@npm:1.30.1"
+"@swissquote/crafty-commons-gulp@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/crafty-commons-gulp@npm:1.30.2"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.1"
+    "@swissquote/crafty-commons": "npm:1.30.2"
   peerDependencies:
-    "@swissquote/crafty": 1.30.1
-  checksum: 10c0/35d2d732a557b6c9b6d8f27016931058ee8d0176f8cd99e079c8d3d348bedfd3738f104939bce32033f0c9531333bb38a8634776982305c86aaccb321f675d30
+    "@swissquote/crafty": 1.30.2
+  checksum: 10c0/7b64fbed86888e36d181af3d540128ae27c3394802ab2a611a6b5c681ccd21436b2147813f882f253058fbfe8a8881cc7684a2d93cd9b2d79c3b525b6e02f8b2
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/crafty-commons@npm:1.30.1"
+"@swissquote/crafty-commons@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/crafty-commons@npm:1.30.2"
   dependencies:
     caniuse-lite: "npm:^1.0.30001702"
-  checksum: 10c0/c5cad364ec2d19c2a2c372b16be512a0e1f761634393d11fbdcb073dc2103857a78e337808bd256ee9541a912c5c27b3ee1b2821b82bc066cd47865c897827e4
+  checksum: 10c0/54d8bd3f2c5006249bb47e4e96b5b26a0b9d6d69f1c22361914d725945a48039f0e3550b1f7294bdc4db8aee3bc6538434f926fa53005a8769e8553961abbdc4
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-postcss@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/crafty-preset-postcss@npm:1.30.1"
+"@swissquote/crafty-preset-postcss@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/crafty-preset-postcss@npm:1.30.2"
   dependencies:
     "@babel/code-frame": "npm:7.29.7"
-    "@swissquote/crafty": "npm:1.30.1"
-    "@swissquote/crafty-commons": "npm:1.30.1"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.1"
-    "@swissquote/crafty-preset-stylelint": "npm:1.30.1"
-    "@swissquote/postcss-swissquote-preset": "npm:1.30.1"
+    "@swissquote/crafty": "npm:1.30.2"
+    "@swissquote/crafty-commons": "npm:1.30.2"
+    "@swissquote/crafty-commons-gulp": "npm:1.30.2"
+    "@swissquote/crafty-preset-stylelint": "npm:1.30.2"
+    "@swissquote/postcss-swissquote-preset": "npm:1.30.2"
     mini-css-extract-plugin: "npm:2.10.2"
-    postcss: "npm:8.5.15"
+    postcss: "npm:8.5.16"
     postcss-scss: "npm:4.0.9"
     schema-utils: "npm:4.3.3"
   peerDependencies:
-    "@swissquote/stylelint-config-swissquote": 1.30.1
-  checksum: 10c0/f8ead09afb2bd1ac483c6e1bd93d93e742a254e7277928ee26df239edfe7e4783f7e1bb2824ddcc9e5e3e77d119d6da1ca010f542bf686d38d75990395838503
+    "@swissquote/stylelint-config-swissquote": 1.30.2
+  checksum: 10c0/706b0ea886b4d9e57c5bd9192dfa54e7ddc90cff5ee2d63ed5635ca3f0a93d6c0a52868ec72951beb17b198ff58192cf9bec36b381f8da2520ad5dff8e530959
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-prettier@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/crafty-preset-prettier@npm:1.30.1"
-  checksum: 10c0/54660eacf53faede7daa161fa2ebbd9ec47776bd0d3d4ff2317d248557ac27b4f5d98af090f12d549ffa5edd3a68907fdf703f2a987ac3ea111b07170987f36a
+"@swissquote/crafty-preset-prettier@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/crafty-preset-prettier@npm:1.30.2"
+  checksum: 10c0/4701401b98c9fae3b6c2fbab0496c589559f64ee6a426da32c6de8f4737bc83636ec58ea92879a0418a3f692fb907e245de4c59c3b437d77c90325702491cec9
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-stylelint@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/crafty-preset-stylelint@npm:1.30.1"
+"@swissquote/crafty-preset-stylelint@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/crafty-preset-stylelint@npm:1.30.2"
   dependencies:
-    "@swissquote/crafty": "npm:1.30.1"
-    "@swissquote/crafty-commons": "npm:1.30.1"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.1"
-    "@swissquote/crafty-preset-prettier": "npm:1.30.1"
-    "@swissquote/stylelint-config-swissquote": "npm:1.30.1"
-    postcss: "npm:8.5.15"
+    "@swissquote/crafty": "npm:1.30.2"
+    "@swissquote/crafty-commons": "npm:1.30.2"
+    "@swissquote/crafty-commons-gulp": "npm:1.30.2"
+    "@swissquote/crafty-preset-prettier": "npm:1.30.2"
+    "@swissquote/stylelint-config-swissquote": "npm:1.30.2"
+    postcss: "npm:8.5.16"
     postcss-scss: "npm:4.0.9"
-  checksum: 10c0/7aad4aa07364ec96bfb6aabee3fa5d45d08e68b17d48c847fa06aeda4f8553fc6905b2dfa597be08278e2852d23b5ea1da1e770b9ae6ef948c974e0e6d775985
+  checksum: 10c0/461ef38013c39050e6631752e8d9f59ab12fbf1cbb87407e4a82684297fda3d1819a59976cea67aca163ac763ffc3dd4a5d3d0ab5f355bbaff9765543ce1a465
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-runner-gulp@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/crafty-runner-gulp@npm:1.30.1"
+"@swissquote/crafty-runner-gulp@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/crafty-runner-gulp@npm:1.30.2"
   dependencies:
-    "@swissquote/crafty": "npm:1.30.1"
-    "@swissquote/crafty-commons": "npm:1.30.1"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.1"
-  checksum: 10c0/939a58426ade99326b26811789cec6d9b468e880ec40185e8390e541ba571ef4012f5b066bfeb929d46591dcf24b352dc9a0c6a525d8c83e94e7a07f9e71def1
+    "@swissquote/crafty": "npm:1.30.2"
+    "@swissquote/crafty-commons": "npm:1.30.2"
+    "@swissquote/crafty-commons-gulp": "npm:1.30.2"
+  checksum: 10c0/33da2a6c6410285dd8b8bb9bd24a349adf4675b1665f35895fc6eb4cbb0f2014cd1b8ca62eaefc4ade5b7681b6c1886cd1e61434aad598c5fe7f7a0b91ef1a8e
   languageName: node
   linkType: hard
 
-"@swissquote/crafty@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/crafty@npm:1.30.1"
+"@swissquote/crafty@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/crafty@npm:1.30.2"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.1"
+    "@swissquote/crafty-commons": "npm:1.30.2"
     fsevents: "npm:~2.3.3"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     crafty: src/bin.cjs
-  checksum: 10c0/8d7747ab786dd62b9092197e5e41ea2e8944daf6e6f9d67b0cd35b89166b146d39379add9bb1ccf1f47928ae36ad16b39d46f5a0e632f7399950023b319f3a7b
+  checksum: 10c0/92784f8a2e699d22ebe3241e1f40c47c3608b6b2b6090620d6e9a2deac71aa8237879efe71030c18196bc6613c7c8fdf9fa71aa195d9dc52507bf471f467b744
   languageName: node
   linkType: hard
 
-"@swissquote/postcss-swissquote-preset@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/postcss-swissquote-preset@npm:1.30.1"
+"@swissquote/postcss-swissquote-preset@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/postcss-swissquote-preset@npm:1.30.2"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.1"
+    "@swissquote/crafty-commons": "npm:1.30.2"
     caniuse-lite: "npm:^1.0.30001702"
     lightningcss: "npm:1.32.0"
-    postcss: "npm:8.5.15"
-  checksum: 10c0/d45bab05ce75bea44a4166c0d63c74478e5424c0a3b3f326fb07987cb673c1c4422f8d83b7cdc7d091ecc70a5ccf7bd71e4bb49c9f8d9b77c080535de87378d9
+    postcss: "npm:8.5.16"
+  checksum: 10c0/9cd351f3309ed15302ac797c2fc614413ff81bbb7feee2291f43f4c8022f74fa9e2fbdae557c0e7964f41d2d963f8c8d17d5ce928833cd80736634b479c2605f
   languageName: node
   linkType: hard
 
-"@swissquote/stylelint-config-swissquote@npm:1.30.1":
-  version: 1.30.1
-  resolution: "@swissquote/stylelint-config-swissquote@npm:1.30.1"
+"@swissquote/stylelint-config-swissquote@npm:1.30.2":
+  version: 1.30.2
+  resolution: "@swissquote/stylelint-config-swissquote@npm:1.30.2"
   dependencies:
     "@babel/code-frame": "npm:7.29.7"
-    "@swissquote/crafty": "npm:1.30.1"
+    "@swissquote/crafty": "npm:1.30.2"
     caniuse-lite: "npm:^1.0.30001702"
     postcss-scss: "npm:4.0.9"
   peerDependencies:
-    "@swissquote/crafty-commons": 1.30.1
+    "@swissquote/crafty-commons": 1.30.2
     postcss: ^8.0.0
     stylelint: ^16.0.0
-  checksum: 10c0/05058aa8d8a10c337541269ffb93822665ef0c665eef5da02c2f767197f9acf30d2f10d13c182038e71cf2fdc3fd2e1d5d0b54e65d923ed0c1730e7c04e71b4e
+  checksum: 10c0/4f3d4964f95d03985a43a2cd8d3c1c09383e39a8f5de33a2ccc29b1a155ba04def38e96ebf0c1d67bc54808cd8b8e956007a4de8ae46b5ad8ebe7eb0f7a48a28
   languageName: node
   linkType: hard
 
@@ -1766,9 +1766,9 @@ __metadata:
     "@biomejs/biome": "npm:2.5.3"
     "@playwright/test": "npm:1.61.1"
     "@swc/core": "npm:1.15.43"
-    "@swissquote/crafty": "npm:1.30.1"
-    "@swissquote/crafty-preset-postcss": "npm:1.30.1"
-    "@swissquote/crafty-runner-gulp": "npm:1.30.1"
+    "@swissquote/crafty": "npm:1.30.2"
+    "@swissquote/crafty-preset-postcss": "npm:1.30.2"
+    "@swissquote/crafty-runner-gulp": "npm:1.30.2"
     "@types/node": "npm:^24.3.0"
     flexsearch: "npm:^0.8.0"
     katex: "npm:^0.17.0"
@@ -2939,14 +2939,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.5.15":
-  version: 8.5.15
-  resolution: "postcss@npm:8.5.15"
+"postcss@npm:8.5.16":
+  version: 8.5.16
+  resolution: "postcss@npm:8.5.16"
   dependencies:
     nanoid: "npm:^3.3.12"
     picocolors: "npm:^1.1.1"
     source-map-js: "npm:^1.2.1"
-  checksum: 10c0/7f2e63ae22fbe43aace1bf652bd99da4e90737c64194d49e51ddc9cd0f9e51ff2861a7d734379b494deffa03a880a5c65eec70bc29ee9ebaa7136dde3eee8f31
+  checksum: 10c0/625de7a02f662f3a340964d14b487bd5097adf16f5f171e257d19005ba37aea8768ee446557500e88e91ca46b4d14d6cb4a0bf033c6ec0c8c0b660d85719f1ef
   languageName: node
   linkType: hard
 
@@ -3030,14 +3030,14 @@ __metadata:
 
 "resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>":
   version: 1.22.10
-  resolution: "resolve@patch:resolve@npm%3A1.22.10#optional!builtin<compat/resolve>::version=1.22.10&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.10#optional!builtin<compat/resolve>::version=1.22.10&hash=9bd1a5"
   dependencies:
     is-core-module: "npm:^2.16.0"
     path-parse: "npm:^1.0.7"
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: 10c0/52a4e505bbfc7925ac8f4cd91fd8c4e096b6a89728b9f46861d3b405ac9a1ccf4dcbf8befb4e89a2e11370dacd0160918163885cbc669369590f2f31f4c58939
+  checksum: 10c0/da5c4a85971e6eeb821805d117092321c6c257a6e1e45382c0b7ef41368a7e98690e01a08bac88b111443410a49e2fb17d1802ac5c51c8fc5532d77bef9f4be9
   languageName: node
   linkType: hard
 
