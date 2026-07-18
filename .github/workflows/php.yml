@@ -55,7 +55,7 @@ jobs:
     #- name: Fix code coverage paths
     #  run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
 
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       if: matrix.php-version == '8.4'
       with:
         name: reports-${{ matrix.os }}-${{ matrix.php-version }}
