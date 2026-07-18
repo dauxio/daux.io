@@ -55,8 +55,8 @@ be read by the integrated web server. And you set the other formats (like conflu
 }
 ```
 
--   **html** with [its options](./Html_export.md)
--   **confluence** with [its options](./Confluence_upload.md)
+- **html** with [its options](./Html_export.md)
+- **confluence** with [its options](./Confluence_upload.md)
 
 Available formats are **HTML** and **Confluence**
 
@@ -158,3 +158,53 @@ More information on how to create a Processor can be found [here](!For_Developer
     "processor": "MyProcessor"
 }
 ```
+
+### Heading permalinks
+
+Every heading gets an anchor link so it can be linked to directly. You can change how that anchor is rendered.
+
+```json
+{
+    "heading_permalink": {
+        "symbol": "¶"
+    }
+}
+```
+
+Any option of the league/commonmark [Heading Permalink extension](https://commonmark.thephpleague.com/2.x/extensions/heading-permalinks/) can be set here. Options you don't set keep Daux's defaults, which differ from CommonMark's:
+
+| Option            | Daux default | CommonMark default  |
+| ----------------- | ------------ | ------------------- |
+| `html_class`      | `Permalink`  | `heading-permalink` |
+| `symbol`          | `#`          | `¶`                 |
+| `fragment_prefix` | _(empty)_    | `content`           |
+| `id_prefix`       | _(empty)_    | `content`           |
+
+Changing `html_class` will break the styling that comes with the bundled themes.
+
+These options apply to the **html** and **html-file** formats only, the **confluence** format ignores them.
+
+### Table of contents
+
+Change how the table of contents added by `[TOC]` is rendered. Read more about the feature [here](../01_Features/Table_of_contents.md).
+
+```json
+{
+    "table_of_contents": {
+        "max_heading_level": 3,
+        "style": "ordered"
+    }
+}
+```
+
+Any option of the league/commonmark [Table of Contents extension](https://commonmark.thephpleague.com/2.x/extensions/table-of-contents/) can be set here. Options you don't set keep Daux's defaults, which differ from CommonMark's:
+
+| Option        | Daux default      | CommonMark default  |
+| ------------- | ----------------- | ------------------- |
+| `html_class`  | `TableOfContents` | `table-of-contents` |
+| `position`    | `placeholder`     | `top`               |
+| `placeholder` | `[TOC]`           | `null`              |
+
+Leave `position` and `placeholder` as they are, they are what makes the `[TOC]` marker and the automatic table of contents work. As with permalinks, changing `html_class` will break the styling of the bundled themes.
+
+These options apply to the **html** and **html-file** formats only, the **confluence** format ignores them.

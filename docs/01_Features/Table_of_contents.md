@@ -23,3 +23,7 @@ You can enable this feature in your configuration
     }
 }
 ```
+
+## Customizing
+
+The depth of the table of contents, its list style and other details can be changed with the `table_of_contents` option, read about it in [the configuration](../05_Configuration/_index.md).
