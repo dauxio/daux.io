@@ -140,7 +140,7 @@
     <div class="Page__header">
         <h1><a href="../Configuration/index.html">Configuration</a></h1>
                 <span class="ModifiedDate">
-            July 18, 2026 at 2:41 AM        </span>
+            July 18, 2026 at 3:19 AM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/05_Configuration/_index.md" target="_blank">
                 Edit on GitHub            </a>
@@ -164,6 +164,8 @@
 <li><a href="#multi-language">Multi-language</a></li>
 <li><a href="#language">Language</a></li>
 <li><a href="#processor">Processor</a></li>
+<li><a href="#heading-permalinks">Heading permalinks</a></li>
+<li><a href="#table-of-contents">Table of contents</a></li>
 </ul>    </div>
 </div>
 <h3><a id="title" href="#title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h3>
@@ -273,6 +275,86 @@ A string that isn’t found will fall back to english.</p>
     <span class="hljs-attr">"processor"</span>: <span class="hljs-string">"MyProcessor"</span>
 }
 </code></pre>
+<h3><a id="heading-permalinks" href="#heading-permalinks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Heading permalinks</h3>
+<p>Every heading gets an anchor link so it can be linked to directly. You can change how that anchor is rendered.</p>
+<pre><code class="hljs json">{
+    <span class="hljs-attr">"heading_permalink"</span>: {
+        <span class="hljs-attr">"symbol"</span>: <span class="hljs-string">"¶"</span>
+    }
+}
+</code></pre>
+<p>Any option of the league/commonmark <a href="https://commonmark.thephpleague.com/2.x/extensions/heading-permalinks/" class="Link--external" rel="noopener noreferrer">Heading Permalink extension</a> can be set here. Options you don’t set keep Daux’s defaults, which differ from CommonMark’s:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Daux default</th>
+<th>CommonMark default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>html_class</code></td>
+<td><code>Permalink</code></td>
+<td><code>heading-permalink</code></td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><code>#</code></td>
+<td><code>¶</code></td>
+</tr>
+<tr>
+<td><code>fragment_prefix</code></td>
+<td><em>(empty)</em></td>
+<td><code>content</code></td>
+</tr>
+<tr>
+<td><code>id_prefix</code></td>
+<td><em>(empty)</em></td>
+<td><code>content</code></td>
+</tr>
+</tbody>
+</table>
+<p>Changing <code>html_class</code> will break the styling that comes with the bundled themes.</p>
+<p>These options apply to the <strong>html</strong> and <strong>html-file</strong> formats only, the <strong>confluence</strong> format ignores them.</p>
+<h3><a id="table-of-contents" href="#table-of-contents" class="Permalink" aria-hidden="true" title="Permalink">#</a>Table of contents</h3>
+<p>Change how the table of contents added by <code>[TOC]</code> is rendered. Read more about the feature <a href="../Features/Table_of_contents.html">here</a>.</p>
+<pre><code class="hljs json">{
+    <span class="hljs-attr">"table_of_contents"</span>: {
+        <span class="hljs-attr">"max_heading_level"</span>: <span class="hljs-number">3</span>,
+        <span class="hljs-attr">"style"</span>: <span class="hljs-string">"ordered"</span>
+    }
+}
+</code></pre>
+<p>Any option of the league/commonmark <a href="https://commonmark.thephpleague.com/2.x/extensions/table-of-contents/" class="Link--external" rel="noopener noreferrer">Table of Contents extension</a> can be set here. Options you don’t set keep Daux’s defaults, which differ from CommonMark’s:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Daux default</th>
+<th>CommonMark default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>html_class</code></td>
+<td><code>TableOfContents</code></td>
+<td><code>table-of-contents</code></td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td><code>placeholder</code></td>
+<td><code>top</code></td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td><code>[TOC]</code></td>
+<td><code>null</code></td>
+</tr>
+</tbody>
+</table>
+<p>Leave <code>position</code> and <code>placeholder</code> as they are, they are what makes the <code>[TOC]</code> marker and the automatic table of contents work. As with permalinks, changing <code>html_class</code> will break the styling of the bundled themes.</p>
+<p>These options apply to the <strong>html</strong> and <strong>html-file</strong> formats only, the <strong>confluence</strong> format ignores them.</p>
     </div>
 
         <nav>
