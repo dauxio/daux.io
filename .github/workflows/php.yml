@@ -92,7 +92,7 @@ jobs:
         echo "test_reports=$(find . -name "test-report.xml" | tr '\n' ',' | sed 's/,$//')" >> $GITHUB_OUTPUT
         echo "project_version=$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n1)" >> $GITHUB_OUTPUT
     - name: SonarCloud Scan
-      uses: SonarSource/sonarqube-scan-action@v7
+      uses: SonarSource/sonarqube-scan-action@v8
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
