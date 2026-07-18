@@ -17,7 +17,7 @@
     "preact": "^10.29.7",
     "swc-loader": "0.2.7",
     "webpack": "^5.108.4",
-    "webpack-cli": "^6.0.0"
+    "webpack-cli": "^7.0.0"
   },
   "scripts": {
     "build": "./build.sh",
