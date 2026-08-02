@@ -4,7 +4,7 @@
   "private": true,
   "devDependencies": {
     "@biomejs/biome": "2.5.6",
-    "@playwright/test": "1.62.0",
+    "@playwright/test": "1.62.1",
     "@swc/core": "1.15.47",
     "@swissquote/crafty": "1.30.2",
     "@swissquote/crafty-preset-postcss": "1.30.2",
