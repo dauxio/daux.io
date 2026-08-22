@@ -5,7 +5,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.9",
     "@playwright/test": "1.62.1",
-    "@swc/core": "1.16.0",
+    "@swc/core": "1.16.1",
     "@swissquote/crafty": "1.30.3",
     "@swissquote/crafty-preset-postcss": "1.30.3",
     "@swissquote/crafty-runner-gulp": "1.30.3",
