@@ -140,7 +140,7 @@
     <div class="Page__header">
         <h1><a href="../Configuration/index.html">Configuration</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../Configuration/Confluence_upload.html">Confluence upload</a></h1>
                 <span class="ModifiedDate">
-            August 30, 2026 at 5:28 PM        </span>
+            September 2, 2026 at 1:18 PM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/05_Configuration/Confluence_upload.md" target="_blank">
                 Edit on GitHub            </a>
@@ -169,7 +169,7 @@
 </li>
 </ul>    </div>
 </div>
-<h2><a id="configuring-the-connection" href="#configuring-the-connection" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuring the connection</h2>
+<h2><a id="configuring-the-connection" href="#configuring-the-connection" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Configuring the connection</h2>
 <p>The connection requires three parameters <code>base_url</code>, <code>user</code> and <code>pass</code>. While <code>user</code> and <code>pass</code> don’t really need an explanation, for <code>base_url</code> you need to set the path to the server without <code>rest/api</code>, this will be added automatically.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"confluence"</span>: {
@@ -181,7 +181,7 @@
 </code></pre>
 <p>If you are using Atlassian.com you might need to use a token instead of a password.
 You can create a token by <a href="https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/" class="Link--external" rel="noopener noreferrer">following this documentation</a>.</p>
-<h2><a id="where-to-upload" href="#where-to-upload" class="Permalink" aria-hidden="true" title="Permalink">#</a>Where to upload</h2>
+<h2><a id="where-to-upload" href="#where-to-upload" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Where to upload</h2>
 <p>Now that the connection is defined, you need to tell it where you want your documentation to be uploaded.</p>
 <p>For that you need an <code>ancestor_id</code> or <code>root_id</code>; the id of the page that will be the parent of the documentation’s homepage or the page that will be the homepage of your documentation respectively.</p>
 <p>You can obtain a page’s id by checking the links of the actions on the page (page information, show source code, export, etc) : the ID corresponds to the query parameter <code>pageId</code>.</p>
@@ -200,13 +200,13 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
     }
 }
 </code></pre>
-<h2><a id="prefix" href="#prefix" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prefix</h2>
+<h2><a id="prefix" href="#prefix" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Prefix</h2>
 <p>Because confluence can’t have two pages with the same name in a space, I recommend you define a prefix for your pages.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"confluence"</span>: { <span class="hljs-attr">"prefix"</span>: <span class="hljs-string">"DAUX -"</span> }
 }
 </code></pre>
-<h2><a id="update-threshold" href="#update-threshold" class="Permalink" aria-hidden="true" title="Permalink">#</a>Update threshold</h2>
+<h2><a id="update-threshold" href="#update-threshold" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Update threshold</h2>
 <p>To make the upload quicker, we try to determine if a page changed or not, first with a strict comparison and if it’s not completely identical, we compute the difference.</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"confluence"</span>: { <span class="hljs-attr">"update_threshold"</span>: <span class="hljs-number">1</span> }
@@ -215,7 +215,7 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
 <p>If you set <code>update_threshold</code> to 1, it will upload only if the page has more than 1% difference with the previous one.</p>
 <p>By default the threshold is 2%.</p>
 <p>Setting the value to <code>0</code> disables the feature altogether.</p>
-<h2><a id="delete-old-pages" href="#delete-old-pages" class="Permalink" aria-hidden="true" title="Permalink">#</a>Delete old pages</h2>
+<h2><a id="delete-old-pages" href="#delete-old-pages" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Delete old pages</h2>
 <p>When a page is renamed, there is no way to tell it was renamed, so when uploading to Confluence, the page will be uploaded and the old page will stay here.</p>
 <p>By default, it will inform you that some pages aren’t needed anymore and you can delete them by hand.</p>
 <pre><code class="hljs json">{
@@ -223,7 +223,7 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
 }
 </code></pre>
 <p>By setting <code>delete</code> to <code>true</code> (or running <code>daux</code> with the <code>--delete</code> flag) you tell the generator that it can safely delete the pages.</p>
-<h2><a id="information-message" href="#information-message" class="Permalink" aria-hidden="true" title="Permalink">#</a>Information message</h2>
+<h2><a id="information-message" href="#information-message" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Information message</h2>
 <p>When you create your page. there is no indication that the upload process will override the content of the pages.</p>
 <p>It happens sometimes that users edit the pages to add / fix an information.</p>
 <p>You can add a text in a “information” macro on top of the document by setting the following configuration :</p>
@@ -235,7 +235,7 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
 </code></pre>
 <p>It will look like this :</p>
 <p><img src="info_macro.png" alt="Info macro" /></p>
-<h2><a id="pre-rendering-mermaid-diagrams" href="#pre-rendering-mermaid-diagrams" class="Permalink" aria-hidden="true" title="Permalink">#</a>Pre-rendering Mermaid Diagrams</h2>
+<h2><a id="pre-rendering-mermaid-diagrams" href="#pre-rendering-mermaid-diagrams" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Pre-rendering Mermaid Diagrams</h2>
 <p>By default, daux uses client-side JavaScript to render Mermaid diagrams in Confluence. However, this approach may fail due to Content Security Policy restrictions in Confluence Cloud.</p>
 <p>To ensure reliable diagram rendering, you can enable pre-rendering, which converts Mermaid diagrams to images before publishing:</p>
 <pre><code class="hljs json">{
@@ -246,7 +246,7 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
     }
 }
 </code></pre>
-<h3><a id="options" href="#options" class="Permalink" aria-hidden="true" title="Permalink">#</a>Options</h3>
+<h3><a id="options" href="#options" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Options</h3>
 <ul>
 <li><strong>pre_render_mermaid</strong> (boolean, default: <code>false</code>): Enable pre-rendering of Mermaid diagrams</li>
 <li><strong>mermaid_cli_path</strong> (string, default: <code>mmdc</code>): Path to mermaid-cli executable. Can be <code>mmdc</code>, <code>npx @mermaid-js/mermaid-cli</code>, or full path</li>
@@ -254,7 +254,7 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
 <li><strong>mermaid_image_width</strong> (integer, optional): Width in pixels for rendered Mermaid diagrams in Confluence. If not set, Confluence will use the image’s natural width</li>
 <li><strong>mermaid_image_height</strong> (integer, optional): Height in pixels for rendered Mermaid diagrams in Confluence. If not set, Confluence will use the image’s natural height</li>
 </ul>
-<h3><a id="image-sizing" href="#image-sizing" class="Permalink" aria-hidden="true" title="Permalink">#</a>Image Sizing</h3>
+<h3><a id="image-sizing" href="#image-sizing" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Image Sizing</h3>
 <p>To control the size of Mermaid diagrams in Confluence, you can specify width and/or height:</p>
 <pre><code class="hljs json">{
     <span class="hljs-attr">"confluence"</span>: {
@@ -273,7 +273,7 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
 <li>If both are specified, the image may be stretched or compressed</li>
 <li>For SVG format, it’s recommended to set only width and let height scale automatically</li>
 </ul>
-<h3><a id="prerequisites" href="#prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prerequisites</h3>
+<h3><a id="prerequisites" href="#prerequisites" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Prerequisites</h3>
 <p>You must have <code>@mermaid-js/mermaid-cli</code> installed:</p>
 <pre><code class="hljs bash">npm install -g @mermaid-js/mermaid-cli
 </code></pre>
@@ -285,7 +285,7 @@ To do so, set <code>create_root_if_missing</code> to true.</p>
     }
 }
 </code></pre>
-<h3><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting</h3>
+<h3><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Troubleshooting</h3>
 <p>If diagrams fail to render:</p>
 <ol>
 <li>Verify mermaid-cli is installed: <code>mmdc --version</code></li>

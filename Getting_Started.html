@@ -140,7 +140,7 @@
     <div class="Page__header">
         <h1><a href="Getting_Started.html">Getting Started</a></h1>
                 <span class="ModifiedDate">
-            August 30, 2026 at 5:28 PM        </span>
+            September 2, 2026 at 1:18 PM        </span>
                         <span class="EditOn">
             <a href="https://github.com/dauxio/daux.io/blob/master/docs/00_Getting_Started.md" target="_blank">
                 Edit on GitHub            </a>
@@ -196,8 +196,8 @@
 <li><a href="#support">Support</a></li>
 </ul>    </div>
 </div>
-<h2><a id="features" href="#features" class="Permalink" aria-hidden="true" title="Permalink">#</a>Features</h2>
-<h3><a id="for-authors" href="#for-authors" class="Permalink" aria-hidden="true" title="Permalink">#</a>For Authors</h3>
+<h2><a id="features" href="#features" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Features</h2>
+<h3><a id="for-authors" href="#for-authors" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>For Authors</h3>
 <ul>
 <li><a href="Features/Navigation_and_Sorting.html">Auto Generated Navigation / Page sorting</a></li>
 <li><a href="Features/Internal_links.html">Internal documentation links</a></li>
@@ -209,7 +209,7 @@
 <li><a href="Features/Static_Site_Generation.html">Static Output Generation</a></li>
 <li><a href="Features/Table_of_contents.html">Table of Contents</a></li>
 </ul>
-<h3><a id="for-developers" href="#for-developers" class="Permalink" aria-hidden="true" title="Permalink">#</a>For Developers</h3>
+<h3><a id="for-developers" href="#for-developers" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>For Developers</h3>
 <ul>
 <li><a href="Features/Auto_Syntax_Highlight.html">Auto Syntax Highlighting</a></li>
 <li><a href="Features/Math_Diagrams_Flowcharts.html">Math, Diagrams and Flowcharts</a></li>
@@ -217,7 +217,7 @@
 <li>Full access to the internal API to create new pages programatically</li>
 <li>Work with pages metadata</li>
 </ul>
-<h3><a id="for-marketing" href="#for-marketing" class="Permalink" aria-hidden="true" title="Permalink">#</a>For Marketing</h3>
+<h3><a id="for-marketing" href="#for-marketing" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>For Marketing</h3>
 <ul>
 <li>100% Mobile Responsive</li>
 <li>4 Built-In Themes or roll your own</li>
@@ -225,7 +225,7 @@
 <li>Shareable/Linkable SEO Friendly URLs</li>
 <li>Supports Google Analytics and Piwik Analytics</li>
 </ul>
-<h2><a id="demos" href="#demos" class="Permalink" aria-hidden="true" title="Permalink">#</a>Demos</h2>
+<h2><a id="demos" href="#demos" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Demos</h2>
 <p>This is a list of sites using Daux.io:</p>
 <ul>
 <li>With a custom theme:
@@ -248,9 +248,9 @@ _ <a href="http://docs.drupalgap.org/8/" class="Link--external" rel="noopener no
 </li>
 </ul>
 <p>Do you use Daux.io? Send us a pull request or open an <a href="https://github.com/dauxio/daux.io/issues" class="Link--external" rel="noopener noreferrer">issue</a> and I will add you to the list.</p>
-<h2><a id="getting-started" href="#getting-started" class="Permalink" aria-hidden="true" title="Permalink">#</a>Getting Started</h2>
-<h3><a id="install" href="#install" class="Permalink" aria-hidden="true" title="Permalink">#</a>Install</h3>
-<h4><a id="php-and-composer" href="#php-and-composer" class="Permalink" aria-hidden="true" title="Permalink">#</a>PHP and Composer</h4>
+<h2><a id="getting-started" href="#getting-started" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Getting Started</h2>
+<h3><a id="install" href="#install" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Install</h3>
+<h4><a id="php-and-composer" href="#php-and-composer" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>PHP and Composer</h4>
 <p>If you have PHP and Composer installed, you can install the dependency</p>
 <pre><code class="hljs bash">composer global require daux/daux.io
 
@@ -259,12 +259,12 @@ daux generate
 </code></pre>
 <p>You can then use the <code>daux</code> command line to generate your documentation.</p>
 <p>If the command isn’t found, ensure your <code>$PATH</code> contains <code>~/.composer/vendor/bin</code> or <code>~/.config/composer/vendor/bin</code>.</p>
-<h4><a id="docker" href="#docker" class="Permalink" aria-hidden="true" title="Permalink">#</a>Docker</h4>
+<h4><a id="docker" href="#docker" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Docker</h4>
 <p>Or if you wish to use Docker, the start of the command will be :</p>
 <pre><code class="hljs bash">docker run --rm -it -p 8085:8085 -w /build -v <span class="hljs-string">"<span class="hljs-variable">$PWD</span>"</span>:/build daux/daux.io daux
 </code></pre>
 <p>Any parameter valid in the PHP version is valid in the Docker version</p>
-<h3><a id="writing-pages" href="#writing-pages" class="Permalink" aria-hidden="true" title="Permalink">#</a>Writing pages</h3>
+<h3><a id="writing-pages" href="#writing-pages" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Writing pages</h3>
 <p>Creating new pages is very easy:</p>
 <ol>
 <li>Create a markdown file (<code>*.md</code> or <code>*.markdown</code>)</li>
@@ -286,16 +286,16 @@ The folder structure will be converted to the nested navigation.</p>
 <ul>
 <li>File Name With Space.md = FAIL</li>
 </ul>
-<h3><a id="see-your-pages" href="#see-your-pages" class="Permalink" aria-hidden="true" title="Permalink">#</a>See your pages</h3>
+<h3><a id="see-your-pages" href="#see-your-pages" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>See your pages</h3>
 <p>Now you can see your pages. you have two options for that : serve them directly, or generate to various formats.</p>
 <p>We recommend the first one while you write your documentation, you get a much quicker feedback while writing.</p>
-<h4><a id="serving-files" href="#serving-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>Serving files</h4>
+<h4><a id="serving-files" href="#serving-files" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Serving files</h4>
 <p>You can use PHP’s embedded web server by running the following command in the root of your documentation</p>
 <pre><code>./serve
 </code></pre>
 <p>Upload your files to an apache / nginx server and see your documentation</p>
 <p><a href="Features/Live_mode.html">More informations here</a></p>
-<h4><a id="export-to-other-formats" href="#export-to-other-formats" class="Permalink" aria-hidden="true" title="Permalink">#</a>Export to other formats</h4>
+<h4><a id="export-to-other-formats" href="#export-to-other-formats" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Export to other formats</h4>
 <p>Daux.io is extendable and comes by default with three export formats:</p>
 <ul>
 <li>Export to HTML, same as the website, but can be hosted without PHP.</li>
@@ -305,28 +305,28 @@ The folder structure will be converted to the nested navigation.</p>
 <p><a href="Features/Multiple_Output_Formats.html">See a detailed feature comparison matrix</a></p>
 <p>To export, run the <code>daux</code> command and your documentation will be generated in <code>static</code> (you can change the destination with the <code>--destination</code> option)</p>
 <p><a href="Features/Static_Site_Generation.html">See here for all options</a></p>
-<h2><a id="configuration" href="#configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuration</h2>
+<h2><a id="configuration" href="#configuration" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Configuration</h2>
 <p>Now that you got the basics, you can also <a href="Configuration/index.html">see what you can configure</a></p>
-<h3><a id="server-configuration" href="#server-configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Server Configuration</h3>
+<h3><a id="server-configuration" href="#server-configuration" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Server Configuration</h3>
 <p>We are using <code>.mjs</code> file types. Which not every web server properly understands and serves.</p>
 <p>You might see an error like <code>Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of &quot;application/octet-stream&quot;. Strict MIME type checking is enforced for module scripts per HTML spec.</code></p>
-<h4><a id="apache" href="#apache" class="Permalink" aria-hidden="true" title="Permalink">#</a>Apache</h4>
+<h4><a id="apache" href="#apache" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Apache</h4>
 <p>If you are using a version under 2.5.1 of Apache HTTPd.</p>
 <p>Add the following line within <code>.htaccess</code>, vhost or server configuration.</p>
 <pre><code>AddType application/javascript .mjs
 </code></pre>
-<h4><a id="nginx" href="#nginx" class="Permalink" aria-hidden="true" title="Permalink">#</a>nginx</h4>
+<h4><a id="nginx" href="#nginx" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>nginx</h4>
 <pre><code>  include mime.types;
   types {
       application/javascript js mjs;
   }
 </code></pre>
-<h2><a id="php-requirements" href="#php-requirements" class="Permalink" aria-hidden="true" title="Permalink">#</a>PHP Requirements</h2>
+<h2><a id="php-requirements" href="#php-requirements" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>PHP Requirements</h2>
 <p>Daux.io is compatible with the <a href="https://www.php.net/supported-versions.php" class="Link--external" rel="noopener noreferrer">officially supported</a> PHP versions; 8.4.0 and up.</p>
-<h3><a id="extensions" href="#extensions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Extensions</h3>
+<h3><a id="extensions" href="#extensions" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Extensions</h3>
 <p>Daux.io needs the following PHP extensions to work : <code>php-mbstring</code> and <code>php-xml</code>.</p>
 <p>If you use non-english characters in your page names, it is recommended to install the <code>php-intl</code> extension as well.</p>
-<h2><a id="support" href="#support" class="Permalink" aria-hidden="true" title="Permalink">#</a>Support</h2>
+<h2><a id="support" href="#support" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Support</h2>
 <p>If you need help using Daux.io, or have found a bug, please create an issue on the <a href="https://github.com/dauxio/daux.io/issues" target="_blank">GitHub repo</a>.</p>
     </div>
 
