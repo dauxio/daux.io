@@ -34,7 +34,7 @@ class TableOfContentsTest extends TestCase
     {
         $converter = new CommonMarkConverter($this->getConfig());
 
-        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">#</a>Test</h1>\n", $converter->convert('# Test')->getContent());
+        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" tabindex=\"-1\" title=\"Permalink\">#</a>Test</h1>\n", $converter->convert('# Test')->getContent());
     }
 
     public function testHeadingPermalinkSymbolOverride()
@@ -43,7 +43,7 @@ class TableOfContentsTest extends TestCase
         $config['daux']['heading_permalink'] = ['symbol' => ''];
         $converter = new CommonMarkConverter($config);
 
-        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\"></a>Test</h1>\n", $converter->convert('# Test')->getContent());
+        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" tabindex=\"-1\" title=\"Permalink\"></a>Test</h1>\n", $converter->convert('# Test')->getContent());
     }
 
     public function testHeadingPermalinkCustomSymbol()
@@ -52,7 +52,7 @@ class TableOfContentsTest extends TestCase
         $config['daux']['heading_permalink'] = ['symbol' => '¶'];
         $converter = new CommonMarkConverter($config);
 
-        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" title=\"Permalink\">¶</a>Test</h1>\n", $converter->convert('# Test')->getContent());
+        $this->assertEquals("<h1><a id=\"test\" href=\"#test\" class=\"Permalink\" aria-hidden=\"true\" tabindex=\"-1\" title=\"Permalink\">¶</a>Test</h1>\n", $converter->convert('# Test')->getContent());
     }
 
     public function testShouldAddTOCWhenAutoTOCisOn()
@@ -66,7 +66,7 @@ class TableOfContentsTest extends TestCase
             <ul class="TableOfContents">
             <li><a href="#title">Title</a></li>
             </ul>
-            <h1><a id="title" href="#title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
+            <h1><a id="title" href="#title" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Title</h1>
 
             EXPECTED;
 
@@ -85,7 +85,7 @@ class TableOfContentsTest extends TestCase
             <ul class="TableOfContents">
             <li><a href="#title">Title</a></li>
             </ul>
-            <h1><a id="title" href="#title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
+            <h1><a id="title" href="#title" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Title</h1>
 
             EXPECTED;
 
@@ -101,7 +101,7 @@ class TableOfContentsTest extends TestCase
             <ul class="TableOfContents">
             <li><a href="#title">Title</a></li>
             </ul>
-            <h1><a id="title" href="#title" class="Permalink" aria-hidden="true" title="Permalink">#</a>Title</h1>
+            <h1><a id="title" href="#title" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Title</h1>
 
             EXPECTED;
 
@@ -118,8 +118,8 @@ class TableOfContentsTest extends TestCase
             <li><a href="#ji-chu-cao-zuo">基础操作</a></li>
             <li><a href="#cao-zuo-ji-chu">操作基础</a></li>
             </ul>
-            <h1><a id="ji-chu-cao-zuo" href="#ji-chu-cao-zuo" class="Permalink" aria-hidden="true" title="Permalink">#</a>基础操作</h1>
-            <h1><a id="cao-zuo-ji-chu" href="#cao-zuo-ji-chu" class="Permalink" aria-hidden="true" title="Permalink">#</a>操作基础</h1>
+            <h1><a id="ji-chu-cao-zuo" href="#ji-chu-cao-zuo" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>基础操作</h1>
+            <h1><a id="cao-zuo-ji-chu" href="#cao-zuo-ji-chu" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>操作基础</h1>
 
             EXPECTED;
 
@@ -137,9 +137,9 @@ class TableOfContentsTest extends TestCase
             <li><a href="#test-1">Test</a></li>
             <li><a href="#test-2">Test</a></li>
             </ul>
-            <h1><a id="test" href="#test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
-            <h1><a id="test-1" href="#test-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
-            <h1><a id="test-2" href="#test-2" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test</h1>
+            <h1><a id="test" href="#test" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Test</h1>
+            <h1><a id="test-1" href="#test-1" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Test</h1>
+            <h1><a id="test-2" href="#test-2" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Test</h1>
 
             EXPECTED;
 
@@ -155,7 +155,7 @@ class TableOfContentsTest extends TestCase
             <ul class="TableOfContents">
             <li><a href="#test-test">TEST : Test</a></li>
             </ul>
-            <h1><a id="test-test" href="#test-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>TEST : Test</h1>
+            <h1><a id="test-test" href="#test-test" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>TEST : Test</h1>
 
             EXPECTED;
 
@@ -171,7 +171,7 @@ class TableOfContentsTest extends TestCase
             <ul class="TableOfContents">
             <li><a href="#daux-s-bug">Daux’s bug</a></li>
             </ul>
-            <h1><a id="daux-s-bug" href="#daux-s-bug" class="Permalink" aria-hidden="true" title="Permalink">#</a>Daux’s bug</h1>
+            <h1><a id="daux-s-bug" href="#daux-s-bug" class="Permalink" aria-hidden="true" tabindex="-1" title="Permalink">#</a>Daux’s bug</h1>
 
             EXPECTED;
 
