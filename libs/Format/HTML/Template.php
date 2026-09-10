@@ -25,23 +25,26 @@ class Template
             return $this->engine;
         }
 
-        $base = $config->getTemplates();
-        $theme = $config->getTheme()->getTemplates();
+        // The templates shipped with Daux, they are always the last resort
+        $builtin = realpath(__DIR__ . '/../../../templates');
 
-        // Use internal templates if no templates
-        // dir exists in the working directory
-        if (!is_dir($base)) {
-            $base = __DIR__ . '/../../../templates';
+        // From the most specific to the most generic, a template that
+        // can't be found in one directory is looked up in the next one
+        $directories = [];
+        foreach ([$config->getTheme()->getTemplates(), $config->getTemplates(), $builtin] as $directory) {
+            if ($directory && is_dir($directory) && !in_array($directory, $directories, true)) {
+                $directories[] = $directory;
+            }
         }
 
         // Create new Plates instance
-        $this->engine = new Engine($base);
-        if (!is_dir($theme)) {
-            $theme = $base;
-        }
-        $this->engine->addFolder('theme', $theme, true);
+        // The directory and the 'theme' folder are only there to satisfy Plates,
+        // the lookup itself is entirely done by our resolver
+        $this->engine = new Engine($builtin);
+        $this->engine->addFolder('theme', $builtin, true);
+        $this->engine->setResolveTemplatePath(new TemplateResolver($directories));
 
-        Daux::writeln("Starting Template engine with basedir '{$base}' and theme folder '{$theme}'.", OutputInterface::VERBOSITY_VERBOSE);
+        Daux::writeln("Starting Template engine, looking up templates in '" . implode("', '", $directories) . "'.", OutputInterface::VERBOSITY_VERBOSE);
 
         $this->registerFunctions($this->engine);
 

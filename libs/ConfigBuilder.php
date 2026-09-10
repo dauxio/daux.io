@@ -239,7 +239,7 @@ class ConfigBuilder
             'valid_content_extensions' => ['md', 'markdown'],
 
             // Paths and tree
-            'templates' => 'templates',
+            'templates' => $this->config->getLocalBase() . DIRECTORY_SEPARATOR . 'templates',
 
             'base_url' => '',
         ]);
