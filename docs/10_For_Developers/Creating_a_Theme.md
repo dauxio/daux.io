@@ -91,6 +91,14 @@ You can create a folder named `templates` in your theme, copy-paste the original
 
 You can even do it one template at a time if you wish to do only small changes.
 
+Templates are looked up in this order, and the first match wins :
+
+1.  `templates` in your theme
+2.  the directory set in the `templates` option of your documentation's `config.json`, if you set one
+3.  the templates shipped with Daux.io
+
+A template that isn't in one of these directories is taken from the next one, so you never have to copy a template you don't intend to change.
+
 By default, we have the following templates :
 
 -   `content.php`: The content page.
