@@ -4,8 +4,8 @@
   "private": true,
   "devDependencies": {
     "@biomejs/biome": "2.5.12",
-    "@playwright/test": "1.62.1",
-    "@swc/core": "1.16.1",
+    "@playwright/test": "1.63.0",
+    "@swc/core": "1.16.2",
     "@swissquote/crafty": "1.30.3",
     "@swissquote/crafty-preset-postcss": "1.30.3",
     "@swissquote/crafty-runner-gulp": "1.30.3",
