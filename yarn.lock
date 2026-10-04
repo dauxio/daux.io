@@ -1600,7 +1600,7 @@ __metadata:
     "@swissquote/crafty-runner-gulp": "npm:1.30.3"
     "@types/node": "npm:^24.3.0"
     flexsearch: "npm:^0.8.212"
-    katex: "npm:^0.18.0"
+    katex: "npm:^0.19.0"
     mermaid: "npm:^11.16.1"
     postcss-page-break: "npm:^3.0.4"
     preact: "npm:^10.29.7"
@@ -1968,14 +1968,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"katex@npm:^0.18.0":
-  version: 0.18.7
-  resolution: "katex@npm:0.18.7"
+"katex@npm:^0.19.0":
+  version: 0.19.0
+  resolution: "katex@npm:0.19.0"
   dependencies:
     commander: "npm:^15.0.0"
   bin:
     katex: cli.js
-  checksum: 10c0/191b690af9099fb25b595270b9da191cd37c9b45d7773188112ad7831e74a4a3e07f10e1e1bdd656daa8794e744cefd03d079eb05be49983ac578bcb2ce857df
+  checksum: 10c0/c418ae625c0d30ca2d96b3fa619d1ea8eca53729989804aa4ad1c75e19112249ee5fe887ba7bef10e472ff5601b9cca43357a525fd52c243128dd601f2b75e2a
   languageName: node
   linkType: hard
 
