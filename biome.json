@@ -7,10 +7,22 @@
     "linter": {
         "enabled": true,
         "rules": {
-            "recommended": true,
+            "preset": "recommended",
             "suspicious": {
-				"noPrototypeBuiltins": "off"
-			}
+                "noPrototypeBuiltins": "off"
+            }
         }
-    }
+    },
+    "overrides": [
+        {
+            "includes": ["**/*.scss"],
+            "linter": {
+                "rules": {
+                    "correctness": {
+                        "noUnknownUnit": "off"
+                    }
+                }
+            }
+        }
+    ]
 }

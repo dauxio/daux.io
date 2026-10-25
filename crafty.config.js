@@ -12,6 +12,11 @@ module.exports = {
         "!*.min.css",
         "!**/vendor/**/*.scss",
     ],
+    stylelint: {
+        rules: {
+            "prettier/prettier": null, // handled by Biome
+        },
+    },
     eslint: {
         settings: {
             react: {
@@ -20,6 +25,7 @@ module.exports = {
         },
         rules: {
             "@swissquote/swissquote/react/no-deprecated": 0,
+            "prettier/prettier": 0, // handled by Biome
         },
     },
     css: {

@@ -1622,6 +1622,7 @@ __metadata:
     flexsearch: "npm:^0.8.212"
     katex: "npm:^0.19.0"
     mermaid: "npm:^11.16.1"
+    normalize.css: "npm:^8.0.1"
     postcss-page-break: "npm:^3.0.4"
     preact: "npm:^10.29.7"
     swc-loader: "npm:0.2.7"
@@ -2335,6 +2336,13 @@ __metadata:
   bin:
     nopt: bin/nopt.js
   checksum: 10c0/980d89257f9587f3e1f77877ddbf905d6aa3b738ec33e49a4fa1a059a0dd82eb28063982b150654a7ae9de386f2ead60e56172db7d37cf56de545f7392a2a26a
+  languageName: node
+  linkType: hard
+
+"normalize.css@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "normalize.css@npm:8.0.1"
+  checksum: 10c0/4ddf56d1af5ca755fa5e692e718316d8758ecb792aa96e1ad206824b5810a043763d681d6f7697d46573515f5e9690038b4c91a95c1997567128815545fb8cd7
   languageName: node
   linkType: hard
 
