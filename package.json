@@ -3,9 +3,9 @@
   "version": "0.3.0",
   "private": true,
   "devDependencies": {
-    "@biomejs/biome": "2.5.15",
+    "@biomejs/biome": "2.6.2",
     "@playwright/test": "1.64.1",
-    "@swc/core": "1.16.18",
+    "@swc/core": "1.16.20",
     "@swissquote/crafty": "1.30.3",
     "@swissquote/crafty-preset-postcss": "1.30.3",
     "@swissquote/crafty-runner-gulp": "1.30.3",
