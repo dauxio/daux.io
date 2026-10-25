@@ -3,8 +3,11 @@ name: PHP
 on:
   push:
     branches: [ master ]
-  pull_request_target:
+  pull_request:
     branches: [ master ]
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -20,16 +23,14 @@ jobs:
 
     name: PHP ${{ matrix.php-version }} Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    permissions:
-      contents: read
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
       with:
-        ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
+        persist-credentials: false
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@2.40.0
+      uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
       with:
         php-version: ${{ matrix.php-version }}
         extensions: mbstring, dom, intl, iconv
@@ -55,7 +56,7 @@ jobs:
     #- name: Fix code coverage paths
     #  run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
 
-    - uses: actions/upload-artifact@v7
+    - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       if: matrix.php-version == '8.4'
       with:
         name: reports-${{ matrix.os }}-${{ matrix.php-version }}
@@ -65,37 +66,50 @@ jobs:
           **/test-report.xml
           !node_modules/**
 
-  # ─── Job 2: uploads coverage using secrets, does NOT run PR code ─────────
+  # ─── Job 2: uploads to SonarCloud using secrets ─────────────────────────
+  # Only runs for pushes and PRs from branches of this repository, never for forks
+  # or dependency bots (Dependabot has no access to Actions secrets)
   static_analysis:
     name: "🔬 Static Analysis"
     needs: build
     runs-on: ubuntu-latest
-    if: success()
-    permissions:
-      id-token: write
-      contents: read
+    if: >-
+      success() && (
+        github.event_name == 'push' || (
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          github.event.pull_request.user.login != 'dependabot[bot]' &&
+          github.event.pull_request.user.login != 'renovate[bot]'
+        )
+      )
     steps:
     # Commit is needed to check coverage files against content
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
       with:
-        ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
+        persist-credentials: false
         # Disabling shallow clone is needed by SonarQube
         fetch-depth: 0
-    - uses: actions/download-artifact@v8
+    - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
       with:
         pattern: reports-*
         path: __reports
-    - run: find . -name "coverage.xml"
+    - run: find __reports -name "coverage.xml"
     - name: Collect Sonar report paths
       id: sonar_reports
       run: |
-        echo "test_reports=$(find . -name "test-report.xml" | tr '\n' ',' | sed 's/,$//')" >> $GITHUB_OUTPUT
-        echo "project_version=$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n1)" >> $GITHUB_OUTPUT
+        test_reports=$(find __reports -name "test-report.xml" | sort | paste -sd, -)
+        # The scanner action splits args on whitespace, only allow plain paths
+        if [[ ! "$test_reports" =~ ^[A-Za-z0-9._/,-]+$ ]]; then
+          echo "::error::Unexpected test report paths: $test_reports"
+          exit 1
+        fi
+        echo "test_reports=$test_reports" >> "$GITHUB_OUTPUT"
+        echo "project_version=$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n1)" >> "$GITHUB_OUTPUT"
     - name: SonarCloud Scan
-      uses: SonarSource/sonarqube-scan-action@v8
+      uses: SonarSource/sonarqube-scan-action@d209202bc7d53ff1cc128f7f907dac145c9d6ae9 # v8.3.0
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
+          -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.php.tests.reportPath=${{ steps.sonar_reports.outputs.test_reports }}
-          -Dsonar.projectVersion=`${{ steps.sonar_reports.outputs.project_version  }}`
+          -Dsonar.projectVersion=${{ steps.sonar_reports.outputs.project_version }}
