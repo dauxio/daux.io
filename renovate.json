@@ -3,6 +3,7 @@
   "extends": [
     "github>onigoetz/renovate-preset:recommended",
     ":preserveSemverRanges",
-    ":automergeMinor"
+    ":automergeMinor",
+    "helpers:pinGitHubActionDigests"
   ]
 }
