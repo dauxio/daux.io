@@ -33,20 +33,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/biome@npm:2.6.5"
+"@biomejs/biome@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/biome@npm:2.6.6"
   dependencies:
-    "@biomejs/cli-android-arm64": "npm:2.6.5"
-    "@biomejs/cli-android-x64": "npm:2.6.5"
-    "@biomejs/cli-darwin-arm64": "npm:2.6.5"
-    "@biomejs/cli-darwin-x64": "npm:2.6.5"
-    "@biomejs/cli-linux-arm64": "npm:2.6.5"
-    "@biomejs/cli-linux-arm64-musl": "npm:2.6.5"
-    "@biomejs/cli-linux-x64": "npm:2.6.5"
-    "@biomejs/cli-linux-x64-musl": "npm:2.6.5"
-    "@biomejs/cli-win32-arm64": "npm:2.6.5"
-    "@biomejs/cli-win32-x64": "npm:2.6.5"
+    "@biomejs/cli-android-arm64": "npm:2.6.6"
+    "@biomejs/cli-android-x64": "npm:2.6.6"
+    "@biomejs/cli-darwin-arm64": "npm:2.6.6"
+    "@biomejs/cli-darwin-x64": "npm:2.6.6"
+    "@biomejs/cli-linux-arm64": "npm:2.6.6"
+    "@biomejs/cli-linux-arm64-musl": "npm:2.6.6"
+    "@biomejs/cli-linux-x64": "npm:2.6.6"
+    "@biomejs/cli-linux-x64-musl": "npm:2.6.6"
+    "@biomejs/cli-win32-arm64": "npm:2.6.6"
+    "@biomejs/cli-win32-x64": "npm:2.6.6"
   dependenciesMeta:
     "@biomejs/cli-android-arm64":
       optional: true
@@ -70,76 +70,76 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 10c0/33c28cda87d0f247c95b806de64d42205d12a3adcb742a19d6c42f4d5fdcfb1255adffbf0228794b3bc60c0d21516c80213f26603f802b20e4776bbc16ae8756
+  checksum: 10c0/1040bceed5464784420157781daabb3408017b5ced3acd7cbe86934b9e8ef41638b6544fde21a64b7353afaa4d6be390938fb40d5c17f698df1e349b2b0b70ea
   languageName: node
   linkType: hard
 
-"@biomejs/cli-android-arm64@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-android-arm64@npm:2.6.5"
+"@biomejs/cli-android-arm64@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-android-arm64@npm:2.6.6"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-android-x64@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-android-x64@npm:2.6.5"
+"@biomejs/cli-android-x64@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-android-x64@npm:2.6.6"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-darwin-arm64@npm:2.6.5"
+"@biomejs/cli-darwin-arm64@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-darwin-arm64@npm:2.6.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-darwin-x64@npm:2.6.5"
+"@biomejs/cli-darwin-x64@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-darwin-x64@npm:2.6.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64-musl@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.6.5"
+"@biomejs/cli-linux-arm64-musl@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.6.6"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-linux-arm64@npm:2.6.5"
+"@biomejs/cli-linux-arm64@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-linux-arm64@npm:2.6.6"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64-musl@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-linux-x64-musl@npm:2.6.5"
+"@biomejs/cli-linux-x64-musl@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-linux-x64-musl@npm:2.6.6"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-linux-x64@npm:2.6.5"
+"@biomejs/cli-linux-x64@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-linux-x64@npm:2.6.6"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-win32-arm64@npm:2.6.5"
+"@biomejs/cli-win32-arm64@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-win32-arm64@npm:2.6.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:2.6.5":
-  version: 2.6.5
-  resolution: "@biomejs/cli-win32-x64@npm:2.6.5"
+"@biomejs/cli-win32-x64@npm:2.6.6":
+  version: 2.6.6
+  resolution: "@biomejs/cli-win32-x64@npm:2.6.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -441,119 +441,119 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons-gulp@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/crafty-commons-gulp@npm:1.30.3"
+"@swissquote/crafty-commons-gulp@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/crafty-commons-gulp@npm:1.31.0"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.3"
+    "@swissquote/crafty-commons": "npm:1.31.0"
   peerDependencies:
-    "@swissquote/crafty": 1.30.3
-  checksum: 10c0/71c71a22014269a25dd944bbe307f2dcf1dd69c7da7f561cb74cbbb926ea3140ffc5e3c6a91d7caeed5c02af45ead7b5f292a3cc46cf1579d867a5423c36fc0b
+    "@swissquote/crafty": 1.31.0
+  checksum: 10c0/597a37476a9d36830cf545e091a9c9316386852f8fc9541ebcf91b9eaaee10651c307b35d8cae7824aad8e64196773994a6b9ec15f00fde96cd44cfab9bdc617
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-commons@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/crafty-commons@npm:1.30.3"
+"@swissquote/crafty-commons@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/crafty-commons@npm:1.31.0"
   dependencies:
     caniuse-lite: "npm:^1.0.30001702"
-  checksum: 10c0/60c407a628c3e86f54b953fa9eee0893a8a9b833c67f0118aabc89614f488704567b3e27ec049a92e59f79a82170d65e07a921b09e2770aebdad59cba03a6695
+  checksum: 10c0/ec3b4aabad9bd6408c049a229f26953206d4f200231c96458dfa16d8248fa238bd33a31e2be525c9155aaea608aeafa0f57ddb4a61892718acf13b6be39805b7
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-postcss@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/crafty-preset-postcss@npm:1.30.3"
+"@swissquote/crafty-preset-postcss@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/crafty-preset-postcss@npm:1.31.0"
   dependencies:
     "@babel/code-frame": "npm:7.29.7"
-    "@swissquote/crafty": "npm:1.30.3"
-    "@swissquote/crafty-commons": "npm:1.30.3"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.3"
-    "@swissquote/crafty-preset-stylelint": "npm:1.30.3"
-    "@swissquote/postcss-swissquote-preset": "npm:1.30.3"
+    "@swissquote/crafty": "npm:1.31.0"
+    "@swissquote/crafty-commons": "npm:1.31.0"
+    "@swissquote/crafty-commons-gulp": "npm:1.31.0"
+    "@swissquote/crafty-preset-stylelint": "npm:1.31.0"
+    "@swissquote/postcss-swissquote-preset": "npm:1.31.0"
     mini-css-extract-plugin: "npm:2.10.2"
-    postcss: "npm:8.5.26"
+    postcss: "npm:8.5.32"
     postcss-scss: "npm:4.0.9"
-    schema-utils: "npm:4.3.3"
+    schema-utils: "npm:4.8.1"
   peerDependencies:
-    "@swissquote/stylelint-config-swissquote": 1.30.3
-  checksum: 10c0/0359695c26e1237da95f14c1956fee87fc2e6c2c660bc181675f0aa26f1d7fa0acf8d2f50c8836d2e06b0c595f1e7ec79cecd26cb18b78cae38f7fda96308f6c
+    "@swissquote/stylelint-config-swissquote": 1.31.0
+  checksum: 10c0/f78d4d747e71532ac63cd453645e0110f99f603235d6554b716aca353ccdcf5a34ec4efe9380673a31b39b5f520b3275cefeb54170aac60a9f87e2019de5f4ce
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-prettier@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/crafty-preset-prettier@npm:1.30.3"
-  checksum: 10c0/96e5b1f8144b037683beae3ad50c7fd023c3bb5e7941da0fb6fcf218adec11fb9dafc3d83a184d7b2dc6227355685351a1b7b229bea68e8ade318aa43d08d69b
+"@swissquote/crafty-preset-prettier@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/crafty-preset-prettier@npm:1.31.0"
+  checksum: 10c0/202ce03f8d1bac27b211f93b52def35ab54e689e2ab1fd77a055f36845a4fd7927f8343420d7f99761d7360574cdb6310026d11fb05827bcec2de5918301ae19
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-preset-stylelint@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/crafty-preset-stylelint@npm:1.30.3"
+"@swissquote/crafty-preset-stylelint@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/crafty-preset-stylelint@npm:1.31.0"
   dependencies:
-    "@swissquote/crafty": "npm:1.30.3"
-    "@swissquote/crafty-commons": "npm:1.30.3"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.3"
-    "@swissquote/crafty-preset-prettier": "npm:1.30.3"
-    "@swissquote/stylelint-config-swissquote": "npm:1.30.3"
-    postcss: "npm:8.5.26"
+    "@swissquote/crafty": "npm:1.31.0"
+    "@swissquote/crafty-commons": "npm:1.31.0"
+    "@swissquote/crafty-commons-gulp": "npm:1.31.0"
+    "@swissquote/crafty-preset-prettier": "npm:1.31.0"
+    "@swissquote/stylelint-config-swissquote": "npm:1.31.0"
+    postcss: "npm:8.5.32"
     postcss-scss: "npm:4.0.9"
-  checksum: 10c0/59911725ef1f65da4e53d939ef4cefa00c7408a3d37333c3f6d9d0d1695a9ef2cf37e2d7b647bb2be9a82f2a8611b4e00f5427799a3f33a138b5e11336767525
+  checksum: 10c0/a64e02eb78c31ca8555d7cfbce57500cb64de6ffeaf14b872a7cd9192d915ffbf1e41d43fbcd807783f14bcb96ed925ca62528ab901b7a7e5e9a2ffaa48e0057
   languageName: node
   linkType: hard
 
-"@swissquote/crafty-runner-gulp@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/crafty-runner-gulp@npm:1.30.3"
+"@swissquote/crafty-runner-gulp@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/crafty-runner-gulp@npm:1.31.0"
   dependencies:
-    "@swissquote/crafty": "npm:1.30.3"
-    "@swissquote/crafty-commons": "npm:1.30.3"
-    "@swissquote/crafty-commons-gulp": "npm:1.30.3"
-  checksum: 10c0/18bad63940ea3120344630d6855bf05d153b6475bd4bb4c995db0b1374679d3d4dd6623ee04f21e2714648629cefbf18d734b45ba6ee89aff825ba2e9d1ecbe6
+    "@swissquote/crafty": "npm:1.31.0"
+    "@swissquote/crafty-commons": "npm:1.31.0"
+    "@swissquote/crafty-commons-gulp": "npm:1.31.0"
+  checksum: 10c0/691be3633d775ef0cb4a91b46cfaa7a416cb43e3dc4aeb37d2da9c928822c19458054f86600d56b5045566b8baf571b20d1c1214f6c78bab6c8b1335d335af9d
   languageName: node
   linkType: hard
 
-"@swissquote/crafty@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/crafty@npm:1.30.3"
+"@swissquote/crafty@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/crafty@npm:1.31.0"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.3"
+    "@swissquote/crafty-commons": "npm:1.31.0"
     fsevents: "npm:~2.3.3"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     crafty: src/bin.cjs
-  checksum: 10c0/99f1521dad91c33b0951b5a504c6ea8fd9de538d86ca9f38c5336abd36f11b4d3ad1cbb5109389e73ccd066375af3d8f0698dbcec2853d980797149e6ba39614
+  checksum: 10c0/96d40cc89064b62f687a6c3c0f659a79265f98abf8bb9c983108498245db02765d56cc25e0f71b5abdc73d62668b0314adeeb235292eae5192ee81fc5df95952
   languageName: node
   linkType: hard
 
-"@swissquote/postcss-swissquote-preset@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/postcss-swissquote-preset@npm:1.30.3"
+"@swissquote/postcss-swissquote-preset@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/postcss-swissquote-preset@npm:1.31.0"
   dependencies:
-    "@swissquote/crafty-commons": "npm:1.30.3"
+    "@swissquote/crafty-commons": "npm:1.31.0"
     caniuse-lite: "npm:^1.0.30001702"
     lightningcss: "npm:1.33.0"
-    postcss: "npm:8.5.26"
-  checksum: 10c0/6fdf527d0721cda6f89671958e9e68a16f9661d010d5a3cfa2c0628ed1b9b81a5727f7607cd679a7801d18b4cf22af0feac98074099d05260082e086c2658039
+    postcss: "npm:8.5.32"
+  checksum: 10c0/08fb330e28af1dbfb255bdfd9dc36772ed16e39bbd7684884e87d91d67ae11d4986dccba6d231b19eff80a619bfe0ca0bdccb137e5baa210ef8d15fdbc2a87ff
   languageName: node
   linkType: hard
 
-"@swissquote/stylelint-config-swissquote@npm:1.30.3":
-  version: 1.30.3
-  resolution: "@swissquote/stylelint-config-swissquote@npm:1.30.3"
+"@swissquote/stylelint-config-swissquote@npm:1.31.0":
+  version: 1.31.0
+  resolution: "@swissquote/stylelint-config-swissquote@npm:1.31.0"
   dependencies:
     "@babel/code-frame": "npm:7.29.7"
-    "@swissquote/crafty": "npm:1.30.3"
+    "@swissquote/crafty": "npm:1.31.0"
     caniuse-lite: "npm:^1.0.30001702"
     postcss-scss: "npm:4.0.9"
   peerDependencies:
-    "@swissquote/crafty-commons": 1.30.3
+    "@swissquote/crafty-commons": 1.31.0
     postcss: ^8.0.0
     stylelint: ^16.0.0
-  checksum: 10c0/249e957d55db2257b09863d3f218f3c708d3005df1ebb284a56b5465d80f65993e0521e2e3e7e9d6b88c0e418c4649de6ea1f4e437bcf9cc61961fb6fd03cf9a
+  checksum: 10c0/2619c030561976417b07c7c8b328b01e08429fd953c9954904a92881d70a54106aa5527e7beba5fd16d534014d27bca67a7d82f33096ddd31726541c9f8b0846
   languageName: node
   linkType: hard
 
@@ -843,7 +843,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.15, @types/json-schema@npm:^7.0.9":
+"@types/json-schema@npm:^7.0.15":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
   checksum: 10c0/a996a745e6c5d60292f36731dd41341339d4eeed8180bb09226e5c8d23759067692b1d88e5d91d72ee83dfc00d3aca8e7bd43ea120516c17922cbcb7c3e252db
@@ -1071,20 +1071,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv-formats@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "ajv-formats@npm:2.1.1"
-  dependencies:
-    ajv: "npm:^8.0.0"
-  peerDependencies:
-    ajv: ^8.0.0
-  peerDependenciesMeta:
-    ajv:
-      optional: true
-  checksum: 10c0/e43ba22e91b6a48d96224b83d260d3a3a561b42d391f8d3c6d2c1559f9aa5b253bfb306bc94bbeca1d967c014e15a6efe9a207309e95b3eaae07fcbcdc2af662
-  languageName: node
-  linkType: hard
-
 "ajv-formats@npm:^3.0.1":
   version: 3.0.1
   resolution: "ajv-formats@npm:3.0.1"
@@ -1110,7 +1096,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.0.0, ajv@npm:^8.20.0, ajv@npm:^8.9.0":
+"ajv@npm:^8.0.0, ajv@npm:^8.20.0":
   version: 8.20.0
   resolution: "ajv@npm:8.20.0"
   dependencies:
@@ -1641,12 +1627,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "daux.io@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:2.6.5"
+    "@biomejs/biome": "npm:2.6.6"
     "@playwright/test": "npm:1.65.0"
     "@swc/core": "npm:1.16.22"
-    "@swissquote/crafty": "npm:1.30.3"
-    "@swissquote/crafty-preset-postcss": "npm:1.30.3"
-    "@swissquote/crafty-runner-gulp": "npm:1.30.3"
+    "@swissquote/crafty": "npm:1.31.0"
+    "@swissquote/crafty-preset-postcss": "npm:1.31.0"
+    "@swissquote/crafty-runner-gulp": "npm:1.31.0"
     "@types/node": "npm:^24.3.0"
     flexsearch: "npm:^0.8.212"
     katex: "npm:^0.19.0"
@@ -2248,7 +2234,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.3.17":
+"nanoid@npm:^3.3.20":
   version: 3.3.20
   resolution: "nanoid@npm:3.3.20"
   bin:
@@ -2385,14 +2371,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.5.26":
-  version: 8.5.26
-  resolution: "postcss@npm:8.5.26"
+"postcss@npm:8.5.32":
+  version: 8.5.32
+  resolution: "postcss@npm:8.5.32"
   dependencies:
-    nanoid: "npm:^3.3.17"
+    nanoid: "npm:^3.3.20"
     picocolors: "npm:^1.1.1"
-    source-map-js: "npm:^1.2.1"
-  checksum: 10c0/2bdafc00d96bd57b6649a52e458864a4bf58ee56cfdbe4aea1472b5cccc127e6c1ad653bd0bec50d211e650eb0b9270c80e1e72aff2e2fa40d9e7363234d6e43
+    source-map-js: "npm:^1.2.2"
+  checksum: 10c0/5fa6cad84e277c2ced965dc7e8e7c0b8d7e5b76a6835591b57a43fde46e671d0c8428d365e9141c080abaae5441d495ed77ffd7472c5bd41d6c2154bd03c01d7
   languageName: node
   linkType: hard
 
@@ -2462,15 +2448,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:4.3.3":
-  version: 4.3.3
-  resolution: "schema-utils@npm:4.3.3"
+"schema-utils@npm:4.8.1":
+  version: 4.8.1
+  resolution: "schema-utils@npm:4.8.1"
   dependencies:
-    "@types/json-schema": "npm:^7.0.9"
-    ajv: "npm:^8.9.0"
-    ajv-formats: "npm:^2.1.1"
+    "@types/json-schema": "npm:^7.0.15"
+    ajv: "npm:^8.20.0"
+    ajv-formats: "npm:^3.0.1"
     ajv-keywords: "npm:^5.1.0"
-  checksum: 10c0/1c8d2c480a026d7c02ab2ecbe5919133a096d6a721a3f201fa50663e4f30f6d6ba020dfddd93cb828b66b922e76b342e103edd19a62c95c8f60e9079cc403202
+  peerDependencies:
+    webpack: ^5.112.0
+  peerDependenciesMeta:
+    webpack:
+      optional: true
+  bin:
+    schema-utils: bin/schema-utils.js
+  checksum: 10c0/b18b816e5628adb6a703883dbbb672aa3368e6462e16097c9df16d9ca192e41191b98c1b63b6cf18b0ee17a7223268ec9ca76935e8c50337cfa8484d3d289eea
   languageName: node
   linkType: hard
 
@@ -2511,7 +2504,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-js@npm:^1.2.1":
+"source-map-js@npm:^1.2.2":
   version: 1.2.2
   resolution: "source-map-js@npm:1.2.2"
   checksum: 10c0/d5d6dec62266834f83dd4f8a2606a196fb1a006ca5d53b0ef80ee513b7eba2f4e2ae241f4bc129ae7e9b80dea24f6e3d92b446b7e6e96be7653cab8888168a94
