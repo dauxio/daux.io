@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "private": true,
   "devDependencies": {
-    "@biomejs/biome": "2.6.6",
+    "@biomejs/biome": "2.6.7",
     "@playwright/test": "1.65.0",
     "@swc/core": "1.16.22",
     "@swissquote/crafty": "1.31.0",
