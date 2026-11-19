@@ -66,13 +66,16 @@ jobs:
           **/test-report.xml
           !node_modules/**
 
-  # ─── Job 2: uploads to SonarCloud using secrets ─────────────────────────
+  # ─── Job 2: uploads to SonarCloud with a short-lived OIDC token ─────────
   # Only runs for pushes and PRs from branches of this repository, never for forks
-  # or dependency bots (Dependabot has no access to Actions secrets)
+  # (GitHub withholds id-token from fork PRs) or dependency bots
   static_analysis:
     name: "🔬 Static Analysis"
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # exchanged for a short-lived SonarQube Cloud token
     if: >-
       success() && (
         github.event_name == 'push' || (
@@ -104,10 +107,12 @@ jobs:
         fi
         echo "test_reports=$test_reports" >> "$GITHUB_OUTPUT"
         echo "project_version=$(git tag -l --sort=-creatordate --format='%(refname:short)' | head -n1)" >> "$GITHUB_OUTPUT"
+    # Secretless analysis: trades the job's OIDC token for a 30 min scan-only token
+    # and exports it as SONAR_TOKEN. Org and project key come from sonar-project.properties
+    - name: SonarQube Cloud Auth
+      uses: SonarSource/sonarqube-auth-action@b372e2c2930aadfcc4f4399446da1e12772709ad # v1.2
     - name: SonarCloud Scan
       uses: SonarSource/sonarqube-scan-action@e805d875275f728fac1885b413934be6d7c63f65 # v8.4.1
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
           -Dsonar.host.url=https://sonarcloud.io
